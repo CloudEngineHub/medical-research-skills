@@ -48,6 +48,47 @@ This ensures consistency, reliability, and integration potential.
 
 ---
 
+## 🦞 Install into OpenClaw
+
+[OpenClaw](https://openclaw.ai) is a self-hosted AI agent gateway. You can install all AIPOCH skills into OpenClaw with a single command.
+
+**macOS / Linux / WSL:**
+
+```bash
+bash <(curl -s https://raw.githubusercontent.com/aipoch/medical-research-skills/main/scientific-skills/scripts/openclaw-install.sh)
+```
+
+**Windows (Git Bash):**
+
+```bash
+curl -s https://raw.githubusercontent.com/aipoch/medical-research-skills/main/scientific-skills/scripts/openclaw-install.sh -o /tmp/install.sh
+bash /tmp/install.sh
+```
+
+The script will:
+1. Clone this repository into a temporary directory
+2. Copy all `SKILL.md` skill folders into `~/.openclaw/skills/`
+3. Skip any skills that are already installed
+
+After installation, restart your gateway to pick up the new skills:
+
+```bash
+openclaw gateway restart
+```
+
+> **Tip:** Run with `--dry-run` first to preview what will be installed without making any changes.
+>
+> ```bash
+> bash <(curl -s https://raw.githubusercontent.com/aipoch/medical-research-skills/main/scientific-skills/scripts/openclaw-install.sh) --dry-run
+> ```
+
+> **Note:** Skills are installed to `~/.openclaw/skills/` by default (visible to all agents). To install into a specific workspace instead, set the environment variable before running:
+> ```bash
+> OPENCLAW_SKILLS_DIR=~/.openclaw/workspace/skills bash <(curl -s https://raw.githubusercontent.com/aipoch/medical-research-skills/main/scientific-skills/scripts/openclaw-install.sh)
+> ```
+
+---
+
 ## 📦 What’s Inside This Repository
 
 ### 🗂️ Skill Domains
@@ -95,7 +136,6 @@ Each category represents a key area of biomedical research, professional practic
 
 
 #### 📈 Total Skills in Library: **200+ and growing**
-
 
 ---
 
