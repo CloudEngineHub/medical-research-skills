@@ -5,7 +5,6 @@
 
 set -euo pipefail
 
-# ── 配置 ──────────────────────────────────────────────────────────────────────
 REPO_URL="https://github.com/aipoch/medical-research-skills"
 
 SKILLS_DIR="${OPENCLAW_SKILLS_DIR:-${HOME}/.openclaw/skills}"
