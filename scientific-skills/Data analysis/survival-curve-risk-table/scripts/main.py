@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
-"""
-Survival Curve Risk Table Generator
-Automatically aligns and adds a "Number at Risk" table below Kaplan-Meier survival curves
-Compliant with clinical oncology journal standards (NEJM, Lancet, JCO, etc.)
+"""Survival Curve Risk Table Generator
+Automatically align and add "Number at risk" table below Kaplan-Meier survival curve
+Comply with clinical oncology journal standards (NEJM, Lancet, JCO, etc.)
 
-Author: OpenClaw
-Version: 1.0.0
-"""
+Author:OpenClaw
+Version: 1.0.0"""
 
 import argparse
 import sys
@@ -23,7 +21,7 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from matplotlib.gridspec import GridSpec
 
-# Try to import optional dependencies
+# Try importing optional dependencies
 try:
     from PIL import Image
     HAS_PIL = True
@@ -41,14 +39,12 @@ except ImportError:
 
 
 class RiskTableGenerator:
-    """
-    Survival Curve Risk Table Generator
+    """Survival Curve Risk Table Generator
     
-    Main features:
-    1. Calculate number at risk at each time point from survival data
-    2. Generate tables compliant with journal standards
-    3. Combine with KM curves to produce publication-quality figures
-    """
+    Main functions:
+    1. Calculate the number of people at risk at each time point from survival data
+    2. Generate tables that comply with journal standards
+    3. Combine with KM curve to generate publication-level images"""
     
     # Predefined journal style configurations
     JOURNAL_STYLES = {
@@ -100,16 +96,14 @@ class RiskTableGenerator:
         dpi: int = 300,
         custom_style: Optional[Dict] = None
     ):
-        """
-        Initialize the risk table generator
+        """Initialize risk table generator
         
         Args:
-            style: Journal style (NEJM, Lancet, JCO, custom)
-            time_points: Custom list of time points
-            figure_size: Figure size (width, height) in inches
-            dpi: Figure resolution
-            custom_style: Custom style configuration (used when style='custom')
-        """
+            style: journal style (NEJM, Lancet, JCO, custom)
+            time_points: Custom time point list
+            figure_size: image size (width, height) inches
+            dpi: image resolution
+            custom_style: Custom style configuration (used when style='custom')"""
         self.style_name = style
         self.style = self.JOURNAL_STYLES.get(style, self.JOURNAL_STYLES["NEJM"]).copy()
         
@@ -133,15 +127,13 @@ class RiskTableGenerator:
         event_col: str,
         group_col: Optional[str] = None
     ) -> None:
-        """
-        Load survival data
+        """Load survival data
         
         Args:
-            df: Survival data DataFrame
-            time_col: Time column name
-            event_col: Event column name (1=event, 0=censored)
-            group_col: Group column name (optional)
-        """
+            df: survival data DataFrame
+            time_col: time column name
+            event_col: event column name (1=event, 0=censored)
+            group_col: grouping column name (optional)"""
         self.data = df.copy()
         self.time_col = time_col
         self.event_col = event_col
@@ -164,14 +156,14 @@ class RiskTableGenerator:
             self.data["__group__"] = "All"
             self.group_col = "__group__"
         
-        # Data type check
+        # Data type checking
         if not pd.api.types.is_numeric_dtype(self.data[time_col]):
             raise ValueError(f"Time column '{time_col}' must be numeric")
         
-        # Ensure event column is numeric
+        # Make sure the event column is numeric
         self.data[event_col] = pd.to_numeric(self.data[event_col], errors='coerce')
         
-        # Auto-determine time points (if not specified)
+        # Automatically determine time point (if not specified)
         if self.time_points is None:
             self._auto_select_time_points()
     
@@ -182,11 +174,9 @@ class RiskTableGenerator:
         event_col: str,
         group_col: Optional[str] = None
     ) -> None:
-        """
-        Load survival data from file
+        """Load survival data from file
         
-        Supported formats: CSV, Excel, SAS, pickle
-        """
+        Supported formats: CSV, Excel, SAS, pickle"""
         path = Path(file_path)
         
         if not path.exists():
@@ -208,27 +198,23 @@ class RiskTableGenerator:
         self.load_data(df, time_col, event_col, group_col)
     
     def _auto_select_time_points(self, n_points: int = 7) -> None:
-        """
-        Automatically select time points
+        """Automatically select time points
         
-        Strategy: Use equally spaced time points covering 0 to maximum follow-up time
-        """
+        Strategy: Use equally spaced time points to cover the 0 to maximum follow-up time of the data"""
         if self.data is None:
             raise ValueError("No data loaded")
         
         max_time = self.data[self.time_col].max()
         
-        # Generate equally spaced time points (including 0 and max)
+        # Generate equidistant time points (containing 0 and maximum values)
         self.time_points = np.linspace(0, max_time, n_points).tolist()
         self.time_points = [round(t, 1) for t in self.time_points]
     
     def calculate_number_at_risk(self) -> pd.DataFrame:
-        """
-        Calculate number at risk at each time point
+        """Calculate the number of people at risk at each time point
         
         Returns:
-            DataFrame with time points as columns, groups as rows, values as number at risk
-        """
+            DataFrame, columns are time points, behavior grouping, value is the number of people at risk"""
         if self.data is None:
             raise ValueError("No data loaded")
         
@@ -240,7 +226,7 @@ class RiskTableGenerator:
             
             row = {"Group": group}
             for t in self.time_points:
-                # Number at risk = total - events before t - censored before t
+                # The number of people at risk = the total number of people - the number of people who had the incident before time t - the number of people who were censored before time t
                 events_before = len(group_data[
                     (group_data[self.time_col] <= t) & 
                     (group_data[self.event_col] == 1)
@@ -258,9 +244,7 @@ class RiskTableGenerator:
         return pd.DataFrame(results)
     
     def calculate_censored_counts(self) -> pd.DataFrame:
-        """
-        Calculate censored counts in each time interval (used for JCO style)
-        """
+        """Calculate the censored number of people in each time interval (for JCO style)"""
         if self.data is None:
             raise ValueError("No data loaded")
         
@@ -293,38 +277,36 @@ class RiskTableGenerator:
         show_events: bool = False,
         title: Optional[str] = None
     ) -> None:
-        """
-        Generate a standalone risk table image
+        """Generate independent risk table images
         
         Args:
-            output_path: Output file path
-            show_censored: Whether to show censored counts (defaults to style config)
-            show_events: Whether to show event counts
-            title: Table title
-        """
+            output_path: output file path
+            show_censored: whether to display the censored number of people (default is read from the style configuration)
+            show_events: whether to display the number of events
+            title: table title"""
         if self.data is None:
             raise ValueError("No data loaded. Call load_data() first.")
         
         if show_censored is None:
             show_censored = self.style.get("show_censored", False)
         
-        # Calculate data
+        # Calculated data
         risk_df = self.calculate_number_at_risk()
         
         # Set font
         plt.rcParams['font.family'] = self.style.get("font_family", "Arial")
         
-        # Create figure
+        # Create graphics
         fig, ax = plt.subplots(figsize=self.figure_size, dpi=self.dpi)
         ax.axis('off')
         
-        # Prepare table data
+        # Prepare tabular data
         table_data = self._prepare_table_data(risk_df, show_censored)
         
-        # Draw table
+        # draw table
         self._draw_risk_table(ax, table_data, title)
         
-        # Save
+        # save
         plt.tight_layout()
         plt.savefig(output_path, dpi=self.dpi, bbox_inches='tight', 
                    facecolor='white', edgecolor='none')
@@ -337,9 +319,7 @@ class RiskTableGenerator:
         risk_df: pd.DataFrame,
         show_censored: bool
     ) -> List[List[str]]:
-        """
-        Prepare table data
-        """
+        """Prepare tabular data"""
         # Header
         time_label = self.style.get("time_label", "mo")
         headers = ["Number at risk"]
@@ -349,7 +329,7 @@ class RiskTableGenerator:
             else:
                 headers.append(str(int(t)))
         
-        # Data rows
+        # data row
         rows = []
         for _, row in risk_df.iterrows():
             group_name = row["Group"]
@@ -358,7 +338,7 @@ class RiskTableGenerator:
                 data_row.append(str(int(row[f"t_{t}"])))
             rows.append(data_row)
         
-        # If censored counts should be shown (JCO style)
+        # If you need to display the censored number of people (JCO style)
         if show_censored:
             censored_df = self.calculate_censored_counts()
             for _, row in censored_df.iterrows():
@@ -377,9 +357,7 @@ class RiskTableGenerator:
         table_data: List[List[str]],
         title: Optional[str] = None
     ) -> None:
-        """
-        Draw the risk table
-        """
+        """Draw a risk table"""
         font_size = self.style.get("font_size", 8)
         show_grid = self.style.get("show_grid", False)
         header_bold = self.style.get("header_bold", True)
@@ -396,7 +374,7 @@ class RiskTableGenerator:
         table.set_fontsize(font_size)
         table.scale(1, 2)
         
-        # Apply style
+        # Set style
         for i, key in enumerate(table.get_celld().keys()):
             cell = table.get_celld()[key]
             row, col = key
@@ -410,7 +388,7 @@ class RiskTableGenerator:
                 # Data row style
                 cell.set_edgecolor('black' if show_grid else 'none')
                 
-                # First column (group name) left-aligned
+                # The first column (group name) is left aligned
                 if col == 0:
                     cell.set_text_props(ha='left')
                     cell._loc = 'left'
@@ -427,16 +405,14 @@ class RiskTableGenerator:
         show_km_plot: bool = True,
         km_title: Optional[str] = None
     ) -> None:
-        """
-        Generate a combined plot of KM curve and risk table
+        """Generate a combined graph of KM curve and risk table
         
         Args:
-            km_plot_path: Path to external KM curve image (optional)
-            output_path: Output file path
-            km_ax: Pre-generated KM curve axes (optional)
-            show_km_plot: Whether to display the KM curve
-            km_title: KM curve title
-        """
+            km_plot_path: external KM curve image path (optional)
+            output_path: output file path
+            km_ax: pre-generated KM curve axes (optional)
+            show_km_plot: whether to display KM curve
+            km_title: KM curve title"""
         if not HAS_LIFELINES and km_ax is None and km_plot_path is None:
             raise ImportError("lifelines is required for generating KM plots. "
                             "Install with: pip install lifelines")
@@ -444,7 +420,7 @@ class RiskTableGenerator:
         # Set font
         plt.rcParams['font.family'] = self.style.get("font_family", "Arial")
         
-        # Create figure layout
+        # Create a graphic layout
         fig_height = self.figure_size[1]
         table_height_ratio = self.style.get("table_height_ratio", 0.15)
         
@@ -453,26 +429,26 @@ class RiskTableGenerator:
             gs = GridSpec(2, 1, height_ratios=[1 - table_height_ratio, table_height_ratio],
                          hspace=0.05)
             
-            # Top: KM curve
+            # Upper part: KM curve
             ax_km = fig.add_subplot(gs[0])
             
             if km_plot_path and Path(km_plot_path).exists():
-                # Use external image
+                # Use external images
                 img = plt.imread(km_plot_path)
                 ax_km.imshow(img)
                 ax_km.axis('off')
             elif km_ax is not None:
-                # Use provided axes (complex, not implemented yet)
+                # Use the provided axes (complicated, not implemented yet)
                 pass
             else:
-                # Auto-generate KM curve
+                # Automatically generate KM curve
                 self._plot_km_curve(ax_km, km_title)
             
-            # Bottom: risk table
+            # Lower part: risk table
             ax_table = fig.add_subplot(gs[1])
             ax_table.axis('off')
             
-            # Prepare and draw table
+            # Prepare and draw tables
             risk_df = self.calculate_number_at_risk()
             show_censored = self.style.get("show_censored", False)
             table_data = self._prepare_table_data(risk_df, show_censored)
@@ -497,9 +473,7 @@ class RiskTableGenerator:
         ax: matplotlib.axes.Axes,
         title: Optional[str] = None
     ) -> None:
-        """
-        Plot KM curve using lifelines
-        """
+        """Use lifelines to draw KM curve"""
         if not HAS_LIFELINES:
             raise ImportError("lifelines is required for generating KM plots")
         
@@ -532,16 +506,14 @@ class RiskTableGenerator:
         if title:
             ax.set_title(title, fontsize=12, fontweight='bold')
         
-        # Save X axis limits for alignment
+        # Save X-axis range for alignment
         self._km_xlim = ax.get_xlim()
     
     def export_risk_table_data(self, output_path: str) -> None:
-        """
-        Export risk table data as CSV
-        """
+        """Export risk table data to CSV"""
         risk_df = self.calculate_number_at_risk()
         
-        # Rename columns to more readable names
+        # Rename columns to more friendly names
         time_label = self.style.get("time_label", "mo")
         col_map = {"Group": "Group"}
         for t in self.time_points:
@@ -553,30 +525,28 @@ class RiskTableGenerator:
 
 
 def create_sample_data(output_path: str, n_patients: int = 300, seed: int = 42) -> None:
-    """
-    Create sample survival data for testing
-    """
+    """Create sample survival data for testing"""
     np.random.seed(seed)
     
-    # Generate two groups of data
+    # Generate two sets of data
     n_per_group = n_patients // 2
     
-    # Experimental group: better survival
+    # Experimental Group: Better Survival
     exp_times = np.random.exponential(scale=36, size=n_per_group)
     exp_events = np.random.binomial(1, 0.6, n_per_group)
     
-    # Control group
+    # control group
     ctrl_times = np.random.exponential(scale=24, size=n_per_group)
     ctrl_events = np.random.binomial(1, 0.7, n_per_group)
     
-    # Combine data
+    # Combined data
     df = pd.DataFrame({
         'time': np.concatenate([exp_times, ctrl_times]),
         'event': np.concatenate([exp_events, ctrl_events]),
         'treatment': ['Experimental'] * n_per_group + ['Control'] * n_per_group
     })
     
-    # Censor observations beyond 60 months
+    # Censored for more than 60 months
     df.loc[df['time'] > 60, 'event'] = 0
     df.loc[df['time'] > 60, 'time'] = 60
     
@@ -585,56 +555,52 @@ def create_sample_data(output_path: str, n_patients: int = 300, seed: int = 42) 
 
 
 def main():
-    """
-    Command-line entry point
-    """
+    """Command line entry"""
     parser = argparse.ArgumentParser(
         description="Generate Number at Risk table for Kaplan-Meier survival curves",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Basic usage
+        epilog="""Examples:
+  #Basic usage
   python main.py --input data.csv --time-col time --event-col event --output risk_table.png
   
-  # Specify journal style
+  #Specify journal style
   python main.py --input data.csv --time-col time --event-col event --style NEJM --output figure.pdf
   
-  # Combined plot (auto-generate KM curve)
+  # Combination chart (automatically generate KM curve)
   python main.py --input data.csv --time-col time --event-col event --combine --output combined.png
   
-  # Specify time points
+  #Specify time point
   python main.py --input data.csv --time-col time --event-col event --time-points 0,6,12,18,24,30,36
   
-  # Create sample data
-  python main.py --create-sample-data sample.csv
-        """
+  #Create sample data
+  python main.py --create-sample-data sample.csv"""
     )
     
-    # Input arguments
+    # input parameters
     parser.add_argument('--input', '-i', type=str, help='Input data file path')
     parser.add_argument('--time-col', type=str, help='Time column name')
     parser.add_argument('--event-col', type=str, help='Event column name (1=event, 0=censored)')
     parser.add_argument('--group-col', type=str, help='Group column name (optional)')
     
-    # Output arguments
+    # Output parameters
     parser.add_argument('--output', '-o', type=str, default='risk_table.png',
                        help='Output file path (default: risk_table.png)')
     parser.add_argument('--output-dir', type=str, help='Output directory for batch processing')
     
-    # Style arguments
+    # style parameters
     parser.add_argument('--style', type=str, default='NEJM',
                        choices=['NEJM', 'Lancet', 'JCO', 'custom'],
                        help='Journal style (default: NEJM)')
     parser.add_argument('--time-points', type=str,
                        help='Comma-separated time points (e.g., 0,6,12,18,24)')
     
-    # Figure arguments
+    # Image parameters
     parser.add_argument('--width', type=float, default=8, help='Figure width in inches (default: 8)')
     parser.add_argument('--height', type=float, default=6, help='Figure height in inches (default: 6)')
     parser.add_argument('--dpi', type=int, default=300, help='DPI resolution (default: 300)')
     parser.add_argument('--font-size', type=int, help='Font size (overrides style default)')
     
-    # Feature flags
+    # Function switch
     parser.add_argument('--combine', action='store_true',
                        help='Generate combined KM plot with risk table')
     parser.add_argument('--km-plot', type=str, help='Path to existing KM plot image')
@@ -645,7 +611,7 @@ Examples:
     parser.add_argument('--export-data', action='store_true',
                        help='Export risk table data as CSV')
     
-    # Utilities
+    # tool
     parser.add_argument('--create-sample-data', type=str, metavar='PATH',
                        help='Create sample survival data for testing')
     
@@ -656,14 +622,14 @@ Examples:
         create_sample_data(args.create_sample_data)
         return
     
-    # Validate required arguments
+    # Validate required parameters
     if not args.input:
         parser.error("--input is required (or use --create-sample-data to generate test data)")
     
     if not args.time_col or not args.event_col:
         parser.error("--time-col and --event-col are required")
     
-    # Parse time points
+    # Analysis time point
     time_points = None
     if args.time_points:
         time_points = [float(x.strip()) for x in args.time_points.split(',')]
@@ -673,7 +639,7 @@ Examples:
     if args.font_size:
         custom_style['font_size'] = args.font_size
     
-    # Initialize generator
+    # Initialization generator
     generator = RiskTableGenerator(
         style=args.style,
         time_points=time_points,
@@ -699,7 +665,7 @@ Examples:
         data_output = args.output.replace('.png', '.csv').replace('.pdf', '.csv')
         generator.export_risk_table_data(data_output)
     
-    # Generate figure
+    # generate image
     if args.combine:
         print("Generating combined plot...")
         generator.generate_combined_plot(

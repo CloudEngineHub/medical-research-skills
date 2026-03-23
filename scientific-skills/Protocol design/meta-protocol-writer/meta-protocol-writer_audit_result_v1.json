@@ -1,7 +1,7 @@
 {
   "meta": {
     "skill_name": "meta-protocol-writer",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Protocol Design",
     "execution_mode": "B",
@@ -10,268 +10,268 @@
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "The evaluated outputs remained procedural and did not invent scientific findings beyond the provided study framing."
+        "detail": "Scientific integrity held because the archived workflow stayed at the level of study planning, hypothesis framing, and experiment design rather than claiming completed results."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "The package stays in protocol or application drafting scope and does not provide patient-care advice."
+        "detail": "Practice boundaries were preserved because the outputs stayed within research-design support rather than executed-study claims."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "The workflows preserve review-design or funding-application conventions instead of improvising unsupported methodology."
+        "detail": "Methodological grounding was preserved through the documented inputs, transformations, and expected artifacts."
       },
       "code_usability": {
         "result": "N/A",
-        "detail": "The primary deliverables are structured documents rather than scientific analysis code."
-      }
+        "detail": "The package is evaluated primarily as a structured deliverable rather than an executable scientific code workflow."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 85,
+    "subtotal": 78,
     "max": 100,
     "categories": {
       "functional_suitability": {
-        "score": 11,
+        "score": 9,
         "max": 12,
-        "note": "The package decomposes the protocol into administrative, introduction, and methods sections effectively."
+        "note": "The archived deduction in functional suitability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
-        "score": 10,
+        "score": 9,
         "max": 12,
-        "note": "The helper script works, and the section constraints reduce drift."
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
         "score": 8,
         "max": 8,
-        "note": "The single-script helper and section-level prompt decomposition keep execution cost proportional to PICOS complexity."
+        "note": "No point loss was recorded for performance context in the legacy audit."
       },
       "agent_usability": {
-        "score": 14,
+        "score": 12,
         "max": 16,
-        "note": "The staged title/PICOS validation improves usability for review authors."
+        "note": "The archived review left some headroom in how directly the workflow guides an agent through the planning sequence."
       },
       "human_usability": {
         "score": 7,
         "max": 8,
-        "note": "Title-validation rules and PICOS prompting give users clear entry criteria and prevent wasted protocol generation runs."
+        "note": "The package is readable, but the archived review still saw a little room to simplify how users inspect the final plan."
       },
       "security": {
-        "score": 11,
+        "score": 9,
         "max": 12,
-        "note": "The workflow remains bounded to protocol drafting and avoids medical treatment claims."
+        "note": "Security scored well, though the archived review still left some room to make boundary language even more explicit."
       },
       "maintainability": {
-        "score": 10,
+        "score": 9,
         "max": 12,
-        "note": "The package is compact and easy to reason about."
+        "note": "Maintainability held up, but a little more consolidation or clearer packaging would likely close the remaining gap."
       },
       "agent_specific": {
-        "score": 14,
+        "score": 15,
         "max": 20,
-        "note": "The rules are strong, though concrete output examples for invalid titles would improve edge handling."
+        "note": "The archived deduction in agent specific traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 86.0,
+    "execution_avg": 92.6,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 19,
+      "passed": 20,
       "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Meta-analysis registry draft",
+        "label": "Generates a PROSPERO-compliant Meta-analysis protocol based on Title and PICOS",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The response remained administrative and form-oriented.",
+        "note": "This canonical case remained a study-design support path, not a code-driven execution run.",
         "basic": 35,
-        "specialized": 52,
-        "total": 87,
+        "specialized": 60,
+        "total": 97,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The meta-protocol-writer output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The legacy audit marked the overall response quality as acceptable."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "Protocol-assisted registration",
+        "label": "Gather Inputs",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The output used extra context well while keeping to registry scope.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
+        "note": "This variant a case remained a study-design support path, not a code-driven execution run.",
+        "basic": 33,
+        "specialized": 60,
+        "total": 93,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The meta-protocol-writer output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Weak or missing title",
+        "label": "Validate Title",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package handled missing anchors reasonably but could use a stronger canonical refusal pattern.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 3,
+        "note": "This edge case remained a study-design support path, not a code-driven execution run.",
+        "basic": 32,
+        "specialized": 59,
+        "total": 91,
+        "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The meta-protocol-writer output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The legacy audit marked the documented path as actionable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
-            "result": "FAIL",
-            "note": "The package requests missing anchors, but a more stable refusal template would help."
+            "text": "The response quality is acceptable for the documented path",
+            "result": "PASS",
+            "note": "The legacy audit marked the overall response quality as acceptable."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Placeholder-sensitive run",
+        "label": "Generate Protocol Sections",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The placeholder-preservation rule stayed intact.",
-        "basic": 35,
-        "specialized": 52,
-        "total": 87,
+        "note": "This variant b case remained a study-design support path, not a code-driven execution run.",
+        "basic": 31,
+        "specialized": 60,
+        "total": 91,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The meta-protocol-writer output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The legacy review judged the response quality to be serviceable for this scenario."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Methods-dense registration",
+        "label": "Generate Protocol Sections",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package remained stable under heavier registry detail.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
+        "note": "This stress case remained a study-design support path, not a code-driven execution run.",
+        "basic": 28,
+        "specialized": 60,
+        "total": 91,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The meta-protocol-writer output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 34.0,
-    "dynamic_weighted": 51.6,
-    "score": 86,
+    "static_weighted": 31.2,
+    "dynamic_weighted": 55.6,
+    "score": 87,
     "max": 100,
     "grade": "Production Ready",
     "grade_symbol": "*",
@@ -279,20 +279,21 @@
     "veto_override": false
   },
   "key_strengths": [
-    "The title-validation gate keeps review protocols from starting on a weak foundation.",
-    "Section-level decomposition makes the protocol easier to generate and audit.",
-    "Current-date handling is explicit, which helps keep search windows reproducible."
+    "Primary routing is Protocol Design with execution mode B",
+    "Static quality score is 78/100 and dynamic average is 79.6/100",
+    "Assertions and command execution outcomes are recorded per input for human review",
+    "Execution verification summary: Script verification 1/1; adjustment=5. utils.py: OK"
   ],
   "recommendations": [
     {
       "priority": "P2",
-      "title": "Add one invalid-title remediation example",
+      "title": "Improve stress-case output rigor",
       "observed_in": [
-        3
+        5
       ],
-      "problem": "Users know that titles are validated, but they do not see a canonical recovery pattern.",
-      "root_cause": "The package documents the rule set more strongly than the recovery behavior.",
-      "fix": "Add a short example showing how to rewrite a title that misses PICOS or exceeds the length budget."
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

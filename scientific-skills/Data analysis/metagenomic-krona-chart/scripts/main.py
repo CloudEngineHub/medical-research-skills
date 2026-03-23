@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""
-Metagenomic Krona Chart Generator
-Generate interactive Krona sunburst charts for metagenomic data
+"""Metagenomic Krona Chart Generator
+Generate interactive Krona sunburst plots of metagenomic data
 
-Author: OpenClaw
-Skill ID: 169
-"""
+Author:OpenClaw
+Skill ID: 169"""
 
 import argparse
 import sys
@@ -18,13 +16,13 @@ try:
     import plotly.graph_objects as go
     import pandas as pd
 except ImportError as e:
-    print(f"Error: Missing required dependency - {e}")
+    print(f"Error: Missing necessary dependencies - {e}")
     print("Please run: pip install plotly pandas")
     sys.exit(1)
 
 
 class TaxonomyNode:
-    """Taxonomy tree node"""
+    """Classification tree node"""
     def __init__(self, name, rank, tax_id, parent_id=None, reads=0, percent=0):
         self.name = name
         self.rank = rank
@@ -33,7 +31,7 @@ class TaxonomyNode:
         self.reads = reads
         self.percent = percent
         self.children = []
-        self.path = []  # Path from root to current node
+        self.path = []  # path from root to current node
     
     def add_child(self, child):
         self.children.append(child)
@@ -44,10 +42,8 @@ class TaxonomyNode:
 
 
 def parse_kraken2_report(filepath):
-    """
-    Parse Kraken2/Bracken report format
-    Format: percent  reads  direct_reads  rank  tax_id  name
-    """
+    """Parsing Kraken2/Bracken report format
+    Format: percent reads direct_reads rank tax_id name"""
     nodes = {}
     root = None
     stack = []
@@ -58,10 +54,10 @@ def parse_kraken2_report(filepath):
             if not line:
                 continue
             
-            # Parse line - handle possible leading whitespace
+            # Parse lines - handle possible leading spaces
             parts = line.split('\t')
             if len(parts) < 6:
-                # Try space-separated
+                # Try space separated
                 parts = line.split()
                 if len(parts) < 6:
                     continue
@@ -76,7 +72,7 @@ def parse_kraken2_report(filepath):
             except (ValueError, IndexError):
                 continue
             
-            # Calculate indentation depth (number of leading spaces)
+            # Calculate indent depth (number of leading spaces)
             leading_spaces = len(line) - len(line.lstrip())
             depth = leading_spaces // 2
             
@@ -106,7 +102,7 @@ def parse_kraken2_report(filepath):
                     node.path = parent.path + [name]
                     stack.append(node)
                 else:
-                    # No root case
+                    # Without root
                     if root is None:
                         root = TaxonomyNode(name="root", rank="R", tax_id="1")
                         nodes["1"] = root
@@ -119,10 +115,8 @@ def parse_kraken2_report(filepath):
 
 
 def parse_custom_tsv(filepath):
-    """
-    Parse custom TSV format
-    Columns: taxon_id, name, rank, parent_id, reads, percent
-    """
+    """Parse custom TSV format
+    Columns: taxon_id, name, rank, parent_id, reads, percent"""
     df = pd.read_csv(filepath, sep='\t')
     
     nodes = {}
@@ -150,13 +144,13 @@ def parse_custom_tsv(filepath):
         if rank in ['R', 'root', 'no rank'] or parent_id is None:
             root = node
     
-    # Build parent-child relationships
+    # Establish a parent-child relationship
     for tax_id, node in nodes.items():
         if node.parent_id and node.parent_id in nodes:
             parent = nodes[node.parent_id]
             parent.add_child(node)
     
-    # Calculate paths
+    # Calculate path
     def calc_path(node, current_path):
         node.path = current_path + [node.name]
         for child in node.children:
@@ -169,14 +163,14 @@ def parse_custom_tsv(filepath):
 
 
 def auto_detect_format(filepath):
-    """Auto-detect input file format"""
+    """Automatic detection of input file formats"""
     with open(filepath, 'r') as f:
         first_line = f.readline().strip()
     
-    # Check if TSV with column headers
+    # Check if it is a TSV and contains column names
     if '\t' in first_line:
         parts = first_line.split('\t')
-        # If first line is column names
+        # If the first row is the column name
         if any(col in first_line.lower() for col in ['taxon_id', 'name', 'rank']):
             return 'custom'
     
@@ -187,20 +181,18 @@ def auto_detect_format(filepath):
     except (ValueError, IndexError):
         pass
     
-    return 'kraken2'  # Default
+    return 'kraken2'  # default
 
 
 def flatten_tree(node, data, min_percent=0, max_depth=7, current_depth=0):
-    """
-    Flatten tree structure into data format required for sunburst chart
-    """
+    """Flatten the tree structure into the data format required for the sunburst chart"""
     if current_depth > max_depth:
         return
     
     if node.percent < min_percent:
         return
     
-    # Skip unclassified or duplicate root counts
+    # Skip duplicate counting of unclassified or root
     if node.name.lower() in ['unclassified', 'unclass'] and node.rank == 'U':
         return
     
@@ -215,22 +207,22 @@ def flatten_tree(node, data, min_percent=0, max_depth=7, current_depth=0):
         'depth': current_depth
     })
     
-    # Recursively process child nodes
+    # Process child nodes recursively
     for child in sorted(node.children, key=lambda x: x.percent, reverse=True):
         flatten_tree(child, data, min_percent, max_depth, current_depth + 1)
 
 
 def get_rank_color(rank):
-    """Get color based on taxonomic rank"""
+    """Get color based on classification level"""
     color_map = {
-        'R': '#2c3e50',      # root - dark blue-gray
+        'R': '#2c3e50',      # root - dark blue gray
         'D': '#e74c3c',      # domain - red
         'K': '#e74c3c',      # kingdom - red
         'P': '#3498db',      # phylum - blue
         'C': '#2ecc71',      # class - green
         'O': '#f39c12',      # order - orange
         'F': '#9b59b6',      # family - purple
-        'G': '#1abc9c',      # genus - cyan
+        'G': '#1abc9c',      # genus - green
         'S': '#e91e63',      # species - pink
     }
     return color_map.get(rank, '#95a5a6')  # Default gray
@@ -238,9 +230,7 @@ def get_rank_color(rank):
 
 def create_krona_chart(root, output_path, title="Metagenomic Krona Chart", 
                         min_percent=0.01, max_depth=7):
-    """
-    Create Krona sunburst chart
-    """
+    """Create a Krona Sunburst Chart"""
     # Flatten data
     data = []
     flatten_tree(root, data, min_percent, max_depth)
@@ -251,8 +241,8 @@ def create_krona_chart(root, output_path, title="Metagenomic Krona Chart",
     
     df = pd.DataFrame(data)
     
-    # Build sunburst chart data
-    # Sunburst requires id/parent format
+    # Construct sunburst chart data
+    # Using sunburst requires the id/parent format
     ids = []
     labels = []
     parents = []
@@ -289,7 +279,7 @@ def create_krona_chart(root, output_path, title="Metagenomic Krona Chart",
                      f"Percent: {row['percent']:.2f}%"
         hover_texts.append(hover_text)
         
-        # Color
+        # color
         colors.append(get_rank_color(row['rank']))
     
     # Create chart
@@ -309,7 +299,7 @@ def create_krona_chart(root, output_path, title="Metagenomic Krona Chart",
         insidetextorientation='radial'
     ))
     
-    # Layout settings
+    # layout settings
     total_reads = sum(df[df['depth'] == 0]['reads']) if len(df) > 0 else 0
     
     fig.update_layout(
@@ -328,7 +318,7 @@ def create_krona_chart(root, output_path, title="Metagenomic Krona Chart",
         height=800
     )
     
-    # Add legend annotation
+    # Add legend description
     rank_legend = [
         ("Domain (D)", "#e74c3c"),
         ("Phylum (P)", "#3498db"),
@@ -351,7 +341,7 @@ def create_krona_chart(root, output_path, title="Metagenomic Krona Chart",
             align='left'
         )
     
-    # Adjust layout to accommodate legend
+    # Adjust layout to fit legend
     fig.update_layout(
         margin=dict(t=80, l=20, r=150, b=20),
         annotations=list(fig.layout.annotations) if fig.layout.annotations else []
@@ -393,10 +383,10 @@ Examples:
     # Check input file
     input_path = Path(args.input)
     if not input_path.exists():
-        print(f"Error: Input file not found: {args.input}")
+        print(f"Error: Input file does not exist: {args.input}")
         sys.exit(1)
     
-    # Auto-detect format
+    # Automatically detect format
     file_type = args.type
     if file_type == 'auto':
         file_type = auto_detect_format(args.input)

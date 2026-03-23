@@ -1,25 +1,90 @@
 ---
 name: nih-biosketch-builder
-description: Generate NIH Biosketch documents compliant with the 2022 OMB-approved
-  format
-version: 1.0.0
-category: Grant
-tags: []
-author: AIPOCH
+description: Generate NIH Biosketch documents compliant with the 2022 OMB-approved.
 license: MIT
-status: Draft
-risk_level: High
-skill_type: Hybrid (Tool/Script + Network/API)
-owner: AIPOCH
-reviewer: ''
-last_updated: '2026-02-06'
+skill-author: AIPOCH
 ---
-
 # NIH Biosketch Builder
 
 **ID**: 101  
 **Version**: 1.0.0  
 **NIH Format**: 2022 OMB-approved version
+
+## When to Use
+
+- Use this skill when the task is to Generate NIH Biosketch documents compliant with the 2022 OMB-approved.
+- Use this skill for academic writing tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+- Scope-focused workflow aligned to: Generate NIH Biosketch documents compliant with the 2022 OMB-approved.
+- Packaged executable path(s): `scripts/main.py`.
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+- Python 3.8+
+- python-docx
+- requests (for PubMed API)
+
+Install dependencies:
+```text
+pip install python-docx requests
+```
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Academic Writing/nih-biosketch-builder"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Functions
 
@@ -42,7 +107,7 @@ Automatically generate NIH Biosketch documents in the 2022 format for NIH grant 
 ## Usage
 
 ### Command Line
-```bash
+```text
 python skills/nih-biosketch-builder/scripts/main.py --input data.json --output biosketch.docx
 ```
 
@@ -74,23 +139,13 @@ python skills/nih-biosketch-builder/scripts/main.py --input data.json --output b
 ```
 
 ### SCI Paper Auto-import
-```bash
+```text
+
 # Automatically retrieve paper information via PMID
 python skills/nih-biosketch-builder/scripts/main.py --import-pubmed "12345678,23456789" --output publications.json
 
 # Auto-fill into biosketch
 python skills/nih-biosketch-builder/scripts/main.py --input data.json --auto-import-pubmed --output biosketch.docx
-```
-
-## Dependencies
-
-- Python 3.8+
-- python-docx
-- requests (for PubMed API)
-
-Install dependencies:
-```bash
-pip install python-docx requests
 ```
 
 ## Output Format
@@ -126,6 +181,7 @@ Generate DOCX file in NIH official template format, ready to use for grant appli
 - [ ] Error messages sanitized (no internal paths exposed)
 - [ ] Dependencies audited
 - [ ] No exposure of internal service architecture
+
 ## Prerequisites
 
 No additional Python packages required.
@@ -151,3 +207,47 @@ No additional Python packages required.
 - **Planned Improvements**: 
   - Performance optimization
   - Additional feature support
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `nih-biosketch-builder` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `nih-biosketch-builder` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## References
+
+- [references/audit-reference.md](references/audit-reference.md) - Supported scope, audit commands, and fallback boundaries
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

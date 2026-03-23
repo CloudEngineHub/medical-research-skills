@@ -197,7 +197,7 @@ def parse_blast_xml(xml_content):
             
             hit_len = hit.find('Hit_len')
             if hit_len is not None:
-                hit_data['length'] = int(hit_len.text or "0")
+                hit_data['length'] = int(hit_len.text)
             
             # Extract HSPs (High-Scoring Segment Pairs)
             for hsp in hit.findall('.//Hsp'):
@@ -220,31 +220,31 @@ def parse_blast_xml(xml_content):
                 
                 bit_score = hsp.find('Hsp_bit-score')
                 if bit_score is not None:
-                    hsp_data['bit_score'] = float(bit_score.text or "0.0")
+                    hsp_data['bit_score'] = float(bit_score.text)
                 
                 score = hsp.find('Hsp_score')
                 if score is not None:
-                    hsp_data['score'] = int(score.text or "0")
+                    hsp_data['score'] = int(score.text)
                 
                 evalue = hsp.find('Hsp_evalue')
                 if evalue is not None:
-                    hsp_data['evalue'] = float(evalue.text or "0.0")
+                    hsp_data['evalue'] = float(evalue.text)
                 
                 identity = hsp.find('Hsp_identity')
                 if identity is not None:
-                    hsp_data['identity'] = int(identity.text or "0")
+                    hsp_data['identity'] = int(identity.text)
                 
                 positive = hsp.find('Hsp_positive')
                 if positive is not None:
-                    hsp_data['positive'] = int(positive.text or "0")
+                    hsp_data['positive'] = int(positive.text)
                 
                 gaps = hsp.find('Hsp_gaps')
                 if gaps is not None:
-                    hsp_data['gaps'] = int(gaps.text or "0")
+                    hsp_data['gaps'] = int(gaps.text)
                 
                 align_len = hsp.find('Hsp_align-len')
                 if align_len is not None:
-                    hsp_data['align_len'] = int(align_len.text or "0")
+                    hsp_data['align_len'] = int(align_len.text)
                 
                 query_seq = hsp.find('Hsp_qseq')
                 if query_seq is not None:
@@ -260,19 +260,19 @@ def parse_blast_xml(xml_content):
                 
                 query_from = hsp.find('Hsp_query-from')
                 if query_from is not None:
-                    hsp_data['query_from'] = int(query_from.text or "0")
+                    hsp_data['query_from'] = int(query_from.text)
                 
                 query_to = hsp.find('Hsp_query-to')
                 if query_to is not None:
-                    hsp_data['query_to'] = int(query_to.text or "0")
+                    hsp_data['query_to'] = int(query_to.text)
                 
                 hit_from = hsp.find('Hsp_hit-from')
                 if hit_from is not None:
-                    hsp_data['hit_from'] = int(hit_from.text or "0")
+                    hsp_data['hit_from'] = int(hit_from.text)
                 
                 hit_to = hsp.find('Hsp_hit-to')
                 if hit_to is not None:
-                    hsp_data['hit_to'] = int(hit_to.text or "0")
+                    hsp_data['hit_to'] = int(hit_to.text)
                 
                 hit_data['hsps'].append(hsp_data)
             

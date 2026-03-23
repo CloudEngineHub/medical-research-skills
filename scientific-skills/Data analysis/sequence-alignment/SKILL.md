@@ -1,104 +1,206 @@
 ---
 name: sequence-alignment
-description: Perform sequence alignment via NCBI BLAST API supporting blastn, blastp, blastx, tblastn, and tblastx against major biological databases.
+description: A skill for performing sequence alignment using NCBI BLAST API. Supports nucleotide and protein sequence comparison against major biological databases.
 license: MIT
 skill-author: AIPOCH
 ---
 # Sequence Alignment
 
-Perform nucleotide and protein sequence alignment using the NCBI BLAST API against major biological databases (nr, nt, swissprot, refseq, pdb).
+A skill for performing sequence alignment using NCBI BLAST API. Supports nucleotide and protein sequence comparison against major biological databases.
+
+## When to Use
+
+- Use this skill when the task needs performing sequence alignment using NCBI BLAST API. Supports nucleotide and protein sequence comparison against major biological databases.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when the response must stay inside the documented task boundary instead of expanding into adjacent work.
+
+## Key Features
+
+See `## Features` above for related details.
+
+- Scope-focused workflow aligned to: A skill for performing sequence alignment using NCBI BLAST API. Supports nucleotide and protein sequence comparison against major biological databases.
+- Packaged executable path(s): `scripts/main.py`.
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+See `## Prerequisites` above for related details.
+
+- `Python`: `3.10+`. Repository baseline for current packaged skills.
+- `Third-party packages`: `not explicitly version-pinned in this skill package`. Add pinned versions if this skill needs stricter environment control.
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/sequence-alignment"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
 
 ```bash
 python -m py_compile scripts/main.py
 python scripts/main.py --help
 ```
 
-## When to Use
+## Workflow
 
-- DNA sequence similarity search (blastn vs nt/nr)
-- Protein sequence alignment (blastp vs swissprot/refseq_protein)
-- Translated DNA vs protein database (blastx)
-- Protein vs translated nucleotide database (tblastn)
-- Identify homologs, orthologs, or conserved domains
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
-## Input Validation
+## Features
 
-This skill accepts: DNA or protein sequences with a specified BLAST program and target database for sequence similarity search via NCBI BLAST API.
-
-If the request does not involve sequence alignment — for example, asking to perform multiple sequence alignment (MSA), phylogenetic tree construction, or genome assembly — do not proceed. Instead respond:
-
-> "sequence-alignment is designed to perform pairwise sequence similarity search via NCBI BLAST. Your request appears to be outside this scope. Please provide a query sequence, BLAST program, and target database, or use a more appropriate tool for your task. For multiple sequence alignment, consider MUSCLE, CLUSTALW, or MAFFT. For phylogenetic tree construction, consider phylogenetic-tree-styler or IQ-TREE."
-
-**Note on XML parsing:** The script uses None guards for XML element `.text` attributes (`int(hit_len.text or 0)`, `float(bit_score.text or 0)`) to prevent TypeErrors on malformed BLAST XML.
+- **BLAST API Integration**: Query NCBI BLAST service for sequence similarity search
+- **Multiple BLAST Programs**: blastn, blastp, blastx, tblastn, tblastx
+- **Alignment Visualization**: Display results in human-readable format
+- **Database Support**: nr, nt, swissprot, refseq, pdb, and more
 
 ## Usage
 
-```bash
-python scripts/main.py \
-  --sequence "ATGCGTACGTAGCTAGCTAG" \
-  --program blastn \
-  --database nt \
-  --output results.txt
+```text
+python scripts/main.py --sequence "ATGCGTACGTAGCTAGCTAG" --program blastn --database nt --output results.txt
 ```
 
-## Parameters
+### Parameters
 
-| Parameter | Required | Default | Description |
-|-----------|----------|---------|-------------|
-| `--sequence` | Yes | — | Query sequence (DNA or protein) |
-| `--program` | Yes | — | blastn, blastp, blastx, tblastn, tblastx |
-| `--database` | Yes | — | nr, nt, swissprot, pdb, refseq_protein |
-| `--output` | No | stdout | Output file path |
-| `--format` | No | text | text, json, csv |
-| `--max-hits` | No | 10 | Maximum hits to return |
-| `--evalue` | No | 10 | E-value threshold |
+| Parameter | Description | Required |
+|-----------|-------------|----------|
+| `--sequence` | Query sequence (DNA/Protein) | Yes |
+| `--program` | BLAST program: blastn, blastp, blastx, tblastn, tblastx | Yes |
+| `--database` | Target database: nr, nt, swissprot, pdb, refseq_protein | Yes |
+| `--output` | Output file path | No |
+| `--format` | Output format: text, json, csv | No (default: text) |
+| `--max_hits` | Maximum number of hits to return | No (default: 10) |
+| `--evalue` | E-value threshold | No (default: 10) |
 
-## BLAST Program Reference
+## Technical Difficulty
 
-| Program | Query | Database | Use Case |
-|---------|-------|----------|----------|
+**Medium** - Requires understanding of BLAST algorithm, API handling with retry logic, and biological sequence formats.
+
+## BLAST Programs Reference
+
+| Program | Query Type | Database Type | Use Case |
+|---------|-----------|---------------|----------|
 | blastn | Nucleotide | Nucleotide | DNA vs DNA |
 | blastp | Protein | Protein | Protein vs Protein |
 | blastx | Nucleotide (translated) | Protein | DNA vs Protein |
 | tblastn | Protein | Nucleotide (translated) | Protein vs DNA |
 | tblastx | Nucleotide (translated) | Nucleotide (translated) | Translated DNA vs DNA |
 
-## Workflow
+## Example Workflows
 
-1. **Validate input first:** Confirm the request is within scope (pairwise BLAST alignment only). If MSA, phylogenetics, or genome assembly is requested, emit the scope refusal before any processing.
-2. Confirm objective, required inputs, and constraints before proceeding.
-3. Run `scripts/main.py` with available inputs, or use the documented reasoning path.
-4. Return structured result separating assumptions, deliverables, risks, and unresolved items.
-5. On execution failure or incomplete inputs, switch to fallback path and state exactly what blocked completion.
-
-## Fallback Template
-
-If `scripts/main.py` cannot run (network unavailable, missing inputs), respond with:
-
+### DNA Sequence Similarity Search
+```text
+python scripts/main.py --sequence "ATGGCCCTGTGGATGCGCTTCTTAGTCG" --program blastn --database nt --max_hits 5
 ```
-FALLBACK REPORT
-───────────────────────────────────────
-Objective      : <stated goal>
-Blocked by     : <exact missing input or error>
-Partial result : <what can still be assessed manually>
-Next step      : <minimum action to unblock>
-───────────────────────────────────────
+
+### Protein Sequence Alignment
+```text
+python scripts/main.py --sequence "MKTAYIAKQRQISFVKSHFSRQLEERLGLIEVQAPILSRVGDGT" --program blastp --database swissprot --evalue 0.001
 ```
 
 ## Output Format
 
 Results include:
-- Query sequence info and search parameters
+- Query sequence info
 - Hit definitions and accession numbers
 - Alignment scores (bit score, e-value)
 - Percent identity and similarity
 - Alignment visualization with match/mismatch highlighting
 
+## References
+
+- [BLAST Documentation](references/blast_docs.md)
+- [NCBI BLAST API Guide](references/ncbi_api_guide.md)
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python scripts with tools | High |
+| Network Access | External API calls | High |
+| File System Access | Read/write data | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Data handled securely | Medium |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] API requests use HTTPS only
+- [ ] Input validated against allowed patterns
+- [ ] API timeout and retry mechanisms implemented
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no internal paths exposed)
+- [ ] Dependencies audited
+- [ ] No exposure of internal service architecture
+
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
+
 ## Output Requirements
 
-Every response must make these explicit when relevant:
+Every final response should make these items explicit when they are relevant:
 
 - Objective or requested deliverable
 - Inputs used and assumptions introduced
@@ -110,13 +212,21 @@ Every response must make these explicit when relevant:
 ## Error Handling
 
 - If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
-- If the task goes outside documented scope, stop instead of guessing or silently widening the assignment.
-- If `scripts/main.py` fails, report the failure point, summarize what can still be completed safely, and provide the manual fallback above.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
 - Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `sequence-alignment` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `sequence-alignment` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
 
 ## Response Template
 
-Use this fixed structure for non-trivial requests:
+Use the following fixed structure for non-trivial requests:
 
 1. Objective
 2. Inputs Received
@@ -126,29 +236,4 @@ Use this fixed structure for non-trivial requests:
 6. Risks and Limits
 7. Next Checks
 
-For simple requests, compress the structure but keep assumptions and limits explicit when they affect correctness.
-
-## Risk Assessment
-
-| Risk Indicator | Assessment | Level |
-|----------------|------------|-------|
-| Code Execution | Python scripts with NCBI API calls | High |
-| Network Access | External NCBI BLAST API (HTTPS only) | High |
-| File System Access | Read sequence input, write results | Medium |
-| Data Exposure | Results saved to workspace | Medium |
-
-## Security Notes
-
-- All API requests use HTTPS only
-- Input sequences validated against allowed character patterns
-- API timeout and retry mechanisms implemented
-- No internal service architecture exposed in error messages
-
-## References
-
-- [BLAST Documentation](references/blast_docs.md)
-- [NCBI BLAST API Guide](references/ncbi_api_guide.md)
-
-## Prerequisites
-
-No additional Python packages required beyond standard library.
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

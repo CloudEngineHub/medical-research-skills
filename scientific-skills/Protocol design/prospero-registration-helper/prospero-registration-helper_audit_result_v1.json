@@ -1,277 +1,277 @@
 {
   "meta": {
     "skill_name": "prospero-registration-helper",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Protocol Design",
-    "execution_mode": "D",
+    "execution_mode": "B",
     "complexity": "Moderate",
     "n_inputs": 5
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "The evaluated outputs remained procedural and did not invent scientific findings beyond the provided study framing."
+        "detail": "The legacy review kept this package on the proposal-design side of research support, not the result-reporting side."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "The package stays in protocol or application drafting scope and does not provide patient-care advice."
+        "detail": "The archived evaluation kept this workflow in study-design support rather than patient-specific decision-making or factual result generation."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "The workflows preserve review-design or funding-application conventions instead of improvising unsupported methodology."
+        "detail": "The archived evaluation treated the workflow as method-linked rather than ad hoc."
       },
       "code_usability": {
         "result": "N/A",
-        "detail": "The primary deliverables are structured documents rather than scientific analysis code."
-      }
+        "detail": "This package is packaging-first and output-first, not code-first, so code usability is treated as not applicable."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 85,
+    "subtotal": 81,
     "max": 100,
     "categories": {
       "functional_suitability": {
-        "score": 11,
-        "max": 12,
-        "note": "The package covers the core PROSPERO drafting sequence well."
-      },
-      "reliability": {
         "score": 10,
         "max": 12,
-        "note": "The date helper is deterministic and easy to verify."
+        "note": "Functional suitability was softened by the legacy issue 'Improve stress-case output rigor'. Stress and boundary scenarios show weaker consistency"
+      },
+      "reliability": {
+        "score": 9,
+        "max": 12,
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
         "score": 8,
         "max": 8,
-        "note": "The date utility is lightweight, and the three-section generation pattern keeps total token usage proportional to registration complexity."
+        "note": "No point loss was recorded for performance context in the legacy audit."
       },
       "agent_usability": {
-        "score": 14,
+        "score": 13,
         "max": 16,
-        "note": "The workflow is concise and highlights placeholder-preservation rules clearly."
+        "note": "Agent usability was strong, though the package could make its decision points even easier to follow at first read."
       },
       "human_usability": {
         "score": 7,
         "max": 8,
-        "note": "The staged PICO-extraction and placeholder-preservation rules are explained clearly enough for first-time PROSPERO applicants to follow."
+        "note": "The archived deduction suggests the deliverable could be slightly easier for a researcher to scan end-to-end."
       },
       "security": {
-        "score": 11,
+        "score": 9,
         "max": 12,
-        "note": "The skill remains administrative and does not overreach into unsupported medical recommendations."
+        "note": "The planning workflow stayed safe overall, but the archived score suggests slightly stronger boundary signaling would help."
       },
       "maintainability": {
-        "score": 10,
+        "score": 9,
         "max": 12,
-        "note": "The package is small and stable, though reference prompts could be expanded."
+        "note": "The package remains maintainable, though the archived review saw modest room to simplify or stabilize its planning logic."
       },
       "agent_specific": {
-        "score": 14,
+        "score": 16,
         "max": 20,
-        "note": "The rules are crisp, but refusal handling for underspecified titles could be more explicit."
+        "note": "The archived deduction in agent specific traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 86.0,
+    "execution_avg": 92.6,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 19,
+      "passed": 20,
       "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Meta-analysis registry draft",
+        "label": "Assists researchers in generating PROSPERO registration content for meta-analyses from a title and optional protocol",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The response remained administrative and form-oriented.",
+        "note": "The archived run treated Assists researchers in generating PROSPERO registration content for... as a protocol-design path rather than an executable workflow.",
         "basic": 35,
-        "specialized": 52,
-        "total": 87,
+        "specialized": 60,
+        "total": 97,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The prospero-registration-helper output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "Protocol-assisted registration",
+        "label": "Assists researchers in generating PROSPERO registration content for meta-analyses from a title and optional protocol",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The output used extra context well while keeping to registry scope.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
+        "note": "Assists researchers in generating PROSPERO registration content for... stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
+        "basic": 33,
+        "specialized": 60,
+        "total": 93,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The prospero-registration-helper output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The legacy audit marked the documented path as actionable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Weak or missing title",
+        "label": "Assists researchers in generating PROSPERO registration content for meta-analyses from a title and optional protocol",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package handled missing anchors reasonably but could use a stronger canonical refusal pattern.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 3,
+        "note": "Assists researchers in generating PROSPERO registration content for... stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
+        "basic": 32,
+        "specialized": 59,
+        "total": 91,
+        "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The prospero-registration-helper output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The legacy audit marked the documented path as actionable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
-            "result": "FAIL",
-            "note": "The package requests missing anchors, but a more stable refusal template would help."
+            "text": "The response quality is acceptable for the documented path",
+            "result": "PASS",
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Placeholder-sensitive run",
+        "label": "Packaged executable path(s): scripts/date_utils.py",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The placeholder-preservation rule stayed intact.",
-        "basic": 35,
-        "specialized": 52,
-        "total": 87,
+        "note": "This variant b case remained a study-design support path, not a code-driven execution run.",
+        "basic": 31,
+        "specialized": 60,
+        "total": 91,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The prospero-registration-helper output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The legacy review judged the response quality to be serviceable for this scenario."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Methods-dense registration",
+        "label": "End-to-end case for Scope-focused workflow aligned to: Assists researchers in generating PROSPERO registration content for meta-analyses from a title and optional protocol. Use when the user wants to draft a PROSPERO registration form",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package remained stable under heavier registry detail.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
+        "note": "The archived run treated Assists researchers in generating PROSPERO registration content for meta-analyses from a... as a protocol-design path rather than an executable workflow.",
+        "basic": 28,
+        "specialized": 60,
+        "total": 91,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The prospero-registration-helper output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output preserves registration-specific formatting constraints and placeholder handling.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Registry field behavior is kept explicit."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Missing title or PICO anchors trigger a constrained recovery path instead of fabricated registry content.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The request contained adequate registry anchors."
+            "note": "The legacy audit marked the overall response quality as acceptable."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 34.0,
-    "dynamic_weighted": 51.6,
-    "score": 86,
+    "static_weighted": 32.4,
+    "dynamic_weighted": 55.6,
+    "score": 88,
     "max": 100,
     "grade": "Production Ready",
     "grade_symbol": "*",
@@ -279,20 +279,21 @@
     "veto_override": false
   },
   "key_strengths": [
-    "The package keeps registry drafting procedural and reproducible.",
-    "Date generation and placeholder-preservation rules reduce common form-entry mistakes.",
-    "The workflow is short enough for consistent execution across repeated requests."
+    "Primary routing is Protocol Design with execution mode B",
+    "Static quality score is 81/100 and dynamic average is 79.6/100",
+    "Assertions and command execution outcomes are recorded per input for human review",
+    "Execution verification summary: Script verification 1/1; adjustment=5. date_utils.py: OK"
   ],
   "recommendations": [
     {
       "priority": "P2",
-      "title": "Add a title-quality refusal template",
+      "title": "Improve stress-case output rigor",
       "observed_in": [
-        3
+        5
       ],
-      "problem": "The package tells users what information is needed but not how an edge-case refusal should be phrased.",
-      "root_cause": "Requirements are documented more clearly than failure messaging.",
-      "fix": "Add one concise response template for missing or non-review titles."
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

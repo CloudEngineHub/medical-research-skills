@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
-"""
-Code Refactor for Reproducibility
+"""Code Refactor for Reproducibility
 =================================
 Refactor messy R/Python scripts written by biologists into modular, reproducible code.
 
-Meets open-source code requirements of top journals such as Nature/Science.
+It complies with the code open source requirements of top journals such as Nature/Science.
 
 Usage:
-    python main.py --input /path/to/messy_scripts --output /path/to/refactored --language python --template nature
-"""
+    python main.py --input /path/to/messy_scripts --output /path/to/refactored --language python --template nature"""
 
 import argparse
 import ast
@@ -22,7 +20,7 @@ from typing import Dict, List, Optional, Set, Tuple
 
 
 class CodeAnalyzer:
-    """Code analyzer: parses the structure of original scripts"""
+    """Code Analyzer: Parse the original script structure"""
     
     def __init__(self, language: str):
         self.language = language.lower()
@@ -97,7 +95,7 @@ class CodeAnalyzer:
         functions = []
         imports = []
         
-        # Extract function definitions
+        # Extract function definition
         func_pattern = r'(\w+)\s*\u003c-\s*function\s*\(([^)]*)\)'
         for match in re.finditer(func_pattern, content):
             functions.append({
@@ -109,7 +107,7 @@ class CodeAnalyzer:
         lib_pattern = r'(?:library|require)\(["\']?(\w+)["\']?\)'
         imports = re.findall(lib_pattern, content)
         
-        # Detect data files
+        # Detection data file
         data_patterns = [
             r'read\.(csv|tsv|table|RDS|rds)\(["\'](.+?)["\']',
             r'load\(["\'](.+?)["\']',
@@ -160,7 +158,7 @@ class ProjectTemplate:
     
     def generate_structure(self, output_dir: Path, analysis_results: List[Dict]):
         """Generate project structure"""
-        # Create directories
+        # Create directory
         dirs = ['src', 'tests', 'data/raw', 'data/processed', 'results', 'docs', 'notebooks']
         for d in dirs:
             (output_dir / d).mkdir(parents=True, exist_ok=True)
@@ -339,7 +337,7 @@ type: software
         (output_dir / 'CITATION.cff').write_text(content)
     
     def _generate_environment(self, output_dir: Path):
-        """Generate environment configuration files"""
+        """Generate environment configuration file"""
         # environment.yml
         env_content = f"""name: {self.project_name}
 channels:
@@ -739,7 +737,7 @@ def correlation_analysis(
         (output_dir / 'src' / 'analysis.py').write_text(content)
     
     def _generate_utils(self, output_dir: Path):
-        """Generate utility module"""
+        """Build tool module"""
         content = '''"""Utility functions.
 
 Common utilities for logging, random seed management,
@@ -1302,7 +1300,7 @@ Thumbs.db
 
 
 def main():
-    """Main function"""
+    """main function"""
     parser = argparse.ArgumentParser(
         description="Refactor messy scripts into reproducible, journal-compliant code"
     )

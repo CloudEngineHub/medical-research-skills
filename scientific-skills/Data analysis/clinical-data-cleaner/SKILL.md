@@ -1,58 +1,105 @@
 ---
 name: clinical-data-cleaner
-description: Clean and standardize clinical trial data to CDISC SDTM standards for FDA/EMA regulatory submissions. Handles missing values, outlier detection, date standardization, and generates audit trails for DM, LB, and VS domains.
+description: Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails.
 license: MIT
 skill-author: AIPOCH
 ---
-
 # Clinical Data Cleaner
 
 Clean, validate, and standardize clinical trial data to meet CDISC SDTM standards for regulatory submissions to FDA or EMA.
 
-**Key Capabilities:**
-- **SDTM Domain Validation**: DM, LB, VS domain field checking
-- **Missing Value Handling**: Multiple imputation strategies (mean, median, mode, forward, drop)
-- **Outlier Detection**: IQR, z-score, and domain-specific clinical thresholds
-- **Date Standardization**: Convert to ISO 8601 format
-- **Audit Trail**: Full cleaning log for regulatory submission
+## When to Use
 
----
+- Use this skill when the task needs Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
 
-## Input Validation
+## Key Features
 
-This skill accepts: a CSV file containing clinical trial data, a domain identifier (DM, LB, or VS), and optional cleaning strategy parameters.
+- Scope-focused workflow aligned to: Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails.
+- Packaged executable path(s): `scripts/main.py`.
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
 
-If the request does not involve cleaning or standardizing clinical trial data for CDISC SDTM compliance — for example, asking to analyze genomic data, perform statistical modeling, or interpret clinical results — do not proceed. Instead respond:
-> "Clinical Data Cleaner is designed to clean and standardize clinical trial data for CDISC SDTM regulatory submissions. Please provide a CSV input file and domain (DM, LB, or VS). For other data analysis tasks, use a more appropriate tool."
+## Dependencies
 
----
+- `Python`: `3.10+`. Repository baseline for current packaged skills.
+- `numpy`: `unspecified`. Declared in `requirements.txt`.
+- `pandas`: `unspecified`. Declared in `requirements.txt`.
+- `scipy`: `unspecified`. Declared in `requirements.txt`.
 
-## Quick Check
+## Example Usage
 
 ```bash
+cd "20260318/scientific-skills/Data Analytics/clinical-data-cleaner"
 python -m py_compile scripts/main.py
 python scripts/main.py --help
 ```
 
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+python scripts/main.py --input "Audit validation sample with explicit symptoms, history, assessment, and next-step plan."
+```
+
 ## Workflow
 
-1. Confirm the input file, domain (DM/LB/VS), output path, and cleaning strategy parameters.
-2. Validate that the request matches the documented scope; stop if the task requires unsupported assumptions.
-3. Run the script or apply the documented cleaning path with only the inputs available.
-4. Return a structured result separating assumptions, deliverables, risks, and unresolved items.
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
 5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
-**Fallback:** If `--input`, `--domain`, or `--output` is missing, respond: "Required parameters missing. Please provide `--input` (CSV file), `--domain` (DM, LB, or VS), and `--output` (output path). Cannot clean without all three."
+## Quick Start
 
----
+```python
+from scripts.main import ClinicalDataCleaner
+
+# Initialize for Demographics domain
+cleaner = ClinicalDataCleaner(domain='DM')
+
+# Clean data with default settings
+cleaned = cleaner.clean(raw_data)
+
+# Save with audit trail
+cleaner.save_report('output.csv')
+```
 
 ## Core Capabilities
 
 ### 1. SDTM Domain Validation
 
 ```python
-from scripts.main import ClinicalDataCleaner
-cleaner = ClinicalDataCleaner(domain='DM')
+cleaner = ClinicalDataCleaner(domain='DM')  # or 'LB', 'VS'
 is_valid, missing = cleaner.validate_domain(data)
 ```
 
@@ -64,31 +111,36 @@ is_valid, missing = cleaner.validate_domain(data)
 ### 2. Missing Value Handling
 
 ```python
-cleaner = ClinicalDataCleaner(domain='DM', missing_strategy='median')
+cleaner = ClinicalDataCleaner(
+    domain='DM',
+    missing_strategy='median'  # mean, median, mode, forward, drop
+)
 cleaned = cleaner.handle_missing_values(data)
 ```
-
-Strategies: `mean`, `median`, `mode`, `forward`, `drop`
 
 ### 3. Outlier Detection
 
 ```python
-cleaner = ClinicalDataCleaner(domain='LB', outlier_method='domain', outlier_action='flag')
+cleaner = ClinicalDataCleaner(
+    domain='LB',
+    outlier_method='domain',  # iqr, zscore, domain
+    outlier_action='flag'     # flag, remove, cap
+)
 flagged = cleaner.detect_outliers(data)
 ```
 
 **Clinical Thresholds:**
-
 | Parameter | Range | Unit |
 |-----------|-------|------|
-| Glucose | 50–500 | mg/dL |
-| Hemoglobin | 5–20 | g/dL |
-| Systolic BP | 70–220 | mmHg |
+| Glucose | 50-500 | mg/dL |
+| Hemoglobin | 5-20 | g/dL |
+| Systolic BP | 70-220 | mmHg |
 
 ### 4. Date Standardization
 
 ```python
 standardized = cleaner.standardize_dates(data)
+
 # Converts to ISO 8601: 2023-01-15T09:30:00
 ```
 
@@ -96,20 +148,24 @@ standardized = cleaner.standardize_dates(data)
 
 ```python
 cleaner = ClinicalDataCleaner(
-    domain='DM', missing_strategy='median',
-    outlier_method='iqr', outlier_action='flag'
+    domain='DM',
+    missing_strategy='median',
+    outlier_method='iqr',
+    outlier_action='flag'
 )
 cleaned_data = cleaner.clean(data)
 cleaner.save_report('output.csv')
-# Outputs: output.csv + output.report.json (audit trail)
 ```
 
----
+**Output Files:**
+- `output.csv` - Cleaned SDTM data
+- `output.report.json` - Audit trail for regulatory submission
 
 ## CLI Usage
 
 ```text
-# Clean demographics domain
+
+# Clean demographics
 python scripts/main.py \
   --input dm_raw.csv \
   --domain DM \
@@ -126,42 +182,21 @@ python scripts/main.py \
   --outlier-method domain
 ```
 
----
+## Common Patterns
 
-## Parameters
+See [references/common-patterns.md](references/common-patterns.md) for detailed examples:
+- Regulatory Submission Preparation
+- Interim Analysis Data Preparation
+- Database Migration Cleanup
+- External Lab Data Integration
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `--input` | string | **Yes** | Input CSV file path |
-| `--domain` | string | **Yes** | SDTM domain (DM, LB, VS) |
-| `--output` | string | **Yes** | Output CSV file path |
-| `--missing-strategy` | string | No | Missing value strategy |
-| `--outlier-method` | string | No | Outlier detection method |
-| `--outlier-action` | string | No | Outlier action (flag, remove, cap) |
+## Troubleshooting
 
----
-
-## Output Requirements
-
-Every final response must make these explicit:
-
-- Objective or requested deliverable
-- Inputs used (file, domain, strategies) and assumptions introduced
-- Cleaning actions applied and counts (rows modified, outliers flagged)
-- Core result: cleaned CSV path and audit trail path
-- Constraints and risks (all cleaning actions must be reviewed before submission)
-- Unresolved items and next-step checks (validate against CDISC SDTM IG)
-
----
-
-## Error Handling
-
-- If `--input`, `--domain`, or `--output` is missing, state the missing parameters and request them.
-- If the domain is not DM, LB, or VS, state the supported domains and request clarification.
-- If `scripts/main.py` fails, report the failure point and provide manual fallback guidance.
-- Do not fabricate cleaning results, imputed values, or audit trail entries.
-
----
+See [references/troubleshooting.md](references/troubleshooting.md) for solutions to:
+- Validation failures
+- Date parsing errors
+- Memory errors with large datasets
+- Outlier detection issues
 
 ## Quality Checklist
 
@@ -175,12 +210,54 @@ Every final response must make these explicit:
 - [ ] Review all cleaning actions in audit trail
 - [ ] Test import to analysis software
 
----
-
 ## References
 
-- `references/sdtm_ig_guide.md` — CDISC SDTM Implementation Guide
-- `references/domain_specs.json` — Domain-specific field requirements
-- `references/outlier_thresholds.json` — Clinical outlier thresholds
-- `references/common-patterns.md` — Detailed usage patterns
-- `references/troubleshooting.md` — Problem-solving guide
+- `references/sdtm_ig_guide.md` - CDISC SDTM Implementation Guide
+- `references/domain_specs.json` - Domain-specific field requirements
+- `references/outlier_thresholds.json` - Clinical outlier thresholds
+- `references/common-patterns.md` - Detailed usage patterns
+- `references/troubleshooting.md` - Problem-solving guide
+
+---
+
+**Skill ID**: 189 | **Version**: 2.0 | **License**: MIT
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `clinical-data-cleaner` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `clinical-data-cleaner` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

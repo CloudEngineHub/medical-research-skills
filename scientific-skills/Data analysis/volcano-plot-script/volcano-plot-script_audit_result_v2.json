@@ -1,7 +1,7 @@
 {
   "meta": {
     "skill_name": "volcano-plot-script",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Data Analysis",
     "execution_mode": "B",
@@ -10,31 +10,31 @@
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "No fabricated statistics, p-values, or citations were produced across all evaluated outputs; all claims trace to input data or documented tool behavior."
+        "detail": "The archived review kept this workflow anchored to supplied data fields and observable execution behavior, not fabricated results."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "All outputs remained within biostatistics and data visualization scope; no unsupported clinical or diagnostic recommendations were made."
+        "detail": "Practice boundaries held because the package remained focused on Generate R/Python code for volcano plots from DEG (Differentially Expressed Genes) analysis... rather than overclaiming what the records supported."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "No methodological fallacies detected; outputs apply standard approaches appropriate to biostatistics and data visualization tasks."
+        "detail": "The archived evaluation treated the workflow as method-linked rather than ad hoc."
       },
       "code_usability": {
         "result": "PASS",
-        "detail": "Generated code executed without syntax errors or unresolvable dependency failures across all tested inputs."
-      }
+        "detail": "Code usability passed because the package still exposed a reviewable execution surface for its documented workflow."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
@@ -42,44 +42,44 @@
     "max": 100,
     "categories": {
       "functional_suitability": {
-        "score": 12,
-        "max": 12,
-        "note": "NaN p-value warning added to Error Handling; R script generation documented with --language r flag; column override documentation added"
-      },
-      "reliability": {
         "score": 11,
         "max": 12,
-        "note": "Fallback template with --input validation note; NaN warning closes silent exclusion gap; error handling comprehensive"
+        "note": "Related legacy finding for volcano-plot-script: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
+      },
+      "reliability": {
+        "score": 10,
+        "max": 12,
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "references/ folder with best_practices.md and example data; SKILL.md is 142 lines — well-sized"
+        "note": "The legacy audit gave full marks to performance context for this package."
       },
       "agent_usability": {
         "score": 14,
         "max": 16,
-        "note": "Column name overrides now mandatory in Assumptions; gene list file documentation added; NaN warning documented"
+        "note": "The archived review left some headroom in how quickly an agent can lock onto the intended analysis path."
       },
       "human_usability": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "Description is discoverable; DESeq2/edgeR/limma mention aligns with user vocabulary"
+        "note": "The legacy audit gave full marks to human usability for this package."
       },
       "security": {
-        "score": 9,
+        "score": 10,
         "max": 12,
-        "note": "Local file I/O; no credentials; column name parameters not sanitized"
+        "note": "The packaged workflow stayed safe overall, with only a small remaining deduction around boundary signaling."
       },
       "maintainability": {
-        "score": 12,
+        "score": 10,
         "max": 12,
-        "note": "references/ folder with example data and best practices; clean script separation; requirements.txt present; all fixes applied cleanly"
+        "note": "The archived review treated the package as maintainable, while still preserving some room for cleanup."
       },
       "agent_specific": {
-        "score": 15,
+        "score": 17,
         "max": 20,
-        "note": "Good trigger precision; escape hatches for non-volcano tasks; R script generation now discoverable; composability good"
+        "note": "Agent specific was softened by the legacy issue 'Stabilize executable path and fallback behavior'. Some inputs only reached PARTIAL due to execution gaps or weak boundary handling"
       }
     }
   },
@@ -87,207 +87,182 @@
     "execution_avg": 84.4,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 24,
-      "total": 25
+      "passed": 17,
+      "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "DESeq2 results with default thresholds and top-10 labels",
+        "label": "Generate R/Python code for volcano plots from DEG (Differentially Expressed Genes) analysis results. Triggered when user needs visualization of gene expression data, p-value vs fold-change scatter plots, publication-ready figures for bioinformatics analysis",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; deseq2 results with default thresholds and top-10 labels case handled within expected scope.",
-        "basic": 35,
-        "specialized": 50,
-        "total": 85,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The Generate R/Python code for volcano plots from DEG (Differentially... scenario completed within the documented Generate R/Python code for volcano plots from DEG (Differentially Expressed Genes) analysis... boundary.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Volcano plot PNG generated at output path",
+            "text": "The volcano-plot-script output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: volcano plot png generated at output path as expected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Upregulated genes colored #E74C3C, downregulated #3498DB",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: upregulated genes colored #e74c3c, downregulated #3498db as expected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Top 10 significant genes labeled",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: top 10 significant genes labeled as expected."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "Threshold lines at log2FC=1.0 and padj=0.05 shown",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Confirmed: threshold lines at log2fc=1.0 and padj=0.05 shown as expected."
-          },
-          {
-            "text": "No fabricated gene expression values",
-            "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "edgeR results with custom color scheme and PDF output",
+        "label": "Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; edger results with custom color scheme and pdf output case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The Use this skill for data analysis tasks that require explicit... scenario completed within the documented Generate R/Python code for volcano plots from DEG (Differentially Expressed Genes) analysis... boundary.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Custom color parameters honored in output",
+            "text": "The volcano-plot-script output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: custom color parameters honored in output as expected."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "PDF output format generated",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Output format conforms to the expected structure without anomalies."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "edgeR column names (logFC, FDR) mapped correctly",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: edger column names (logfc, fdr) mapped correctly as expected."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Assumptions section notes all non-default column names and gene list file used",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Now mandated by Output Requirements item 3"
-          },
-          {
-            "text": "No fabricated DEG results",
-            "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Input CSV with missing padj values (NaN)",
+        "label": "Generate R/Python code for volcano plots from DEG (Differentially Expressed Genes) analysis results. Triggered when user needs visualization of gene expression data, p-value vs fold-change scatter plots, publication-ready figures for bioinformatics analysis",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; input csv with missing padj values (nan) case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The Generate R/Python code for volcano plots from DEG (Differentially... path verified the packaged helper command without exposing a deeper execution issue.",
+        "basic": 36,
+        "specialized": 56,
+        "total": 92,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "NaN p-values handled without crash",
+            "text": "The volcano-plot-script output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Genes with NaN padj excluded from significance coloring",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: genes with nan padj excluded from significance coloring as expected."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "Warning emitted: 'Warning: [N] genes have NaN p-values and will be plotted as non-significant'",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Now documented in Error Handling"
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "No fabricated p-values to replace NaN",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Risks section notes NaN handling",
-            "result": "PASS",
-            "note": "Confirmed: risks section notes nan handling as expected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Specific gene list labeling via --label-genes file",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; specific gene list labeling via --label-genes file case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "label": "Packaged executable path(s): scripts/main.py",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "This variant b case was mostly intact, but the archived review centered its concern on: Script execution path is available (command exit code is 0).",
+        "basic": 26,
+        "specialized": 39,
+        "total": 65,
+        "assertions_passed": 3,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Genes from --label-genes file labeled in output",
+            "text": "The volcano-plot-script output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: genes from --label-genes file labeled in output as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Genes not in dataset handled gracefully",
-            "result": "PASS",
-            "note": "Confirmed: genes not in dataset handled gracefully as expected."
+            "text": "Script execution path is available (command exit code is 0)",
+            "result": "FAIL",
+            "note": "Archived command evidence was not strong enough to support this execution-path check."
           },
           {
-            "text": "No fabricated gene positions",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Assumptions section notes gene list file used",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Now mandated by Output Requirements item 3"
-          },
-          {
-            "text": "Output stays within volcano plot scope",
-            "result": "PASS",
-            "note": "Output remained within the skill's stated operational scope."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Request to perform DEG analysis from raw counts",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; request to perform deg analysis from raw counts case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 4,
-        "assertions_total": 5,
+        "label": "End-to-end case for Scope-focused workflow aligned to: Generate R/Python code for volcano plots from DEG (Differentially Expressed Genes) analysis results. Triggered when user needs visualization of gene expression data, p-value vs fold-change scatter plots, publication-ready figures for bioinformatics analysis",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "The main issue in this stress run was: The output stays within declared skill scope and target objective.",
+        "basic": 25,
+        "specialized": 40,
+        "total": 65,
+        "assertions_passed": 2,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Scope refusal emitted for DEG analysis request",
+            "text": "The volcano-plot-script output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Request appropriately declined with an explanatory message."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Skill does not attempt DEG analysis",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: skill does not attempt deg analysis as expected."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "Redirect to DESeq2/edgeR/limma provided",
-            "result": "PASS",
-            "note": "Confirmed: redirect to deseq2/edger/limma provided as expected."
-          },
-          {
-            "text": "Refusal message matches documented template",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "FAIL",
-            "note": "Minor wording variation from template still possible"
+            "note": "The legacy audit recorded a scope-boundary problem for this scenario."
           },
           {
-            "text": "No fabricated DEG results in refusal",
-            "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "text": "Required research safety/boundary guidance is present without overclaims",
+            "result": "FAIL",
+            "note": "The legacy audit recorded a scope-boundary problem for this scenario."
           }
         ]
       }
@@ -299,35 +274,37 @@
     "score": 86,
     "max": 100,
     "grade": "Production Ready",
-    "grade_symbol": "⭐",
+    "grade_symbol": "*",
     "deployable": true,
     "veto_override": false
   },
   "key_strengths": [
-    "NaN p-value warning now documented in Error Handling with explicit message template, closing the primary v1 silent exclusion gap",
-    "R script generation now documented with --language r flag and ggplot2/ggrepel output format",
-    "Column name overrides and gene list file now mandatory in Assumptions, improving output traceability",
-    "references/ folder with best_practices.md and example DEG data enables immediate testing and onboarding",
-    "Multi-format output (PNG/PDF/SVG) with customizable color scheme directly addresses journal submission requirements"
+    "Primary routing is Data Analysis with execution mode B",
+    "Static quality score is 88/100 and dynamic average is 84.4/100",
+    "Assertions and command execution outcomes are recorded per input for human review"
   ],
   "recommendations": [
     {
-      "priority": "P2",
-      "title": "Refusal message wording may deviate from template",
+      "priority": "P1",
+      "title": "Stabilize executable path and fallback behavior",
       "observed_in": [
+        4,
         5
       ],
-      "problem": "The scope refusal for DEG analysis requests occasionally shows minor wording variation from the documented template.",
-      "root_cause": "Input Validation section does not mark the refusal message as verbatim-required.",
-      "fix": "Add 'respond verbatim:' before the refusal message template in Input Validation to enforce exact wording."
+      "problem": "Some inputs only reached PARTIAL due to execution gaps or weak boundary handling",
+      "root_cause": "Example commands are not fully runnable or missing deterministic fallback",
+      "fix": "Add validated runnable commands and a strict fallback template for missing parameters and execution errors"
     },
     {
       "priority": "P2",
-      "title": "Column name parameters not sanitized",
-      "observed_in": [],
-      "problem": "User-provided column name parameters (--log2fc-col, --pvalue-col, --gene-col) are passed to the script without sanitization.",
-      "root_cause": "Security section does not address column name validation.",
-      "fix": "Add to Error Handling: validate that column name parameters contain only alphanumeric characters, underscores, and hyphens before passing to the script."
+      "title": "Improve stress-case output rigor",
+      "observed_in": [
+        4,
+        5
+      ],
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

@@ -1,54 +1,90 @@
 ---
 name: upset-plot-converter
-description: Convert complex Venn diagrams with more than 4 sets into clearer UpSet plots for publication-ready set intersection visualization.
+description: Convert complex Venn diagrams with more than 4 sets to clearer Upset.
 license: MIT
 skill-author: AIPOCH
 ---
-# UpSet Plot Converter
+# Upset Plot Converter
 
-Convert complex multi-set Venn diagrams (4+ sets) into clearer UpSet plots. Automatically sorts intersections by size and generates publication-ready figures.
+Convert complex Venn diagrams (more than 4 sets) to clearer Upset Plots.
 
-## Input Validation
+## When to Use
 
-This skill accepts: set membership data (dicts of sets or paired name/list inputs) for converting multi-set Venn diagrams into UpSet plots.
+- Use this skill when the task is to Convert complex Venn diagrams with more than 4 sets to clearer Upset.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
 
-If the request does not involve set intersection visualization — for example, asking to perform statistical tests on set overlaps, generate heatmaps, or create bar charts of non-set data — do not proceed. Instead respond:
+## Key Features
 
-> "upset-plot-converter is designed to visualize set intersections as UpSet plots. Your request appears to be outside this scope. Please provide set membership data with 4+ sets, or use a more appropriate tool for your task."
+- Scope-focused workflow aligned to: Convert complex Venn diagrams with more than 4 sets to clearer Upset.
+- Packaged executable path(s): `scripts/main.py`.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+See `## Prerequisites` above for related details.
+
+- `Python`: `3.10+`. Repository baseline for current packaged skills.
+- `matplotlib`: `unspecified`. Declared in `requirements.txt`.
+- `numpy`: `unspecified`. Declared in `requirements.txt`.
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/upset-plot-converter"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
 
 ```bash
 python -m py_compile scripts/main.py
 python scripts/main.py
 ```
 
-## Audit-Ready Commands
+## Workflow
 
-```bash
-python -m py_compile scripts/main.py
-python scripts/main.py --help
-# Inline test with 5 sets:
-python -c "
-from scripts.main import convert_venn_to_upset
-sets = {'A':{1,2,3},'B':{2,3,4},'C':{3,4,5},'D':{4,5,6},'E':{5,6,7}}
-convert_venn_to_upset(sets, output_path='test_upset.png')
-print('OK')
-"
-```
-
-## When to Use
-
-- Visualizing intersections across 4+ gene sets, sample groups, or feature lists
-- Replacing unreadable Venn diagrams in manuscripts
-- Comparing overlap patterns across multiple experimental conditions
-- Any set intersection analysis where clarity matters
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Usage
 
 ```python
 from skills.upset_plot_converter.scripts.main import convert_venn_to_upset
 
+# From set data
 sets = {
     'A': {1, 2, 3, 4, 5},
     'B': {4, 5, 6, 7, 8},
@@ -57,57 +93,106 @@ sets = {
     'E': {1, 3, 5, 7, 9}
 }
 convert_venn_to_upset(sets, output_path="upset_plot.png")
+
+# From list data
+from skills.upset_plot_converter.scripts.main import upset_from_lists
+set_names = ['Genes A', 'Genes B', 'Genes C', 'Genes D', 'Genes E']
+lists = [
+    ['gene1', 'gene2', 'gene3'],
+    ['gene2', 'gene4', 'gene5'],
+    ['gene3', 'gene5', 'gene6'],
+    ['gene7', 'gene8', 'gene9'],
+    ['gene1', 'gene10', 'gene11']
+]
+upset_from_lists(set_names, lists, output_path="gene_upset.png", title="Gene Intersections")
 ```
 
-## Parameters
+## Input
 
-| Parameter | Required | Default | Description |
-|-----------|----------|---------|-------------|
-| `sets` | Yes* | — | Dict of set names → sets/lists of elements |
-| `set_names` | Yes* | — | List of set names (alternative input) |
-| `lists` | Yes* | — | List of lists (paired with set_names) |
-| `output_path` | Yes | — | Path to save output figure |
-| `title` | No | None | Optional plot title |
-| `min_subset_size` | No | 1 | Minimum intersection size to display |
-| `max_intersections` | No | 30 | Maximum intersections to show |
-
-*Provide either `sets` dict OR `set_names` + `lists` pair.
-
-## Workflow
-
-1. Confirm objective, required inputs, and constraints before proceeding.
-2. Validate request matches documented scope; stop early if unsupported assumptions are needed.
-3. Run `scripts/main.py` with available inputs, or use the documented reasoning path.
-4. Return structured result separating assumptions, deliverables, risks, and unresolved items.
-5. On execution failure or incomplete inputs, switch to fallback path and state exactly what blocked completion.
-
-## Fallback Template
-
-If `scripts/main.py` cannot run (missing inputs, environment error), respond with:
-
-```
-FALLBACK REPORT
-───────────────────────────────────────
-Objective      : <stated goal>
-Blocked by     : <exact missing input or error>
-Partial result : <what can still be assessed manually>
-Next step      : <minimum action to unblock>
-───────────────────────────────────────
-```
+- **sets**: Dictionary of set names to sets/lists of elements, OR
+- **set_names**: List of set names
+- **lists**: List of lists (each containing elements)
+- **output_path**: Path to save the output figure
+- **title**: Optional title for the plot
+- **min_subset_size**: Minimum subset size to display (default: 1)
+- **max_intersections**: Maximum number of intersections to show (default: 30)
 
 ## Output
 
-PNG file of the UpSet plot visualization with:
-- Bar chart showing intersection sizes (top)
-- Dot matrix showing which sets participate in each intersection (bottom)
-- Intersections sorted by size for readability
+PNG file of the Upset Plot visualization.
+
+## Notes
+
+- When Venn diagrams exceed 4 sets, they become difficult to read
+- Upset Plots provide a clearer alternative for visualizing set intersections
+- The x-axis shows set intersections as dot patterns
+- Bar heights represent the size of each intersection
+- Automatically sorts intersections by size for better readability
+
+## Requirements
+
+- matplotlib
+- numpy
+- pandas
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+
+## Prerequisites
+
+```text
+
+# Python dependencies
+pip install -r requirements.txt
+```
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
 
 ## Output Requirements
 
-Every response must make these explicit when relevant:
+Every final response should make these items explicit when they are relevant:
 
 - Objective or requested deliverable
-- Inputs used and assumptions introduced (including which input mode was used: dict or set_names+lists)
+- Inputs used and assumptions introduced
 - Workflow or decision path
 - Core result, recommendation, or artifact
 - Constraints, risks, caveats, or validation needs
@@ -116,29 +201,28 @@ Every response must make these explicit when relevant:
 ## Error Handling
 
 - If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
-- If any set in the input is empty, emit a warning: "Warning: set [name] is empty and will appear with no intersections. Consider removing it or verifying your data."
-- If an empty set causes a rendering error, invoke the Fallback Template with Blocked Steps noting the empty set issue.
-- If the task goes outside documented scope, stop instead of guessing or silently widening the assignment.
-- If `scripts/main.py` fails, report the failure point, summarize what can still be completed safely, and provide the manual fallback above.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
 - Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `upset-plot-converter` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `upset-plot-converter` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
 
 ## Response Template
 
-Use this fixed structure for non-trivial requests:
+Use the following fixed structure for non-trivial requests:
 
 1. Objective
 2. Inputs Received
-3. Assumptions (always state which input mode was used: dict or set_names+lists; list all non-default parameter values)
+3. Assumptions
 4. Workflow
 5. Deliverable
 6. Risks and Limits
 7. Next Checks
 
-For simple requests, compress the structure but keep assumptions and limits explicit when they affect correctness.
-
-## Prerequisites
-
-```bash
-pip install -r requirements.txt
-# Requires: matplotlib, numpy, pandas
-```
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

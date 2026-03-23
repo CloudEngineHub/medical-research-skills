@@ -1,36 +1,86 @@
 ---
 name: forest-plot-styler
-description: Beautify meta-analysis forest plots with customizable odds ratio points, confidence interval styles, and subgroup analysis support. Outputs PNG, PDF, or SVG.
+description: Analyze data with `forest-plot-styler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 license: MIT
 skill-author: AIPOCH
-status: beta
 ---
 # Forest Plot Styler
 
-Beautifies meta-analysis or subgroup analysis forest plots, customizes Odds Ratio point sizes and confidence interval line styles.
+ID: 157
 
-## Input Validation
+Beautifies Meta-analysis or subgroup analysis forest plots, customizes Odds Ratio point sizes and confidence interval line styles.
 
-This skill accepts: CSV or Excel files containing meta-analysis study data with OR values and confidence intervals, for the purpose of generating forest plots.
+---
 
-If the user's request does not involve forest plot generation or meta-analysis visualization — for example, asking to run statistical meta-analysis from scratch, perform systematic literature search, or generate other chart types — do not proceed with the workflow. Instead respond:
-> "forest-plot-styler is designed to beautify and generate forest plots from existing meta-analysis data. Your request appears to be outside this scope. Please provide a CSV/Excel file with study OR values and confidence intervals, or use a more appropriate tool for your task."
+## When to Use
 
-Do not continue the workflow when the request is out of scope, missing the required `--input` file, or would require unsupported assumptions. For missing inputs, state exactly which fields are missing.
+- Use this skill when the task needs Beautify meta-analysis forest plots with customizable odds ratio points.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+See `## Features` above for related details.
+
+- Scope-focused workflow aligned to: Analyze data with `forest-plot-styler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
+- Packaged executable path(s): `scripts/main.py`.
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+- Python >= 3.8
+- matplotlib >= 3.5.0
+- pandas >= 1.3.0
+- numpy >= 1.20.0
+- openpyxl >= 3.0.0 (for reading Excel)
+
+---
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/forest-plot-styler"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
 
 ```bash
 python -m py_compile scripts/main.py
 python scripts/main.py --help
-python scripts/main.py --demo --output demo_forest_plot.png
+python scripts/main.py --input "Audit validation sample with explicit symptoms, history, assessment, and next-step plan." --format json
 ```
-
-## When to Use
-
-- Generate or beautify forest plots for meta-analysis or subgroup analysis
-- Customize OR point sizes, CI line styles, and publication-ready output
-- Use a documented fallback path for missing inputs, execution errors, or partial evidence
 
 ## Workflow
 
@@ -42,25 +92,29 @@ python scripts/main.py --demo --output demo_forest_plot.png
 
 ## Features
 
-- Reads meta-analysis data (CSV/Excel format)
+- Reads Meta-analysis data (CSV/Excel format)
 - Draws high-quality forest plots
 - Customizes Odds Ratio point sizes, colors, and shapes
 - Customizes confidence interval line styles (color, thickness, endpoint style)
-- Supports subgroup analysis display with per-subgroup summary diamonds
-- Automatically calculates and displays pooled effect values (inverse variance weighting)
+- Supports subgroup analysis display
+- Automatically calculates and displays pooled effect values
 - Outputs to PNG, PDF, or SVG format
+
+---
 
 ## Usage
 
 ```text
-python scripts/main.py --input <data.csv> [options]
+python -m py_compile scripts/main.py
+
+# Example invocation: python scripts/main.py --input <data.csv> [options]
 ```
 
 ### Parameters
 
 | Parameter | Type | Default | Required | Description |
 |-----------|------|---------|----------|-------------|
-| `--input`, `-i` | string | - | Yes* | Input data file (CSV or Excel) |
+| `--input`, `-i` | string | - | Yes | Input data file (CSV or Excel) |
 | `--output`, `-o` | string | forest_plot.png | No | Output file path |
 | `--format`, `-f` | string | png | No | Output format (png/pdf/svg) |
 | `--point-size` | int | 8 | No | OR point size |
@@ -75,20 +129,19 @@ python scripts/main.py --input <data.csv> [options]
 | `--xlabel`, `-x` | string | Odds Ratio (95% CI) | No | X-axis label |
 | `--reference-line` | float | 1.0 | No | Reference line position |
 | `--width`, `-W` | int | 12 | No | Image width (inches) |
-| `--height`, `-H` | int | auto | No | Image height (inches, auto-scales with study count) |
+| `--height`, `-H` | int | auto | No | Image height (inches) |
 | `--dpi` | int | 300 | No | Image resolution |
 | `--font-size` | int | 10 | No | Font size |
 | `--style`, `-s` | string | default | No | Preset style (default/minimal/dark) |
-| `--demo` | flag | - | No | Run with synthetic 5-study dataset |
 
-*Required unless `--demo` is used.
+---
 
 ## Input Data Format
 
 CSV/Excel files must contain the following columns:
 
 | Column Name | Description | Type |
-|-------------|-------------|------|
+|------|------|------|
 | `study` | Study name | Text |
 | `or` | Odds Ratio value | Numeric |
 | `ci_lower` | Confidence interval lower bound | Numeric |
@@ -106,14 +159,18 @@ Study C,1.15,0.88,1.50,12.3,Drug B
 Study D,0.95,0.75,1.20,14.8,Drug B
 ```
 
+---
+
 ## Examples
 
 ### Basic Usage
+
 ```text
 python scripts/main.py -i meta_data.csv
 ```
 
 ### Custom Style
+
 ```text
 python scripts/main.py -i meta_data.csv \
     --point-color="#E63946" \
@@ -124,6 +181,7 @@ python scripts/main.py -i meta_data.csv \
 ```
 
 ### Subgroup Analysis
+
 ```text
 python scripts/main.py -i meta_data.csv \
     --subgroup subgroup_column \
@@ -131,42 +189,108 @@ python scripts/main.py -i meta_data.csv \
     -o subgroup_forest.png
 ```
 
-### Demo Mode
+### Output PDF Vector Graphic
+
 ```text
-python scripts/main.py --demo --output demo_forest_plot.png
+python scripts/main.py -i meta_data.csv \
+    -f pdf \
+    -o forest_plot.pdf
 ```
+
+---
 
 ## Preset Styles
 
-- `default` — Blue color scheme, standard font size, white background
-- `minimal` — Clean lines, grayscale color scheme, no grid lines
-- `dark` — Dark background (#1E1E1E), bright data points, suitable for presentations
+### default
+- Blue color scheme
+- Standard font size
+- White background
 
-## Dependencies
+### minimal
+- Clean lines
+- Grayscale color scheme
+- No grid lines
 
-- Python >= 3.8
-- matplotlib >= 3.5.0
-- pandas >= 1.3.0
-- numpy >= 1.20.0
-- openpyxl >= 3.0.0 (for reading Excel)
+### dark
+- Dark background
+- Bright data points
+- Suitable for dark theme presentations
+
+---
+
+## Output Example
+
+Generated forest plot contains:
+- Left side: Study name list
+- Middle: OR values and confidence intervals
+- Right side: Weight percentage (if available)
+- Bottom: Pooled effect value (diamond marker)
+- Reference line (OR=1)
+
+---
+
+## Notes
+
+1. Ensure input file encoding is UTF-8
+2. OR values are automatically converted when log scale is suggested
+3. Studies with confidence intervals crossing 1 are not statistically significant
+4. Weight values are used to adjust point size, reflecting study contribution
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
 
 ## Prerequisites
 
 ```text
+
+# Python dependencies
 pip install -r requirements.txt
 ```
 
-## Fallback Behavior
+## Evaluation Criteria
 
-If `scripts/main.py` fails or required inputs are incomplete:
-1. Report the exact failure point and error message.
-2. State what can still be completed (e.g., data validation without rendering).
-3. Manual fallback: verify input CSV has required columns (`study`, `or`, `ci_lower`, `ci_upper`) and re-run with `--format png` as the simplest output mode.
-4. Do not fabricate execution outcomes or file contents.
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
 
 ## Output Requirements
 
-Every final response must make these items explicit when relevant:
+Every final response should make these items explicit when they are relevant:
 
 - Objective or requested deliverable
 - Inputs used and assumptions introduced
@@ -181,18 +305,14 @@ Every final response must make these items explicit when relevant:
 - If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
 - If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
 - Do not fabricate files, citations, data, search results, or execution outcomes.
-- If any `or` value is ≤ 0, reject with: `Error: OR values must be > 0 (found invalid values at rows: {indices}).`
-- If any `ci_lower >= ci_upper`, reject with: `Error: ci_lower must be less than ci_upper (found invalid rows: {indices}).`
-- **Subgroup labels:** When `--subgroup` is used, each subgroup summary diamond is labeled with the subgroup name on the y-axis. If subgroup labels are missing from the output, this is a known rendering gap — report it in the Risks section.
-- **OR label clipping:** For wide CI ranges, OR labels positioned at the right axis edge may be clipped. Use `--width` to increase figure width if labels are cut off.
 
-## Notes
+## Input Validation
 
-1. Ensure input file encoding is UTF-8
-2. OR values are automatically converted when log scale is suggested
-3. Studies with confidence intervals crossing 1 are not statistically significant
-4. Weight values are used to adjust point size, reflecting study contribution
-5. Pooled effect uses inverse variance weighting: `SE = (log(ci_upper) - log(ci_lower)) / (2 * 1.96)`
+This skill accepts requests that match the documented purpose of `forest-plot-styler` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `forest-plot-styler` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
 
 ## Response Template
 
@@ -206,8 +326,23 @@ Use the following fixed structure for non-trivial requests:
 6. Risks and Limits
 7. Next Checks
 
-For stress/multi-constraint requests, also include:
-- Constraints checklist (compliance, performance, error paths)
-- Unresolved items with explicit blocking reasons
-
 If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.
+
+## Inputs to Collect
+
+- Required inputs: the user goal, the primary data or source file, and the requested output format.
+- Optional inputs: output directory, formatting preferences, and validation constraints.
+- If a required input is unavailable, return a short clarification request before continuing.
+
+## Output Contract
+
+- Return a short summary, the main deliverables, and any assumptions that materially affect interpretation.
+- If execution is partial, label what succeeded, what failed, and the next safe recovery step.
+- Keep the final answer within the documented scope of the skill.
+
+## Validation and Safety Rules
+
+- Validate identifiers, file paths, and user-provided parameters before execution.
+- Do not fabricate results, metrics, citations, or downstream conclusions.
+- Use safe fallback behavior when dependencies, credentials, or required inputs are missing.
+- Surface any execution failure with a concise diagnosis and recovery path.

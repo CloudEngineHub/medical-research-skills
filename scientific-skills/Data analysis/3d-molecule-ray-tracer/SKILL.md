@@ -1,26 +1,79 @@
 ---
 name: 3d-molecule-ray-tracer
-description: "Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX 
-  to create publication-quality molecular visualizations. Supports ray-tracing, 
-  depth of field, ambient occlusion, and cinematic lighting for journal covers 
-  and high-impact figures. Use for creating visually compelling protein structure 
-  images; not for routine structural analysis or measurements."
-version: 1.0.0
-category: Visual
-tags: ["pymol", "chimerax", "rendering", "visualization", "ray-tracing"]
-author: AIPOCH
+description: Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX.
 license: MIT
-status: Draft
-risk_level: High
-skill_type: Hybrid (Tool/Script + Network/API)
-owner: AIPOCH
-reviewer: ''
-last_updated: '2026-02-15'
+skill-author: AIPOCH
 ---
-
 # 3D Molecule Ray Tracer
 
 Advanced molecular visualization tool that generates professional-grade rendering scripts with cinematic effects for creating publication-quality and cover-worthy molecular images.
+
+## When to Use
+
+- Use this skill when the task is to Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+See `## Features` above for related details.
+
+- Scope-focused workflow aligned to: Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX.
+- Packaged executable path(s): `scripts/main.py`.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/3d-molecule-ray-tracer"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Features
 
@@ -34,7 +87,8 @@ Advanced molecular visualization tool that generates professional-grade renderin
 
 ### Basic Usage
 
-```bash
+```text
+
 # Generate PyMOL script with default settings
 python scripts/main.py --pdb 1mbn
 
@@ -66,7 +120,8 @@ python scripts/main.py --software chimerax --pdb 1abc --preset publication
 
 ### Advanced Usage
 
-```bash
+```text
+
 # Cover-quality render with depth of field
 python scripts/main.py \
   --software pymol \
@@ -107,18 +162,15 @@ python scripts/main.py \
 
 ## Technical Difficulty: **MEDIUM**
 
-⚠️ **AI自主验收状态**: 需人工检查
-
+⚠️ **AI independent acceptance status**: manual inspection required
 This skill requires:
 - Python 3.8+ environment
 - PyMOL 2.5+ or ChimeraX 1.5+ installed separately
 - Understanding of molecular visualization concepts
 
-## Dependencies
-
 ### Required Python Packages
 
-```bash
+```text
 pip install -r requirements.txt
 ```
 
@@ -151,7 +203,8 @@ pip install -r requirements.txt
 
 ## Prerequisites
 
-```bash
+```text
+
 # Python dependencies
 pip install -r requirements.txt
 
@@ -223,3 +276,43 @@ See `references/` for:
 ---
 
 **💡 Tip: For creating multiple related figures, save your complete scene setup (lighting, camera, colors) as a PyMOL session file (.pse) or ChimeraX session (.cxs), then modify only the specific elements needed for each figure. This ensures consistency across figure panels.**
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `3d-molecule-ray-tracer` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `3d-molecule-ray-tracer` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

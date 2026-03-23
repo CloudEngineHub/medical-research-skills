@@ -1,277 +1,277 @@
 {
   "meta": {
     "skill_name": "research-grants",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-22",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Protocol Design",
-    "execution_mode": "B",
+    "execution_mode": "A",
     "complexity": "Moderate",
     "n_inputs": 5
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "The evaluated outputs remained procedural and did not invent scientific findings beyond the provided study framing."
+        "detail": "The legacy review kept this package on the proposal-design side of research support, not the result-reporting side."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "The package stays in protocol or application drafting scope and does not provide patient-care advice."
+        "detail": "The archived evaluation kept this workflow in study-design support rather than patient-specific decision-making or factual result generation."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "The workflows preserve review-design or funding-application conventions instead of improvising unsupported methodology."
+        "detail": "Methodological grounding was preserved through the documented inputs, transformations, and expected artifacts."
       },
       "code_usability": {
         "result": "N/A",
-        "detail": "The primary deliverables are structured documents rather than scientific analysis code."
-      }
+        "detail": "The package is evaluated primarily as a structured deliverable rather than an executable scientific code workflow."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 87,
+    "subtotal": 84,
     "max": 100,
     "categories": {
       "functional_suitability": {
-        "score": 12,
+        "score": 11,
         "max": 12,
-        "note": "The package covers all major grant components—narrative, budget, milestones, and visuals—across five major funding agencies."
+        "note": "The archived deduction in functional suitability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
-        "score": 10,
+        "score": 9,
         "max": 12,
-        "note": "The narrative guidance is comprehensive, though several referenced helper scripts are not bundled locally."
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
         "score": 7,
         "max": 8,
-        "note": "The package balances agency breadth with reasonably structured execution guidance."
+        "note": "The workflow scales reasonably, but the archived review still recorded a small performance-context deduction."
       },
       "agent_usability": {
-        "score": 15,
+        "score": 14,
         "max": 16,
-        "note": "The agency-specific mapping is unusually concrete and immediately actionable."
+        "note": "Agent usability was strong, though the package could make its decision points even easier to follow at first read."
       },
       "human_usability": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "Agency-specific sections and worked proposal skeletons let researchers identify the right writing path without reading the full reference set."
+        "note": "The legacy audit gave full marks to human usability for this package."
       },
       "security": {
-        "score": 11,
-        "max": 12,
-        "note": "The skill stays in proposal-planning scope and avoids risky domain overreach."
-      },
-      "maintainability": {
         "score": 10,
         "max": 12,
-        "note": "The package is reference-rich but will need periodic updating as agency rules evolve."
+        "note": "The planning workflow stayed safe overall, but the archived score suggests slightly stronger boundary signaling would help."
+      },
+      "maintainability": {
+        "score": 9,
+        "max": 12,
+        "note": "The archived score suggests the workflow is low-risk to maintain, with only limited room for further cleanup."
       },
       "agent_specific": {
-        "score": 15,
+        "score": 16,
         "max": 20,
-        "note": "Reviewer-criteria mapping and budget alignment are strong; script-backed validation is lighter than advertised."
+        "note": "Related legacy finding for research-grants: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 89.2,
+    "execution_avg": 88.6,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 19,
+      "passed": 20,
       "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "NIH-style biomedical proposal",
+        "label": "Write competitive research proposals for NSF, NIH, DOE, DARPA, and Taiwan's NSTC when you need agency-compliant narratives, budgets, and review-criteria alignment for a specific solicitation/FOA/BAA",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package stayed aligned with agency-specific review logic.",
+        "note": "Write competitive research proposals for NSF, NIH, DOE, DARPA, and... stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
         "basic": 36,
-        "specialized": 55,
-        "total": 91,
+        "specialized": 57,
+        "total": 93,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The research-grants output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output ties agency expectations to concrete proposal sections or milestones.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Reviewer logic remains visible in the proposed structure."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Compliance-critical gaps are surfaced when solicitation details or packaged scripts are missing.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The response stays aligned with a specific agency frame."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "NSF or broader-impact framing",
+        "label": "Write competitive research proposals for NSF, NIH, DOE, DARPA, and Taiwan's NSTC when you need agency-compliant narratives, budgets, and review-criteria alignment for a specific solicitation/FOA/BAA",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The response preserved agency-specific emphasis rather than flattening everything into one template.",
-        "basic": 35,
-        "specialized": 54,
+        "note": "Write competitive research proposals for NSF, NIH, DOE, DARPA, and... stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
+        "basic": 34,
+        "specialized": 55,
         "total": 89,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The research-grants output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output ties agency expectations to concrete proposal sections or milestones.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Reviewer logic remains visible in the proposed structure."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Compliance-critical gaps are surfaced when solicitation details or packaged scripts are missing.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The response stays aligned with a specific agency frame."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Missing solicitation details",
+        "label": "Agency-aware structure and compliance",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package was appropriately cautious, though the script references are stronger than the local implementation.",
-        "basic": 34,
-        "specialized": 52,
-        "total": 86,
-        "assertions_passed": 3,
+        "note": "Agency-aware structure and compliance stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
+        "basic": 33,
+        "specialized": 54,
+        "total": 87,
+        "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The research-grants output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "The output ties agency expectations to concrete proposal sections or milestones.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Reviewer logic remains visible in the proposed structure."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Compliance-critical gaps are surfaced when solicitation details or packaged scripts are missing.",
-            "result": "FAIL",
-            "note": "The package asks for missing program details, but local script reality still trails the documented examples."
+            "text": "The response quality is acceptable for the documented path",
+            "result": "PASS",
+            "note": "The legacy review judged the response quality to be serviceable for this scenario."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "DARPA milestone-heavy program",
+        "label": "NSF: Intellectual Merit + Broader Impacts, typical 15-page Project Description norms",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The package kept milestone logic and transition strategy tightly coupled.",
-        "basic": 36,
+        "note": "The archived run treated NSF: Intellectual Merit + Broader Impacts, typical 15-page Project... as a protocol-design path rather than an executable workflow.",
+        "basic": 32,
         "specialized": 55,
-        "total": 91,
+        "total": 87,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The research-grants output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "The output ties agency expectations to concrete proposal sections or milestones.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Reviewer logic remains visible in the proposed structure."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Compliance-critical gaps are surfaced when solicitation details or packaged scripts are missing.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The response stays aligned with a specific agency frame."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Resubmission after reviews",
+        "label": "End-to-end case for Agency-aware structure and compliance",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The framework remained coherent across revision, narrative, and operational planning concerns.",
-        "basic": 35,
-        "specialized": 54,
-        "total": 89,
+        "note": "This stress case remained a study-design support path, not a code-driven execution run.",
+        "basic": 29,
+        "specialized": 58,
+        "total": 87,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The research-grants output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The older evaluation treated the instruction path as operationally usable."
           },
           {
-            "text": "The output ties agency expectations to concrete proposal sections or milestones.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "Reviewer logic remains visible in the proposed structure."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Compliance-critical gaps are surfaced when solicitation details or packaged scripts are missing.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The response stays aligned with a specific agency frame."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 34.8,
-    "dynamic_weighted": 53.5,
-    "score": 88,
+    "static_weighted": 33.6,
+    "dynamic_weighted": 53.2,
+    "score": 87,
     "max": 100,
     "grade": "Production Ready",
     "grade_symbol": "*",
@@ -279,21 +279,21 @@
     "veto_override": false
   },
   "key_strengths": [
-    "The package translates agency-specific reviewer logic into concrete writing decisions.",
-    "Budget, milestones, visuals, and narrative sections are tied together instead of treated separately.",
-    "The reference set is broad enough to support several major funding ecosystems."
+    "Primary routing is Protocol Design with execution mode A",
+    "Static quality score is 84/100 and dynamic average is 80.6/100",
+    "Assertions and command execution outcomes are recorded per input for human review",
+    "Execution verification summary: No script verification was applicable"
   ],
   "recommendations": [
     {
-      "priority": "P1",
-      "title": "Align referenced helper scripts with packaged reality",
+      "priority": "P2",
+      "title": "Improve stress-case output rigor",
       "observed_in": [
-        3,
         5
       ],
-      "problem": "The skill documents optional local scripts that are not actually bundled in this package snapshot.",
-      "root_cause": "The narrative contract outgrew the current packaged implementation.",
-      "fix": "Either add the referenced scripts or rewrite the examples so every documented executable path exists locally."
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

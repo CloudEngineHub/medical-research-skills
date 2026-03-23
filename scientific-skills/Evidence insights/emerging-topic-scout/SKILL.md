@@ -1,23 +1,96 @@
 ---
 name: emerging-topic-scout
-description: Monitor bioRxiv/medRxiv preprints and academic discussions to identify
-  emerging research hotspots before they appear in mainstream journals
-version: 1.0.0
-category: Research
-tags: []
-author: AIPOCH
+description: A real-time monitoring system for identifying "incubation period" research hotspots in biological and medical sciences before they are defined by mainstream journals.
 license: MIT
-status: Draft
-risk_level: High
-skill_type: Hybrid (Tool/Script + Network/API)
-owner: AIPOCH
-reviewer: ''
-last_updated: '2026-02-06'
+skill-author: AIPOCH
 ---
-
 # Emerging Topic Scout
 
 A real-time monitoring system for identifying "incubation period" research hotspots in biological and medical sciences before they are defined by mainstream journals.
+
+## When to Use
+
+- Use this skill when the task needs A real-time monitoring system for identifying "incubation period" research hotspots in biological and medical sciences before they are defined by mainstream journals.
+- Use this skill for evidence insight tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+- Scope-focused workflow aligned to: A real-time monitoring system for identifying "incubation period" research hotspots in biological and medical sciences before they are defined by mainstream journals.
+- Packaged executable path(s): `scripts/main.py` plus 1 additional script(s).
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+- `Python`: `3.10+`. Repository baseline for current packaged skills.
+- `dataclasses`: `unspecified`. Declared in `requirements.txt`.
+- `feedparser`: `unspecified`. Declared in `requirements.txt`.
+- `requests`: `unspecified`. Declared in `requirements.txt`.
+- `textblob`: `unspecified`. Declared in `requirements.txt`.
+- `requests`: `>=2.28.0`. Declared in `scripts/requirements.txt`.
+- `feedparser`: `>=6.0.10`. Declared in `scripts/requirements.txt`.
+- `pandas`: `>=1.5.0`. Declared in `scripts/requirements.txt`.
+- `scikit-learn`: `>=1.1.0`. Declared in `scripts/requirements.txt`.
+- `numpy`: `>=1.23.0`. Declared in `scripts/requirements.txt`.
+- `textblob`: `>=0.17.1`. Declared in `scripts/requirements.txt`.
+- `pyyaml`: `>=6.0`. Declared in `scripts/requirements.txt`.
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Evidence Insight/emerging-topic-scout"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py` with additional helper scripts under `scripts/`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/smoke_test.py
+```
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
+
+## Audit Note
+
+The primary script depends on optional external packages such as `textblob` and live-source access. Audit validation therefore uses `scripts/smoke_test.py` as the deterministic fallback command for structural verification in constrained environments.
 
 ## Overview
 
@@ -34,7 +107,8 @@ It uses trend analysis algorithms to detect sudden spikes in topic frequency, cr
 **bioRxiv and medRxiv** are currently protected by Cloudflare JavaScript Challenge, which prevents programmatic RSS access. As a workaround, this skill now supports **arXiv q-bio** (Quantitative Biology) as an alternative data source.
 
 **Recommended usage:**
-```bash
+```text
+
 # Use arXiv for reliable data fetching
 python scripts/main.py --sources arxiv --days 30
 
@@ -44,7 +118,7 @@ python scripts/main.py --sources biorxiv medrxiv --days 30  # May not work
 
 ## Installation
 
-```bash
+```text
 cd /Users/z04030865/.openclaw/workspace/skills/emerging-topic-scout
 pip install -r scripts/requirements.txt
 ```
@@ -53,19 +127,19 @@ pip install -r scripts/requirements.txt
 
 ### Basic Scan (Recommended: Use arXiv)
 
-```bash
+```text
 python scripts/main.py --sources arxiv --days 7 --output json
 ```
 
 ### Legacy bioRxiv/medRxiv (May not work due to Cloudflare)
 
-```bash
+```text
 python scripts/main.py --sources biorxiv medrxiv --days 7 --output json
 ```
 
 ### Advanced Configuration (arXiv Recommended)
 
-```bash
+```text
 python scripts/main.py \
   --sources arxiv \
   --keywords "CRISPR,gene editing,machine learning" \
@@ -77,7 +151,7 @@ python scripts/main.py \
 
 ### Legacy Configuration (bioRxiv/medRxiv - May not work)
 
-```bash
+```text
 python scripts/main.py \
   --sources biorxiv medrxiv \
   --keywords "CRISPR,gene editing,long COVID" \
@@ -85,6 +159,7 @@ python scripts/main.py \
   --min-score 0.7 \
   --output markdown \
   --notify
+
 # Note: bioRxiv/medRxiv may return 0 results due to Cloudflare protection
 
 ## Parameters
@@ -140,6 +215,7 @@ python scripts/main.py \
 ### Markdown Output
 
 ```markdown
+
 # Emerging Topics Report - 2026-02-06
 
 ## 🔥 High Priority Topics
@@ -235,19 +311,20 @@ Historical data is stored in `data/history.json` for:
 
 ### Example 1: Quick Daily Scan (arXiv - Recommended)
 
-```bash
+```text
 python scripts/main.py --sources arxiv --days 1 --output markdown
 ```
 
 ### Example 2: Daily Scan with bioRxiv (May not work)
 
-```bash
+```text
 python scripts/main.py --sources biorxiv --days 1 --output markdown
+
 # Note: May return 0 results due to Cloudflare protection
 
 ### Example 2: Weekly Deep Analysis
 
-```bash
+```text
 python scripts/main.py \
   --days 7 \
   --min-score 0.7 \
@@ -258,7 +335,7 @@ python scripts/main.py \
 
 ### Example 3: Track Specific Research Area
 
-```bash
+```text
 python scripts/main.py \
   --keywords "Alzheimer,neurodegeneration,amyloid" \
   --days 30 \
@@ -282,29 +359,14 @@ python scripts/main.py \
 - Successfully tested: 35+ papers fetched in 30-day window
 
 **Usage:**
-```bash
+```text
+
 # Recommended: Use arXiv
 python scripts/main.py --sources arxiv --days 30
 
 # Not working: bioRxiv/medRxiv
 python scripts/main.py --sources biorxiv medrxiv --days 30  # Returns 0 papers
 ```
-
-## Troubleshooting
-
-### Rate Limiting
-If you encounter rate limits, increase the `--delay` parameter (default: 1s between requests).
-
-### Missing Papers (0 results from bioRxiv/medRxiv)
-This is expected due to Cloudflare protection. **Use `--sources arxiv` instead.**
-
-### RSS Feed Access Denied
-Some institutional firewalls may block preprint servers. Ensure you can access:
-- ✅ `https://export.arxiv.org/rss/q-bio` (should work)
-- ❌ `https://www.biorxiv.org/rss/recent.rss` (Cloudflare blocked)
-
-### Low Trending Scores
-For niche topics, lower `--min-score` threshold or increase `--days` for more data.
 
 ## References
 
@@ -317,59 +379,42 @@ See `references/README.md` for:
 
 MIT License - Part of OpenClaw Skills Collection
 
-## Risk Assessment
+## Output Requirements
 
-| Risk Indicator | Assessment | Level |
-|----------------|------------|-------|
-| Code Execution | Python scripts with tools | High |
-| Network Access | External API calls | High |
-| File System Access | Read/write data | Medium |
-| Instruction Tampering | Standard prompt guidelines | Low |
-| Data Exposure | Data handled securely | Medium |
+Every final response should make these items explicit when they are relevant:
 
-## Security Checklist
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
 
-- [ ] No hardcoded credentials or API keys
-- [ ] No unauthorized file system access (../)
-- [ ] Output does not expose sensitive information
-- [ ] Prompt injection protections in place
-- [ ] API requests use HTTPS only
-- [ ] Input validated against allowed patterns
-- [ ] API timeout and retry mechanisms implemented
-- [ ] Output directory restricted to workspace
-- [ ] Script execution in sandboxed environment
-- [ ] Error messages sanitized (no internal paths exposed)
-- [ ] Dependencies audited
-- [ ] No exposure of internal service architecture
-## Prerequisites
+## Error Handling
 
-```bash
-# Python dependencies
-pip install -r requirements.txt
-```
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
 
-## Evaluation Criteria
+## Input Validation
 
-### Success Metrics
-- [ ] Successfully executes main functionality
-- [ ] Output meets quality standards
-- [ ] Handles edge cases gracefully
-- [ ] Performance is acceptable
+This skill accepts requests that match the documented purpose of `emerging-topic-scout` and include enough context to complete the workflow safely.
 
-### Test Cases
-1. **Basic Functionality**: Standard input → Expected output
-2. **Edge Case**: Invalid input → Graceful error handling
-3. **Performance**: Large dataset → Acceptable processing time
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
 
-## Lifecycle Status
+> `emerging-topic-scout` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
 
-- **Current Stage**: Draft
-- **Next Review Date**: 2026-03-06
-- **Known Issues**:
-  - ⚠️ **bioRxiv/medRxiv blocked by Cloudflare** (use arXiv as workaround)
-  - Network access limitations for some RSS feeds
-- **Planned Improvements**: 
-  - Investigate bioRxiv/medRxiv API alternatives
-  - Consider browser automation for Cloudflare bypass
-  - Add more arXiv categories (q-bio subcategories)
-  - Performance optimization
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

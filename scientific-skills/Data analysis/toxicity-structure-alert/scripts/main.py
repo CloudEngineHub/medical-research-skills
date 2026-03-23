@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""
-Toxicity Structure Alert (Skill ID: 141)
-Scans drug molecular structures to identify potential toxicity alert structures.
+"""Toxicity Structure Alert (Skill ID: 141)
+Scan the drug molecular structure to identify potential toxicity warning structures.
 
 Usage:
-    python main.py --input <smiles> [--format json|text] [--detail level]
-"""
+    python main.py --input <smiles> [--format json|text] [--detail level]"""
 
 import argparse
 import json
@@ -16,7 +14,7 @@ from enum import Enum
 
 
 class RiskLevel(Enum):
-    """Risk level"""
+    """risk level"""
     LOW = "LOW"
     MEDIUM = "MEDIUM"
     HIGH = "HIGH"
@@ -24,7 +22,7 @@ class RiskLevel(Enum):
 
 @dataclass
 class ToxicAlert:
-    """Toxicity alert structure data class"""
+    """Toxicity warning structure data class"""
     name: str
     name_en: str
     type: str
@@ -36,7 +34,7 @@ class ToxicAlert:
 
 @dataclass
 class AlertMatch:
-    """Matched alert"""
+    """Matched alerts"""
     name: str
     type: str
     smarts: str
@@ -47,7 +45,7 @@ class AlertMatch:
 
 @dataclass
 class ScanResult:
-    """Scan result"""
+    """Scan results"""
     input_smiles: str
     mol_weight: Optional[float]
     alert_count: int
@@ -58,27 +56,27 @@ class ScanResult:
 
 
 class ToxicityAlertScanner:
-    """Toxicity alert structure scanner"""
+    """Toxicity Alert Structural Scanner"""
     
-    # Predefined toxicity alert structures
+    # Predefined toxicity warning structures
     TOXIC_ALERTS = [
-        # High toxicity alerts
+        # High toxicity warning
         ToxicAlert(
-            name="Aromatic Nitro",
+            name="aromatic nitro",
             name_en="Aromatic Nitro",
             type="mutagenic",
             smarts="[N+](=O)[O-]c",
             risk_level=RiskLevel.HIGH,
-            description="Nitroaromatic compounds may cause DNA damage with mutagenic and potential carcinogenic properties",
+            description="Nitroaromatic compounds may cause DNA damage, are mutagenic and potentially carcinogenic",
             weight=1.0
         ),
         ToxicAlert(
-            name="Aromatic Primary Amine",
+            name="Aromatic primary amines",
             name_en="Aromatic Primary Amine",
             type="carcinogenic",
             smarts="Nc1ccccc1",
             risk_level=RiskLevel.HIGH,
-            description="Aromatic amines can be metabolically activated to produce electrophilic species that form adducts with DNA",
+            description="Aromatic amines can be metabolically activated to produce electrophilic substances and form adducts with DNA.",
             weight=0.9
         ),
         ToxicAlert(
@@ -87,25 +85,25 @@ class ToxicityAlertScanner:
             type="alkylating",
             smarts="C1OC1",
             risk_level=RiskLevel.HIGH,
-            description="Epoxides are highly reactive three-membered ring ethers that can act as alkylating agents to damage DNA",
+            description="Epoxides are highly reactive three-membered cyclic ethers that can act as alkylating agents to damage DNA.",
             weight=1.0
         ),
         ToxicAlert(
-            name="Aziridine",
+            name="aziridine",
             name_en="Aziridine",
             type="alkylating",
             smarts="C1NC1",
             risk_level=RiskLevel.HIGH,
-            description="Aziridine rings are highly reactive and can act as alkylating agents",
+            description="The aziridine ring is highly reactive and can be used as an alkylating agent",
             weight=1.0
         ),
         ToxicAlert(
-            name="Hydrazine",
+            name="Hydrazine/Hydrazine",
             name_en="Hydrazine",
             type="hepatotoxic",
             smarts="[NX3][NX3]",
             risk_level=RiskLevel.HIGH,
-            description="Hydrazine compounds are hepatotoxic and may cause liver damage",
+            description="Hydrazines are hepatotoxic and may cause liver damage",
             weight=0.9
         ),
         ToxicAlert(
@@ -114,54 +112,54 @@ class ToxicityAlertScanner:
             type="alkylating",
             smarts="[C][F,Cl,Br,I]",
             risk_level=RiskLevel.HIGH,
-            description="Haloalkyl groups can serve as leaving groups, forming electrophilic centers that cause alkylation",
+            description="Haloalkyl groups can serve as leaving groups, forming electrophilic centers leading to alkylation",
             weight=0.85
         ),
         ToxicAlert(
-            name="Polycyclic Aromatic Hydrocarbon",
+            name="polycyclic aromatic hydrocarbons",
             name_en="Polycyclic Aromatic Hydrocarbon",
             type="carcinogenic",
             smarts="c1ccc2c(c1)ccc1c3ccccc3ccc21",
             risk_level=RiskLevel.HIGH,
-            description="PAHs can be metabolically activated to form carcinogenic epoxides",
+            description="Polycyclic aromatic hydrocarbons can be metabolically activated to form carcinogenic epoxides",
             weight=0.95
         ),
         
-        # Medium toxicity alerts
+        # Moderate toxicity warning
         ToxicAlert(
-            name="Aldehyde",
+            name="Aldehyde group",
             name_en="Aldehyde",
             type="reactive",
             smarts="[CX3H1](=O)",
             risk_level=RiskLevel.MEDIUM,
-            description="Aldehydes are electrophilic and can form Schiff bases with proteins",
+            description="The aldehyde group is electrophilic and can form Schiff base with protein",
             weight=0.6
         ),
         ToxicAlert(
-            name="Acyl Chloride",
+            name="acid chloride",
             name_en="Acyl Chloride",
             type="reactive",
             smarts="C(=O)Cl",
             risk_level=RiskLevel.MEDIUM,
-            description="Acyl chlorides are highly reactive and can undergo acylation with nucleophilic groups",
+            description="Acid chlorides are highly reactive and can undergo acylation reactions with nucleophilic groups",
             weight=0.7
         ),
         ToxicAlert(
-            name="Michael Acceptor",
+            name="Michael receptor",
             name_en="Michael Acceptor",
             type="electrophilic",
             smarts="C=CC(=O)",
             risk_level=RiskLevel.MEDIUM,
-            description="Alpha,beta-unsaturated carbonyl groups can act as Michael acceptors and covalently bind to thiol groups",
+            description="α,β-unsaturated carbonyl group can act as a Michael acceptor to covalently bind to sulfhydryl group",
             weight=0.65
         ),
         ToxicAlert(
-            name="Quinone",
+            name="Quinones",
             name_en="Quinone",
             type="oxidative",
             smarts="O=C1C=CC(=O)C=C1",
             risk_level=RiskLevel.MEDIUM,
-            description="Quinones can generate reactive oxygen species through redox cycling, causing oxidative stress",
+            description="Quinones can produce reactive oxygen species through redox cycles, causing oxidative stress",
             weight=0.7
         ),
         ToxicAlert(
@@ -170,36 +168,36 @@ class ToxicityAlertScanner:
             type="carcinogenic",
             smarts="N=O",
             risk_level=RiskLevel.MEDIUM,
-            description="N-nitroso compounds have potential carcinogenicity",
+            description="N-nitroso compounds are potentially carcinogenic",
             weight=0.75
         ),
         ToxicAlert(
-            name="Thioester",
+            name="thioester",
             name_en="Thioester",
             type="reactive",
             smarts="C(=O)S",
             risk_level=RiskLevel.MEDIUM,
-            description="Thioesters can undergo exchange reactions with thiol groups",
+            description="Thioesters can undergo exchange reactions with sulfhydryl groups",
             weight=0.55
         ),
         
-        # Low toxicity alerts
+        # Low toxicity warning
         ToxicAlert(
             name="Thiol",
             name_en="Thiol",
             type="reactive",
             smarts="[SX2H]",
             risk_level=RiskLevel.LOW,
-            description="Thiols are reactive and can participate in redox reactions and metal chelation",
+            description="Thiols are reactive and can participate in redox and metal chelation",
             weight=0.3
         ),
         ToxicAlert(
-            name="Sulfonyl Chloride",
+            name="Sulfonyl chloride",
             name_en="Sulfonyl Chloride",
             type="reactive",
             smarts="S(=O)(=O)Cl",
             risk_level=RiskLevel.LOW,
-            description="Sulfonyl chlorides can react with nucleophiles",
+            description="Sulfonyl chloride reacts with nucleophiles",
             weight=0.4
         ),
     ]
@@ -209,7 +207,7 @@ class ToxicityAlertScanner:
         self._compile_patterns()
     
     def _compile_patterns(self):
-        """Compile SMARTS patterns"""
+        """Compile SMARTS mode"""
         try:
             from rdkit import Chem
             self.has_rdkit = True
@@ -241,11 +239,11 @@ class ToxicityAlertScanner:
         return mol, mol_weight
     
     def _match_alerts(self, mol) -> List[AlertMatch]:
-        """Match toxicity alert structures"""
+        """Match toxicity warning structure"""
         matches = []
         
         if self.has_rdkit and mol is not None:
-            # Use RDKit for precise substructure matching
+            # Exact substructure matching using RDKit
             from rdkit import Chem
             for alert in self.alerts:
                 pattern = self._compiled_patterns.get(alert.name)
@@ -264,29 +262,29 @@ class ToxicityAlertScanner:
                     except Exception:
                         pass
         else:
-            # Fallback mode: use simple string matching
+            # Degraded mode: Use simple string matching
             smiles_upper = self._current_smiles.upper()
             matches = self._fallback_string_match(smiles_upper)
         
         return matches
     
     def _fallback_string_match(self, smiles: str) -> List[AlertMatch]:
-        """Fallback mode: simple string pattern matching"""
+        """Degrade mode: based on simple string pattern matching"""
         matches = []
         
-        # Define simplified pattern strings
+        # Define a simplified pattern string
         fallback_patterns = {
-            "Aromatic Nitro": ("O=[N+]([O-])", "NO2"),
-            "Aromatic Primary Amine": ("NC", "NH2"),
+            "aromatic nitro": ("O=[N+]([O-])", "NO2"),
+            "Aromatic primary amines": ("NC", "NH2"),
             "Epoxide": ("C1OC1",),
-            "Aziridine": ("C1NC1",),
-            "Hydrazine": ("NN",),
+            "aziridine": ("C1NC1",),
+            "Hydrazine/Hydrazine": ("NN",),
             "Haloalkyl": ("CL", "BR", "F", "I"),
-            "Polycyclic Aromatic Hydrocarbon": ("C=CC=CC=CC=CC",),
-            "Aldehyde": ("C=O", "CHO"),
-            "Acyl Chloride": ("C(=O)CL", "COCL"),
-            "Michael Acceptor": ("C=CC=O",),
-            "Quinone": ("O=C1C=CC(=O)",),
+            "polycyclic aromatic hydrocarbons": ("C=CC=CC=CC=CC",),
+            "Aldehyde group": ("C=O", "CHO"),
+            "acid chloride": ("C(=O)CL", "COCL"),
+            "Michael receptor": ("C=CC=O",),
+            "Quinones": ("O=C1C=CC(=O)",),
             "Nitroso": ("N=O", "N-O"),
             "Thiol": ("SH",),
         }
@@ -315,11 +313,11 @@ class ToxicityAlertScanner:
         return matches
     
     def _calculate_risk_score(self, matches: List[AlertMatch]) -> Tuple[float, str]:
-        """Calculate risk score and level"""
+        """Calculate risk scores and levels"""
         if not matches:
             return 0.0, "NONE"
         
-        # Get weights for matched alerts
+        # Get the weight of matching alerts
         alert_weights = {a.name: (a.weight, a.risk_level) for a in self.alerts}
         
         total_weight = 0.0
@@ -340,44 +338,42 @@ class ToxicityAlertScanner:
         return round(risk_score, 2), max_risk.value
     
     def _generate_recommendations(self, matches: List[AlertMatch], risk_level: str) -> List[str]:
-        """Generate recommendations"""
+        """Generate suggestions"""
         recommendations = []
         
         if risk_level == "HIGH":
-            recommendations.append("⚠️ High-risk toxicity structures detected; strongly recommend Ames test validation")
-            recommendations.append("⚠️ Consider structural optimization to reduce potential toxicity risk")
+            recommendations.append("⚠️ High-risk toxic structures are detected, and it is strongly recommended to conduct Ames test verification")
+            recommendations.append("⚠️ Consider structural optimization to reduce potential toxicity risks")
         elif risk_level == "MEDIUM":
-            recommendations.append("⚡ Medium-risk structures detected; recommend in vitro toxicity screening")
+            recommendations.append("⚡ Medium risk structure detected, in vitro toxicity screening recommended")
             recommendations.append("⚡ Evaluate the impact of structural modifications on activity and toxicity")
         
-        # Provide recommendations based on specific alert types
+        # Make recommendations based on specific alert types
         alert_types = set(m.type for m in matches)
         
         if "mutagenic" in alert_types or "carcinogenic" in alert_types:
-            recommendations.append("🧬 Recommend mutagenicity assessment (e.g., Ames test, chromosomal aberration assay)")
+            recommendations.append("🧬 It is recommended to conduct mutagenicity assessment (such as Ames, chromosomal aberration test)")
         if "hepatotoxic" in alert_types:
-            recommendations.append("🫀 Recommend hepatotoxicity risk assessment")
+            recommendations.append("🫀 It is recommended to assess the risk of hepatotoxicity")
         if "alkylating" in alert_types:
-            recommendations.append("⚗️ Alkylating agents have high reactivity; pay special attention to off-target effects")
+            recommendations.append("⚗️ Alkylating agents are highly reactive and special attention needs to be paid to off-target effects")
         if "reactive" in alert_types:
-            recommendations.append("🔄 Reactive groups may affect metabolic stability; recommend plasma stability assessment")
+            recommendations.append("🔄 Reactive groups may affect metabolic stability, it is recommended to evaluate plasma stability")
         
         if not recommendations:
-            recommendations.append("✅ No significant toxicity alert structures detected, but standard safety assessment is still recommended")
+            recommendations.append("✅ No significant toxicity warning structures were detected, but standard safety assessment is still recommended")
         
         return recommendations
     
     def scan(self, smiles: str) -> ScanResult:
-        """
-        Scan a SMILES string to identify toxicity alert structures
+        """Scan the SMILES string to identify toxicity warning structures
         
         Args:
-            smiles: Input SMILES string
+            smiles: input SMILES string
             
         Returns:
-            ScanResult: Scan result
-        """
-        self._current_smiles = smiles  # Save for fallback mode
+            ScanResult: scan result"""
+        self._current_smiles = smiles  # Save for downgrade mode
         mol, mol_weight = self._parse_smiles(smiles)
         matches = self._match_alerts(mol)
         risk_score, risk_level = self._calculate_risk_score(matches)
@@ -394,56 +390,56 @@ class ToxicityAlertScanner:
         )
     
     def format_text_output(self, result: ScanResult, detail: str = "standard") -> str:
-        """Format text output"""
+        """Formatted text output"""
         lines = []
         lines.append("=" * 60)
-        lines.append("     Toxicity Structure Alert Scan Report")
+        lines.append("Toxic Structure Alert Scan Report")
         lines.append("=" * 60)
         lines.append("")
-        lines.append(f"Input SMILES: {result.input_smiles}")
+        lines.append(f"enterSMILES: {result.input_smiles}")
         if result.mol_weight:
-            lines.append(f"Molecular Weight: {result.mol_weight} Da")
+            lines.append(f"molecular weight: {result.mol_weight} Da")
         lines.append("")
         
         # Risk level display
         risk_emojis = {"HIGH": "🔴", "MEDIUM": "🟡", "LOW": "🟢", "NONE": "✅"}
         risk_emoji = risk_emojis.get(result.risk_level, "⚪")
-        lines.append(f"Risk Level: {risk_emoji} {result.risk_level}")
-        lines.append(f"Risk Score: {result.risk_score:.2f} / 1.0")
-        lines.append(f"Alert Count: {result.alert_count}")
+        lines.append(f"risk level: {risk_emoji} {result.risk_level}")
+        lines.append(f"risk score: {result.risk_score:.2f} / 1.0")
+        lines.append(f"Number of alerts: {result.alert_count}")
         lines.append("")
         
         if result.alerts:
             lines.append("-" * 60)
-            lines.append("Detected Alert Structures:")
+            lines.append("Detected warning structures:")
             lines.append("-" * 60)
             for i, alert in enumerate(result.alerts, 1):
                 lines.append(f"\n{i}. {alert.name}")
-                lines.append(f"   Type: {alert.type}")
-                lines.append(f"   Risk: {alert.risk_level}")
+                lines.append(f"   type: {alert.type}")
+                lines.append(f"   risk: {alert.risk_level}")
                 if detail in ("standard", "full"):
                     lines.append(f"   SMARTS: {alert.smarts}")
                 if detail == "full":
-                    lines.append(f"   Description: {alert.description}")
+                    lines.append(f"   describe: {alert.description}")
                 if alert.match_count > 1:
-                    lines.append(f"   Match Count: {alert.match_count}")
+                    lines.append(f"   Number of matches: {alert.match_count}")
         
         lines.append("")
         lines.append("-" * 60)
-        lines.append("Recommendations:")
+        lines.append("suggestion:")
         lines.append("-" * 60)
         for rec in result.recommendations:
             lines.append(f"  {rec}")
         
         lines.append("")
         lines.append("=" * 60)
-        lines.append("Note: This tool is based on known alert structures and cannot replace comprehensive toxicological assessment")
+        lines.append("NOTE: This tool is based on known alert structures and is not a substitute for a comprehensive toxicological assessment")
         lines.append("=" * 60)
         
         return "\n".join(lines)
     
     def format_json_output(self, result: ScanResult) -> str:
-        """Format JSON output"""
+        """Formatted JSON output"""
         data = {
             "input": result.input_smiles,
             "mol_weight": result.mol_weight,
@@ -467,16 +463,14 @@ class ToxicityAlertScanner:
 
 
 def main():
-    """Main function"""
+    """main function"""
     parser = argparse.ArgumentParser(
-        description="Toxicity Structure Alert - Scan drug molecular structures for toxicity alerts",
+        description="Toxicity Structure Alert - scans drug molecular structure for toxicity alerts",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
+        epilog="""Example:
   python main.py -i "O=[N+]([O-])c1ccccc1"
   python main.py -i "C1CCCCC1" -f json
-  python main.py -i "c1ccc2c(c1)ccc1c3ccccc3ccc21" -d full
-        """
+  python main.py -i "c1ccc2c(c1)ccc1c3ccccc3ccc21" -d full"""
     )
     
     parser.add_argument(
@@ -496,22 +490,22 @@ Examples:
         "--detail", "-d",
         choices=["basic", "standard", "full"],
         default="standard",
-        help="Detail level (default: standard)"
+        help="Verbosity (default: standard)"
     )
     
     args = parser.parse_args()
     
-    # Create scanner and run scan
+    # Create a scanner and perform scans
     scanner = ToxicityAlertScanner()
     result = scanner.scan(args.input)
     
-    # Output result
+    # Output results
     if args.format == "json":
         print(scanner.format_json_output(result))
     else:
         print(scanner.format_text_output(result, args.detail))
     
-    # Return non-zero exit code if high risk is detected
+    # Return a non-zero exit code if high risk is detected
     if result.risk_level == "HIGH":
         sys.exit(1)
     else:

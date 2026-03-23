@@ -1,7 +1,7 @@
 {
   "meta": {
     "skill_name": "survival-analysis-km",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-22",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Data Analysis",
     "execution_mode": "B",
@@ -10,324 +10,299 @@
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "No fabricated statistics, p-values, or citations were produced across all evaluated outputs; all claims trace to input data or documented tool behavior."
+        "detail": "The archived review kept this workflow anchored to supplied data fields and observable execution behavior, not fabricated results."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "All outputs remained within biostatistics and data visualization scope; no unsupported clinical or diagnostic recommendations were made."
+        "detail": "The evaluated outputs stayed inside the Kaplan-Meier survival analysis tool for clinical and biological research. Generates... and did not drift into unsupported interpretation beyond the available inputs."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "No methodological fallacies detected; outputs apply standard approaches appropriate to biostatistics and data visualization tasks."
+        "detail": "The archived evaluation treated the workflow as method-linked rather than ad hoc."
       },
       "code_usability": {
         "result": "PASS",
-        "detail": "Generated code executed without syntax errors or unresolvable dependency failures across all tested inputs."
-      }
+        "detail": "The archived review preserved a usable code path with named scripts, expected inputs, and a recognizable output contract."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 86,
+    "subtotal": 88,
     "max": 100,
     "categories": {
       "functional_suitability": {
         "score": 11,
         "max": 12,
-        "note": "Time-varying covariate now explicitly out-of-scope with R redirect; KM, log-rank, Cox all covered"
+        "note": "The archived deduction in functional suitability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
         "score": 10,
         "max": 12,
-        "note": "Fallback template present; Statistical Caveats section now mandatory in Output Requirements"
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
-        "score": 6,
+        "score": 8,
         "max": 8,
-        "note": "No references/ folder; single SKILL.md at 153 lines — acceptable but no progressive disclosure"
+        "note": "The legacy audit gave full marks to performance context for this package."
       },
       "agent_usability": {
-        "score": 15,
+        "score": 14,
         "max": 16,
-        "note": "Workflow step 3 now emits explicit note when --group absent; Statistical Caveats section added to Response Template"
+        "note": "The archived review left some headroom in how quickly an agent can lock onto the intended analysis path."
       },
       "human_usability": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "Description is discoverable; trigger language natural for clinical researchers"
+        "note": "Human usability reached full score in the archived evaluation."
       },
       "security": {
-        "score": 9,
+        "score": 10,
         "max": 12,
-        "note": "No credential handling needed; local file I/O only; no input sanitization for CSV column names"
+        "note": "A modest security gap remained in the archived evaluation despite otherwise controlled workflow behavior."
       },
       "maintainability": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "Clean structure; references/ folder present; scripts separated; all P1/P2 fixes applied cleanly"
+        "note": "Maintainability stayed solid, with only limited room to simplify scripts, dependencies, or packaging structure."
       },
       "agent_specific": {
         "score": 17,
         "max": 20,
-        "note": "Time-varying covariate now in out-of-scope list; escape hatches strengthened; composability still limited by file-path dependency"
+        "note": "Related legacy finding for survival-analysis-km: Stabilize executable path and fallback behavior. Some inputs only reached PARTIAL due to execution gaps or weak boundary handling"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 84.4,
+    "execution_avg": 89.6,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 23,
-      "total": 25
+      "passed": 18,
+      "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Two-group KM on clinical trial OS data",
+        "label": "Kaplan-Meier survival analysis tool for clinical and biological research. Generates publication-ready survival curves with statistical tests",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; two-group km on clinical trial os data case handled within expected scope.",
-        "basic": 35,
-        "specialized": 50,
-        "total": 85,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "Kaplan-Meier survival analysis tool for clinical and biological... remained well-aligned with the documented contract in the preserved audit.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output includes KM curve with 95% CI",
+            "text": "The survival-analysis-km output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Log-rank p-value reported",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Median survival with CI reported per group",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "No survival statistics fabricated beyond input data",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Statistical Caveats section present in output",
-            "result": "PASS",
-            "note": "Now mandated by Output Requirements"
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "PFS analysis with censoring > 40%",
+        "label": "Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; pfs analysis with censoring > 40% case handled within expected scope.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The Use this skill for data analysis tasks that require explicit... scenario completed within the documented Kaplan-Meier survival analysis tool for clinical and biological research. Generates... boundary.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Heavy censoring warning triggered (>50% threshold)",
+            "text": "The survival-analysis-km output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "40% censoring correctly not flagged; threshold is 50% per SKILL.md"
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "KM estimator formula correctly applied",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: km estimator formula correctly applied as expected."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "Greenwood variance formula referenced",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Citations and references verified as traceable to the source material."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Output does not fabricate p-values",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Fallback path documented if lifelines missing",
-            "result": "PASS",
-            "note": "Confirmed: fallback path documented if lifelines missing as expected."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Single-arm survival (no group column)",
+        "label": "Kaplan-Meier survival analysis tool for clinical and biological research. Generates publication-ready survival curves with statistical tests",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; single-arm survival (no group column) case handled within expected scope.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The Kaplan-Meier survival analysis tool for clinical and biological... scenario completed within the documented Kaplan-Meier survival analysis tool for clinical and biological research. Generates... boundary.",
+        "basic": 36,
+        "specialized": 56,
+        "total": 92,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Skill handles missing --group parameter gracefully",
+            "text": "The survival-analysis-km output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: skill handles missing --group parameter gracefully as expected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Log-rank test skipped when no group provided",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: log-rank test skipped when no group provided as expected."
+            "note": "Command evidence was preserved in the legacy execution summary."
           },
           {
-            "text": "Output still includes median survival estimate",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: output still includes median survival estimate as expected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "No fabricated group comparison statistics",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Explicit informational note emitted when log-rank skipped",
-            "result": "PASS",
-            "note": "Workflow step 3 now mandates this message"
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Cox regression with multiple covariates",
+        "label": "Packaged executable path(s): scripts/main.py",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; cox regression with multiple covariates case handled within expected scope.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "Packaged executable path(s): scripts/main.py remained well-aligned with the documented contract in the preserved audit.",
+        "basic": 36,
+        "specialized": 55,
+        "total": 91,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "HR and 95% CI reported for each covariate",
+            "text": "The survival-analysis-km output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Proportional hazards assumption check mentioned",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: proportional hazards assumption check mentioned as expected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Schoenfeld residuals referenced for PH validation",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Citations and references verified as traceable to the source material."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "No fabricated hazard ratios",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Biostatistician review recommended in Statistical Caveats",
-            "result": "PASS",
-            "note": "Now surfaced via mandatory Statistical Caveats section"
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Time-varying covariate request",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; time-varying covariate request case handled within expected scope.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
-        "assertions_passed": 3,
-        "assertions_total": 5,
+        "label": "End-to-end case for Scope-focused workflow aligned to: Kaplan-Meier survival analysis tool for clinical and biological research. Generates publication-ready survival curves with statistical tests",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "This stress case was mostly intact, but the archived review centered its concern on: The output stays within declared skill scope and target objective.",
+        "basic": 25,
+        "specialized": 40,
+        "total": 65,
+        "assertions_passed": 2,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Time-varying covariate request triggers clean scope refusal",
+            "text": "The survival-analysis-km output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Now explicitly in Input Validation out-of-scope list with R survival package redirect"
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Redirect to R survival package provided",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: redirect to r survival package provided as expected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "No partial execution attempted for unsupported feature",
-            "result": "PASS",
-            "note": "Confirmed: no partial execution attempted for unsupported feature as expected."
-          },
-          {
-            "text": "Refusal message matches documented template verbatim",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "FAIL",
-            "note": "Minor wording variation from template still possible"
+            "note": "The archived review treated this as a scope-control failure."
           },
           {
-            "text": "No fabricated time-varying covariate results",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "FAIL",
-            "note": "Refusal may include brief methodological context beyond strict scope"
+            "note": "A boundary-related issue was preserved for this scenario in the legacy evaluation."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 34.4,
-    "dynamic_weighted": 50.6,
-    "score": 85,
+    "static_weighted": 35.2,
+    "dynamic_weighted": 53.8,
+    "score": 89,
     "max": 100,
     "grade": "Production Ready",
-    "grade_symbol": "⭐",
+    "grade_symbol": "*",
     "deployable": true,
     "veto_override": false
   },
   "key_strengths": [
-    "Comprehensive statistical methods section with formulas (KM estimator, Greenwood variance, Cox PH) demonstrates methodological rigor",
-    "Time-varying covariate now cleanly refused with R survival package redirect, closing the primary scope gap from v1",
-    "Mandatory Statistical Caveats section in Output Requirements ensures high-risk scenario warnings are consistently surfaced",
-    "Fallback template with exact lifelines install command reduces friction on environment failures",
-    "Clean separation of output files (curve PNG, stats CSV, HR CSV, log-rank CSV, report TXT) supports reproducible research workflows"
+    "Primary routing is Data Analysis with execution mode B",
+    "Static quality score is 88/100 and dynamic average is 89.6/100",
+    "Assertions and command execution outcomes are recorded per input for human review"
   ],
   "recommendations": [
     {
-      "priority": "P2",
-      "title": "Refusal message wording may deviate from template",
+      "priority": "P1",
+      "title": "Stabilize executable path and fallback behavior",
       "observed_in": [
         5
       ],
-      "problem": "The scope refusal for time-varying covariate requests occasionally includes brief methodological context beyond the documented template, creating minor inconsistency.",
-      "root_cause": "Input Validation section specifies the refusal message but does not mark it as verbatim-required.",
-      "fix": "Add 'respond verbatim:' before the refusal message template in Input Validation, matching the pattern used in variant-pathogenicity-predictor."
+      "problem": "Some inputs only reached PARTIAL due to execution gaps or weak boundary handling",
+      "root_cause": "Example commands are not fully runnable or missing deterministic fallback",
+      "fix": "Add validated runnable commands and a strict fallback template for missing parameters and execution errors"
     },
     {
       "priority": "P2",
-      "title": "No references/ folder for progressive disclosure",
-      "observed_in": [],
-      "problem": "All content is in a single SKILL.md at 153 lines. A references/ folder for statistical methods details would improve token efficiency for agents that do not need the full formula section.",
-      "root_cause": "Skill was designed as a self-contained document without progressive disclosure.",
-      "fix": "Consider moving the Statistical Methods section to references/statistical_methods.md and referencing it from SKILL.md to reduce context load for simple requests."
+      "title": "Improve stress-case output rigor",
+      "observed_in": [
+        5
+      ],
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

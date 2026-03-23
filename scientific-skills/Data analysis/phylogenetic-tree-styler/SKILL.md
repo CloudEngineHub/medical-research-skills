@@ -1,38 +1,85 @@
 ---
 name: phylogenetic-tree-styler
-description: Beautify phylogenetic trees with taxonomy color blocks, bootstrap values, and timelines. Accepts Newick format and outputs PNG, PDF, or SVG.
+description: Analyze data with `phylogenetic-tree-styler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 license: MIT
 skill-author: AIPOCH
-status: beta
 ---
 # Phylogenetic Tree Styler
 
-Beautify phylogenetic trees, add taxonomy color blocks, Bootstrap values, and timelines. Accepts standard Newick format input.
+## When to Use
 
-## Input Validation
+- Use this skill when the task needs Beautify phylogenetic trees with taxonomy color blocks, bootstrap values.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
 
-This skill accepts: Newick format phylogenetic tree files (.nwk, .newick) and optional taxonomy CSV annotation files, for the purpose of generating beautified tree visualizations.
+## Key Features
 
-If the user's request does not involve phylogenetic tree visualization — for example, asking to build a phylogenetic tree from sequences, run alignment, or perform evolutionary analysis — do not proceed with the workflow. Instead respond:
-> "phylogenetic-tree-styler is designed to beautify existing phylogenetic trees in Newick format. It does not build trees from sequences. Your request appears to be outside this scope. Please provide a Newick tree file, or use a more appropriate tool for your task."
+See `## Features` above for related details.
 
-Do not continue the workflow when the request is out of scope, missing the required `-i` input file, or would require unsupported assumptions. For missing inputs, state exactly which fields are missing.
+- Scope-focused workflow aligned to: Analyze data with `phylogenetic-tree-styler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
+- Packaged executable path(s): `scripts/main.py`.
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+- Python 3.8+
+- ete3
+- matplotlib
+- numpy
+- pandas
+
+Install dependencies:
+```text
+pip install ete3 matplotlib numpy pandas
+```
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/phylogenetic-tree-styler"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
 
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
 ```bash
 python -m py_compile scripts/main.py
-python scripts/main.py --help
-python scripts/main.py -i tree.nwk -o tree_styled.png
 ```
 
-## When to Use
+## Audit-Ready Commands
 
-- Beautify phylogenetic trees with taxonomy color blocks, bootstrap values, and timelines
-- Generate publication-ready tree output (PNG, PDF, SVG) from Newick format files
-- Add taxonomy color annotations to existing trees
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
 
-**Composability:** Output PNG/PDF/SVG files can be consumed by multi-panel-figure-assembler or graphical-abstract-wizard for composite figure assembly.
+```bash
+python -m py_compile scripts/main.py
+
+# Example invocation: python scripts/main.py --help
+
+# Example invocation: python scripts/main.py --input "Audit validation sample with explicit symptoms, history, assessment, and next-step plan." --format json
+```
 
 ## Workflow
 
@@ -43,12 +90,7 @@ python scripts/main.py -i tree.nwk -o tree_styled.png
 5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Features
-
-- Beautify phylogenetic trees with customizable branch and leaf colors
-- Add taxonomy color blocks from CSV annotation file
-- Display Bootstrap values with configurable threshold
-- Add geological timeline with root age
-- Output to PNG, PDF, or SVG
+Beautify phylogenetic trees, add taxonomy color blocks, Bootstrap values, and timelines.
 
 ## Usage
 
@@ -59,7 +101,7 @@ python3 scripts/main.py --input <input_tree.nwk> --output <output.png> [options]
 ### Parameters
 
 | Parameter | Description | Default |
-|-----------|-------------|---------|
+|------|------|--------|
 | `-i`, `--input` | Input Newick format phylogenetic tree file | Required |
 | `-o`, `--output` | Output image file path | tree_styled.png |
 | `-f`, `--format` | Output format: png, pdf, svg | png |
@@ -67,7 +109,7 @@ python3 scripts/main.py --input <input_tree.nwk> --output <output.png> [options]
 | `-h`, `--height` | Image height (pixels) | 800 |
 | `--show-bootstrap` | Show Bootstrap values | False |
 | `--bootstrap-threshold` | Only show Bootstrap values above this threshold | 50 |
-| `--taxonomy-file` | Species taxonomy CSV (name,domain,phylum,class,order,family,genus) | None |
+| `--taxonomy-file` | Species taxonomy information file (CSV format: name,domain,phylum,class,order,family,genus) | None |
 | `--show-timeline` | Show timeline | False |
 | `--root-age` | Root node age (million years ago) | None |
 | `--branch-color` | Branch color | black |
@@ -95,17 +137,17 @@ python3 scripts/main.py -i tree.nwk -o tree_taxonomy.png --taxonomy-file taxonom
 python3 scripts/main.py -i tree.nwk -o tree_timeline.png --show-timeline --root-age 500
 ```
 
-## Input Formats
-
-### Newick Tree Format
+### Comprehensive Usage
+```text
+python3 scripts/main.py -i tree.nwk -o tree_full.png \
+    --show-bootstrap --bootstrap-threshold 70 \
+    --taxonomy-file taxonomy.csv \
+    --show-timeline --root-age 500
 ```
-((A:0.1,B:0.2)95:0.3,(C:0.4,D:0.5)88:0.6);
-```
-Bootstrap values can be placed at node label positions (e.g., 95, 88 above).
 
-**Supported format:** Standard Newick only. Extended Newick variants (NHX, NEXUS) are not supported. If your file uses NHX or NEXUS format, convert to standard Newick first (e.g., using FigTree or Dendropy).
+## Taxonomy Information File Format
 
-### Taxonomy CSV Format
+taxonomy.csv example:
 ```csv
 name,domain,phylum,class
 Species_A,Bacteria,Proteobacteria,Gammaproteobacteria
@@ -113,30 +155,66 @@ Species_B,Bacteria,Firmicutes,Bacilli
 Species_C,Archaea,Euryarchaeota,Methanobacteria
 ```
 
-## Dependencies
+## Input Format
 
-- Python 3.8+
-- ete3
-- matplotlib
-- numpy
-- pandas
-
-```text
-pip install ete3 matplotlib numpy pandas
+Supports standard Newick format (.nwk or .newick):
+```
+((A:0.1,B:0.2)95:0.3,(C:0.4,D:0.5)88:0.6);
 ```
 
-## Fallback Behavior
+Bootstrap values can be placed at node label positions (like the 95, 88 above).
 
-If `scripts/main.py` fails or required inputs are incomplete:
-1. Report the exact failure point and error message — include the exact error line from stderr in the Blocked by field.
-2. If the error is `No module named 'ete3'`, instruct: `pip install ete3 matplotlib numpy pandas` then retry with: `python3 scripts/main.py -i tree.nwk -o out.png`
-3. State what can still be completed (e.g., input format validation without rendering).
-4. Manual fallback: verify the Newick file is valid format, then re-run with minimal options: `python3 scripts/main.py -i tree.nwk -o out.png`.
-5. Do not fabricate execution outcomes or tree data.
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
 
 ## Output Requirements
 
-Every final response must make these items explicit when relevant:
+Every final response should make these items explicit when they are relevant:
 
 - Objective or requested deliverable
 - Inputs used and assumptions introduced
@@ -150,8 +228,15 @@ Every final response must make these items explicit when relevant:
 - If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
 - If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
 - If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
-- If the Newick file uses NHX or NEXUS format, note this is not supported and recommend converting to standard Newick first.
 - Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `phylogenetic-tree-styler` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `phylogenetic-tree-styler` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
 
 ## Response Template
 
@@ -165,8 +250,23 @@ Use the following fixed structure for non-trivial requests:
 6. Risks and Limits
 7. Next Checks
 
-## Prerequisites
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.
 
-```text
-pip install -r requirements.txt
-```
+## Inputs to Collect
+
+- Required inputs: the user goal, the primary data or source file, and the requested output format.
+- Optional inputs: output directory, formatting preferences, and validation constraints.
+- If a required input is unavailable, return a short clarification request before continuing.
+
+## Output Contract
+
+- Return a short summary, the main deliverables, and any assumptions that materially affect interpretation.
+- If execution is partial, label what succeeded, what failed, and the next safe recovery step.
+- Keep the final answer within the documented scope of the skill.
+
+## Validation and Safety Rules
+
+- Validate identifiers, file paths, and user-provided parameters before execution.
+- Do not fabricate results, metrics, citations, or downstream conclusions.
+- Use safe fallback behavior when dependencies, credentials, or required inputs are missing.
+- Surface any execution failure with a concise diagnosis and recovery path.

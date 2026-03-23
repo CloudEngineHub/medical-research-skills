@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""
-Translational Gap Analyzer (ID: 209)
-评估基础研究模型与人类疾病之间的转化鸿沟
-"""
+"""Translational Gap Analyzer (ID: 209)
+Assessing the translational gap between basic research models and human disease"""
 
 import argparse
 import json
@@ -21,15 +19,15 @@ class RiskLevel(Enum):
 
 @dataclass
 class DimensionScore:
-    """各维度的评分和关注点"""
-    score: float  # 0-10, 越高表示差距越大
+    """Ratings and concerns for each dimension"""
+    score: float  # 0-10, the higher the value, the greater the gap.
     concerns: List[str]
     details: Dict[str, any]
 
 
 @dataclass
 class GapAnalysisReport:
-    """转化鸿沟分析报告"""
+    """Conversion Gap Analysis Report"""
     model: str
     disease: str
     overall_gap_score: float
@@ -39,7 +37,7 @@ class GapAnalysisReport:
     recommendations: List[str]
 
 
-# 知识库：模型-疾病差距数据
+# Knowledge Base: Model-Disease Gap Data
 TRANSLATIONAL_KNOWLEDGE = {
     "mouse": {
         "anatomy": {
@@ -243,75 +241,75 @@ TRANSLATIONAL_KNOWLEDGE = {
 }
 
 
-# 疾病特异性风险因素
+# disease-specific risk factors
 DISEASE_SPECIFIC_FACTORS = {
     "alzheimer": {
         "mouse": {
-            "pathology_differences": ["缺乏自然tau病理", "Aβ沉积模式不同", "神经退行速度差异"],
-            "genetic_risks": ["APOE4模型有限", "TREM2功能差异"],
-            "immune_factors": ["小胶质细胞反应性不同", "神经炎症模式差异"],
-            "drug_targets": ["淀粉样蛋白假说多次失败", "tau病理难以复制"]
+            "pathology_differences": ["Lack of natural tau pathology", "Different Aβ deposition patterns", "Differences in neurodegeneration rates"],
+            "genetic_risks": ["APOE4 model limited", "TREM2 functional differences"],
+            "immune_factors": ["Microglial reactivity differs", "Differences in neuroinflammation patterns"],
+            "drug_targets": ["The amyloid hypothesis has failed many times", "Tau pathology is difficult to replicate"]
         },
         "rat": {
-            "pathology_differences": ["tau病理有限", "Aβ清除差异"],
-            "genetic_risks": ["APOE模型较少"],
-            "behavioral_differences": ["认知评估方法局限"]
+            "pathology_differences": ["tau pathology limited", "Aβ clearance differences"],
+            "genetic_risks": ["There are fewer APOE models"],
+            "behavioral_differences": ["Limitations of cognitive assessment methods"]
         }
     },
     "parkinson": {
         "mouse": {
-            "pathology_differences": ["缺乏自然路易体", "多巴胺系统差异"],
-            "genetic_risks": ["LRRK2突变效应不同", "SNCA过表达模型局限"],
-            "drug_targets": ["多巴胺替代疗法模型有效但临床差异大"]
+            "pathology_differences": ["Lack of natural Lewy bodies", "Dopamine system differences"],
+            "genetic_risks": ["LRRK2 mutations have different effects", "Limitations of SNCA overexpression model"],
+            "drug_targets": ["Dopamine replacement therapy model is effective but clinically variable"]
         },
         "rat": {
-            "toxin_models": ["MPTP模型与散发性PD差异大", "6-OHDA模型局限性"],
-            "genetic_models": ["遗传模型进展缓慢"]
+            "toxin_models": ["MPTP model is very different from sporadic PD", "6-OHDA model limitations"],
+            "genetic_models": ["Genetic modeling progress is slow"]
         }
     },
     "cancer": {
         "mouse": {
-            "immune_factors": ["免疫系统差异影响免疫治疗效果", "肿瘤微环境不同"],
-            "metabolic_factors": ["药物代谢差异显著", "剂量换算困难"],
-            "genetic_risks": ["驱动突变保守但背景不同"]
+            "immune_factors": ["Differences in the immune system affect the effectiveness of immunotherapy", "Different tumor microenvironments"],
+            "metabolic_factors": ["Drug metabolism varies significantly", "Dose conversion is difficult"],
+            "genetic_risks": ["Driver mutations are conserved but contextually diverse"]
         },
         "cell_line": {
-            "model_limitations": ["缺乏微环境", "2D vs 3D差异", "细胞系演化"]
+            "model_limitations": ["lack of microenvironment", "2D vs 3D differences", "cell line evolution"]
         }
     },
     "diabetes": {
         "mouse": {
-            "metabolic_factors": ["胰岛素抵抗机制差异", "脂肪分布不同"],
-            "immune_factors": ["1型糖尿病自身免疫差异", "NOD小鼠局限性"],
-            "drug_targets": ["GLP-1类似物相对成功", "SGLT2抑制剂差异"]
+            "metabolic_factors": ["Differences in insulin resistance mechanisms", "Different fat distribution"],
+            "immune_factors": ["Type 1 diabetes autoimmune differences", "Limitations of NOD mice"],
+            "drug_targets": ["GLP-1 analogues have been relatively successful", "SGLT2 inhibitor differences"]
         },
         "rat": {
-            "metabolic_factors": [" Zucker糖尿病肥胖大鼠与人类T2D差异"]
+            "metabolic_factors": ["Differences between Zucker diabetic obese rats and human T2D"]
         }
     },
     "autoimmune": {
         "mouse": {
-            "immune_factors": ["免疫耐受机制差异", "MHC系统根本不同"],
-            "drug_targets": ["TNF抑制剂相对成功", "B细胞靶向差异"],
-            "pathology_differences": ["疾病诱导模型与自发疾病差异"]
+            "immune_factors": ["Differences in immune tolerance mechanisms", "MHC systems are fundamentally different"],
+            "drug_targets": ["TNF inhibitors are relatively successful", "B cell targeting differences"],
+            "pathology_differences": ["Differences between disease-induced models and spontaneous diseases"]
         }
     },
     "cardiovascular": {
         "mouse": {
-            "anatomical_differences": ["冠状动脉分布不同", "心肌再生能力差异"],
-            "physiological_differences": ["心率极快", "心电图解读差异"],
-            "drug_targets": ["他汀类药物有效", "抗凝血药物代谢差异"]
+            "anatomical_differences": ["Different distribution of coronary arteries", "Differences in myocardial regeneration ability"],
+            "physiological_differences": ["Extremely fast heart rate", "Differences in EKG Interpretation"],
+            "drug_targets": ["Statins are effective", "Differences in anticoagulant drug metabolism"]
         },
         "rat": {
-            "advantages": ["心血管手术模型更成熟"],
-            "differences": ["仍与临床有显著差异"]
+            "advantages": ["Cardiovascular surgery models are more mature"],
+            "differences": ["Still significantly different from clinical"]
         }
     }
 }
 
 
 def normalize_disease_name(disease: str) -> str:
-    """标准化疾病名称"""
+    """standardized disease names"""
     disease_lower = disease.lower().replace("'", "").replace(" ", "_")
     disease_mapping = {
         "alzheimer": "alzheimer",
@@ -331,7 +329,7 @@ def normalize_disease_name(disease: str) -> str:
 
 
 def get_disease_specific_risks(model: str, disease: str) -> List[str]:
-    """获取疾病特异性风险"""
+    """Get disease-specific risks"""
     normalized_disease = normalize_disease_name(disease)
     risks = []
     
@@ -347,40 +345,40 @@ def get_disease_specific_risks(model: str, disease: str) -> List[str]:
 
 
 def calculate_dimension_score(model: str, dimension: str, focus_areas: List[str]) -> DimensionScore:
-    """计算特定维度的分数"""
+    """Calculate the score for a specific dimension"""
     if model not in TRANSLATIONAL_KNOWLEDGE:
-        return DimensionScore(score=5.0, concerns=["未知模型类型"], details={})
+        return DimensionScore(score=5.0, concerns=["Unknown model type"], details={})
     
     model_data = TRANSLATIONAL_KNOWLEDGE[model]
     
     if dimension not in model_data:
-        return DimensionScore(score=5.0, concerns=["该维度数据不可用"], details={})
+        return DimensionScore(score=5.0, concerns=["The dimension data is not available"], details={})
     
     dim_data = model_data[dimension]
     scores = list(dim_data.values())
     avg_score = sum(scores) / len(scores) if scores else 5.0
     
-    # 识别主要关注点
+    # Identify key concerns
     concerns = []
     for key, value in dim_data.items():
         if value >= 7.0:
-            concerns.append(f"{key}: 显著差异 (评分: {value})")
+            concerns.append(f"{key}: significant difference (score: {value})")
         elif value >= 5.0:
-            concerns.append(f"{key}: 中等差异 (评分: {value})")
+            concerns.append(f"{key}: medium difference (score: {value})")
     
-    # 如果该维度是关注重点，列出更详细的concerns
+    # If this dimension is the focus, list more detailed concerns
     if dimension in focus_areas:
         concerns = [f"{k}: {v}" for k, v in dim_data.items() if v >= 5.0]
     
     return DimensionScore(
         score=round(avg_score, 1),
-        concerns=concerns[:5],  # 限制数量
+        concerns=concerns[:5],  # limited quantity
         details=dim_data
     )
 
 
 def determine_risk_level(overall_score: float) -> str:
-    """确定风险等级"""
+    """Determine risk level"""
     if overall_score >= 8.0:
         return RiskLevel.CRITICAL.value
     elif overall_score >= 6.5:
@@ -392,85 +390,85 @@ def determine_risk_level(overall_score: float) -> str:
 
 
 def generate_failure_predictors(model: str, disease: str, dimensions: Dict[str, DimensionScore]) -> List[str]:
-    """生成临床试验失败预测因素"""
+    """Generate clinical trial failure predictors"""
     predictors = []
     
-    # 基于维度评分识别风险
+    # Identify risks based on dimension scores
     high_gap_dims = [dim for dim, score in dimensions.items() if score.score >= 7.0]
     
     if "immune" in high_gap_dims:
-        predictors.append("免疫相关机制研究可能存在转化失败风险")
+        predictors.append("Research on immune-related mechanisms may be at risk of translation failure")
     if "metabolism" in high_gap_dims:
-        predictors.append("药物代谢动力学差异可能导致临床剂量不当")
+        predictors.append("Pharmacokinetic differences may lead to inappropriate clinical dosing")
     if "anatomy" in high_gap_dims and model in ["mouse", "rat"]:
-        predictors.append("器官结构差异可能影响药物分布")
+        predictors.append("Differences in organ structure may affect drug distribution")
     if "behavior" in high_gap_dims and "alzheimer" in disease.lower():
-        predictors.append("认知评估方法的种间差异可能掩盖真实疗效")
+        predictors.append("Interspecies differences in cognitive assessment methods may mask true efficacy")
     if "genetics" in high_gap_dims:
-        predictors.append("基因调控网络差异可能影响靶点有效性")
+        predictors.append("Differences in gene regulatory networks may affect target effectiveness")
     
-    # 添加疾病特异性风险
+    # Add disease-specific risks
     disease_risks = get_disease_specific_risks(model, disease)
-    predictors.extend(disease_risks[:3])  # 最多3个
+    predictors.extend(disease_risks[:3])  # Up to 3
     
-    return predictors if predictors else ["未发现特定的高风险因素，但仍需谨慎评估"]
+    return predictors if predictors else ["No specific high-risk factors have been identified, but careful assessment is still required"]
 
 
 def generate_recommendations(model: str, disease: str, dimensions: Dict[str, DimensionScore]) -> List[str]:
-    """生成改进建议"""
+    """Generate improvement suggestions"""
     recommendations = []
     
-    # 基于模型类型的建议
+    # Recommendations based on model type
     if model == "mouse":
         if dimensions.get("immune", DimensionScore(0, [], {})).score >= 7.0:
-            recommendations.append("考虑使用人源化免疫系统小鼠模型")
+            recommendations.append("Consider using mouse models of humanized immune systems")
         if dimensions.get("metabolism", DimensionScore(0, [], {})).score >= 7.0:
-            recommendations.append("进行药物代谢的体外人肝细胞验证")
+            recommendations.append("In vitro human hepatocyte validation of drug metabolism")
         if dimensions.get("behavior", DimensionScore(0, [], {})).score >= 7.0:
-            recommendations.append("增加非人灵长类动物的行为学验证")
-        recommendations.append("考虑使用基因人源化小鼠以提高转化相关性")
+            recommendations.append("Increase behavioral validation in non-human primates")
+        recommendations.append("Consider using genetically humanized mice to increase translational relevance")
     
     elif model == "rat":
-        recommendations.append("利用大鼠更好的行为学特征进行认知评估")
+        recommendations.append("Utilizing Better Behavioral Characteristics of Rats for Cognitive Assessment")
         if dimensions.get("metabolism", DimensionScore(0, [], {})).score >= 6.0:
-            recommendations.append("进行人源化肝微粒体代谢研究")
+            recommendations.append("Performing metabolic studies in humanized liver microsomes")
     
     elif model == "zebrafish":
-        recommendations.append("主要用于高通量筛选和发育毒性测试")
-        recommendations.append("阳性结果需哺乳动物模型验证")
-        recommendations.append("关注心血管和神经发育毒性评估")
+        recommendations.append("Mainly used for high-throughput screening and developmental toxicity testing")
+        recommendations.append("Positive results need to be verified in mammalian models")
+        recommendations.append("Focus on cardiovascular and neurodevelopmental toxicity assessment")
     
     elif model == "cell_line":
-        recommendations.append("使用3D培养或类器官模型提高生理相关性")
-        recommendations.append("结合共培养系统模拟肿瘤微环境")
-        recommendations.append("定期验证细胞系身份和遗传稳定性")
+        recommendations.append("Improving physiological relevance using 3D culture or organoid models")
+        recommendations.append("Combined with co-culture system to simulate tumor microenvironment")
+        recommendations.append("Regularly verify cell line identity and genetic stability")
     
     elif model == "organoid":
-        recommendations.append("关注类器官的成熟度和功能性评估")
-        recommendations.append("考虑血管化技术以改善营养供应")
-        recommendations.append("结合单细胞测序验证细胞异质性")
+        recommendations.append("Focus on organoid maturity and functional assessment")
+        recommendations.append("Consider vascularization techniques to improve nutrient supply")
+        recommendations.append("Combined with single-cell sequencing to verify cellular heterogeneity")
     
     elif model == "primate":
-        recommendations.append("作为临床前最终验证模型使用")
-        recommendations.append("严格遵循3R原则，合理设计实验")
+        recommendations.append("Used as final preclinical validation model")
+        recommendations.append("Strictly follow the 3R principles and design experiments rationally")
     
-    # 疾病特异性建议
+    # Disease-specific recommendations
     normalized_disease = normalize_disease_name(disease)
     if normalized_disease == "alzheimer":
-        recommendations.append("关注Aβ和tau以外的病理机制")
-        recommendations.append("重视神经免疫和小胶质细胞研究")
+        recommendations.append("Focus on pathological mechanisms beyond Aβ and tau")
+        recommendations.append("Pay attention to neuroimmune and microglia research")
     elif normalized_disease == "cancer":
-        recommendations.append("重视肿瘤微环境和免疫治疗评估")
-        recommendations.append("考虑患者来源的异种移植模型(PDX)")
+        recommendations.append("Pay attention to tumor microenvironment and immunotherapy evaluation")
+        recommendations.append("Consider patient-derived xenograft models (PDX)")
     elif normalized_disease == "autoimmune":
-        recommendations.append("关注人类特异性免疫靶点")
-        recommendations.append("考虑使用人源化免疫系统模型")
+        recommendations.append("Focus on human-specific immune targets")
+        recommendations.append("Consider using humanized immune system models")
     
     return recommendations
 
 
 def analyze_gap(model: str, disease: str, focus_areas: List[str] = None) -> GapAnalysisReport:
-    """执行转化鸿沟分析"""
+    """Perform a conversion gap analysis"""
     if focus_areas is None:
         focus_areas = []
     
@@ -492,7 +490,7 @@ def analyze_gap(model: str, disease: str, focus_areas: List[str] = None) -> GapA
     failure_predictors = generate_failure_predictors(model, disease, dimensions)
     recommendations = generate_recommendations(model, disease, dimensions)
     
-    # 转换为可序列化的格式
+    # Convert to serializable format
     serializable_dimensions = {}
     for dim, score in dimensions.items():
         serializable_dimensions[dim] = {
@@ -513,34 +511,34 @@ def analyze_gap(model: str, disease: str, focus_areas: List[str] = None) -> GapA
 
 
 def format_report(report: GapAnalysisReport, output_format: str = "json") -> str:
-    """格式化报告输出"""
+    """Format report output"""
     if output_format == "json":
         return json.dumps(asdict(report), indent=2, ensure_ascii=False)
     
     elif output_format == "markdown":
-        md = f"""# 转化鸿沟分析报告
+        md = f"""# Conversion Gap Analysis Report
 
-## 基本信息
-- **模型**: {report.model}
-- **疾病**: {report.disease}
-- **总体差距评分**: {report.overall_gap_score}/10
-- **风险等级**: {report.risk_level}
+## Basic information
+- **Model**: {report.model}
+- **disease**: {report.disease}
+- **overall gap score**: {report.overall_gap_score}/10
+- **risk level**: {report.risk_level}
 
-## 各维度评估
+## Assessment in various dimensions
 """
         for dim, data in report.dimensions.items():
             md += f"\n### {dim.capitalize()}\n"
-            md += f"- **评分**: {data['score']}\n"
+            md += f"- **score**: {data['score']}\n"
             if data['concerns']:
-                md += "- **关注点**:\n"
+                md += "- **Points of concern**:"
                 for concern in data['concerns']:
                     md += f"  - {concern}\n"
         
-        md += "\n## 临床试验失败预测因素\n"
+        md += "## Predictors of clinical trial failure"
         for predictor in report.clinical_failure_predictors:
             md += f"- ⚠️ {predictor}\n"
         
-        md += "\n## 改进建议\n"
+        md += "## Improvement suggestions"
         for rec in report.recommendations:
             md += f"- 💡 {rec}\n"
         
@@ -549,23 +547,23 @@ def format_report(report: GapAnalysisReport, output_format: str = "json") -> str
     else:  # table format
         lines = []
         lines.append("=" * 70)
-        lines.append(f"转化鸿沟分析报告 - {report.model} vs {report.disease}")
+        lines.append(f"Conversion Gap Analysis Report - {report.model} vs {report.disease}")
         lines.append("=" * 70)
-        lines.append(f"总体评分: {report.overall_gap_score}/10 | 风险等级: {report.risk_level}")
+        lines.append(f"Overall rating: {report.overall_gap_score}/10 | risk level: {report.risk_level}")
         lines.append("-" * 70)
-        lines.append(f"{'维度':<15} {'评分':<10} {'主要关注点'}")
+        lines.append(f"{'Dimensions':<15} {'score':<10} {'main focus'}")
         lines.append("-" * 70)
         
         for dim, data in report.dimensions.items():
-            concerns = "; ".join(data['concerns'][:2]) if data['concerns'] else "无"
+            concerns = "; ".join(data['concerns'][:2]) if data['concerns'] else "none"
             lines.append(f"{dim.capitalize():<15} {data['score']:<10} {concerns}")
         
         lines.append("-" * 70)
-        lines.append("\n[临床试验失败风险预警]")
+        lines.append("[Risk warning of clinical trial failure]")
         for i, predictor in enumerate(report.clinical_failure_predictors[:3], 1):
             lines.append(f"  {i}. {predictor}")
         
-        lines.append("\n[改进建议]")
+        lines.append("[Improvement suggestions]")
         for i, rec in enumerate(report.recommendations[:4], 1):
             lines.append(f"  {i}. {rec}")
         
@@ -573,70 +571,68 @@ def format_report(report: GapAnalysisReport, output_format: str = "json") -> str
 
 
 def compare_models(models: List[str], disease: str, focus_areas: List[str] = None) -> str:
-    """对比多个模型"""
+    """Compare multiple models"""
     reports = []
     for model in models:
         report = analyze_gap(model, disease, focus_areas)
         reports.append(report)
     
-    # 排序：评分越低越好（差距越小）
+    # Sorting: The lower the score, the better (the smaller the gap)
     reports.sort(key=lambda x: x.overall_gap_score)
     
     output = ["=" * 80]
-    output.append(f"多模型对比分析: {disease}")
+    output.append(f"Multi-model comparative analysis: {disease}")
     output.append("=" * 80)
-    output.append(f"{'模型':<15} {'差距评分':<12} {'风险等级':<12} {'推荐排序'}")
+    output.append(f"{'Model':<15} {'gap score':<12} {'risk level':<12} {'Recommended sorting'}")
     output.append("-" * 80)
     
     for i, report in enumerate(reports, 1):
         output.append(f"{report.model:<15} {report.overall_gap_score:<12} {report.risk_level:<12} #{i}")
     
     output.append("\n" + "=" * 80)
-    output.append("详细分析")
+    output.append("Detailed analysis")
     output.append("=" * 80)
     
     for report in reports:
         output.append(f"\n[{report.model.upper()}]")
-        output.append(f"风险等级: {report.risk_level} | 关键问题: {', '.join(report.clinical_failure_predictors[:2])}")
-        output.append(f"主要建议: {report.recommendations[0] if report.recommendations else 'N/A'}")
+        output.append(f"risk level: {report.risk_level} | key questions: {', '.join(report.clinical_failure_predictors[:2])}")
+        output.append(f"Main recommendations: {report.recommendations[0] if report.recommendations else 'N/A'}")
     
     return "\n".join(output)
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Translational Gap Analyzer - 评估基础研究模型与人类疾病的转化鸿沟",
+        description="Translational Gap Analyzer - Assessing the translational gap between basic research models and human disease",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-示例:
+        epilog="""Example:
   python main.py --model mouse --disease "Alzheimer's" --full
   python main.py --model mouse --disease "Alzheimer's" --quick
   python main.py --models mouse,rat,primate --disease cancer --compare
-  python main.py --model mouse --disease diabetes --focus metabolism,immune
-        """
+  python main.py --model mouse --disease diabetes --focus metabolism,immune"""
     )
     
-    parser.add_argument("--model", type=str, help="模型类型 (mouse, rat, zebrafish, cell_line, organoid, primate)")
-    parser.add_argument("--models", type=str, help="多模型对比模式，逗号分隔")
-    parser.add_argument("--disease", type=str, required=True, help="疾病名称")
-    parser.add_argument("--focus", type=str, help="关注领域，逗号分隔 (anatomy, physiology, metabolism, immune, genetics, behavior)")
-    parser.add_argument("--full", action="store_true", help="生成完整评估报告")
-    parser.add_argument("--quick", action="store_true", help="快速风险评估模式")
-    parser.add_argument("--compare", action="store_true", help="多模型对比模式")
-    parser.add_argument("--output", type=str, help="输出文件路径")
-    parser.add_argument("--format", type=str, choices=["json", "markdown", "table"], default="table", help="输出格式")
+    parser.add_argument("--model", type=str, help="Model type (mouse, rat, zebrafish, cell_line, organoid, primate)")
+    parser.add_argument("--models", type=str, help="Multi-model comparison mode, comma separated")
+    parser.add_argument("--disease", type=str, required=True, help="Disease name")
+    parser.add_argument("--focus", type=str, help="Areas of concern, separated by commas (anatomy, physiology, metabolism, immune, genetics, behavior)")
+    parser.add_argument("--full", action="store_true", help="Generate full assessment report")
+    parser.add_argument("--quick", action="store_true", help="Rapid risk assessment mode")
+    parser.add_argument("--compare", action="store_true", help="Multi-model comparison mode")
+    parser.add_argument("--output", type=str, help="Output file path")
+    parser.add_argument("--format", type=str, choices=["json", "markdown", "table"], default="table", help="Output format")
     
     args = parser.parse_args()
     
-    # 解析关注领域
+    # Analyze areas of concern
     focus_areas = []
     if args.focus:
         focus_areas = [f.strip() for f in args.focus.split(",")]
     
-    # 多模型对比模式
+    # Multi-model comparison mode
     if args.compare or args.models:
         if not args.models:
-            print("错误: 对比模式需要 --models 参数", file=sys.stderr)
+            print("Error: Comparison models require --models argument", file=sys.stderr)
             sys.exit(1)
         
         models = [m.strip() for m in args.models.split(",")]
@@ -645,20 +641,20 @@ def main():
         if args.output:
             with open(args.output, "w", encoding="utf-8") as f:
                 f.write(result)
-            print(f"对比报告已保存至: {args.output}")
+            print(f"Comparison report saved to: {args.output}")
         else:
             print(result)
         return
     
-    # 单模型分析模式
+    # Single model analysis mode
     if not args.model:
-        print("错误: 单模型分析需要 --model 参数", file=sys.stderr)
+        print("Error: Single-model analysis requires --model argument", file=sys.stderr)
         sys.exit(1)
     
-    # 执行分析
+    # Perform analysis
     report = analyze_gap(args.model, args.disease, focus_areas)
     
-    # 确定输出格式
+    # Determine output format
     output_format = args.format
     if args.full:
         output_format = "markdown"
@@ -667,11 +663,11 @@ def main():
     
     result = format_report(report, output_format)
     
-    # 输出结果
+    # Output results
     if args.output:
         with open(args.output, "w", encoding="utf-8") as f:
             f.write(result)
-        print(f"报告已保存至: {args.output}")
+        print(f"Report saved to: {args.output}")
     else:
         print(result)
 

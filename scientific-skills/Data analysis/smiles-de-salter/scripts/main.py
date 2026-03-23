@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""
-SMILES De-salter
-Batch process chemical structure strings, remove salt ion fragments, and retain only the active parent core.
+"""SMILES De-salter
+Batch process chemical structure strings, remove the salt ion part, and retain only the active core.
 
 Author: OpenClaw Skill Hub
-Version: 1.0.0
-"""
+Version: 1.0.0"""
 
 import argparse
 import sys
@@ -21,21 +19,18 @@ except ImportError:
 
 
 def get_molecule_size(mol: Chem.Mol) -> int:
-    """
-    Get molecule size (in heavy atom count)
+    """Get the size of the molecule (in number of heavy atoms)
     
     Args:
         mol: RDKit Mol object
     
     Returns:
-        Number of heavy atoms
-    """
+        Number of heavy atoms"""
     return mol.GetNumHeavyAtoms()
 
 
 def is_likely_salt(mol: Chem.Mol) -> bool:
-    """
-    Determine whether a molecule is likely a salt ion
+    """Determine whether a molecule is likely to be a salt ion
     
     Based on heuristic rules:
     - Small molecules (<= 3 heavy atoms)
@@ -45,20 +40,19 @@ def is_likely_salt(mol: Chem.Mol) -> bool:
         mol: RDKit Mol object
     
     Returns:
-        Whether it is likely a salt
-    """
+        could it be salt"""
     heavy_atoms = mol.GetNumHeavyAtoms()
     
-    # Very small molecules are likely salts
+    # Very small molecules are probably salts
     if heavy_atoms <= 2:
         return True
     
     # Get molecular formula
     formula = Chem.rdMolDescriptors.CalcMolFormula(mol)
     
-    # Simple patterns for common salt ions
+    # Simple pattern of common salt ions
     common_salts = ['Cl', 'Br', 'F', 'I', 'Na', 'K', 'Ca', 'Mg', 'Zn', 'Fe']
-    # If it contains only common salts and few atoms
+    # If it contains only common salts and a few atoms
     if heavy_atoms <= 3:
         for salt in common_salts:
             if salt in formula:
@@ -68,16 +62,14 @@ def is_likely_salt(mol: Chem.Mol) -> bool:
 
 
 def desalt_smiles(smiles: str, keep_largest: bool = True) -> Tuple[str, str]:
-    """
-    Remove salt ions from a SMILES string
+    """Remove salt ions from SMILES string
     
     Args:
-        smiles: Input SMILES string
-        keep_largest: Whether to keep the largest fragment (by heavy atom count)
+        smiles: input SMILES string
+        keep_largest: Whether to keep the largest component (by number of heavy atoms)
     
     Returns:
-        (Processed SMILES, status information)
-    """
+        (Processed SMILES, status information)"""
     if not smiles or not smiles.strip():
         return "", "empty_input"
     
@@ -88,15 +80,15 @@ def desalt_smiles(smiles: str, keep_largest: bool = True) -> Tuple[str, str]:
     if mol is None:
         return smiles, "invalid_smiles"
     
-    # Split fragments by '.'
-    # Note: Use RDKit's SaltStripper or manual splitting
+    # Split components by '.'
+    # NOTE: Use RDKit's SaltStripper or split manually
     frags = smiles.split('.')
     
     if len(frags) <= 1:
-        # No salt structure
+        # no salt structure
         return smiles, "no_salt"
     
-    # Parse each fragment
+    # Parse each component
     valid_frags = []
     for frag in frags:
         frag = frag.strip()
@@ -113,29 +105,29 @@ def desalt_smiles(smiles: str, keep_largest: bool = True) -> Tuple[str, str]:
         return valid_frags[0][0], "no_salt"
     
     if keep_largest:
-        # Sort by molecule size, keep the largest
+        # Sort by molecular size, keeping the largest
         valid_frags.sort(key=lambda x: get_molecule_size(x[1]), reverse=True)
         
-        # Return the largest fragment
+        # Returns the largest component
         largest_frag, largest_mol = valid_frags[0]
         
-        # Check if largest fragment is also considered a salt (abnormal case)
+        # Check if the largest component is also considered salt (unusual case)
         if is_likely_salt(largest_mol) and len(valid_frags) > 1:
-            # Find the first non-salt large molecule
+            # Find the first non-salt macromolecule
             for frag, frag_mol in valid_frags:
                 if not is_likely_salt(frag_mol):
                     return frag, "success"
         
         return largest_frag, "success"
     else:
-        # Return all non-salt fragments (joined with '.')
+        # Returns all non-salt components (concatenated with .)
         non_salt_frags = []
         for frag, frag_mol in valid_frags:
             if not is_likely_salt(frag_mol):
                 non_salt_frags.append(frag)
         
         if not non_salt_frags:
-            # All are salts, return the largest one
+            # All are salt, return the largest one
             valid_frags.sort(key=lambda x: get_molecule_size(x[1]), reverse=True)
             return valid_frags[0][0], "all_salts"
         
@@ -144,15 +136,13 @@ def desalt_smiles(smiles: str, keep_largest: bool = True) -> Tuple[str, str]:
 
 def process_file(input_path: str, output_path: str, column: str = "smiles", 
                  keep_largest: bool = True) -> None:
-    """
-    Process SMILES in a file
+    """Handle SMILES in files
     
     Args:
-        input_path: Input file path
-        output_path: Output file path
+        input_path: input file path
+        output_path: output file path
         column: SMILES column name
-        keep_largest: Whether to keep the largest fragment
-    """
+        keep_largest: whether to keep the largest component"""
     input_file = Path(input_path)
     
     if not input_file.exists():
@@ -171,16 +161,16 @@ def process_file(input_path: str, output_path: str, column: str = "smiles",
             if suffix == '.tsv':
                 df = pd.read_csv(input_path, sep='\t')
             else:
-                # Try to detect separator
+                # Try to detect delimiter
                 df = pd.read_csv(input_path, sep=None, engine='python')
         elif suffix == '.smi' or suffix == '.smiles':
-            # Pure SMILES file
+            # Pure SMILES files
             import pandas as pd
             with open(input_path, 'r') as f:
                 lines = [line.strip() for line in f if line.strip()]
             df = pd.DataFrame({column: lines})
         else:
-            # Default try CSV
+            # Default attempts CSV
             import pandas as pd
             df = pd.read_csv(input_path)
     except Exception as e:
@@ -206,7 +196,7 @@ def process_file(input_path: str, output_path: str, column: str = "smiles",
             results.append(desalted)
             statuses.append(status)
     
-    # Add result columns
+    # Add result column
     df['desalted_smiles'] = results
     df['status'] = statuses
     
@@ -243,20 +233,18 @@ def main():
     parser = argparse.ArgumentParser(
         description='SMILES De-salter - Remove salt ions from chemical structures',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Process CSV file
+        epilog="""Examples:
+  # Process CSV files
   python main.py -i input.csv -o output.csv -c smiles
   
-  # Process pure SMILES file
+  # Process pure SMILES files
   python main.py -i compounds.smi -o result.csv
   
-  # Single entry processing
+  #Single processing
   python main.py -s "CCO.[Na+]"
   
-  # Keep all non-salt fragments (not just the largest)
-  python main.py -i input.csv --keep-largest false
-        """
+  # Keep all non-salt components (not just the largest ones)
+  python main.py -i input.csv --keep-largest false"""
     )
     
     parser.add_argument('-i', '--input', type=str, help='Input file path (CSV/TSV/SMI)')
@@ -270,7 +258,7 @@ Examples:
     
     args = parser.parse_args()
     
-    # Single entry processing mode
+    # Single processing mode
     if args.smiles:
         result, status = desalt_smiles(args.smiles, args.keep_largest)
         print(f"Input:    {args.smiles}")
@@ -278,7 +266,7 @@ Examples:
         print(f"Status:   {status}")
         return
     
-    # File processing mode
+    # file processing mode
     if not args.input:
         parser.print_help()
         sys.exit(1)

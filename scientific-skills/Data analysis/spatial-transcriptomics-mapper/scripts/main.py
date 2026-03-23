@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""
-Spatial Transcriptomics Mapper
-Process 10x Visium or Xenium data and project gene expression back onto tissue section images
+"""Spatial Transcriptomics Mapper
+Process 10x Visium or Xenium data to project gene expression back to tissue section images
 
-Author: OpenClaw
-Version: 1.0.0
-"""
+Author:OpenClaw
+Version: 1.0.0"""
 
 import os
 import sys
@@ -59,9 +57,7 @@ logger = logging.getLogger(__name__)
 
 
 class SpatialMapper:
-    """
-    Spatial transcriptomics data mapper supporting Visium and Xenium platforms
-    """
+    """Spatial transcriptome data mapper, supports Visium and Xenium platforms"""
     
     def __init__(
         self,
@@ -71,22 +67,20 @@ class SpatialMapper:
         dpi: int = 300,
         cmap: str = "viridis"
     ):
-        """
-        Initialize SpatialMapper
+        """Initialize SpatialMapper
         
         Parameters
         ----------
-        platform : str
+        platform :str
             Platform type: 'visium' or 'xenium'
         data_dir : str
             Data directory path
         output_dir : str
-            Output directory path
+            output directory path
         dpi : int
             Output image DPI
         cmap : str
-            Color map scheme
-        """
+            color mapping scheme"""
         self.platform = platform.lower()
         self.data_dir = Path(data_dir)
         self.output_dir = Path(output_dir)
@@ -116,7 +110,7 @@ class SpatialMapper:
         logger.info(f"Output directory: {output_dir}")
     
     def load_data(self) -> None:
-        """Load spatial transcriptomics data"""
+        """Load spatial transcriptome data"""
         if self.platform == "visium":
             self._load_visium_data()
         elif self.platform == "xenium":
@@ -209,32 +203,30 @@ class SpatialMapper:
         show_image: bool = True,
         figsize: Tuple[int, int] = (10, 10)
     ) -> plt.Figure:
-        """
-        Plot spatial expression map for a single gene
+        """Plot spatial expression of individual genes
         
         Parameters
         ----------
-        gene : str
+        gene :str
             Gene name
-        save_path : str, optional
-            Save path
-        title : str, optional
-            Plot title
+        save_path: str, optional
+            save path
+        title: str, optional
+            Chart title
         spot_size : float
             Spot size factor
         alpha : float
             Transparency
-        vmin, vmax : float, optional
-            Color range
+        vmin, vmax: float, optional
+            color range
         show_image : bool
-            Whether to show tissue image
+            Whether to display tissue images
         figsize : tuple
-            Figure size
+            Image size
             
         Returns
         -------
-        fig : matplotlib.figure.Figure
-        """
+        fig : matplotlib.figure.Figure"""
         if gene not in self.gene_names:
             raise ValueError(f"Gene '{gene}' not found in dataset")
         
@@ -260,7 +252,7 @@ class SpatialMapper:
         show_image: bool,
         figsize: Tuple[int, int]
     ) -> plt.Figure:
-        """Plot Visium single-gene spatial map"""
+        """Drawing Visium single gene space map"""
         fig, ax = plt.subplots(figsize=figsize)
         
         # Get gene expression
@@ -328,7 +320,7 @@ class SpatialMapper:
         vmax: Optional[float],
         figsize: Tuple[int, int]
     ) -> plt.Figure:
-        """Plot Xenium single-gene spatial map"""
+        """Mapping Xenium single gene space"""
         fig, ax = plt.subplots(figsize=figsize)
         
         if self.transcripts is not None:
@@ -382,28 +374,26 @@ class SpatialMapper:
         alpha: float = 0.8,
         figsize_per_gene: Tuple[int, int] = (5, 5)
     ) -> plt.Figure:
-        """
-        Plot spatial maps for multiple genes
+        """Mapping the space of multiple genes
         
         Parameters
         ----------
         genes : list
-            List of gene names
+            Gene name list
         mode : str
             Layout mode: 'grid' or 'overlay'
-        save_path : str, optional
-            Save path
+        save_path: str, optional
+            save path
         spot_size : float
             Spot size
         alpha : float
             Transparency
         figsize_per_gene : tuple
-            Subplot size per gene
+            Subgraph size for each gene
             
         Returns
         -------
-        fig : matplotlib.figure.Figure
-        """
+        fig : matplotlib.figure.Figure"""
         # Validate genes
         missing_genes = [g for g in genes if g not in self.gene_names]
         if missing_genes:
@@ -455,7 +445,7 @@ class SpatialMapper:
         spot_size: float,
         alpha: float
     ) -> None:
-        """Plot gene expression on the specified axis"""
+        """Plot gene expression on specified axis"""
         if self.platform != "visium" or self.adata is None:
             return
         
@@ -497,7 +487,7 @@ class SpatialMapper:
         spot_size: float,
         alpha: float
     ) -> None:
-        """Overlay multiple genes on a single plot (using distinct colors)"""
+        """Plot multiple genes overlay (using different colors)"""
         if self.platform != "visium" or self.adata is None:
             return
         
@@ -541,26 +531,24 @@ class SpatialMapper:
         spot_size: float = 1.5,
         figsize: Tuple[int, int] = (10, 10)
     ) -> plt.Figure:
-        """
-        Plot spatial cluster map
+        """Plot spatial clustering
         
         Parameters
         ----------
-        cluster_file : str, optional
-            Path to cluster result CSV file
+        cluster_file: str, optional
+            Clustering result CSV file path
         cluster_key : str
-            Cluster obs key in AnnData
-        save_path : str, optional
-            Save path
+            Clustering obs key in AnnData
+        save_path: str, optional
+            save path
         spot_size : float
             Spot size
         figsize : tuple
-            Figure size
+            Image size
             
         Returns
         -------
-        fig : matplotlib.figure.Figure
-        """
+        fig : matplotlib.figure.Figure"""
         if self.platform != "visium" or self.adata is None:
             raise ValueError("Cluster spatial plot only supported for Visium data")
         
@@ -623,19 +611,17 @@ class SpatialMapper:
         return fig
     
     def get_spatial_stats(self, gene: str) -> Dict:
-        """
-        Get spatial statistics for a gene
+        """Get spatial statistics of genes
         
         Parameters
         ----------
-        gene : str
+        gene :str
             Gene name
             
         Returns
         -------
         dict
-            Statistics dictionary
-        """
+            Statistics Dictionary"""
         if gene not in self.gene_names:
             raise ValueError(f"Gene '{gene}' not found")
         
@@ -672,21 +658,19 @@ class SpatialMapper:
         genes: List[str],
         output_file: str = "spatial_report.html"
     ) -> str:
-        """
-        Generate a comprehensive HTML report
+        """Generate comprehensive reports in HTML format
         
         Parameters
         ----------
         genes : list
             List of genes to include in the report
         output_file : str
-            Output HTML filename
+            Output HTML file name
             
         Returns
         -------
         str
-            Output file path
-        """
+            Output file path"""
         report_path = self.output_dir / output_file
         
         # Generate plots for each gene
@@ -810,21 +794,19 @@ class SpatialMapper:
 
 
 def parse_args() -> argparse.Namespace:
-    """Parse command line arguments"""
+    """Parse command line parameters"""
     parser = argparse.ArgumentParser(
-        description="Spatial Transcriptomics Mapper - project gene expression onto tissue section images",
+        description="Spatial Transcriptomics Mapper - Project gene expression back to tissue section images",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Visium single-gene analysis
+        epilog="""Examples:
+  # Visium single gene analysis
   python main.py --platform visium --data-dir ./visium/outs --gene PIK3CA --output ./results/
 
-  # Xenium multi-gene analysis
+  # Xenium Multigene Analysis
   python main.py --platform xenium --data-dir ./xenium/outs --genes SFTPB,SFTPC --mode multi
 
-  # Spatial cluster visualization
-  python main.py --platform visium --data-dir ./data/outs --cluster-file ./clusters.csv
-        """
+  # Spatial clustering visualization
+  python main.py --platform visium --data-dir ./data/outs --cluster-file ./clusters.csv"""
     )
     
     # Required arguments
@@ -833,7 +815,7 @@ Examples:
         type=str,
         required=True,
         choices=["visium", "xenium"],
-        help="Spatial transcriptomics platform type"
+        help="Spatial transcriptome platform types"
     )
     parser.add_argument(
         "--data-dir",
@@ -847,12 +829,12 @@ Examples:
     gene_group.add_argument(
         "--gene",
         type=str,
-        help="Single gene name"
+        help="single gene name"
     )
     gene_group.add_argument(
         "--genes",
         type=str,
-        help="Multiple genes, comma-separated (e.g.: PIK3CA,PTEN,EGFR)"
+        help="Multiple genes, separated by commas (eg: PIK3CA, PTEN, EGFR)"
     )
     
     # Analysis options
@@ -866,7 +848,7 @@ Examples:
     parser.add_argument(
         "--cluster-file",
         type=str,
-        help="Path to cluster result CSV file (barcode,cluster)"
+        help="Clustering result CSV file path (barcode,cluster)"
     )
     
     # Output options
@@ -886,7 +868,7 @@ Examples:
         "--cmap",
         type=str,
         default="viridis",
-        help="Color map scheme (default: viridis)"
+        help="Color mapping scheme (default: viridis)"
     )
     
     # Visualization options
@@ -906,14 +888,14 @@ Examples:
         "--min-count",
         type=int,
         default=0,
-        help="Minimum expression count filter (default: 0)"
+        help="Minimum expression filter (default: 0)"
     )
     
     # Advanced options
     parser.add_argument(
         "--crop",
         type=str,
-        help="Crop region (format: x1,y1,x2,y2)"
+        help="Cropping area (format: x1,y1,x2,y2)"
     )
     parser.add_argument(
         "--report",
@@ -930,7 +912,7 @@ Examples:
 
 
 def main():
-    """Main function"""
+    """main function"""
     args = parse_args()
     
     # Set log level

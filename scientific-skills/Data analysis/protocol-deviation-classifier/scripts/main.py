@@ -1,11 +1,9 @@
 #!/usr/bin/env python3
-"""
-Protocol Deviation Classifier
+"""Protocol Deviation Classifier
 Clinical trial protocol deviation classification tool
 
-Based on GCP/ICH E6 guidelines, automatically determines whether a deviation is a "major deviation" or "minor deviation".
-Technical: Risk-based quality management, GCP compliance assessment, deviation classification
-"""
+Based on the GCP/ICH E6 guidelines, it can automatically determine whether a deviation is a "major deviation" or a "minor deviation".
+Technical: Risk-based quality management, GCP compliance assessment, deviation classification"""
 
 import argparse
 import json
@@ -18,16 +16,16 @@ from datetime import datetime
 
 
 class Classification(Enum):
-    """Deviation classification enum"""
+    """Deviation classification enumeration"""
     MAJOR = "major"
     MINOR = "minor"
     CRITICAL = "critical"
     
     def __str__(self):
         mapping = {
-            Classification.MAJOR: "Major Deviation",
-            Classification.MINOR: "Minor Deviation",
-            Classification.CRITICAL: "Critical Deviation"
+            Classification.MAJOR: "significant deviation",
+            Classification.MINOR: "small deviation",
+            Classification.CRITICAL: "critical deviation"
         }
         return mapping.get(self, self.value)
     
@@ -42,7 +40,7 @@ class Classification(Enum):
 
 
 class RiskLevel(Enum):
-    """Risk level enum"""
+    """Risk level enumeration"""
     NONE = "none"
     LOW = "low"
     MEDIUM = "medium"
@@ -50,16 +48,16 @@ class RiskLevel(Enum):
     
     def __str__(self):
         mapping = {
-            RiskLevel.NONE: "None",
+            RiskLevel.NONE: "none",
             RiskLevel.LOW: "Low",
-            RiskLevel.MEDIUM: "Medium",
-            RiskLevel.HIGH: "High"
+            RiskLevel.MEDIUM: "medium",
+            RiskLevel.HIGH: "high"
         }
         return mapping.get(self, self.value)
     
     @property
     def score(self):
-        """Return risk score for calculation"""
+        """Returns the risk score used in the calculation"""
         scores = {
             RiskLevel.NONE: 0,
             RiskLevel.LOW: 1,
@@ -71,7 +69,7 @@ class RiskLevel(Enum):
 
 @dataclass
 class DeviationEvent:
-    """Protocol deviation event data class"""
+    """Plan deviation event data class"""
     id: str = ""
     description: str = ""
     deviation_type: str = ""
@@ -143,76 +141,74 @@ class ClassificationResult:
 
 
 class DeviationClassifier:
-    """
-    Protocol deviation classifier
+    """Scheme deviation classifier
     
-    Based on GCP/ICH E6 guidelines, automatically determines the severity of clinical trial deviations.
-    """
+    Based on GCP/ICH E6 guidelines, automatically determine the severity of clinical trial deviations."""
     
-    # Major deviation keyword patterns (Chinese and English)
+    # Major deviation keyword pattern (Chinese and English)
     MAJOR_INDICATORS = {
         'informed_consent': [
-            r'知情同意', r'未获得.*同意', r'同意书', r'informed consent',
-            r'未签署', r'consent', r'signed.*consent'
+            'informed consent', 'Not obtained.*Consent', 'consent form', r'informed consent',
+            'not signed', r'consent', r'signed.*consent'
         ],
         'eligibility': [
-            r'入选标准', r'排除标准', r'不符合.*入组', r'eligibility',
+            'Inclusion criteria', 'Exclusion criteria', 'Not in compliance.*Enter the group', r'eligibility',
             r'inclusion.*criteria', r'exclusion.*criteria', r'ineligible'
         ],
         'dosing': [
-            r'超剂量', r'双倍剂量', r'overdose', r'过量', r'错误.*剂量',
+            'overdose', 'double dose', r'overdose', 'excess', 'Error.*Dose',
             r'wrong dose', r'double dose', r'dosing error'
         ],
         'concomitant': [
-            r'合并用药', r'禁忌.*用药', r'concomitant', r'prohibited medication',
+            'Concomitant medication', 'Contraindications.* Medication', r'concomitant', r'prohibited medication',
             r'forbidden drug'
         ],
         'randomization': [
-            r'随机化.*错误', r'错.*随机', r'randomization error',
+            'Randomize.*Error', 'Wrong.*Random', r'randomization error',
             r'wrong randomization'
         ],
         'safety_reporting': [
-            r'SAE', r'SUSAR', r'安全性.*报告', r'漏报', r'延迟报告',
+            r'SAE', r'SUSAR', 'Security.*Report', 'False negative', 'Delayed reporting',
             r'serious adverse event', r'safety reporting'
         ],
         'blinding': [
-            r'破盲', r'unblind', r'破盲.*未', r'未授权.*破盲'
+            'Break the blindness', r'unblind', 'Breaking the blindness.*Not yet', 'Unauthorized.*Break the blind'
         ],
         'data_integrity': [
-            r'伪造', r'篡改', r'数据.*虚假', r'falsified',
-            r'fabricated', r'数据造假'
+            'forgery', 'tamper', 'data.*false', r'falsified',
+            r'fabricated', 'Data fraud'
         ],
         'critical_procedures': [
-            r'关键.*未执行', r'未.*关键', r'遗漏.*主要终点',
+            'Key.* not executed', 'Not.*Key', 'Missing.*Primary endpoint',
             r'primary endpoint.*missed', r'critical procedure'
         ]
     }
     
-    # Minor deviation keyword patterns
+    # Small deviation keyword pattern
     MINOR_INDICATORS = {
         'visit_window': [
-            r'访视.*延迟', r'访视.*提前', r'visit.*window',
-            r'访视.*[12].*天', r'visit.*[12].*day'
+            'Visit.*Delay', 'Visit.* in advance', r'visit.*window',
+            'Visit.*[12].*days', r'visit.*[12].*day'
         ],
         'sample_collection': [
-            r'样本.*延迟', r'采样.*时间', r'sample.*delay',
-            r'非关键.*样本', r'non-critical sample'
+            'sample.*delay', 'sampling.*time', r'sample.*delay',
+            'Non-critical.*Sample', r'non-critical sample'
         ],
         'questionnaire': [
-            r'问卷', r'日记卡', r'questionnaire', r'diary card',
-            r'QOL', r'生活质量'
+            'Questionnaire', 'diary cards', r'questionnaire', r'diary card',
+            r'QOL', 'quality of life'
         ],
         'documentation': [
-            r'签名.*延迟', r'文档.*缺失', r'document.*missing',
-            r'signature.*delay', r'记录.*延迟'
+            'signature.*delay', 'Documentation.* is missing', r'document.*missing',
+            r'signature.*delay', 'record.*delay'
         ],
         'non_critical': [
-            r'非关键', r'次要', r'轻微', r'non-critical',
+            'non-critical', 'secondary', 'slight', r'non-critical',
             r'minor', r'slight'
         ]
     }
     
-    # Regulatory basis
+    # regulatory basis
     REGULATORY_BASIS = {
         'major': [
             "ICH E6(R2) Section 4.5 - Subject Safety",
@@ -236,7 +232,7 @@ class DeviationClassifier:
         self._compile_patterns()
     
     def _compile_patterns(self):
-        """Compile regex patterns"""
+        """Compile regular expression pattern"""
         self.major_patterns = {
             category: [re.compile(p, re.IGNORECASE) for p in patterns]
             for category, patterns in self.MAJOR_INDICATORS.items()
@@ -255,21 +251,19 @@ class DeviationClassifier:
         data_impact: Optional[RiskLevel] = None,
         scientific_impact: Optional[RiskLevel] = None
     ) -> ClassificationResult:
-        """
-        Classify a single deviation event
+        """Classify individual deviation events
         
         Args:
             description: Deviation description
-            deviation_type: Deviation type
-            event_id: Event ID
+            deviation_type: deviation type
+            event_id: event ID
             safety_impact: Safety impact level (if known)
             data_impact: Data integrity impact level (if known)
-            scientific_impact: Scientific validity impact level (if known)
+            scientific_impact: scientific impact level (if known)
         
         Returns:
-            ClassificationResult: Classification result
-        """
-        # If impact levels are not provided, auto-determine based on description
+            ClassificationResult: classification result"""
+        # If no impact level is provided, it will be automatically determined based on the description.
         if safety_impact is None:
             safety_impact = self._assess_safety_impact(description, deviation_type)
         if data_impact is None:
@@ -289,15 +283,15 @@ class DeviationClassifier:
             safety_impact, data_impact, scientific_impact, risk_score, description
         )
         
-        # Generate classification rationale
+        # Generate classification reasons
         rationale = self._generate_rationale(
             classification, safety_impact, data_impact, scientific_impact, description
         )
         
-        # Get key indicators
+        # Get key metrics
         key_indicators = self._extract_key_indicators(description, deviation_type)
         
-        # Get regulatory basis
+        # Obtain regulatory basis
         regulatory_basis = self._get_regulatory_basis(classification, description)
         
         # Generate recommended actions
@@ -318,15 +312,13 @@ class DeviationClassifier:
         )
     
     def classify_batch(self, events: List[Dict]) -> List[ClassificationResult]:
-        """
-        Batch classify deviation events
+        """Batch classification deviation event
         
         Args:
-            events: List of deviation event dictionaries
+            events: Dictionary list of deviation events
         
         Returns:
-            List[ClassificationResult]: List of classification results
-        """
+            List[ClassificationResult]: Classification result list"""
         results = []
         for event_data in events:
             event = DeviationEvent.from_dict(event_data)
@@ -342,21 +334,21 @@ class DeviationClassifier:
         return results
     
     def _assess_safety_impact(self, description: str, deviation_type: str) -> RiskLevel:
-        """Assess impact on subject safety"""
+        """Assess the impact on subject safety"""
         text = f"{description} {deviation_type}".lower()
         
-        # High safety impact keywords
+        # High security impact keywords
         high_risk = [
-            r'overdose', r'超剂量', r'双倍剂量', r'禁忌用药', r'过敏反应',
-            r'严重不良事件', r'sae', r'死亡', r'危及生命', r'住院',
+            r'overdose', 'overdose', 'double dose', 'Contraindications', 'allergic reaction',
+            'serious adverse events', r'sae', 'die', 'life-threatening', 'Hospitalized',
             r'death', r'life-threatening', r'hospitalization'
         ]
         
         # Medium safety impact keywords
         medium_risk = [
-            r'不良反应', r'副作用', r'adverse event', r'合并用药',
-            r'concomitant', r'药物相互作用', r'drug interaction',
-            r'剂量调整', r'dose adjustment'
+            'adverse reactions', 'side effect', r'adverse event', 'Concomitant medication',
+            r'concomitant', 'drug interactions', r'drug interaction',
+            'Dosage adjustment', r'dose adjustment'
         ]
         
         for pattern in high_risk:
@@ -367,28 +359,28 @@ class DeviationClassifier:
             if re.search(pattern, text, re.IGNORECASE):
                 return RiskLevel.MEDIUM
         
-        # If involves informed consent but no specific harm
-        if re.search(r'知情同意|consent', text, re.IGNORECASE):
+        # If informed consent is involved but no specific harm is involved
+        if re.search('informed consent|consent', text, re.IGNORECASE):
             return RiskLevel.HIGH
         
         return RiskLevel.NONE
     
     def _assess_data_impact(self, description: str, deviation_type: str) -> RiskLevel:
-        """Assess impact on data integrity"""
+        """Assess the impact on data integrity"""
         text = f"{description} {deviation_type}".lower()
         
         # High data impact
         high_patterns = [
-            r'伪造|篡改|虚假|falsif|fabricat',
-            r'数据.*丢失|data.*lost',
-            r'关键.*数据.*缺失|critical.*data.*missing'
+            'forgery|tampering|false|falsif|fabricat',
+            'data.*lost|data.*lost',
+            'critical.*data.*missing|critical.*data.*missing'
         ]
         
         # Medium data impact
         medium_patterns = [
-            r'主要终点|primary endpoint',
-            r'关键访视|critical visit',
-            r'未.*评估|not.*assess'
+            'primary endpoint|primary endpoint',
+            'critical visit|critical visit',
+            'not.*assess|not.*assess'
         ]
         
         for pattern in high_patterns:
@@ -402,21 +394,21 @@ class DeviationClassifier:
         return RiskLevel.LOW
     
     def _assess_scientific_impact(self, description: str, deviation_type: str) -> RiskLevel:
-        """Assess impact on trial scientific validity"""
+        """Assessing the impact on the scientific validity of the trial"""
         text = f"{description} {deviation_type}".lower()
         
-        # Check if it affects primary endpoint or randomization
+        # Check whether it affects the primary endpoint or randomization
         high_patterns = [
-            r'随机化.*错误|错.*随机|randomiz',
-            r'主要终点|primary endpoint',
-            r'入组.*错误|错.*入组|不符合.*入组|ineligible'
+            'randomize.*error|error.*random|randomiz',
+            'primary endpoint|primary endpoint',
+            'Enter the group.*Error|Wrong.*Enter the group|Inconsistent.*Enter the group|ineligible'
         ]
         
-        # Medium impact
+        # medium impact
         medium_patterns = [
-            r'访视.*缺失|missed visit',
-            r'疗效.*评估|efficacy assessment',
-            r'破盲|unblind'
+            'Visit.*missing|missed visit',
+            'Efficacy.*Assessment|efficacy assessment',
+            'Break the blind|unblind'
         ]
         
         for pattern in high_patterns:
@@ -437,23 +429,21 @@ class DeviationClassifier:
         risk_score: int,
         description: str
     ) -> Tuple[Classification, float]:
-        """
-        Apply classification rules
+        """Apply classification rules
         
         Classification rules:
-        - Any dimension is High → Major deviation
-        - Safety dimension is Medium and data/scientific is Medium+ → Major deviation
-        - Involves informed consent issue → Major deviation
-        - Involves data falsification → Critical deviation
-        - Other cases → Minor deviation
-        """
+        - Any dimension is High → significant deviation
+        - Security dimension is Medium and data/science is either Medium+ → major deviation
+        - Involving informed consent issues → Major deviations
+        - Involving data falsification → critical deviation
+        - Other cases → minor deviations"""
         text = description.lower()
         
-        # Check if it is a critical deviation (data falsification)
-        if re.search(r'伪造|篡改|虚假|falsif|fabricat', text):
+        # Check whether it is a critical deviation (data fraud)
+        if re.search('forgery|tampering|false|falsif|fabricat', text):
             return Classification.CRITICAL, 0.98
         
-        # Check if it is a major deviation
+        # Check for major deviations
         if safety_impact == RiskLevel.HIGH:
             return Classification.MAJOR, 0.95
         
@@ -465,12 +455,12 @@ class DeviationClassifier:
         ):
             return Classification.MAJOR, 0.85
         
-        # Check informed consent related issues
-        if re.search(r'知情同意|未获得.*同意|consent', text, re.IGNORECASE):
-            if not re.search(r'非关键|轻微|延迟|delay', text, re.IGNORECASE):
+        # Check issues related to informed consent
+        if re.search('Informed consent|Not obtained.*Consent|consent', text, re.IGNORECASE):
+            if not re.search('non-critical|minor|delay|delay', text, re.IGNORECASE):
                 return Classification.MAJOR, 0.92
         
-        # Other cases are minor deviations
+        # Minor deviations in other cases
         if risk_score <= 4:
             confidence = 0.90 - (risk_score * 0.05)
         else:
@@ -486,37 +476,37 @@ class DeviationClassifier:
         scientific_impact: RiskLevel,
         description: str
     ) -> str:
-        """Generate classification rationale"""
+        """Generate classification reasons"""
         reasons = []
         
         if classification == Classification.CRITICAL:
-            reasons.append("Involves data falsification or tampering, seriously affecting the credibility of trial data.")
+            reasons.append("Involving data forgery or tampering, seriously affecting the credibility of test data.")
         elif classification == Classification.MAJOR:
             reasons.append("This deviation has the following high-risk characteristics:")
             if safety_impact == RiskLevel.HIGH:
-                reasons.append("- Seriously affects subject safety")
+                reasons.append("-Seriously affecting subject safety")
             if data_impact == RiskLevel.HIGH:
-                reasons.append("- Seriously compromises data integrity")
+                reasons.append("- Serious damage to data integrity")
             if scientific_impact == RiskLevel.HIGH:
-                reasons.append("- Seriously compromises trial scientific validity")
+                reasons.append("-Seriously damaging the scientific nature of the test")
             if safety_impact == RiskLevel.MEDIUM:
                 reasons.append("- Moderate impact on subject safety")
             
             # Check informed consent
-            if re.search(r'知情同意|consent', description, re.IGNORECASE):
-                reasons.append("- Involves informed consent procedure violation")
+            if re.search('informed consent|consent', description, re.IGNORECASE):
+                reasons.append("- Involving violations of informed consent procedures")
         else:
             reasons.append("This deviation has the following characteristics:")
             if safety_impact == RiskLevel.NONE:
                 reasons.append("- Does not affect subject safety")
             if data_impact == RiskLevel.LOW:
-                reasons.append("- Minimal impact on data integrity")
+                reasons.append("- Minor impact on data integrity")
             if scientific_impact == RiskLevel.NONE:
-                reasons.append("- Does not affect trial scientific validity")
+                reasons.append("- Does not affect the scientific nature of the test")
             
-            # Check if it is a minor time delay
-            if re.search(r'延迟|delay|推后|postpone', description, re.IGNORECASE):
-                reasons.append("- Only a procedural delay, does not affect core trial elements")
+            # Check for minor time delays
+            if re.search('delay|delay|postpone|postpone', description, re.IGNORECASE):
+                reasons.append("- It is only a procedural delay and does not affect the core elements of the test")
         
         return "\n".join(reasons)
     
@@ -525,46 +515,46 @@ class DeviationClassifier:
         indicators = []
         text = f"{description} {deviation_type}".lower()
         
-        # Check major deviation indicators
+        # Check for significant deviation indicators
         for category, patterns in self.major_patterns.items():
             for pattern in patterns:
                 if pattern.search(text):
                     indicator_map = {
-                        'informed_consent': 'Informed consent issue',
-                        'eligibility': 'Inclusion/exclusion criteria violation',
-                        'dosing': 'Dosing/dose issue',
-                        'concomitant': 'Concomitant medication violation',
-                        'randomization': 'Randomization issue',
-                        'safety_reporting': 'Safety reporting issue',
-                        'blinding': 'Blinding violation',
-                        'data_integrity': 'Data integrity issue',
-                        'critical_procedures': 'Critical procedure omission'
+                        'informed_consent': 'Informed consent issues',
+                        'eligibility': 'Inclusion/exclusion criteria violations',
+                        'dosing': 'Administration/Dosage Issues',
+                        'concomitant': 'Concomitant medication violations',
+                        'randomization': 'randomization problem',
+                        'safety_reporting': 'Security reporting issues',
+                        'blinding': 'blind violation',
+                        'data_integrity': 'Data integrity issues',
+                        'critical_procedures': 'Missing key procedures'
                     }
                     ind = indicator_map.get(category, category)
                     if ind not in indicators:
                         indicators.append(ind)
                     break
         
-        # Check minor deviation indicators
+        # Check for minor deviation indicators
         for category, patterns in self.minor_patterns.items():
             for pattern in patterns:
                 if pattern.search(text):
                     indicator_map = {
-                        'visit_window': 'Visit window deviation',
-                        'sample_collection': 'Sample collection deviation',
-                        'questionnaire': 'Questionnaire/diary card deviation',
-                        'documentation': 'Documentation/signature delay',
-                        'non_critical': 'Non-critical procedure deviation'
+                        'visit_window': 'Visit time window deviation',
+                        'sample_collection': 'Sample collection bias',
+                        'questionnaire': 'Questionnaire/Diary Card Bias',
+                        'documentation': 'Document/Signature Delay',
+                        'non_critical': 'Non-critical procedural deviations'
                     }
                     ind = indicator_map.get(category, category)
                     if ind not in indicators:
                         indicators.append(ind)
                     break
         
-        return indicators[:5]  # Return at most 5 indicators
+        return indicators[:5]  # Returns up to 5 indicators
     
     def _get_regulatory_basis(self, classification: Classification, description: str) -> List[str]:
-        """Get regulatory basis"""
+        """Obtain regulatory basis"""
         basis = []
         text = description.lower()
         
@@ -574,9 +564,9 @@ class DeviationClassifier:
             basis = self.REGULATORY_BASIS['major'].copy()
             
             # Add specific regulations based on description
-            if re.search(r'知情同意|consent', text, re.IGNORECASE):
+            if re.search('informed consent|consent', text, re.IGNORECASE):
                 basis.append("ICH E6(R2) Section 4.8 - Informed Consent Requirements")
-            if re.search(r'随机化|randomiz', text, re.IGNORECASE):
+            if re.search('Randomization|randomiz', text, re.IGNORECASE):
                 basis.append("ICH E9 - Statistical Principles for Clinical Trials")
         else:
             basis = self.REGULATORY_BASIS['minor'].copy()
@@ -587,25 +577,25 @@ class DeviationClassifier:
         """Get recommended actions"""
         if classification == Classification.CRITICAL:
             return [
-                "Immediately notify sponsor and ethics committee",
+                "Notify the sponsor and ethics committee immediately",
                 "Initiate root cause investigation",
                 "Implement corrective and preventive actions (CAPA)",
-                "Consider blacklisting the investigator",
+                "Consider blacklisting researchers",
                 "Assess impact on overall trial data"
             ]
         elif classification == Classification.MAJOR:
             return [
-                "Document in deviation log",
-                "Report to sponsor within 24 hours",
+                "Recorded in the deviation log",
+                "Report to the sponsor within 24 hours",
                 "Report to ethics committee (if required by protocol)",
                 "Assess whether remedial action is needed",
-                "Track trends, assess if it is a systemic issue"
+                "Track trends and assess whether there is a systemic issue"
             ]
         else:
             return [
-                "Document in deviation log",
-                "Track trends",
-                "Resolve at site level",
+                "Recorded in the deviation log",
+                "Follow trends",
+                "Solved at the research center level",
                 "Periodic summary reporting (e.g. quarterly)"
             ]
     
@@ -615,15 +605,13 @@ class DeviationClassifier:
         return f"DEV-{timestamp}"
     
     def generate_report(self, results: List[ClassificationResult]) -> Dict:
-        """
-        Generate deviation classification report
+        """Generate deviation classification report
         
         Args:
-            results: List of classification results
+            results: list of classified results
         
         Returns:
-            Dict: Report dictionary
-        """
+            Dict: report dictionary"""
         if not results:
             return {"error": "No results to report"}
         
@@ -632,7 +620,7 @@ class DeviationClassifier:
         minor_count = sum(1 for r in results if r.classification == Classification.MINOR)
         critical_count = sum(1 for r in results if r.classification == Classification.CRITICAL)
         
-        # Summarize deviations by category
+        # Summarize various types of deviations
         by_category = {}
         for result in results:
             for indicator in result.key_indicators:
@@ -674,18 +662,18 @@ class DeviationClassifier:
         
         if critical_count > 0:
             recommendations.append(
-                f"WARNING: {critical_count} critical deviation(s) found, immediate root cause analysis recommended"
+                f"⚠️ Discover{critical_count}key deviation，Recommend immediate root cause analysis"
             )
         
         if total > 0:
             major_rate = major_count / total * 100
             if major_rate > 20:
                 recommendations.append(
-                    f"Major deviation rate ({major_rate:.1f}%) is high, recommend strengthening site training"
+                    f"significant deviation rate({major_rate:.1f}%)On the high side，It is recommended to strengthen research center training"
                 )
             elif major_rate > 10:
                 recommendations.append(
-                    f"Major deviation rate ({major_rate:.1f}%) is moderate, recommend close monitoring"
+                    f"significant deviation rate({major_rate:.1f}%)medium，It is recommended to pay close attention to"
                 )
         
         # Check trends
@@ -695,11 +683,11 @@ class DeviationClassifier:
         )
         if safety_issues > 3:
             recommendations.append(
-                f"{safety_issues} deviation(s) involving safety issues found, recommend evaluating subject protection measures"
+                f"Discover{safety_issues}deviations involving safety issues，Recommend evaluation of subject protection measures"
             )
         
         if not recommendations:
-            recommendations.append("Overall deviation control is good, recommend maintaining current standards")
+            recommendations.append("Deviation control is generally good and it is recommended to continue to maintain it.")
         
         return recommendations
 
@@ -707,53 +695,51 @@ class DeviationClassifier:
 def main():
     """CLI entry point"""
     parser = argparse.ArgumentParser(
-        description="Protocol Deviation Classifier - Clinical trial protocol deviation classification tool",
+        description="Protocol Deviation Classifier - clinical trial protocol deviation classification tool",
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  # Classify a single deviation
+        epilog="""Example:
+  # Classify individual deviations
   python scripts/main.py classify -d "Subject visit delayed by 2 days"
   
-  # Batch classify from file
+  # Batch classification from files
   python scripts/main.py batch -i deviations.json -o report.json
   
-  # Interactive classification
-  python scripts/main.py interactive
-        """
+  #Interactive classification
+  python scripts/main.py interactive"""
     )
     
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
     
     # classify command
-    classify_parser = subparsers.add_parser("classify", help="Classify a single deviation")
+    classify_parser = subparsers.add_parser("classify", help="Classify individual deviations")
     classify_parser.add_argument("-d", "--description", required=True, help="Deviation description")
     classify_parser.add_argument("-t", "--type", default="", help="Deviation type")
     classify_parser.add_argument("--id", default="", help="Event ID")
     classify_parser.add_argument("--safety-impact", 
                                  choices=["none", "low", "medium", "high"],
-                                 default="none", help="Safety impact level")
+                                 default="none", help="security impact level")
     classify_parser.add_argument("--data-impact",
                                  choices=["none", "low", "medium", "high"],
                                  default="low", help="Data integrity impact level")
     classify_parser.add_argument("--scientific-impact",
                                  choices=["none", "low", "medium", "high"],
-                                 default="none", help="Scientific validity impact level")
+                                 default="none", help="scientific impact level")
     classify_parser.add_argument("-o", "--output", choices=["json", "table"], 
                                  default="table", help="Output format")
     
     # batch command
     batch_parser = subparsers.add_parser("batch", help="Batch classification")
-    batch_parser.add_argument("-i", "--input", required=True, help="Input JSON file path")
+    batch_parser.add_argument("-i", "--input", required=True, help="Enter JSON file path")
     batch_parser.add_argument("-o", "--output", default="", help="Output file path")
     batch_parser.add_argument("--format", choices=["json", "report"],
                               default="json", help="Output format")
     
     # report command
     report_parser = subparsers.add_parser("report", help="Generate summary report")
-    report_parser.add_argument("-i", "--input", required=True, help="Classification result JSON file")
+    report_parser.add_argument("-i", "--input", required=True, help="Classification results JSON file")
     
     # interactive command
-    subparsers.add_parser("interactive", help="Interactive classification")
+    subparsers.add_parser("interactive", help="interactive classification")
     
     # demo command
     subparsers.add_parser("demo", help="Run sample classification")
@@ -768,7 +754,7 @@ Examples:
     
     try:
         if args.command == "classify":
-            # Parse impact levels
+            # Analyze impact levels
             safety = RiskLevel(args.safety_impact)
             data = RiskLevel(args.data_impact)
             scientific = RiskLevel(args.scientific_impact)
@@ -803,7 +789,7 @@ Examples:
             if args.output:
                 with open(args.output, 'w', encoding='utf-8') as f:
                     json.dump(output, f, ensure_ascii=False, indent=2)
-                print(f"Results saved to: {args.output}")
+                print(f"English: {args.output}")
             else:
                 print(json.dumps(output, ensure_ascii=False, indent=2))
         
@@ -811,9 +797,9 @@ Examples:
             with open(args.input, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
-            # Assume input is a list of classification results
+            # Assume that the input is a list of classification results
             if isinstance(data, list):
-                # Convert to ClassificationResult objects
+                # Convert to ClassificationResult object
                 results = []
                 for item in data:
                     result = ClassificationResult(
@@ -841,34 +827,34 @@ Examples:
             _run_demo(classifier)
     
     except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+        print(f"mistake: {e}", file=sys.stderr)
         sys.exit(1)
 
 
 def _print_table_result(result: ClassificationResult):
-    """Print result in table format"""
+    """Print results in table format"""
     print("\n" + "=" * 60)
-    print("Protocol Deviation Classification Result")
+    print("Plan deviation classification result")
     print("=" * 60)
     print(f"{'Event ID:':<20} {result.id}")
-    print(f"{'Classification:':<20} {result.classification} ({result.classification.en_name})")
+    print(f"{'Classification results:':<20} {result.classification} ({result.classification.en_name})")
     print(f"{'Confidence:':<20} {result.confidence*100:.1f}%")
-    print(f"{'Risk Score:':<20} {result.risk_score}")
+    print(f"{'Risk score:':<20} {result.risk_score}")
     print("-" * 60)
-    print("Risk Assessment:")
-    print(f"  - Subject Safety: {result.safety_risk}")
-    print(f"  - Data Integrity: {result.data_integrity_risk}")
-    print(f"  - Trial Scientific Validity: {result.scientific_validity_risk}")
+    print("risk assessment:")
+    print(f"  - Subject safety: {result.safety_risk}")
+    print(f"  - data integrity: {result.data_integrity_risk}")
+    print(f"  - Experimental science: {result.scientific_validity_risk}")
     print("-" * 60)
-    print("Classification Rationale:")
+    print("Reason for classification:")
     print(result.rationale)
     if result.key_indicators:
         print("-" * 60)
-        print("Key Indicators:")
+        print("Key indicators:")
         for indicator in result.key_indicators:
             print(f"  • {indicator}")
     print("-" * 60)
-    print("Recommended Actions:")
+    print("Recommended actions:")
     for action in result.recommended_actions:
         print(f"  • {action}")
     print("=" * 60)
@@ -877,25 +863,25 @@ def _print_table_result(result: ClassificationResult):
 def _run_interactive(classifier: DeviationClassifier):
     """Run interactive classification"""
     print("\n" + "=" * 60)
-    print("Protocol Deviation Classifier - Interactive Mode")
+    print("Solution Deviation Classifier - Interactive Mode")
     print("=" * 60)
-    print("Enter 'quit' or 'q' to exit\n")
+    print("Type 'quit' or 'q' to exit")
     
     while True:
         print("\n" + "-" * 40)
-        description = input("Please enter deviation description: ").strip()
+        description = input("Please enter a description of the deviation:").strip()
         
         if description.lower() in ['quit', 'q', 'exit']:
-            print("Goodbye!")
+            print("goodbye!")
             break
         
         if not description:
             print("Description cannot be empty, please re-enter.")
             continue
         
-        deviation_type = input("Please enter deviation type (optional): ").strip()
+        deviation_type = input("Please enter deviation type (optional):").strip()
         
-        print("\nAnalyzing...")
+        print("Analyzing...")
         result = classifier.classify(
             description=description,
             deviation_type=deviation_type
@@ -909,40 +895,40 @@ def _run_demo(classifier: DeviationClassifier):
     demo_cases = [
         {
             "id": "DEV-001",
-            "description": "Subject visit delayed by 2 days",
-            "type": "Visit Window"
+            "description": "Subject visit will be delayed by 2 days",
+            "type": "visit window"
         },
         {
             "id": "DEV-002",
-            "description": "Blood sample collected without obtaining informed consent",
-            "type": "Informed Consent"
+            "description": "Collecting blood samples without obtaining informed consent",
+            "type": "informed consent"
         },
         {
             "id": "DEV-003",
-            "description": "Subject accidentally took double dose of study medication",
-            "type": "Dosing Error"
+            "description": "Subject mistakenly takes double dose of study drug",
+            "type": "Medication error"
         },
         {
             "id": "DEV-004",
-            "description": "Quality of life questionnaire submitted 3 days late",
-            "type": "Data Collection"
+            "description": "Submission of quality of life questionnaire delayed by 3 days",
+            "type": "data collection"
         },
         {
             "id": "DEV-005",
-            "description": "Subject not meeting inclusion criteria was enrolled (age out of range)",
-            "type": "Inclusion Criteria"
+            "description": "Subjects who did not meet the inclusion criteria were enrolled (age exceeded the limit)",
+            "type": "Inclusion criteria"
         }
     ]
     
     print("\n" + "=" * 60)
-    print("Protocol Deviation Classifier - Demo Run")
+    print("Scheme deviation classifier - example run")
     print("=" * 60)
     
     results = []
     for case in demo_cases:
-        print(f"\n[Case {case['id']}]")
-        print(f"Description: {case['description']}")
-        print(f"Type: {case['type']}")
+        print(f"\n【Case {case['id']}】")
+        print(f"describe: {case['description']}")
+        print(f"type: {case['type']}")
         
         result = classifier.classify(
             description=case['description'],
@@ -951,23 +937,23 @@ def _run_demo(classifier: DeviationClassifier):
         )
         results.append(result)
         
-        print(f"-> Classification: {result.classification} (Confidence: {result.confidence*100:.0f}%)")
-        print(f"   Risk Score: {result.risk_score}")
+        print(f"→ Classification results: {result.classification} (Confidence: {result.confidence*100:.0f}%)")
+        print(f"   risk score: {result.risk_score}")
     
     # Generate summary report
     print("\n" + "=" * 60)
-    print("Summary Report")
+    print("summary report")
     print("=" * 60)
     
     report = classifier.generate_report(results)
     summary = report['summary']
     
-    print(f"Total Deviations: {summary['total_deviations']}")
-    print(f"Critical Deviations: {summary['critical_count']}")
-    print(f"Major Deviations: {summary['major_count']} ({summary['major_rate']}%)")
-    print(f"Minor Deviations: {summary['minor_count']} ({summary['minor_rate']}%)")
+    print(f"Total deviations: {summary['total_deviations']}")
+    print(f"critical deviation: {summary['critical_count']}")
+    print(f"significant deviation: {summary['major_count']} ({summary['major_rate']}%)")
+    print(f"small deviation: {summary['minor_count']} ({summary['minor_rate']}%)")
     
-    print("\nRecommendations:")
+    print("suggestion:")
     for rec in report['recommendations']:
         print(f"  • {rec}")
 

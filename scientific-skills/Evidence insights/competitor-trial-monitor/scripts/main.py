@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""
-Competitor Trial Monitor - Competitor Clinical Trial Monitor
-监控竞品临床试验进度，预警市场风险。
-"""
+"""Competitor Trial Monitor - Competitor Clinical Trial Monitor
+Monitor the progress of clinical trials of competing products and provide early warning of market risks."""
 
 import argparse
 import json
@@ -14,7 +12,7 @@ from typing import Dict, List, Optional
 import urllib.request
 import urllib.parse
 
-# 数据目录
+# data directory
 DATA_DIR = Path.home() / ".openclaw" / "competitor-trial-monitor"
 WATCHLIST_FILE = DATA_DIR / "watchlist.json"
 HISTORY_DIR = DATA_DIR / "history"
@@ -26,14 +24,14 @@ CT_API_BASE = "https://clinicaltrials.gov/api/v2/studies"
 
 
 def init_data_dir():
-    """初始化数据目录"""
+    """Initialize data directory"""
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     HISTORY_DIR.mkdir(exist_ok=True)
     ALERTS_DIR.mkdir(exist_ok=True)
 
 
 def load_watchlist() -> List[Dict]:
-    """加载监控列表"""
+    """Load monitoring list"""
     if not WATCHLIST_FILE.exists():
         return []
     with open(WATCHLIST_FILE, 'r', encoding='utf-8') as f:
@@ -41,13 +39,13 @@ def load_watchlist() -> List[Dict]:
 
 
 def save_watchlist(watchlist: List[Dict]):
-    """保存监控列表"""
+    """Save monitoring list"""
     with open(WATCHLIST_FILE, 'w', encoding='utf-8') as f:
         json.dump(watchlist, f, indent=2, ensure_ascii=False)
 
 
 def load_config() -> Dict:
-    """加载配置"""
+    """Load configuration"""
     if not CONFIG_FILE.exists():
         return {
             "alert_channels": ["console"],
@@ -59,7 +57,7 @@ def load_config() -> Dict:
 
 
 def fetch_trial_data(nct_id: str) -> Optional[Dict]:
-    """从 ClinicalTrials.gov 获取试验数据"""
+    """Obtain trial data from ClinicalTrials.gov"""
     url = f"{CT_API_BASE}/{nct_id}"
     headers = {
         "Accept": "application/json"
@@ -70,20 +68,20 @@ def fetch_trial_data(nct_id: str) -> Optional[Dict]:
             return json.loads(response.read().decode('utf-8'))
     except urllib.error.HTTPError as e:
         if e.code == 404:
-            print(f"  ⚠️  试验 {nct_id} 未找到")
+            print(f"  ⚠️  test {nct_id} not found")
         else:
-            print(f"  ❌ HTTP错误 {e.code}: {e.reason}")
+            print(f"  ❌ HTTPmistake {e.code}: {e.reason}")
         return None
     except Exception as e:
-        print(f"  ❌ 获取数据失败: {e}")
+        print(f"  ❌ Failed to get data: {e}")
         return None
 
 
 def extract_key_info(trial_data: Dict) -> Dict:
-    """提取关键试验信息"""
+    """Extract key test information"""
     protocol = trial_data.get("protocolSection", {})
     
-    # 基本信息
+    # Basic information
     identification = protocol.get("identificationModule", {})
     status = protocol.get("statusModule", {})
     design = protocol.get("designModule", {})
@@ -102,33 +100,33 @@ def extract_key_info(trial_data: Dict) -> Dict:
 
 
 def assess_risk(old_info: Optional[Dict], new_info: Dict) -> Optional[Dict]:
-    """评估风险变化"""
+    """Assess changes in risk"""
     if old_info is None:
         return None
     
     alerts = []
     risk_level = None
     
-    # 检查状态变化
+    # Check status changes
     old_status = old_info.get("status", "")
     new_status = new_info.get("status", "")
     
     status_risk_map = {
-        "COMPLETED": ("high", "试验已完成，结果可能即将公布"),
-        "AVAILABLE": ("critical", "结果已发布"),
-        "APPROVED": ("critical", "已获批上市"),
-        "REGULATORY_SUBMISSION": ("high", "已提交监管申请")
+        "COMPLETED": ("high", "The trial has been completed and the results may be announced soon"),
+        "AVAILABLE": ("critical", "Results published"),
+        "APPROVED": ("critical", "Approved for listing"),
+        "REGULATORY_SUBMISSION": ("high", "Regulatory application submitted")
     }
     
     if old_status != new_status and new_status in status_risk_map:
         risk_level, message = status_risk_map[new_status]
-        alerts.append(f"状态变更: {old_status} → {new_status}")
+        alerts.append(f"status change: {old_status} → {new_status}")
         alerts.append(message)
     
-    # 检查是否有结果
+    # Check if there are any results
     if not old_info.get("has_results") and new_info.get("has_results"):
         risk_level = "high"
-        alerts.append("试验结果已发布")
+        alerts.append("Test results have been released")
     
     if alerts:
         return {
@@ -143,17 +141,17 @@ def cmd_add(args):
     """Add monitoring target"""
     watchlist = load_watchlist()
     
-    # 检查是否已存在
+    # Check if it already exists
     for item in watchlist:
         if item.get("nct_id") == args.nct:
-            print(f"⚠️  NCT {args.nct} 已在监控列表中")
+            print(f"⚠️  NCT {args.nct} Already in the monitoring list")
             return
     
-    # 验证试验存在
-    print(f"🔍 验证试验 {args.nct}...")
+    # Verify test exists
+    print(f"🔍 Verification test {args.nct}...")
     trial_data = fetch_trial_data(args.nct)
     if not trial_data:
-        print(f"❌ 无法添加: 试验 {args.nct} 未找到或API错误")
+        print(f"❌ Unable to add: test {args.nct} not found orAPImistake")
         return
     
     info = extract_key_info(trial_data)
@@ -169,10 +167,10 @@ def cmd_add(args):
     })
     
     save_watchlist(watchlist)
-    print(f"✅ 已添加: {info['title'][:60]}...")
-    print(f"   公司: {args.company or 'Unknown'}")
-    print(f"   药物: {args.drug or 'Unknown'}")
-    print(f"   状态: {info['status']}")
+    print(f"✅ Added: {info['title'][:60]}...")
+    print(f"   company: {args.company or 'Unknown'}")
+    print(f"   drug: {args.drug or 'Unknown'}")
+    print(f"   state: {info['status']}")
 
 
 def cmd_list(args):
@@ -180,11 +178,11 @@ def cmd_list(args):
     watchlist = load_watchlist()
     
     if not watchlist:
-        print("📭 监控列表为空")
+        print("📭 Monitoring list is empty")
         return
     
-    print(f"\n📋 共监控 {len(watchlist)} 个临床试验:\n")
-    print(f"{'NCT ID':<15} {'公司':<15} {'药物':<20} {'状态':<15} {'最后检查':<20}")
+    print(f"\n📋 Total monitoring {len(watchlist)} clinical trials:\n")
+    print(f"{'NCT ID':<15} {'company':<15} {'drug':<20} {'state':<15} {'final check':<20}")
     print("-" * 90)
     
     for item in watchlist:
@@ -205,11 +203,11 @@ def cmd_remove(args):
     watchlist = [item for item in watchlist if item.get("nct_id") != args.nct]
     
     if len(watchlist) == original_len:
-        print(f"⚠️  NCT {args.nct} 不在监控列表中")
+        print(f"⚠️  NCT {args.nct} Not in the watch list")
         return
     
     save_watchlist(watchlist)
-    print(f"✅ 已删除 NCT {args.nct}")
+    print(f"✅ Deleted NCT {args.nct}")
 
 
 def cmd_scan(args):
@@ -217,17 +215,17 @@ def cmd_scan(args):
     watchlist = load_watchlist()
     
     if not watchlist:
-        print("📭 监控列表为空")
+        print("📭 Monitoring list is empty")
         return
     
-    print(f"🔍 开始扫描 {len(watchlist)} 个试验...\n")
+    print(f"🔍 Start scanning {len(watchlist)} trials...\n")
     
     alerts = []
     updated = 0
     
     for item in watchlist:
         nct_id = item.get("nct_id")
-        print(f"检查 {nct_id} ({item.get('company', 'Unknown')})...")
+        print(f"examine {nct_id} ({item.get('company', 'Unknown')})...")
         
         trial_data = fetch_trial_data(nct_id)
         if not trial_data:
@@ -236,7 +234,7 @@ def cmd_scan(args):
         new_info = extract_key_info(trial_data)
         old_info = item.get("last_data")
         
-        # 检查风险
+        # Check risks
         risk = assess_risk(old_info, new_info)
         if risk:
             alert = {
@@ -246,29 +244,29 @@ def cmd_scan(args):
                 **risk
             }
             alerts.append(alert)
-            print(f"  🚨 风险预警 [{risk['risk_level'].upper()}]")
+            print(f"  🚨 Risk warning [{risk['risk_level'].upper()}]")
             for msg in risk['alerts']:
                 print(f"     - {msg}")
         
-        # 更新数据
+        # Update data
         item["last_data"] = new_info
         item["last_check"] = datetime.now().isoformat()
         updated += 1
         
         if not risk:
-            print(f"  ✅ 无变化")
+            print(f"  ✅ English")
     
     save_watchlist(watchlist)
     
-    # 保存预警
+    # Save alert
     if alerts:
         alert_file = ALERTS_DIR / f"alerts_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
         with open(alert_file, 'w', encoding='utf-8') as f:
             json.dump(alerts, f, indent=2, ensure_ascii=False)
-        print(f"\n🚨 发现 {len(alerts)} 个风险预警")
-        print(f"   预警已保存: {alert_file}")
+        print(f"\n🚨 Discover {len(alerts)} risk warning")
+        print(f"   Alert saved: {alert_file}")
     
-    print(f"\n✅ 扫描完成，已更新 {updated} 个试验")
+    print(f"\n✅ Scan completed，updated {updated} trials")
 
 
 def cmd_report(args):
@@ -277,12 +275,12 @@ def cmd_report(args):
     days = args.days or 30
     
     if not watchlist:
-        print("📭 监控列表为空")
+        print("📭 Monitoring list is empty")
         return
     
     cutoff = datetime.now() - timedelta(days=days)
     
-    # 收集所有预警
+    # Collect all warnings
     all_alerts = []
     for alert_file in ALERTS_DIR.glob("alerts_*.json"):
         try:
@@ -295,14 +293,14 @@ def cmd_report(args):
         except:
             pass
     
-    print(f"\n📊 竞品临床试验风险报告 (近{days}天)\n")
+    print(f"\n📊 Competitive product clinical trial risk report (close{days}sky)\n")
     print("=" * 60)
     
     if not all_alerts:
-        print("✅ 未发现风险预警")
+        print("✅ No risk warning found")
         return
     
-    # 按风险等级分组
+    # Group by risk level
     critical = [a for a in all_alerts if a.get("risk_level") == "critical"]
     high = [a for a in all_alerts if a.get("risk_level") == "high"]
     medium = [a for a in all_alerts if a.get("risk_level") == "medium"]
@@ -320,13 +318,13 @@ def cmd_report(args):
             print(f"      • {msg}")
     
     print(f"\n🟡 Medium: {len(medium)}")
-    for alert in medium[:5]:  # 只显示前5个
+    for alert in medium[:5]:  # Only show the first 5
         print(f"   [{alert['nct_id']}] {alert.get('company', 'Unknown')} - {alert.get('drug', 'Unknown')}")
     if len(medium) > 5:
-        print(f"   ... 还有 {len(medium) - 5} 个")
+        print(f"   ... English {len(medium) - 5} indivual")
     
     print("\n" + "=" * 60)
-    print(f"总计: {len(all_alerts)} 个预警事件")
+    print(f"total: {len(all_alerts)} warning event")
 
 
 def main():
@@ -337,30 +335,30 @@ def main():
     
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
     
-    # add 命令
+    # add command
     add_parser = subparsers.add_parser("add", help="Add monitoring target")
     add_parser.add_argument("--nct", required=True, help="ClinicalTrials.gov NCT ID")
-    add_parser.add_argument("--company", help="竞品公司名称")
-    add_parser.add_argument("--drug", help="药物名称")
-    add_parser.add_argument("--indication", help="适应症")
+    add_parser.add_argument("--company", help="Competing company name")
+    add_parser.add_argument("--drug", help="Drug name")
+    add_parser.add_argument("--indication", help="Indications")
     add_parser.set_defaults(func=cmd_add)
     
-    # list 命令
+    # list command
     list_parser = subparsers.add_parser("list", help="List monitoring targets")
     list_parser.set_defaults(func=cmd_list)
     
-    # remove 命令
+    # remove command
     remove_parser = subparsers.add_parser("remove", help="Remove monitoring target")
-    remove_parser.add_argument("--nct", required=True, help="要删除的NCT ID")
+    remove_parser.add_argument("--nct", required=True, help="NCT ID to delete")
     remove_parser.set_defaults(func=cmd_remove)
     
-    # scan 命令
+    # scan command
     scan_parser = subparsers.add_parser("scan", help="Scan for updates")
     scan_parser.set_defaults(func=cmd_scan)
     
-    # report 命令
+    # report command
     report_parser = subparsers.add_parser("report", help="Generate risk report")
-    report_parser.add_argument("--days", type=int, default=30, help="报告时间范围(天)")
+    report_parser.add_argument("--days", type=int, default=30, help="Reporting time range (days)")
     report_parser.set_defaults(func=cmd_report)
     
     args = parser.parse_args()

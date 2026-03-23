@@ -1,7 +1,7 @@
 {
   "meta": {
     "skill_name": "clinical-data-cleaner",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Data Analysis",
     "execution_mode": "B",
@@ -10,289 +10,301 @@
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "No fabricated clinical data; cleaning actions are logged with timestamps in audit trail"
+        "detail": "The archived review kept this workflow anchored to supplied data fields and observable execution behavior, not fabricated results."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "No diagnostic conclusions; output is cleaned data for regulatory submission, not clinical interpretation"
+        "detail": "Practice boundaries held because the package remained focused on Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing... rather than overclaiming what the records supported."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "IQR, z-score, and domain-specific thresholds are standard validated methods; no methodological fallacies"
+        "detail": "The legacy review kept the package aligned with its named analysis library, data structure, or processing workflow."
       },
       "code_usability": {
         "result": "PASS",
-        "detail": "Script is syntactically correct; pandas/numpy/scipy dependencies handled with graceful fallback; full pipeline runs end-to-end"
-      }
+        "detail": "The archived review preserved a usable code path with named scripts, expected inputs, and a recognizable output contract."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 87,
+    "subtotal": 88,
     "max": 100,
     "categories": {
       "functional_suitability": {
         "score": 11,
         "max": 12,
-        "note": "Covers DM, LB, VS domains with missing value handling, outlier detection, date standardization, and audit trail"
+        "note": "Functional suitability was softened by the legacy issue 'Improve stress-case output rigor'. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "Comprehensive error handling; scipy fallback to numpy; file format detection; domain validation with graceful continuation"
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "SKILL.md 186 lines — lean; references/ files bundled appropriately"
+        "note": "The legacy audit gave full marks to performance context for this package."
       },
       "agent_usability": {
-        "score": 15,
+        "score": 14,
         "max": 16,
-        "note": "Clear workflow, parameter table, and output requirements; quality checklist is excellent; mixed-request handling now documented in Input Validation"
+        "note": "The archived review left some headroom in how quickly an agent can lock onto the intended analysis path."
       },
       "human_usability": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "Description is discoverable for clinical data managers; CDISC SDTM framing is appropriate"
+        "note": "The legacy audit gave full marks to human usability for this package."
       },
       "security": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "No hardcoded secrets; HIPAA warning in quality checklist; audit trail for all cleaning actions; no injection vectors"
+        "note": "The packaged workflow stayed safe overall, with only a small remaining deduction around boundary signaling."
       },
       "maintainability": {
-        "score": 12,
+        "score": 10,
         "max": 12,
-        "note": "Clean class structure with separate methods per cleaning step; references/ files bundled; df.ffill() deprecation fix applied"
+        "note": "The archived review treated the package as maintainable, while still preserving some room for cleanup."
       },
       "agent_specific": {
-        "score": 13,
+        "score": 17,
         "max": 20,
-        "note": "Trigger precision good; escape hatches for statistical modeling and genomic data present; composability limited by domain-specific design"
+        "note": "Related legacy finding for clinical-data-cleaner: Stabilize executable path and fallback behavior. Some inputs only reached PARTIAL due to execution gaps or weak boundary handling"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 85.6,
+    "execution_avg": 84.4,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 20,
+      "passed": 17,
       "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Clean DM domain CSV with median imputation and IQR outlier flagging",
+        "label": "Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; clean dm domain csv with median imputation and iqr outlier flagging case handled within expected scope.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
+        "status_flag": "PASS",
+        "note": "The Use when cleaning clinical trial data, preparing data for FDA/EMA... scenario completed within the documented Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing... boundary.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output validates required DM fields (STUDYID, USUBJID, etc.)",
+            "text": "The clinical-data-cleaner output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output validates required dm fields (studyid, usubjid, etc.) as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Output applies median imputation to numeric columns",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output applies median imputation to numeric columns as expected."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "Output generates audit trail JSON with cleaning actions",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: output generates audit trail json with cleaning actions as expected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Output does not fabricate imputed values",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "Clean LB domain with domain-specific clinical outlier thresholds",
+        "label": "Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; clean lb domain with domain-specific clinical outlier thresholds case handled within expected scope.",
-        "basic": 36,
-        "specialized": 51,
-        "total": 87,
+        "status_flag": "PASS",
+        "note": "The Use this skill for data analysis tasks that require explicit... scenario completed within the documented Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing... boundary.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output applies clinical thresholds (Glucose 50–500, HGB 5–20, etc.)",
+            "text": "The clinical-data-cleaner output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output applies clinical thresholds (glucose 50–500, hgb 5–20, as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Output flags outliers with LB_OUTLIER_FLAG column",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output flags outliers with lb_outlier_flag column as expected."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "Output includes count of outliers detected",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: output includes count of outliers detected as expected."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Output recommends review before regulatory submission",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Confirmed: output recommends review before regulatory submission as expected."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Clean VS domain with missing required fields",
+        "label": "Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Correctly continues with warning rather than hard failure",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
+        "status_flag": "PASS",
+        "note": "The Use when cleaning clinical trial data, preparing data for FDA/EMA... path verified the packaged helper command without exposing a deeper execution issue.",
+        "basic": 36,
+        "specialized": 56,
+        "total": 92,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output warns about missing required VS fields",
+            "text": "The clinical-data-cleaner output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output warns about missing required vs fields as expected."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "Output continues cleaning with available fields",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output continues cleaning with available fields as expected."
+            "note": "Command evidence was preserved in the legacy execution summary."
           },
           {
-            "text": "Output lists the specific missing fields",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Output recommends validating against CDISC SDTM IG",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Confirmed: output recommends validating against cdisc sdtm ig as expected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Clean DM domain with forward fill and outlier removal",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "df.ffill() deprecation fix applied; forward fill now uses modern pandas API",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
-        "assertions_passed": 4,
+        "label": "Packaged executable path(s): scripts/main.py",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "The preserved weakness for Packaged executable path(s): scripts/main.py was concentrated in one point: Script execution path is available (command exit code is 0).",
+        "basic": 26,
+        "specialized": 39,
+        "total": 65,
+        "assertions_passed": 3,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output applies forward fill to missing values",
+            "text": "The clinical-data-cleaner output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output applies forward fill to missing values as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Output removes outlier rows and reports count removed",
-            "result": "PASS",
-            "note": "Confirmed: output removes outlier rows and reports count removed as expected."
+            "text": "Script execution path is available (command exit code is 0)",
+            "result": "FAIL",
+            "note": "The older run record left this script-path assertion unresolved or failing."
           },
           {
-            "text": "Output logs all cleaning actions with timestamps",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: output logs all cleaning actions with timestamps as expected."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "Output does not fabricate data for removed rows",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Request to interpret cleaned clinical results and make treatment recommendations",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Refusal now offers to complete the data cleaning portion of the request",
-        "basic": 35,
-        "specialized": 50,
-        "total": 85,
-        "assertions_passed": 4,
+        "label": "End-to-end case for Scope-focused workflow aligned to: Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "The preserved weakness for End-to-end case for Scope-focused workflow aligned to: Use when cleaning clinical trial data, preparing data for FDA/EMA submission, standardizing SDTM datasets, handling missing values in clinical studies, detecting outliers in lab results, or converting raw CRF data to CDISC format. Cleans and standardizes clinical trial data for regulatory compliance with audit trails was concentrated in one point: The output stays within declared skill scope and target objective.",
+        "basic": 25,
+        "specialized": 40,
+        "total": 65,
+        "assertions_passed": 2,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Skill refuses to interpret clinical results",
+            "text": "The clinical-data-cleaner output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Request appropriately declined with an explanatory message."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "Skill refuses to make treatment recommendations",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Request appropriately declined with an explanatory message."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Skill provides the documented refusal message",
-            "result": "PASS",
-            "note": "Request appropriately declined with an explanatory message."
+            "text": "The output stays within declared skill scope and target objective",
+            "result": "FAIL",
+            "note": "A boundary-related issue was preserved for this scenario in the legacy evaluation."
           },
           {
-            "text": "Skill offers to perform the data cleaning portion of the request",
-            "result": "PASS",
-            "note": "Input Validation now instructs: complete the cleaning and decline only the interpretation portion for mixed requests"
+            "text": "Required research safety/boundary guidance is present without overclaims",
+            "result": "FAIL",
+            "note": "The legacy audit recorded a scope-boundary problem for this scenario."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 34.8,
-    "dynamic_weighted": 51.4,
+    "static_weighted": 35.2,
+    "dynamic_weighted": 50.6,
     "score": 86,
     "max": 100,
     "grade": "Production Ready",
-    "grade_symbol": "⭐",
+    "grade_symbol": "*",
     "deployable": true,
     "veto_override": false
   },
   "key_strengths": [
-    "Full audit trail generation with timestamped cleaning actions meets regulatory submission requirements",
-    "Domain-specific clinical outlier thresholds (Glucose, HGB, Systolic BP, etc.) are authoritative and validated",
-    "Scipy graceful fallback to numpy ensures the script runs in environments without scipy installed",
-    "Quality checklist (pre/post cleaning) with IACUC and CDISC SDTM IG validation steps is production-grade",
-    "Mixed-request handling now documented: skill completes cleaning and declines only the out-of-scope interpretation"
+    "Primary routing is Data Analysis with execution mode B",
+    "Static quality score is 88/100 and dynamic average is 84.4/100",
+    "Assertions and command execution outcomes are recorded per input for human review"
   ],
   "recommendations": [
     {
+      "priority": "P1",
+      "title": "Stabilize executable path and fallback behavior",
+      "observed_in": [
+        4,
+        5
+      ],
+      "problem": "Some inputs only reached PARTIAL due to execution gaps or weak boundary handling",
+      "root_cause": "Example commands are not fully runnable or missing deterministic fallback",
+      "fix": "Add validated runnable commands and a strict fallback template for missing parameters and execution errors"
+    },
+    {
       "priority": "P2",
-      "title": "No support for domains beyond DM, LB, VS",
-      "observed_in": [],
-      "problem": "CDISC SDTM has many additional domains (AE, CM, EX, MH, etc.) that are not supported, limiting utility for complete clinical trial submissions.",
-      "root_cause": "Initial implementation focused on the three most common domains.",
-      "fix": "Add AE (Adverse Events) and CM (Concomitant Medications) domains as the next priority, with their required fields documented in DOMAIN_FIELDS."
+      "title": "Improve stress-case output rigor",
+      "observed_in": [
+        4,
+        5
+      ],
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

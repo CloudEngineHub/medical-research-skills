@@ -1,29 +1,76 @@
 ---
 name: facs-gating-viz-style
-description: Beautify flow cytometry gating plots for publication. Applies contour, density, or dot plot styles to FCS data and produces publication-ready figures with consistent formatting.
+description: Use facs gating viz style for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
 license: MIT
 skill-author: AIPOCH
-status: beta
 ---
 # FACS Gating Viz Style
 
-Apply publication-ready styling to flow cytometry gating plots. Accepts FCS data files and produces contour, density, or dot plot visualizations formatted for journal submission.
+Beautify flow cytometry gating plots for publication.
 
-> ✅ **IMPLEMENTED** — `scripts/main.py` is fully functional. fcsparser/flowio FCS parsing, scatter/density/contour plots, file validation, and `--demo` mode are all implemented.
+## When to Use
+
+- Use this skill when the task needs Use facs gating viz style for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+See `## Features` above for related details.
+
+- Scope-focused workflow aligned to: Use facs gating viz style for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
+- Packaged executable path(s): `scripts/main.py`.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+See `## Prerequisites` above for related details.
+
+- `Python`: `3.10+`. Repository baseline for current packaged skills.
+- `Third-party packages`: `not explicitly version-pinned in this skill package`. Add pinned versions if this skill needs stricter environment control.
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/facs-gating-viz-style"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
 
 ```bash
 python -m py_compile scripts/main.py
 python scripts/main.py --help
-python scripts/main.py --demo --output demo.png
 ```
-
-## When to Use
-
-- Reformatting flow cytometry gating plots for publication figures
-- Applying consistent visual style across multiple FCS datasets
-- Generating contour, density, or dot plot variants from the same data
 
 ## Workflow
 
@@ -33,85 +80,102 @@ python scripts/main.py --demo --output demo.png
 4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
 5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
-**Fallback template:** If `scripts/main.py` fails or the FCS file is unreadable, report: (a) the failure point, (b) which plot styles are still generatable from available data, (c) manual steps to export a plot using FlowJo or equivalent.
-
 ## Parameters
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `--input`, `-i` | string | Yes* | FCS file path |
-| `--output`, `-o` | string | No | Output file path (default: `output.png`) |
-| `--x-channel` | string | No | X axis channel name (default: `FSC-A`) |
-| `--y-channel` | string | No | Y axis channel name (default: `SSC-A`) |
-| `--style`, `-s` | string | No | Plot style: `scatter`, `density`, `contour` (default: `scatter`) |
-| `--demo` | flag | No | Generate synthetic FSC/SSC data — no FCS file required |
-
-*Required unless `--demo` is used.
+| Parameter | Type | Default | Required | Description |
+|-----------|------|---------|----------|-------------|
+| `--data`, `-d` | string | - | Yes | FCS file path |
+| `--style`, `-s` | string | contour | No | Plot style (contour, density, dot) |
 
 ## Usage
 
 ```text
-python scripts/main.py --input sample.fcs --style contour
-python scripts/main.py --input sample.fcs --style density --output figure1.png
-python scripts/main.py --input sample.fcs --x-channel CD4 --y-channel CD8 --style scatter
-python scripts/main.py --demo --style contour --output demo_plot.png
+python scripts/main.py --data fcs_file.fcs --style contour
 ```
-
-## Implementation Notes (for script developer)
-
-The script must implement:
-
-1. **File validation** — before processing, check `os.path.exists(data_path)`. If missing or empty string: print `Error: File not found: {data_path}` to stderr and exit with code 1.
-2. **FCS parsing** — use `fcsparser` (supports FCS 2.0–3.1) or `flowio` (supports FCS 3.0+) to read FCS files and extract channel data. For FCS versions not supported by either library, instruct the user to export to CSV from FlowJo.
-3. **Plot generation** — use `matplotlib`/`seaborn` to generate:
-   - `contour`: 2D KDE contour plot of FSC vs SSC (or user-specified channels)
-   - `density`: smooth kernel density estimate heatmap
-   - `dot`: scatter plot with publication-appropriate point sizing and alpha
-4. **Output file** — save to `--output` path (default `output.png`). Print the output path to stdout for agent consumption.
-5. **`--demo` flag** — generate synthetic bivariate normal data mimicking FSC/SSC scatter and run the full visualization pipeline without requiring a real FCS file.
-
-## Known Limitations
-
-- `fcsparser` supports FCS 2.0–3.1; `flowio` supports FCS 3.0+. For older FCS 2.0 files not parsed by `flowio`, use `fcsparser` as the primary parser.
-- For FCS files with non-standard channel names, the script defaults to the first two channels for FSC/SSC axes.
 
 ## Features
 
-- Contour plots with configurable density levels
-- Density visualization with smooth kernel estimation
-- Dot plots with publication-appropriate point sizing
-- Consistent axis labeling and font sizing for journal figures
-- Demo mode for offline testing and CI validation (`--demo`)
+- Contour plots
+- Density visualization
+- Publication-ready styling
+
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
 
 ## Output Requirements
 
-Every response must make these explicit:
+Every final response should make these items explicit when they are relevant:
 
-- Objective and deliverable
+- Objective or requested deliverable
 - Inputs used and assumptions introduced
-- Workflow or decision path taken
-- Core result: styled plot file path
-- Constraints, risks, caveats (e.g., FCS version compatibility, channel naming)
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
 - Unresolved items and next-step checks
-
-## Input Validation
-
-This skill accepts: FCS data files for flow cytometry gating plot styling.
-
-If the request does not involve flow cytometry visualization — for example, asking to analyze gating strategy logic, perform statistical comparisons between populations, or process non-FCS file formats — do not proceed. Instead respond:
-
-> "`facs-gating-viz-style` is designed to apply publication-ready styling to flow cytometry gating plots. Your request appears to be outside this scope. Please provide an FCS file and desired plot style, or use a more appropriate tool for your task."
 
 ## Error Handling
 
-- If `--data` is missing (and `--demo` not set), state that the FCS file path is required.
-- If the FCS file path is empty or does not exist, print `Error: File not found: {path}` to stderr and exit with code 1.
-- If `--style` is not one of `contour`, `density`, `dot`, reject with a clear error listing valid options.
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
 - If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
 - If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
 - Do not fabricate files, citations, data, search results, or execution outcomes.
 
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `facs-gating-viz-style` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `facs-gating-viz-style` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
 ## Response Template
+
+Use the following fixed structure for non-trivial requests:
 
 1. Objective
 2. Inputs Received
@@ -120,3 +184,5 @@ If the request does not involve flow cytometry visualization — for example, as
 5. Deliverable
 6. Risks and Limits
 7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

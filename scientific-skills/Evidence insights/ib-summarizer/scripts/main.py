@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""
-IB Summarizer - 研究者手册核心安全信息提取工具
+"""IB Summarizer - Researchers Manual Core Security Information Extraction Tool
 
-功能：从Investigator's Brochure文档中提取核心安全信息(CSI)
-"""
+Function: Extract Core Security Information (CSI) from Investigator's Brochure document"""
 
 import argparse
 import json
@@ -16,7 +14,7 @@ from typing import Optional, List, Dict, Any
 
 @dataclass
 class DrugInfo:
-    """药物基本信息"""
+    """Basic drug information"""
     name: str = ""
     version: str = ""
     date: str = ""
@@ -25,16 +23,16 @@ class DrugInfo:
 
 @dataclass
 class AdverseReaction:
-    """不良反应"""
-    system_organ_class: str = ""  # 系统器官分类
-    reaction: str = ""  # 反应名称
-    frequency: str = ""  # 发生率
-    severity: str = ""  # 严重程度
+    """adverse reactions"""
+    system_organ_class: str = ""  # system organ classification
+    reaction: str = ""  # reaction name
+    frequency: str = ""  # incidence
+    severity: str = ""  # Severity
 
 
 @dataclass
 class SafetyUpdate:
-    """安全更新记录"""
+    """Security update history"""
     version: str = ""
     date: str = ""
     content: str = ""
@@ -42,7 +40,7 @@ class SafetyUpdate:
 
 @dataclass
 class CoreSafetyInfo:
-    """核心安全信息"""
+    """Core safety information"""
     adverse_reactions: List[AdverseReaction]
     contraindications: List[str]
     warnings: List[str]
@@ -54,20 +52,20 @@ class CoreSafetyInfo:
 
 
 class TextExtractor:
-    """文本提取器"""
+    """text extractor"""
     
     @staticmethod
     def extract_from_pdf(file_path: str) -> str:
-        """从PDF提取文本"""
+        """Extract text from PDF"""
         try:
             import pdfplumber
         except ImportError:
             try:
                 import PyPDF2
             except ImportError:
-                raise ImportError("请安装 pdfplumber 或 PyPDF2: pip install pdfplumber")
+                raise ImportError("Please install pdfplumber or PyPDF2: pip install pdfplumber")
             
-            # 使用 PyPDF2
+            # Using PyPDF2
             text = ""
             with open(file_path, 'rb') as f:
                 reader = PyPDF2.PdfReader(f)
@@ -75,7 +73,7 @@ class TextExtractor:
                     text += page.extract_text() + "\n"
             return text
         
-        # 使用 pdfplumber (更精确)
+        # Use pdfplumber (more precise)
         text = ""
         with pdfplumber.open(file_path) as pdf:
             for page in pdf.pages:
@@ -85,11 +83,11 @@ class TextExtractor:
     
     @staticmethod
     def extract_from_docx(file_path: str) -> str:
-        """从Word提取文本"""
+        """Extract text from Word"""
         try:
             from docx import Document
         except ImportError:
-            raise ImportError("请安装 python-docx: pip install python-docx")
+            raise ImportError("Please install python-docx: pip install python-docx")
         
         doc = Document(file_path)
         text = "\n".join([para.text for para in doc.paragraphs])
@@ -97,13 +95,13 @@ class TextExtractor:
     
     @staticmethod
     def extract_from_txt(file_path: str) -> str:
-        """从TXT提取文本"""
+        """Extract text from TXT"""
         with open(file_path, 'r', encoding='utf-8') as f:
             return f.read()
     
     @classmethod
     def extract(cls, file_path: str) -> str:
-        """根据文件类型自动提取文本"""
+        """Automatically extract text based on file type"""
         path = Path(file_path)
         suffix = path.suffix.lower()
         
@@ -114,64 +112,64 @@ class TextExtractor:
         elif suffix in ['.txt', '.md']:
             return cls.extract_from_txt(file_path)
         else:
-            # 尝试作为文本读取
+            # Try to read as text
             try:
                 return cls.extract_from_txt(file_path)
             except:
-                raise ValueError(f"不支持的文件格式: {suffix}")
+                raise ValueError(f"Unsupported file format: {suffix}")
 
 
 class IBSummarizer:
-    """IB文档安全信息提取器"""
+    """IB document security information extractor"""
     
-    # 安全相关关键词模式
+    # Security related keyword pattern
     KEYWORDS = {
         'adverse_reactions': [
             r'adverse\s+reaction',
-            r'不良反应',
+            'adverse reactions',
             r'adverse\s+event',
-            r'不良事件',
+            'adverse events',
             r'safety\s+data',
             r'safety\s+profile',
         ],
         'contraindications': [
             r'contraindication',
-            r'禁忌症',
-            r'禁忌',
+            'Contraindications',
+            'Taboo',
         ],
         'warnings': [
             r'warning',
-            r'警告',
+            'warn',
         ],
         'precautions': [
             r'precaution',
-            r'注意事项',
+            'Things to note',
         ],
         'drug_interactions': [
             r'drug\s+interaction',
-            r'药物相互作用',
+            'drug interactions',
             r'interaction',
         ],
         'special_populations': [
             r'special\s+population',
-            r'特殊人群',
+            'Special groups',
             r'pregnancy|pregnant',
-            r'妊娠|孕妇',
+            'Pregnancy | Pregnant women',
             r'lactation|breastfeeding',
-            r'哺乳',
+            'breast-feeding',
             r'pediatric|children',
-            r'儿童',
+            'child',
             r'elderly|geriatric',
-            r'老年',
+            'elderly',
             r'hepatic',
-            r'肝',
+            'liver',
             r'renal',
-            r'肾',
+            'kidney',
         ],
         'overdose': [
             r'overdose',
-            r'过量',
-            r'中毒',
+            'excess',
+            'Poisoned',
         ],
     }
     
@@ -180,13 +178,13 @@ class IBSummarizer:
         self.lines = text.split('\n')
     
     def _find_section(self, keywords: List[str], context_lines: int = 50) -> str:
-        """查找包含关键词的章节"""
+        """Find chapters containing keywords"""
         patterns = [re.compile(kw, re.IGNORECASE) for kw in keywords]
         
         for i, line in enumerate(self.lines):
             for pattern in patterns:
                 if pattern.search(line):
-                    # 提取上下文
+                    # Extract context
                     start = max(0, i)
                     end = min(len(self.lines), i + context_lines)
                     return '\n'.join(self.lines[start:end])
@@ -194,13 +192,13 @@ class IBSummarizer:
         return ""
     
     def _extract_drug_info(self) -> DrugInfo:
-        """提取药物基本信息"""
+        """Extract basic drug information"""
         info = DrugInfo()
         
-        # 尝试匹配药物名称
+        # Try to match drug name
         name_patterns = [
-            r'(?:Drug\s+Name|Investigational\s+Product|药物名称)[\s:：]+([^\n]+)',
-            r'(?:Title|标题)[\s:：]+([^\n]+)',
+            '(?:Drug\\s+Name|Investigational\\s+Product|Drug name)[\\s::]+([^\\n]+)',
+            '(?:Title|title)[\\s::]+([^\\n]+)',
         ]
         for pattern in name_patterns:
             match = re.search(pattern, self.text, re.IGNORECASE)
@@ -208,9 +206,9 @@ class IBSummarizer:
                 info.name = match.group(1).strip()
                 break
         
-        # 版本号
+        # version number
         version_patterns = [
-            r'(?:Version|版本)[\s:：]*(\d+[.\d]*)',
+            '(?:Version|version)[\\s::]*(\\d+[.\\d]*)',
             r'Edition[\s:：]*(\d+[.\d]*)',
         ]
         for pattern in version_patterns:
@@ -219,9 +217,9 @@ class IBSummarizer:
                 info.version = match.group(1).strip()
                 break
         
-        # 日期
+        # date
         date_patterns = [
-            r'(?:Date|日期)[\s:：]*(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
+            '(?:Date|Date)[\\s::]*(\\d{4}[-/]\\d{1,2}[-/]\\d{1,2})',
             r'(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
         ]
         for pattern in date_patterns:
@@ -233,17 +231,17 @@ class IBSummarizer:
         return info
     
     def _extract_adverse_reactions(self) -> List[AdverseReaction]:
-        """提取不良反应信息"""
+        """Extract adverse reaction information"""
         section = self._find_section(self.KEYWORDS['adverse_reactions'], 100)
         reactions = []
         
         if not section:
             return reactions
         
-        # 简单的表格行匹配
+        # Simple table row matching
         lines = section.split('\n')
-        for line in lines[1:]:  # 跳过标题行
-            # 尝试匹配：系统器官 | 反应 | 频率 | 严重程度
+        for line in lines[1:]:  # skip title row
+            # Try to match: System Organ | Response | Frequency | Severity
             parts = re.split(r'[\|，,；;\t]', line)
             if len(parts) >= 2:
                 reactions.append(AdverseReaction(
@@ -256,14 +254,14 @@ class IBSummarizer:
         return reactions
     
     def _extract_list_items(self, keywords: List[str]) -> List[str]:
-        """提取列表项"""
+        """Extract list items"""
         section = self._find_section(keywords, 30)
         if not section:
             return []
         
         items = []
         for line in section.split('\n'):
-            # 匹配列表项 (•, -, *, 数字. 等)
+            # Match list items (•, -, *, numbers, etc.)
             match = re.match(r'^[\s]*(?:[•\-\*•]|\d+[.．）)])[\s]*(.+)', line)
             if match:
                 items.append(match.group(1).strip())
@@ -271,21 +269,21 @@ class IBSummarizer:
         return items
     
     def _extract_special_populations(self) -> Dict[str, str]:
-        """提取特殊人群信息"""
+        """Extract special population information"""
         section = self._find_section(self.KEYWORDS['special_populations'], 80)
         populations = {}
         
         if not section:
             return populations
         
-        # 常见特殊人群
+        # Common special groups
         pop_patterns = {
-            'pregnancy': r'(?:Pregnancy|妊娠|孕妇)[\s\S]{0,500}?',
-            'lactation': r'(?:Lactation|Breastfeeding|哺乳)[\s\S]{0,500}?',
-            'pediatric': r'(?:Pediatric|Children|儿童)[\s\S]{0,500}?',
-            'elderly': r'(?:Elderly|Geriatric|老年)[\s\S]{0,500}?',
-            'hepatic': r'(?:Hepatic|肝)[\s\S]{0,500}?',
-            'renal': r'(?:Renal|肾)[\s\S]{0,500}?',
+            'pregnancy': '(?:Pregnancy|Pregnancy|Pregnant woman)[\\s\\S]{0,500}?',
+            'lactation': '(?:Lactation|Breastfeeding|Lactation)[\\s\\S]{0,500}?',
+            'pediatric': '(?:Pediatric|Children|Children)[\\s\\S]{0,500}?',
+            'elderly': '(?:Elderly|Geriatric|Elderly)[\\s\\S]{0,500}?',
+            'hepatic': '(?:Hepatic|Liver)[\\s\\S]{0,500}?',
+            'renal': '(?:Renal|kidney)[\\s\\S]{0,500}?',
         }
         
         for key, pattern in pop_patterns.items():
@@ -296,35 +294,35 @@ class IBSummarizer:
         return populations
     
     def _extract_overdose(self) -> Dict[str, str]:
-        """提取用药过量信息"""
+        """Extract overdose information"""
         section = self._find_section(self.KEYWORDS['overdose'], 50)
         if not section:
             return {}
         
         overdose = {}
         
-        # 症状
-        symptoms_match = re.search(r'(?:Symptoms|症状)[：:]([^\n]+)', section, re.IGNORECASE)
+        # symptom
+        symptoms_match = re.search('(?:Symptoms|symptoms)[：:]([^\\n]+)', section, re.IGNORECASE)
         if symptoms_match:
             overdose['symptoms'] = symptoms_match.group(1).strip()
         
-        # 处理
-        management_match = re.search(r'(?:Management|Treatment|处理|治疗)[：:]([^\n]+)', section, re.IGNORECASE)
+        # deal with
+        management_match = re.search('(?:Management|Treatment|Processing|Treatment)[：:]([^\\n]+)', section, re.IGNORECASE)
         if management_match:
             overdose['management'] = management_match.group(1).strip()
         
         return overdose
     
     def _extract_safety_updates(self) -> List[SafetyUpdate]:
-        """提取安全更新历史"""
-        # 通常在文档末尾的版本历史部分
+        """Extract security update history"""
+        # Usually in the version history section at the end of the document
         updates = []
         
-        # 查找版本历史表格
+        # Find version history table
         version_pattern = r'(\d+[.\d]*)\s+(\d{4}[-/]\d{1,2}[-/]\d{1,2})\s+([^\n]+)'
         matches = re.findall(version_pattern, self.text)
         
-        for match in matches[:10]:  # 最多10条
+        for match in matches[:10]:  # Up to 10 items
             updates.append(SafetyUpdate(
                 version=match[0],
                 date=match[1],
@@ -334,7 +332,7 @@ class IBSummarizer:
         return updates
     
     def summarize(self) -> Dict[str, Any]:
-        """执行完整的安全信息提取"""
+        """Perform complete security information extraction"""
         drug_info = self._extract_drug_info()
         
         core_safety = CoreSafetyInfo(
@@ -364,102 +362,103 @@ class IBSummarizer:
 
 
 class OutputFormatter:
-    """输出格式化器"""
+    """output formatter"""
     
     @staticmethod
     def to_json(data: Dict[str, Any]) -> str:
-        """格式化为JSON"""
+        """Format to JSON"""
         return json.dumps(data, ensure_ascii=False, indent=2)
     
     @staticmethod
     def to_markdown(data: Dict[str, Any], language: str = 'zh') -> str:
-        """格式化为Markdown"""
+        """Formatted as Markdown"""
         drug = data['drug_info']
         safety = data['core_safety_info']
         
-        md = f"""# IB安全信息摘要
+        md = f"""# IBSafety Information Summary
 
-## 药物基本信息
-- **药物名称**: {drug['name'] or 'N/A'}
-- **版本号**: {drug['version'] or 'N/A'}
-- **日期**: {drug['date'] or 'N/A'}
-- **申办方**: {drug['sponsor'] or 'N/A'}
+## Basic drug information
+- **Drug name**: {drug['name'] or 'N/A'}
+- **version number**: {drug['version'] or 'N/A'}
+- **date**: {drug['date'] or 'N/A'}
+- **Sponsor**: {drug['sponsor'] or 'N/A'}
 
-## 核心安全信息
+## Core safety information
 
-### 已知不良反应
+### Known adverse reactions
 """
         
         if safety['adverse_reactions']:
-            md += "| 系统器官分类 | 不良反应 | 发生率 | 严重程度 |\n"
+            md += "| System Organ Classification | Adverse Reactions | Incidence | Severity |"
             md += "|-------------|---------|--------|---------|\n"
             for ar in safety['adverse_reactions']:
                 md += f"| {ar['system_organ_class'] or '-'} | {ar['reaction'] or '-'} | {ar['frequency'] or '-'} | {ar['severity'] or '-'} |\n"
         else:
-            md += "_未检测到不良反应数据_\n"
+            md += "_No adverse reaction data detected_"
         
-        md += "\n### 禁忌症\n"
+        md += "### Contraindications"
         if safety['contraindications']:
             for item in safety['contraindications']:
                 md += f"- {item}\n"
         else:
-            md += "_未检测到禁忌症数据_\n"
+            md += "_No contraindication data detected_"
         
-        md += "\n### 警告与注意事项\n"
+        md += "### Warnings and Precautions"
         if safety['warnings']:
-            md += "#### 警告\n"
+            md += "#### warn"
             for item in safety['warnings']:
                 md += f"- {item}\n"
         
         if safety['precautions']:
-            md += "#### 注意事项\n"
+            md += "#### Notes"
             for item in safety['precautions']:
                 md += f"- {item}\n"
         
         if not safety['warnings'] and not safety['precautions']:
-            md += "_未检测到警告/注意事项数据_\n"
+            md += "_Warning/Caution Data Not Detected_"
         
-        md += "\n### 药物相互作用\n"
+        md += "### Drug Interactions"
         if safety['drug_interactions']:
             for item in safety['drug_interactions']:
                 md += f"- {item}\n"
         else:
-            md += "_未检测到药物相互作用数据_\n"
+            md += "_No drug interaction data detected_"
         
-        md += "\n### 特殊人群用药注意事项\n"
+        md += "### Medication precautions for special groups"
         if safety['special_populations']:
             for pop, note in safety['special_populations'].items():
                 md += f"**{pop.capitalize()}**: {note[:200]}...\n\n"
         else:
-            md += "_未检测到特殊人群数据_\n"
+            md += "_No special population data detected_"
         
-        md += "\n### 用药过量\n"
+        md += "### Overdose"
         if safety['overdose']:
             if 'symptoms' in safety['overdose']:
-                md += f"- **症状**: {safety['overdose']['symptoms']}\n"
+                md += f"- **symptom**: {safety['overdose']['symptoms']}\n"
             if 'management' in safety['overdose']:
-                md += f"- **处理**: {safety['overdose']['management']}\n"
+                md += f"- **deal with**: {safety['overdose']['management']}\n"
         else:
-            md += "_未检测到过量的相关数据_\n"
+            md += "_No data related to overdose detected_"
         
-        md += "\n### 安全更新历史\n"
+        md += "### Security update history"
         if safety['safety_updates']:
-            md += "| 版本 | 日期 | 更新内容 |\n"
+            md += "| Version | Date | Updates |"
             md += "|-----|------|---------|\n"
             for update in safety['safety_updates']:
                 md += f"| {update['version']} | {update['date']} | {update['content'][:100]}... |\n"
         else:
-            md += "_未检测到安全更新历史_\n"
+            md += "_Security update history not detected_"
         
-        md += "\n---\n*本摘要由IB Summarizer自动生成，仅供参考*\n"
+        md += """---
+*This summary is automatically generated by IB Summarizer and is for reference only*"""
         
         return md
     
     @staticmethod
     def to_text(data: Dict[str, Any]) -> str:
-        """格式化为纯文本"""
+        """Format as plain text"""
         md = OutputFormatter.to_markdown(data)
-        # 移除Markdown标记
+        # Remove Markdown tags
         text = re.sub(r'#+\s*', '', md)
         text = re.sub(r'\*\*', '', text)
         text = re.sub(r'\|', ' | ', text)
@@ -467,43 +466,41 @@ class OutputFormatter:
 
 
 def main():
-    """主函数"""
+    """main function"""
     parser = argparse.ArgumentParser(
-        description='IB Summarizer - 研究者手册核心安全信息提取工具',
+        description='IB Summarizer - Researchers Manual Core Security Information Extraction Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-示例:
+        epilog="""Example:
   python main.py /path/to/IB.pdf
   python main.py /path/to/IB.docx -o summary.json -f json
-  python main.py /path/to/IB.pdf -l en -o summary.md
-        """
+  python main.py /path/to/IB.pdf -l en -o summary.md"""
     )
     
-    parser.add_argument('input_file', help='输入的IB文档路径(PDF/Word/TXT)')
-    parser.add_argument('-o', '--output', help='输出文件路径(默认输出到stdout)')
+    parser.add_argument('input_file', help='Entered IB document path (PDF/Word/TXT)')
+    parser.add_argument('-o', '--output', help='Output file path (default output to stdout)')
     parser.add_argument('-f', '--format', choices=['json', 'markdown', 'text'], 
-                        default='markdown', help='输出格式(默认: markdown)')
+                        default='markdown', help='Output format (default: markdown)')
     parser.add_argument('-l', '--language', choices=['zh', 'en'], 
-                        default='zh', help='输出语言(默认: zh)')
+                        default='zh', help='Output language (default: zh)')
     
     args = parser.parse_args()
     
-    # 检查输入文件
+    # Check input file
     if not Path(args.input_file).exists():
-        print(f"错误: 文件不存在: {args.input_file}", file=sys.stderr)
+        print(f"mistake: File does not exist: {args.input_file}", file=sys.stderr)
         sys.exit(1)
     
     try:
-        # 提取文本
-        print(f"正在提取: {args.input_file}...", file=sys.stderr)
+        # Extract text
+        print(f"Extracting: {args.input_file}...", file=sys.stderr)
         text = TextExtractor.extract(args.input_file)
         
-        # 提取安全信息
-        print("正在分析安全信息...", file=sys.stderr)
+        # Extract security information
+        print("Analyzing security information...", file=sys.stderr)
         summarizer = IBSummarizer(text)
         data = summarizer.summarize()
         
-        # 格式化输出
+        # Formatted output
         formatter = OutputFormatter()
         if args.format == 'json':
             output = formatter.to_json(data)
@@ -512,19 +509,19 @@ def main():
         else:
             output = formatter.to_markdown(data, args.language)
         
-        # 输出结果
+        # Output results
         if args.output:
             with open(args.output, 'w', encoding='utf-8') as f:
                 f.write(output)
-            print(f"摘要已保存至: {args.output}", file=sys.stderr)
+            print(f"English: {args.output}", file=sys.stderr)
         else:
             print(output)
             
     except ImportError as e:
-        print(f"依赖错误: {e}", file=sys.stderr)
+        print(f"dependency error: {e}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
-        print(f"错误: {e}", file=sys.stderr)
+        print(f"mistake: {e}", file=sys.stderr)
         sys.exit(1)
 
 

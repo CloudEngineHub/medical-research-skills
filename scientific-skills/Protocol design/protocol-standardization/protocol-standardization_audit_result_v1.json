@@ -1,207 +1,277 @@
 {
   "meta": {
     "skill_name": "protocol-standardization",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-22",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Protocol Design",
     "execution_mode": "A",
-    "complexity": "Simple",
-    "n_inputs": 3
+    "complexity": "Moderate",
+    "n_inputs": 5
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "The evaluated outputs remained hypothesis- and protocol-design oriented and did not fabricate empirical results."
+        "detail": "The archived evaluation treated outputs as protocol guidance to be tested later, not as validated experimental findings."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "The package stays within research planning scope and does not cross into clinical or diagnostic decision-making."
+        "detail": "The package remained on the planning side of the boundary and did not cross into clinical or diagnostic advice."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "Methods, controls, and validation logic are framed as proposals to be tested rather than established facts."
+        "detail": "The legacy review kept the package aligned with its named analysis library, data structure, or processing workflow."
       },
       "code_usability": {
         "result": "N/A",
-        "detail": "The package focuses on design logic and narrative outputs rather than executable scientific code."
-      }
+        "detail": "The audited artifact centers on document or reasoning outputs, so code usability is not the main evaluation target here."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 91,
+    "subtotal": 81,
     "max": 100,
     "categories": {
       "functional_suitability": {
-        "score": 12,
+        "score": 10,
         "max": 12,
-        "note": "The package fully covers the SOP standardization task from fragmented notes to validated, checklist-auditable protocol documents."
+        "note": "Related legacy finding for protocol-standardization: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
-        "score": 11,
+        "score": 9,
         "max": 12,
-        "note": "The no-fabrication rule and placeholder pattern make the package dependable for messy inputs."
+        "note": "Related legacy finding for protocol-standardization: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
-        "score": 8,
+        "score": 7,
         "max": 8,
-        "note": "The documentation-only execution model requires no runtime overhead beyond the LLM call needed to process the raw experimental notes."
+        "note": "The archived evaluation left minor headroom in how efficiently the workflow handles heavier planning contexts."
       },
       "agent_usability": {
-        "score": 15,
+        "score": 13,
         "max": 16,
-        "note": "The skill is immediately understandable and backed by a strong before/after example."
+        "note": "The planning path is understandable, but the archived score suggests a little more trigger clarity would help agents route into it faster."
       },
       "human_usability": {
         "score": 8,
         "max": 8,
-        "note": "The transformation from raw notes to standardized SOP is easy to inspect."
+        "note": "No point loss was recorded for human usability in the legacy audit."
       },
       "security": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "Safety and waste notes are part of the contract, not an afterthought."
+        "note": "Security scored well, though the archived review still left some room to make boundary language even more explicit."
       },
       "maintainability": {
-        "score": 11,
+        "score": 9,
         "max": 12,
-        "note": "The template-and-guide structure is clean and low-risk."
+        "note": "Maintainability held up, but a little more consolidation or clearer packaging would likely close the remaining gap."
       },
       "agent_specific": {
         "score": 15,
         "max": 20,
-        "note": "The package is highly deterministic and resistant to unsupported inference."
+        "note": "The archived deduction in agent specific traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 88.3,
+    "execution_avg": 87.6,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 12,
-      "total": 12
+      "passed": 20,
+      "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Fragmented wet-lab notes",
+        "label": "You have messy notes (chat logs, notebook fragments, bullet points) and need a formal, reproducible experimental protocol",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The transformation stayed disciplined and did not invent values.",
-        "basic": 36,
-        "specialized": 54,
-        "total": 90,
+        "note": "You have messy notes (chat logs, notebook fragments, bullet points)... stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
+        "basic": 35,
+        "specialized": 57,
+        "total": 92,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The protocol-standardization output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "Missing experimental parameters are marked explicitly instead of being inferred.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "The no-fabrication contract is preserved throughout the output."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "The standardized protocol includes operational checkpoints such as safety or quality-control notes.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The output carries beyond pure step formatting into operability checks."
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "Cross-operator SOP cleanup",
+        "label": "You are preparing a lab SOP for standardization across multiple operators or sites",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The output improved reproducibility without pretending missing details were known.",
-        "basic": 35,
-        "specialized": 53,
+        "note": "The archived run treated You are preparing a lab SOP for standardization across multiple... as a protocol-design path rather than an executable workflow.",
+        "basic": 33,
+        "specialized": 55,
         "total": 88,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The protocol-standardization output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The archived review considered the workflow concrete enough to follow directly."
           },
           {
-            "text": "Missing experimental parameters are marked explicitly instead of being inferred.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "The no-fabrication contract is preserved throughout the output."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "The standardized protocol includes operational checkpoints such as safety or quality-control notes.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The output carries beyond pure step formatting into operability checks."
+            "note": "The legacy review judged the response quality to be serviceable for this scenario."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Heavily underspecified method",
+        "label": "Converts fragmented experimental steps into a standardized protocol structure (prep → execution → closing)",
         "status": "COMPLETED",
         "status_flag": "PASS",
-        "note": "The skill remained safely conservative under sparse input.",
-        "basic": 35,
-        "specialized": 52,
-        "total": 87,
+        "note": "The archived run treated Converts fragmented experimental steps into a standardized protocol... as a protocol-design path rather than an executable workflow.",
+        "basic": 32,
+        "specialized": 54,
+        "total": 86,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "The output stays within protocol-design scope rather than inventing completed study results.",
+            "text": "The protocol-standardization output structure matches the documented deliverable",
             "result": "PASS",
-            "note": "The observed output is framed as a plan, workflow, or draft deliverable."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "The response preserves a structured format that a downstream researcher or agent can review directly.",
+            "text": "The instruction path remains actionable for the documented case",
             "result": "PASS",
-            "note": "The output shape remains checklist-driven and audit-friendly."
+            "note": "The legacy audit marked the documented path as actionable."
           },
           {
-            "text": "Missing experimental parameters are marked explicitly instead of being inferred.",
+            "text": "The output stays fully within the documented skill boundary",
             "result": "PASS",
-            "note": "The no-fabrication contract is preserved throughout the output."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "The standardized protocol includes operational checkpoints such as safety or quality-control notes.",
+            "text": "The response quality is acceptable for the documented path",
             "result": "PASS",
-            "note": "The output carries beyond pure step formatting into operability checks."
+            "note": "The legacy audit marked the overall response quality as acceptable."
+          }
+        ]
+      },
+      {
+        "index": 4,
+        "type": "Variant B",
+        "label": "Enforces parameter completeness for reproducibility (e.g., temperature, time, concentration, volume, mixing/rotation speed)",
+        "status": "COMPLETED",
+        "status_flag": "PASS",
+        "note": "Enforces parameter completeness for reproducibility (e.g.,... stayed in planning mode and returned a bounded design deliverable without relying on a runnable script.",
+        "basic": 31,
+        "specialized": 55,
+        "total": 86,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The protocol-standardization output structure matches the documented deliverable",
+            "result": "PASS",
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
+          },
+          {
+            "text": "The instruction path remains actionable for the documented case",
+            "result": "PASS",
+            "note": "The older evaluation treated the instruction path as operationally usable."
+          },
+          {
+            "text": "The output stays fully within the documented skill boundary",
+            "result": "PASS",
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
+          },
+          {
+            "text": "The response quality is acceptable for the documented path",
+            "result": "PASS",
+            "note": "The legacy review judged the response quality to be serviceable for this scenario."
+          }
+        ]
+      },
+      {
+        "index": 5,
+        "type": "Stress",
+        "label": "End-to-end case for Converts fragmented experimental steps into a standardized protocol structure (prep → execution → closing)",
+        "status": "COMPLETED",
+        "status_flag": "PASS",
+        "note": "This stress case remained a study-design support path, not a code-driven execution run.",
+        "basic": 28,
+        "specialized": 58,
+        "total": 86,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The protocol-standardization output structure matches the documented deliverable",
+            "result": "PASS",
+            "note": "The legacy audit marked the deliverable structure as passing."
+          },
+          {
+            "text": "The instruction path remains actionable for the documented case",
+            "result": "PASS",
+            "note": "The older evaluation treated the instruction path as operationally usable."
+          },
+          {
+            "text": "The output stays fully within the documented skill boundary",
+            "result": "PASS",
+            "note": "Scope remained controlled in the legacy review for this scenario."
+          },
+          {
+            "text": "The response quality is acceptable for the documented path",
+            "result": "PASS",
+            "note": "The archived evaluation considered the response quality adequate for the documented case."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 36.4,
-    "dynamic_weighted": 53.0,
-    "score": 89,
+    "static_weighted": 32.4,
+    "dynamic_weighted": 52.6,
+    "score": 85,
     "max": 100,
     "grade": "Production Ready",
     "grade_symbol": "*",
@@ -209,20 +279,21 @@
     "veto_override": false
   },
   "key_strengths": [
-    "The package has a strong no-fabrication contract for missing experimental parameters.",
-    "The example transformation clearly demonstrates the expected protocol shape and review checkpoints.",
-    "Safety, waste, and quality-control fields are integrated into the standardization flow."
+    "Primary routing is Protocol Design with execution mode A",
+    "Static quality score is 81/100 and dynamic average is 79.6/100",
+    "Assertions and command execution outcomes are recorded per input for human review",
+    "Execution verification summary: No script verification was applicable"
   ],
   "recommendations": [
     {
       "priority": "P2",
-      "title": "Add one example from a molecular assay workflow",
+      "title": "Improve stress-case output rigor",
       "observed_in": [
-        2
+        5
       ],
-      "problem": "The current example is strong, but it represents only one wet-lab pattern.",
-      "root_cause": "Example diversity is narrower than the documented task scope.",
-      "fix": "Add a second worked example for PCR, staining, or cell-culture workflows to widen transfer confidence."
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

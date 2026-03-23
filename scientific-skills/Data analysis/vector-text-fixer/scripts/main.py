@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Vector Text Fixer - 修复PDF/SVG矢量图中的乱码文字
-"""
+"""Vector Text Fixer - Fix garbled text in PDF/SVG vector images"""
 
 import argparse
 import json
@@ -15,7 +13,7 @@ from dataclasses import dataclass, asdict
 
 @dataclass
 class TextBlock:
-    """文本块数据结构"""
+    """text block data structure"""
     id: str
     bbox: List[float]  # [x0, y0, x1, y1]
     original_text: str
@@ -27,37 +25,35 @@ class TextBlock:
 
 
 class GarbledTextDetector:
-    """乱码文本检测器"""
+    """Garbled text detector"""
     
-    # 常见的乱码/替换字符
+    # Common gibberish/replacement characters
     REPLACEMENT_CHARS = {
-        '\ufffd',  # � 替换字符
-        '\u25a1',  # □ 方框
-        '\u25a0',  # ■ 实心方框
-        '\u25af',  # ▯ 空心方框
-        '\u2588',  # █ 全块
-        '\ufffe',  # � 非字符
-        '\uffff',  # � 非字符
-        '?',       # 问号替代
+        '\ufffd',  # � Replacement character
+        '\u25a1',  # □ box
+        '\u25a0',  # ■ Solid box
+        '\u25af',  # ▯ hollow square
+        '\u2588',  # █ Whole block
+        '\ufffe',  # � non-character
+        '\uffff',  # � non-character
+        '?',       # question mark substitution
     }
     
-    # 常见乱码模式
+    # Common garbled patterns
     GARBLED_PATTERNS = [
-        r'[\u0000-\u0008\u000b-\u000c\u000e-\u001f]',  # 控制字符
-        r'[\ufffd\u25a1\u25a0\u25af\u2588\ufffe\uffff]',  # 替换字符
-        r'[�]{2,}',  # 连续替换字符
-        r'(?:\\x[0-9a-fA-F]{2}){2,}',  # 转义序列
-        r'[\x80-\x9f]',  # C1控制字符
+        r'[\u0000-\u0008\u000b-\u000c\u000e-\u001f]',  # control characters
+        r'[\ufffd\u25a1\u25a0\u25af\u2588\ufffe\uffff]',  # Replace character
+        r'[�]{2,}',  # Continuous replacement characters
+        r'(?:\\x[0-9a-fA-F]{2}){2,}',  # escape sequence
+        r'[\x80-\x9f]',  # C1 control character
     ]
     
     def __init__(self):
         self.compiled_patterns = [re.compile(p) for p in self.GARBLED_PATTERNS]
     
     def is_garbled(self, text: str) -> Tuple[bool, float]:
-        """
-        检测文本是否为乱码
-        返回: (是否乱码, 乱码置信度 0-1)
-        """
+        """Detect whether text is garbled
+        Return: (Whether it is garbled, garbled confidence level 0-1)"""
         if not text or not isinstance(text, str):
             return False, 1.0
         
@@ -67,21 +63,21 @@ class GarbledTextDetector:
         
         garbled_score = 0.0
         
-        # 1. 检查替换字符
+        # 1. Check for replacement characters
         replacement_count = sum(1 for c in text if c in self.REPLACEMENT_CHARS)
         garbled_score += (replacement_count / text_len) * 0.5
         
-        # 2. 检查乱码模式
+        # 2. Check the garbled code pattern
         for pattern in self.compiled_patterns:
             matches = pattern.findall(text)
             if matches:
                 garbled_score += len(matches) / text_len * 0.3
         
-        # 3. 检查字符分布异常
+        # 3. Check for abnormal character distribution
         if self._has_abnormal_distribution(text):
             garbled_score += 0.2
         
-        # 4. 检查混合编码迹象
+        # 4. Check for signs of mixed encoding
         if self._has_encoding_mixed(text):
             garbled_score += 0.15
         
@@ -91,21 +87,21 @@ class GarbledTextDetector:
         return is_garbled, confidence
     
     def _has_abnormal_distribution(self, text: str) -> bool:
-        """检查字符分布是否异常"""
+        """Check whether the character distribution is abnormal"""
         if len(text) < 3:
             return False
         
-        # 统计不可打印字符比例
+        # Statistical proportion of unprintable characters
         unprintable = sum(1 for c in text if ord(c) < 32 and c not in '\t\n\r')
         ratio = unprintable / len(text)
         return ratio > 0.3
     
     def _has_encoding_mixed(self, text: str) -> bool:
-        """检测是否存在混合编码迹象"""
-        # 检测UTF-8多字节字符被错误解析的迹象
-        # 如：Ã© 应该是 é (UTF-8字节被当作Latin-1解析)
+        """Detecting signs of mixed encoding"""
+        # Detecting signs that UTF-8 multibyte characters are being parsed incorrectly
+        # For example: é should be é (UTF-8 bytes are parsed as Latin-1)
         mixed_patterns = [
-            r'Ã[\xa0-\xbf]',  # UTF-8被误解析为Latin-1
+            r'Ã[\xa0-\xbf]',  # UTF-8 misparsed as Latin-1
             r'Â[\x80-\xbf]',
             r'Ã¢',
             r'Ã£',
@@ -117,7 +113,7 @@ class GarbledTextDetector:
 
 
 class PDFFixer:
-    """PDF文本修复器"""
+    """PDF text repairer"""
     
     def __init__(self, detector: GarbledTextDetector):
         self.detector = detector
@@ -125,9 +121,7 @@ class PDFFixer:
     
     def fix(self, input_path: str, output_path: str, 
             repair_level: str = "standard") -> Dict[str, Any]:
-        """
-        修复PDF文件中的乱码文字
-        """
+        """Fix garbled text in PDF files"""
         try:
             import fitz  # PyMuPDF
         except ImportError:
@@ -162,7 +156,7 @@ class PDFFixer:
                 
                 self.text_blocks.append(block)
         
-        # 生成修复报告
+        # Generate repair report
         result = {
             "success": True,
             "file_type": "pdf",
@@ -177,18 +171,18 @@ class PDFFixer:
         return result
     
     def _extract_text_blocks(self, page, page_num: int) -> List[TextBlock]:
-        """从PDF页面提取文本块"""
+        """Extract text blocks from PDF pages"""
         blocks = []
         
         try:
             import fitz
             
-            # 获取页面上的文本块
+            # Get the text block on the page
             text_dict = page.get_text("dict")
             
             block_id = 0
             for block in text_dict.get("blocks", []):
-                if "lines" in block:  # 文本块
+                if "lines" in block:  # text block
                     for line in block["lines"]:
                         for span in line.get("spans", []):
                             text = span.get("text", "")
@@ -216,54 +210,54 @@ class PDFFixer:
         return blocks
     
     def _suggest_fix(self, garbled_text: str, repair_level: str) -> str:
-        """根据乱码内容建议修复文本"""
-        # 这里可以实现更复杂的修复逻辑
-        # 目前返回占位符，提示用户手动输入
+        """Suggest repairing text based on garbled content"""
+        # More complex repair logic can be implemented here
+        # Currently returns a placeholder, prompting the user to enter manually
         
         if repair_level == "minimal":
-            # 最小修复：只移除替换字符
+            # Minimal fix: only remove replacement characters
             return garbled_text.replace('\ufffd', '').strip()
         
         elif repair_level == "aggressive":
-            # 深度修复：尝试解码常见的编码错误
+            # Deep Fix: Try decoding common encoding errors
             return self._try_decode_fixes(garbled_text)
         
         else:  # standard
-            # 标准修复：标记需要用户确认
+            # Standard fix: Marking requires user confirmation
             if all(c in GarbledTextDetector.REPLACEMENT_CHARS for c in garbled_text):
-                return f"[需手动输入 - 原文: {len(garbled_text)}个乱码字符]"
+                return f"[Need to enter manually - original: {len(garbled_text)}garbled characters]"
             else:
                 return garbled_text.replace('\ufffd', '[?]').strip()
     
     def _try_decode_fixes(self, text: str) -> str:
-        """尝试多种编码修复"""
-        # 常见的编码错误模式修复
+        """Try multiple encoding fixes"""
+        # Common coding error pattern fixes
         fixes = []
         
-        # UTF-8被当作Latin-1解析
+        # UTF-8 is parsed as Latin-1
         try:
             fixed = text.encode('latin-1').decode('utf-8')
             fixes.append(fixed)
         except:
             pass
         
-        # GBK/GB2312问题
+        # GBK/GB2312 problem
         try:
             fixed = text.encode('latin-1').decode('gbk', errors='ignore')
             fixes.append(fixed)
         except:
             pass
         
-        # 返回第一个看起来合理的修复
+        # Return the first fix that looks reasonable
         for fix in fixes:
             if not self.detector.is_garbled(fix)[0]:
                 return fix
         
-        return f"[需手动输入]"
+        return f"[Need to enter manually]"
 
 
 class SVGFixer:
-    """SVG文本修复器"""
+    """SVG text fixer"""
     
     def __init__(self, detector: GarbledTextDetector):
         self.detector = detector
@@ -271,9 +265,7 @@ class SVGFixer:
     
     def fix(self, input_path: str, output_path: str,
             repair_level: str = "standard") -> Dict[str, Any]:
-        """
-        修复SVG文件中的乱码文字
-        """
+        """Fix garbled text in SVG files"""
         try:
             from bs4 import BeautifulSoup
         except ImportError:
@@ -290,7 +282,7 @@ class SVGFixer:
         
         soup = BeautifulSoup(content, 'xml')
         
-        # 提取所有文本元素
+        # Extract all text elements
         self.text_elements = []
         repair_count = 0
         
@@ -303,7 +295,7 @@ class SVGFixer:
             
             is_garbled, confidence = self.detector.is_garbled(text_content)
             
-            # 获取位置和字体信息
+            # Get location and font information
             x = tag.get('x', '0')
             y = tag.get('y', '0')
             font_family = tag.get('font-family', 'default')
@@ -328,7 +320,7 @@ class SVGFixer:
             
             self.text_elements.append(tb)
         
-        # 获取SVG基本信息
+        # Get basic information about SVG
         svg_tag = soup.find('svg')
         svg_info = {
             "width": svg_tag.get('width', 'unknown') if svg_tag else 'unknown',
@@ -349,28 +341,28 @@ class SVGFixer:
         return result
     
     def _suggest_fix(self, garbled_text: str, repair_level: str) -> str:
-        """建议SVG文本修复"""
+        """Suggested SVG text fixes"""
         if repair_level == "minimal":
             return garbled_text.replace('\ufffd', '').strip()
         elif repair_level == "aggressive":
             return self._try_xml_entity_fix(garbled_text)
         else:
             if '\ufffd' in garbled_text:
-                return f"[需手动输入 - 原文: {len(garbled_text)}个乱码字符]"
+                return f"[Need to enter manually - original: {len(garbled_text)}garbled characters]"
             return garbled_text
     
     def _try_xml_entity_fix(self, text: str) -> str:
-        """尝试修复XML实体编码问题"""
+        """Try to fix XML entity encoding issue"""
         import html
-        # 解码HTML实体
+        # Decode HTML entities
         decoded = html.unescape(text)
         if not self.detector.is_garbled(decoded)[0]:
             return decoded
-        return f"[需手动输入]"
+        return f"[Need to enter manually]"
 
 
 class VectorTextFixer:
-    """矢量文本修复器主类"""
+    """Vector text fixer main class"""
     
     def __init__(self):
         self.detector = GarbledTextDetector()
@@ -379,9 +371,7 @@ class VectorTextFixer:
     
     def fix_file(self, input_path: str, output_path: str,
                  repair_level: str = "standard") -> Dict[str, Any]:
-        """
-        根据文件类型自动选择修复方法
-        """
+        """Automatically select repair method based on file type"""
         input_path = Path(input_path)
         
         if not input_path.exists():
@@ -398,9 +388,7 @@ class VectorTextFixer:
     
     def batch_fix(self, input_folder: str, output_folder: str,
                   repair_level: str = "standard") -> List[Dict[str, Any]]:
-        """
-        批量修复文件夹中的PDF/SVG文件
-        """
+        """Batch repair PDF/SVG files in folders"""
         input_folder = Path(input_folder)
         output_folder = Path(output_folder)
         output_folder.mkdir(parents=True, exist_ok=True)
@@ -416,15 +404,13 @@ class VectorTextFixer:
         return results
     
     def export_editable_json(self, input_path: str, output_path: str) -> Dict[str, Any]:
-        """
-        导出可编辑的JSON格式，用于AI工具中手动修复
-        """
+        """Export editable JSON format for manual repair in AI tools"""
         result = self.fix_file(input_path, "", repair_level="standard")
         
         if not result.get("success"):
             return result
         
-        # 添加可编辑标记
+        # Add editable markup
         editable_data = {
             "file_info": {
                 "original_path": input_path,
@@ -434,7 +420,7 @@ class VectorTextFixer:
             "repair_data": result
         }
         
-        # 添加用户可编辑字段
+        # Add user editable fields
         if result["file_type"] == "pdf":
             for block in editable_data["repair_data"]["text_blocks"]:
                 block["user_editable"] = block.get("suggested_fix", "")
@@ -442,7 +428,7 @@ class VectorTextFixer:
             for elem in editable_data["repair_data"]["text_elements"]:
                 elem["user_editable"] = elem.get("suggested_fix", "")
         
-        # 保存JSON
+        # Save JSON
         try:
             with open(output_path, 'w', encoding='utf-8') as f:
                 json.dump(editable_data, f, ensure_ascii=False, indent=2)
@@ -454,118 +440,118 @@ class VectorTextFixer:
         return editable_data
     
     def _get_timestamp(self) -> str:
-        """获取当前时间戳"""
+        """Get current timestamp"""
         from datetime import datetime
         return datetime.now().isoformat()
 
 
 def main():
-    """命令行入口"""
+    """Command line entry"""
     parser = argparse.ArgumentParser(
-        description='Vector Text Fixer - 修复PDF/SVG矢量图中的乱码文字'
+        description='Vector Text Fixer - Fix garbled text in PDF/SVG vector images'
     )
     
-    # 输入选项
+    # Enter options
     input_group = parser.add_mutually_exclusive_group(required=True)
-    input_group.add_argument('--input', '-i', help='输入文件路径 (PDF或SVG)')
-    input_group.add_argument('--batch', '-b', help='批量处理输入文件夹')
+    input_group.add_argument('--input', '-i', help='Enter file path (PDF or SVG)')
+    input_group.add_argument('--batch', '-b', help='Batch process input folders')
     
-    # 输出选项
-    parser.add_argument('--output', '-o', help='输出文件/文件夹路径')
-    parser.add_argument('--export-json', '-j', help='导出可编辑JSON格式')
+    # Output options
+    parser.add_argument('--output', '-o', help='Output file/folder path')
+    parser.add_argument('--export-json', '-j', help='Export editable JSON format')
     
-    # 修复选项
+    # Repair options
     parser.add_argument('--repair-level', '-r', 
                        choices=['minimal', 'standard', 'aggressive'],
                        default='standard',
-                       help='修复级别 (默认: standard)')
+                       help='Repair level (default: standard)')
     parser.add_argument('--interactive', action='store_true',
-                       help='启用交互式修复模式')
+                       help='Enable interactive repair mode')
     
     args = parser.parse_args()
     
-    # 创建修复器实例
+    # Create a fixer instance
     fixer = VectorTextFixer()
     
-    # 导出JSON模式
+    # Export JSON schema
     if args.export_json:
         if not args.input:
-            print("错误: --export-json 需要指定 --input")
+            print("Error: --export-json requires specifying --input")
             sys.exit(1)
         
         result = fixer.export_editable_json(args.input, args.export_json)
         
         if result.get("export_success"):
-            print(f"✓ JSON导出成功: {args.export_json}")
-            print(f"  文件类型: {result['repair_data'].get('file_type')}")
-            print(f"  检测到的文本块: {result['repair_data'].get('total_blocks') or result['repair_data'].get('total_elements')}")
-            print(f"  乱码文本块: {result['repair_data'].get('garbled_blocks') or result['repair_data'].get('garbled_elements')}")
+            print(f"✓ JSONExport successful: {args.export_json}")
+            print(f"  File type: {result['repair_data'].get('file_type')}")
+            print(f"  Detected text block: {result['repair_data'].get('total_blocks') or result['repair_data'].get('total_elements')}")
+            print(f"  Garbled text block: {result['repair_data'].get('garbled_blocks') or result['repair_data'].get('garbled_elements')}")
         else:
-            print(f"✗ 导出失败: {result.get('export_error', 'Unknown error')}")
+            print(f"✗ Export failed: {result.get('export_error', 'Unknown error')}")
             sys.exit(1)
         return
     
-    # 批量处理模式
+    # batch processing mode
     if args.batch:
         if not args.output:
-            print("错误: 批量处理需要指定 --output")
+            print("Error: Batch processing requires specifying --output")
             sys.exit(1)
         
-        print(f"开始批量处理: {args.batch}")
+        print(f"Start batch processing: {args.batch}")
         results = fixer.batch_fix(args.batch, args.output, args.repair_level)
         
         success_count = sum(1 for r in results if r.get("success"))
         total_count = len(results)
         
-        print(f"\n处理完成: {success_count}/{total_count} 文件成功")
+        print(f"\nProcessing completed: {success_count}/{total_count} File successful")
         for r in results:
             if r.get("success"):
                 garbled = r.get("garbled_blocks") or r.get("garbled_elements", 0)
-                print(f"  ✓ {r.get('output_path')} (乱码: {garbled})")
+                print(f"  ✓ {r.get('output_path')} (English: {garbled})")
             else:
                 print(f"  ✗ {r.get('error', 'Unknown error')}")
         return
     
-    # 单文件处理模式
+    # Single file processing mode
     if args.input:
-        print(f"处理文件: {args.input}")
+        print(f"Process files: {args.input}")
         
         result = fixer.fix_file(args.input, args.output or "", args.repair_level)
         
         if result.get("success"):
-            print(f"✓ 分析完成")
-            print(f"  文件类型: {result.get('file_type')}")
+            print(f"✓ Analysis completed")
+            print(f"  File type: {result.get('file_type')}")
             
             if result.get('file_type') == 'pdf':
-                print(f"  页数: {result.get('pages')}")
-                print(f"  文本块: {result.get('total_blocks')}")
-                print(f"  乱码块: {result.get('garbled_blocks')}")
+                print(f"  Number of pages: {result.get('pages')}")
+                print(f"  text block: {result.get('total_blocks')}")
+                print(f"  Garbled blocks: {result.get('garbled_blocks')}")
             else:
-                print(f"  文本元素: {result.get('total_elements')}")
-                print(f"  乱码元素: {result.get('garbled_elements')}")
+                print(f"  text element: {result.get('total_elements')}")
+                print(f"  Garbled elements: {result.get('garbled_elements')}")
             
-            # 显示乱码文本详情
+            # Show garbled text details
             blocks = result.get('text_blocks') or result.get('text_elements', [])
             garbled_blocks = [b for b in blocks if b.get('is_garbled')]
             
             if garbled_blocks:
-                print(f"\n检测到的乱码文本:")
+                print(f"\nGarbled text detected:")
                 for i, block in enumerate(garbled_blocks[:5], 1):
                     orig = block.get('original_text', '')[:50]
                     sugg = block.get('suggested_fix', '')[:50]
                     print(f"  {i}. ID: {block.get('id')}")
-                    print(f"     原文: {orig}")
-                    print(f"     建议: {sugg}")
-                    print(f"     置信度: {block.get('confidence', 0):.2f}")
+                    print(f"     original: {orig}")
+                    print(f"     suggestion: {sugg}")
+                    print(f"     Confidence: {block.get('confidence', 0):.2f}")
                 
                 if len(garbled_blocks) > 5:
-                    print(f"  ... 还有 {len(garbled_blocks) - 5} 个乱码文本")
+                    print(f"  ... English {len(garbled_blocks) - 5} Garbled text")
             
             if args.output:
-                print(f"\n输出路径: {args.output}")
-                print("提示: 使用 --export-json 导出可编辑格式进行手动修复")
+                print(f"\nOutput path: {args.output}")
+                print("Tip: Use --export-json to export in editable format for manual repair")
         else:
-            print(f"✗ 处理失败: {result.get('error', 'Unknown error')}")
+            print(f"✗ Processing failed: {result.get('error', 'Unknown error')}")
             sys.exit(1)
 
 

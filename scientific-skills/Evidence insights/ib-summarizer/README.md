@@ -1,17 +1,14 @@
 # IB Summarizer
 
-IB (Investigator's Brochure) 核心安全信息提取工具
-
-## 快速开始
-
+IB (Investigator's Brochure) core security information extraction tool
+## Quick Start
 ```bash
-# 安装依赖
+# Install dependencies
 pip install -r requirements.txt
 
-# 使用
-python scripts/main.py <IB文档路径>
+# use
+python scripts/main.py <IBDocument path>
 ```
 
-## 详细说明
-
-参见 [SKILL.md](SKILL.md)
+## Detailed description
+See [SKILL.md](SKILL.md)

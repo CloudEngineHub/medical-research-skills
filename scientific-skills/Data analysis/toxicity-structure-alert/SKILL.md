@@ -1,15 +1,63 @@
 ---
 name: toxicity-structure-alert
-description: Identify potential toxic structural alerts in drug molecules by scanning SMILES/SMARTS against known toxicophore patterns using RDKit, with risk level assessment and recommendations.
+description: Analyze data with `toxicity-structure-alert` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 license: MIT
 skill-author: AIPOCH
 ---
+# Toxicity Structure Alert (Skill ID: 141)
 
-# Toxicity Structure Alert
+Identify potential toxic structural alerts in drug molecules.
 
-Scan drug molecule structures (SMILES/SMARTS) against known toxic structural alert patterns. Identifies toxicophores, assesses risk levels (HIGH/MEDIUM/LOW), and generates structured reports with recommendations.
+## When to Use
+
+- Use this skill when the task is to Identify potential toxic structural alerts in drug molecules by scanning.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+See `## Features` above for related details.
+
+- Scope-focused workflow aligned to: Analyze data with `toxicity-structure-alert` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
+- Packaged executable path(s): `scripts/main.py`.
+- Reference material available in `references/` for task-specific guidance.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+- Python 3.8+
+- RDKit
+
+## Example Usage
+
+See `## Usage` above for related details.
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/toxicity-structure-alert"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Reference guidance: `references/` contains supporting rules, prompts, or checklists.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
 
 ```bash
 python -m py_compile scripts/main.py
@@ -17,93 +65,85 @@ python -m py_compile scripts/main.py
 
 ## Audit-Ready Commands
 
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
 ```bash
 python -m py_compile scripts/main.py
 python scripts/main.py --help
-python scripts/main.py -i "O=[N+]([O-])c1ccccc1"
-python scripts/main.py -i "O=C1OC1c1ccccc1" -f json
-python scripts/main.py -i "c1ccc2c(c1)ccc1c3ccccc3ccc21" -d full
+python scripts/main.py --input "Audit validation sample with explicit symptoms, history, assessment, and next-step plan." --format json
 ```
-
-## When to Use
-
-- Screen drug candidates for known toxic structural alerts before synthesis
-- Identify toxicophores in SMILES strings as part of ADMET profiling
-- Generate toxicity risk reports for medicinal chemistry review
-- Flag high-risk substructures for structural optimization
 
 ## Workflow
 
-1. **Validate input first (pre-flight gate):** Confirm the request involves SMILES-based structural alert screening. If ADMET profiling, docking, protein sequences, or non-chemical data is requested, emit the scope refusal before any processing.
-2. Confirm the input SMILES string and desired output format/detail level.
-3. Run `scripts/main.py -i <SMILES>` with optional `-f json` and `-d full` flags.
-4. Return a structured result separating alerts found, risk level, and recommendations.
-5. If execution fails or inputs are incomplete, switch to the Fallback Template below.
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
-## Fallback Template
+## Features
 
-If `scripts/main.py` fails or required fields are missing, respond with:
-
-```
-FALLBACK REPORT
-───────────────────────────────────────
-Objective        : <toxicity screening goal>
-Inputs Available : <SMILES string provided>
-Missing Inputs   : <list exactly what is missing>
-Partial Result   : <any alerts identifiable from partial input>
-Blocked Steps    : <what could not be completed and why>
-  Note: SMILES parse errors indicate invalid input structure.
-        Verify SMILES validity before re-running.
-Next Steps       : <minimum info needed to complete>
-───────────────────────────────────────
-```
-
-## Stress-Case Output Checklist
-
-For complex multi-constraint requests, always include these sections explicitly:
-
-- **Assumptions**: default detail level (standard), output format (text)
-- **Constraints**: pattern-based only; cannot replace full toxicological assessment
-- **Risks**: false positives and false negatives are inherent to structural alert methods
-- **Unresolved Items**: SMILES parse failures, ambiguous substructures
+- Scan molecular structures (SMILES/SMARTS)
+- Identify known toxic structural alerts
+- Assess potential toxicity risk levels
+- Generate detailed reports
 
 ## Supported Alert Structures
 
 | Alert Structure | Toxicity Type | Risk Level |
-|---|---|---|
-| Aromatic Nitro | Mutagenicity | HIGH |
-| Aromatic Amine | Carcinogenicity | HIGH |
-| Epoxide | Alkylating Agent | HIGH |
-| Hydrazine | Hepatotoxicity | HIGH |
-| Haloalkyl | Alkylating Agent | HIGH |
-| Aldehyde | Reactive Toxicity | MEDIUM |
-| Acyl Chloride | Reactive Toxicity | MEDIUM |
-| Michael Acceptor | Electrophilic Toxicity | MEDIUM |
-| Quinone | Oxidative Stress | MEDIUM |
-| Thiol-Reactive Groups | Protein Binding | LOW–MEDIUM |
+|---------|---------|---------|
+| Aromatic Nitro | Mutagenicity | High |
+| Aromatic Amine | Carcinogenicity | High |
+| Epoxide | Alkylating Agent | High |
+| Aldehyde | Reactive Toxicity | Medium |
+| Acyl Chloride | Reactive Toxicity | Medium |
+| Michael Acceptor | Electrophilic Toxicity | Medium |
+| Hydrazine | Hepatotoxicity | High |
+| Haloalkyl | Alkylating Agent | High |
+| Quinone | Oxidative Stress | Medium |
+| Thiol-Reactive Groups | Protein Binding | Low-Medium |
 
-## CLI Usage
+## Usage
 
-```bash
+```text
+python -m py_compile scripts/main.py
+
+# Example invocation: python scripts/main.py --input <smiles_string> [--format json|text]
+```
+
+### Parameters
+
+- `--input, -i`: Input SMILES string (required)
+- `--format, -f`: Output format, optional `json` or `text` (default: text)
+- `--detail, -d`: Detail level, optional `basic`, `standard`, `full` (default: standard)
+
+### Examples
+
+```text
+
 # Basic text output
 python scripts/main.py -i "O=[N+]([O-])c1ccccc1"
 
-# JSON format
+# JSON format output
 python scripts/main.py -i "O=C1OC1c1ccccc1" -f json
 
-# Full detail report
+# Detailed report
 python scripts/main.py -i "c1ccc2c(c1)ccc1c3ccccc3ccc21" -d full
 ```
 
-## Parameters
+### Python API
 
-| Parameter | Short | Description | Default |
-|---|---|---|---|
-| `--input` | `-i` | Input SMILES string | required |
-| `--format` | `-f` | Output format: `json` or `text` | `text` |
-| `--detail` | `-d` | Detail level: `basic`, `standard`, `full` | `standard` |
+```python
+from scripts.main import ToxicityAlertScanner
 
-## Output Format (JSON)
+scanner = ToxicityAlertScanner()
+result = scanner.scan("O=[N+]([O-])c1ccccc1")
+print(result.alerts)
+```
+
+## Output Format
+
+### JSON Output
 
 ```json
 {
@@ -128,54 +168,131 @@ python scripts/main.py -i "c1ccc2c(c1)ccc1c3ccccc3ccc21" -d full
 }
 ```
 
-**Risk score aggregation for multi-alert molecules:** The overall `risk_level` reflects the highest individual alert level. The numeric `risk_score` is a weighted sum of individual alert scores (HIGH=1.0, MEDIUM=0.5, LOW=0.2), normalized to [0,1].
-
 ## Risk Levels
 
-- **HIGH**: Known significant toxicity — strongly recommended to avoid or redesign
-- **MEDIUM**: Potential toxicity — further evaluation recommended
-- **LOW**: Minor concern — consider based on specific context
-
-## Input Validation
-
-This skill accepts: valid SMILES strings representing drug or drug-like molecules for structural toxicity alert scanning.
-
-If the request does not involve SMILES-based structural alert screening — for example, asking to predict ADMET properties beyond structural alerts, perform docking, analyze protein sequences, or process non-chemical data — do not proceed. Instead respond:
-
-> "`toxicity-structure-alert` is designed to identify toxic structural alerts in drug molecules from SMILES input. Your request appears to be outside this scope. Please provide a valid SMILES string, or use a more appropriate tool."
-
-## Error Handling
-
-- If no SMILES string is provided, request it explicitly.
-- If RDKit raises a SMILES parse error, report the invalid input and ask for a corrected SMILES.
-- If the task goes outside documented scope, stop instead of guessing.
-- If `scripts/main.py` fails, use the Fallback Template above.
-- Do not fabricate alert matches, risk scores, or execution outcomes.
-
-## Output Requirements
-
-Every final response must include:
-
-1. **Objective** — molecule screened and purpose
-2. **Inputs Received** — SMILES string, format, detail level
-3. **Assumptions** — defaults applied
-4. **Result** — alerts found, risk level, risk score
-5. **Risks and Limits** — pattern-based only; false positives/negatives possible
-6. **Next Checks** — recommend Ames test or ADMET suite for HIGH-risk alerts
+- **HIGH**: Known significant toxicity, strongly recommended to avoid
+- **MEDIUM**: Potential toxicity, further evaluation recommended
+- **LOW**: Minor concern, can be considered based on specific circumstances
 
 ## Notes
 
-1. This tool is based on known alert patterns and cannot replace comprehensive toxicological assessment.
-2. False positives and false negatives are inherent to structural alert methods.
-3. Recommended to use alongside other ADMET prediction tools.
+1. This tool is based on known alert structures and cannot replace comprehensive toxicological assessment
+2. False positives and false negatives may both exist
+3. Recommended to use with other ADMET prediction tools
 
 ## References
 
-- Ashby J., Tennant R.W. (1988) Chemical structure, Salmonella mutagenicity and extent of carcinogenicity.
-- Kazius J., McGuire R., Bursi R. (2005) Derivation and validation of toxicophores for mutagenicity prediction.
-- Enoch S.J., Cronin M.T.D. (2010) A review of the electrophilic reaction chemistry involved in covalent DNA binding.
+- Ashby J., Tennant R.W. (1988) Chemical structure, Salmonella mutagenicity...
+- Kazius J., McGuire R., Bursi R. (2005) Derivation and validation of toxicophores...
+- Enoch S.J., Cronin M.T.D. (2010) A review of the electrophilic reaction chemistry...
 
-## Dependencies
+## Risk Assessment
 
-- Python 3.8+
-- RDKit
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+
+## Prerequisites
+
+```text
+
+# Python dependencies
+pip install -r requirements.txt
+```
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `toxicity-structure-alert` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `toxicity-structure-alert` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.
+
+## Inputs to Collect
+
+- Required inputs: the user goal, the primary data or source file, and the requested output format.
+- Optional inputs: output directory, formatting preferences, and validation constraints.
+- If a required input is unavailable, return a short clarification request before continuing.
+
+## Output Contract
+
+- Return a short summary, the main deliverables, and any assumptions that materially affect interpretation.
+- If execution is partial, label what succeeded, what failed, and the next safe recovery step.
+- Keep the final answer within the documented scope of the skill.
+
+## Validation and Safety Rules
+
+- Validate identifiers, file paths, and user-provided parameters before execution.
+- Do not fabricate results, metrics, citations, or downstream conclusions.
+- Use safe fallback behavior when dependencies, credentials, or required inputs are missing.
+- Surface any execution failure with a concise diagnosis and recovery path.

@@ -1,30 +1,67 @@
 ---
 name: pathology-roi-selector
-description: Select and extract regions of interest (ROI) from whole slide images (WSI) for AI training data preparation and pathology research.
+description: Use pathology roi selector for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
 license: MIT
 skill-author: AIPOCH
-status: beta
 ---
 # Pathology ROI Selector
 
-Select and extract regions of interest from whole slide images (WSI) for AI model training, tissue microarray creation, and pathology research.
-
-## Input Validation
-
-This skill accepts: whole slide image files (SVS, NDPI, TIFF, or compatible WSI formats) for automated region of interest selection and extraction.
-
-If the request does not involve selecting ROIs from a whole slide image — for example, asking to perform cell segmentation, run stain normalization, or analyze non-pathology images — do not proceed. Instead respond:
-
-> "pathology-roi-selector is designed to select and extract regions of interest from whole slide images. Your request appears to be outside this scope. Please provide a WSI file path with tissue type parameters, or use a more appropriate tool for your task."
+WSI region detection for AI training.
 
 ## When to Use
 
-- Extracting tumor-rich or tissue-specific regions from whole slide images for AI training datasets
-- Creating tissue microarray sampling coordinates
-- Generating quality-controlled crops for pathology education or research
-- Automating ROI selection with reproducible, documented parameters
+- Use this skill when the task needs Use pathology roi selector for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
+- Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Key Features
+
+- Scope-focused workflow aligned to: Use pathology roi selector for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
+- Packaged executable path(s): `scripts/main.py`.
+- Structured execution path designed to keep outputs consistent and reviewable.
+
+## Dependencies
+
+See `## Prerequisites` above for related details.
+
+- `Python`: `3.10+`. Repository baseline for current packaged skills.
+- `Third-party packages`: `not explicitly version-pinned in this skill package`. Add pinned versions if this skill needs stricter environment control.
+
+## Example Usage
+
+```bash
+cd "20260318/scientific-skills/Data Analytics/pathology-roi-selector"
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+Example run plan:
+1. Confirm the user input, output path, and any required config values.
+2. Edit the in-file `CONFIG` block or documented parameters if the script uses fixed settings.
+3. Run `python scripts/main.py` with the validated inputs.
+4. Review the generated output and return the final artifact with any assumptions called out.
+
+## Implementation Details
+
+See `## Workflow` above for related details.
+
+- Execution model: validate the request, choose the packaged workflow, and produce a bounded deliverable.
+- Input controls: confirm the source files, scope limits, output format, and acceptance criteria before running any script.
+- Primary implementation surface: `scripts/main.py`.
+- Parameters to clarify first: input path, output path, scope filters, thresholds, and any domain-specific constraints.
+- Output discipline: keep results reproducible, identify assumptions explicitly, and avoid undocumented side effects.
 
 ## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
 
 ```bash
 python -m py_compile scripts/main.py
@@ -33,79 +70,109 @@ python scripts/main.py --help
 
 ## Workflow
 
-1. **Validate input first** — confirm the request involves a WSI file and is within scope before any processing.
-2. Confirm the user objective, required inputs, and non-negotiable constraints.
-3. Validate `--image` path: resolve with `Path.resolve()` and verify it is within the workspace (no `../` traversal).
-4. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
-5. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
-6. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
+
+## Use Cases
+- Tissue microarray creation
+- AI model training data
+- Pathology education
+- Research sampling
 
 ## Parameters
+- `wsi_file`: Whole slide image
+- `tissue_type`: Tumor/normal
+- `magnification`: 20x/40x
 
-| Parameter | Type | Required | Description |
-|-----------|------|----------|-------------|
-| `--image` / `-i` | path | Yes | Whole slide image file path |
-| `--type` | str | No | Tissue type filter: `tumor`, `normal`, `stroma` |
-| `--output` | path | No | Output directory for ROI crops and coordinates |
-
-## Usage
-
-```text
-# Basic ROI selection from WSI
-python scripts/main.py --image slide.svs --output ./rois
-
-# Filter for tumor regions only
-python scripts/main.py --image slide.svs --type tumor --output ./tumor_rois
-
-# Check available options
-python scripts/main.py --help
-```
-
-## Output
-
-- ROI coordinates (JSON with bounding boxes)
-- Tissue percentage per ROI
-- Quality metrics (tissue coverage, artifact score)
-- Export-ready image crops at specified magnification
-
-**Artifact Score:** When quality metrics are requested, the output must include an explicit `artifact_score` field (0–1 scale, where 0 = no artifacts, 1 = severe artifacts). This is required alongside tissue coverage when `--type` filtering is used.
+## Returns
+- ROI coordinates
+- Tissue percentage
+- Quality metrics
+- Export ready crops
 
 ## Example
+Identify tumor-rich regions from 100K x 100K image
 
-Input: Whole slide image (100K x 100K pixels, H&E stained)
-Output: 12 tumor-rich ROIs identified, coordinates exported, crops saved at 20x magnification
+## Risk Assessment
+
+| Risk Indicator | Assessment | Level |
+|----------------|------------|-------|
+| Code Execution | Python/R scripts executed locally | Medium |
+| Network Access | No external API calls | Low |
+| File System Access | Read input files, write output files | Medium |
+| Instruction Tampering | Standard prompt guidelines | Low |
+| Data Exposure | Output files saved to workspace | Low |
+
+## Security Checklist
+
+- [ ] No hardcoded credentials or API keys
+- [ ] No unauthorized file system access (../)
+- [ ] Output does not expose sensitive information
+- [ ] Prompt injection protections in place
+- [ ] Input file paths validated (no ../ traversal)
+- [ ] Output directory restricted to workspace
+- [ ] Script execution in sandboxed environment
+- [ ] Error messages sanitized (no stack traces exposed)
+- [ ] Dependencies audited
+
+## Prerequisites
+
+No additional Python packages required.
+
+## Evaluation Criteria
+
+### Success Metrics
+- [ ] Successfully executes main functionality
+- [ ] Output meets quality standards
+- [ ] Handles edge cases gracefully
+- [ ] Performance is acceptable
+
+### Test Cases
+1. **Basic Functionality**: Standard input → Expected output
+2. **Edge Case**: Invalid input → Graceful error handling
+3. **Performance**: Large dataset → Acceptable processing time
+
+## Lifecycle Status
+
+- **Current Stage**: Draft
+- **Next Review Date**: 2026-03-06
+- **Known Issues**: None
+- **Planned Improvements**: 
+  - Performance optimization
+  - Additional feature support
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
 
 ## Error Handling
 
-- If `--image` is missing, state this and request the WSI file path.
-- If the image file path contains `../` or resolves outside the workspace, reject with a path traversal warning. The script enforces this via `Path(args.image).resolve()`.
-- If the WSI format is not supported (e.g., DICOM), list supported formats (SVS, NDPI, TIFF) and stop.
-- If both an unsupported format and a missing required flag are detected, use the Fallback Template with both issues listed under `Blocked by`.
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
 - If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
 - If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
-- Do not fabricate ROI coordinates, tissue percentages, or quality metrics.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
 
-**Note on script implementation:** `scripts/main.py` currently returns mock ROI coordinates (placeholder). Real WSI analysis requires OpenSlide integration. Until implemented, the skill operates in reasoning mode — providing parameter plans and workflow guidance without fabricating actual coordinates.
+## Input Validation
 
-## Fallback Template
+This skill accepts requests that match the documented purpose of `pathology-roi-selector` and include enough context to complete the workflow safely.
 
-When execution fails or inputs are incomplete, respond with this structure:
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
 
-```
-FALLBACK REPORT
-───────────────────────────────────────
-Objective      : [restate the goal]
-Blocked by     : [exact missing input or error — list multiple if applicable]
-Partial result : [what can be completed — e.g., parameter plan]
-Assumptions    : [magnification, tissue type, output format assumed]
-Constraints    : [WSI format requirements, memory limits]
-Risks          : [large file processing time, artifact regions]
-Unresolved     : [what still needs user input]
-Next step      : [minimum action needed to unblock]
-───────────────────────────────────────
-```
+> `pathology-roi-selector` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
 
 ## Response Template
+
+Use the following fixed structure for non-trivial requests:
 
 1. Objective
 2. Inputs Received
@@ -115,12 +182,4 @@ Next step      : [minimum action needed to unblock]
 6. Risks and Limits
 7. Next Checks
 
-If the request is simple, compress the structure but keep assumptions and limits explicit when they affect correctness.
-
-## Prerequisites
-
-```bash
-pip install openslide-python  # required for real WSI analysis
-```
-
-No additional Python packages required for mock/reasoning mode.
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

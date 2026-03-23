@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""
-Forest Plot Styler - Beautify Meta-analysis Forest Plots
-ID: 157
-"""
+"""Forest Plot Styler - Beautify Meta Analysis Forest Plot
+ID: 157"""
 
 import argparse
 import sys
@@ -15,16 +13,14 @@ import pandas as pd
 
 
 def parse_args():
-    """Parse command line arguments"""
+    """Parse command line parameters"""
     parser = argparse.ArgumentParser(
-        description='Forest Plot Styler - Beautify Meta-analysis Forest Plots',
+        description='Forest Plot Styler - Beautify Meta Analysis Forest Plot',
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
+        epilog="""Example:
   python main.py -i data.csv
   python main.py -i data.csv --point-color="#E63946" --ci-linewidth=3
-  python main.py -i data.xlsx --subgroup group_col -f pdf -o output.pdf
-        """
+  python main.py -i data.xlsx --subgroup group_col -f pdf -o output.pdf"""
     )
     
     parser.add_argument('-i', '--input', required=True, help='Input data file (CSV or Excel)')
@@ -33,21 +29,21 @@ Examples:
     parser.add_argument('--point-size', type=float, default=8, help='OR point size (default: 8)')
     parser.add_argument('--point-color', default='#2E86AB', help='OR point color (default: #2E86AB)')
     parser.add_argument('--ci-color', default='#2E86AB', help='Confidence interval line color (default: #2E86AB)')
-    parser.add_argument('--ci-linewidth', type=float, default=2, help='Confidence interval line width (default: 2)')
-    parser.add_argument('--ci-capwidth', type=float, default=5, help='Confidence interval cap width (default: 5)')
+    parser.add_argument('--ci-linewidth', type=float, default=2, help='Confidence interval line thickness (default: 2)')
+    parser.add_argument('--ci-capwidth', type=float, default=5, help='Confidence interval endpoint width (default: 5)')
     parser.add_argument('--summary-color', default='#A23B72', help='Summary effect point color (default: #A23B72)')
     parser.add_argument('--summary-shape', default='diamond', choices=['diamond', 'square', 'circle'], 
                         help='Summary effect point shape (default: diamond)')
-    parser.add_argument('--subgroup', help='Subgroup analysis column name')
+    parser.add_argument('--subgroup', help='Subgroup analysis listing')
     parser.add_argument('-t', '--title', default='Forest Plot', help='Chart title')
     parser.add_argument('-x', '--xlabel', default='Odds Ratio (95% CI)', help='X-axis label')
     parser.add_argument('--reference-line', type=float, default=1, help='Reference line position (default: 1)')
-    parser.add_argument('-W', '--width', type=float, default=12, help='Figure width in inches (default: 12)')
-    parser.add_argument('-H', '--height', type=float, default=None, help='Figure height in inches (default: auto)')
-    parser.add_argument('--dpi', type=int, default=300, help='Figure resolution (default: 300)')
+    parser.add_argument('-W', '--width', type=float, default=12, help='Image width/inch (default: 12)')
+    parser.add_argument('-H', '--height', type=float, default=None, help='Image height/inch (default: auto)')
+    parser.add_argument('--dpi', type=int, default=300, help='Image resolution (default: 300)')
     parser.add_argument('--font-size', type=float, default=10, help='Font size (default: 10)')
     parser.add_argument('-s', '--style', choices=['default', 'minimal', 'dark'], default='default', 
-                        help='Preset style (default: default)')
+                        help='Default style (default: default)')
     
     return parser.parse_args()
 
@@ -68,23 +64,23 @@ def load_data(filepath):
 
 
 def validate_data(df):
-    """Validate data format"""
+    """Verify data format"""
     required_cols = ['study', 'or', 'ci_lower', 'ci_upper']
     missing = [col for col in required_cols if col not in df.columns]
     if missing:
-        raise ValueError(f"Missing required columns: {missing}")
+        raise ValueError(f"Missing required column: {missing}")
     
-    # Check numeric columns
+    # Check numeric column
     numeric_cols = ['or', 'ci_lower', 'ci_upper']
     for col in numeric_cols:
         if not pd.api.types.is_numeric_dtype(df[col]):
-            raise ValueError(f"Column '{col}' must be numeric type")
+            raise ValueError(f"List '{col}' Must be a numeric type")
     
     return True
 
 
 def apply_style(style_name):
-    """Apply preset style"""
+    """Apply a default style"""
     styles = {
         'default': {
             'bg_color': 'white',
@@ -112,17 +108,17 @@ def apply_style(style_name):
 
 
 def calculate_summary_effect(df):
-    """Calculate pooled effect size (inverse variance weighting)"""
-    # Calculate on log scale
+    """Compute summary effect size (inverse variance weighted)"""
+    # Calculated using a logarithmic scale
     log_or = np.log(df['or'])
     
-    # Estimate standard error (based on confidence interval)
+    # Estimated standard error (based on confidence interval)
     se = (np.log(df['ci_upper']) - np.log(df['ci_lower'])) / (2 * 1.96)
     
-    # Inverse variance weights
+    # Inverse variance weight
     weights = 1 / (se ** 2)
     
-    # Weighted average
+    # weighted average
     pooled_log_or = np.sum(weights * log_or) / np.sum(weights)
     pooled_se = np.sqrt(1 / np.sum(weights))
     
@@ -135,7 +131,7 @@ def calculate_summary_effect(df):
 
 
 def draw_diamond(ax, x, y, width, height, color):
-    """Draw diamond marker"""
+    """Draw diamond markers"""
     diamond = plt.Polygon([
         (x, y + height/2),
         (x + width/2, y),
@@ -146,22 +142,22 @@ def draw_diamond(ax, x, y, width, height, color):
 
 
 def create_forest_plot(df, args):
-    """Create forest plot"""
+    """Create a forest plot"""
     style = apply_style(args.style)
     
-    # Auto-calculate height
+    # Automatically calculate height
     n_studies = len(df)
     if args.height is None:
         height = max(6, n_studies * 0.5 + 3)
     else:
         height = args.height
     
-    # Create figure
+    # Create graphics
     fig, ax = plt.subplots(figsize=(args.width, height))
     fig.patch.set_facecolor(style['bg_color'])
     ax.set_facecolor(style['bg_color'])
     
-    # Set text colors
+    # Set text color
     ax.tick_params(colors=style['text_color'])
     ax.xaxis.label.set_color(style['text_color'])
     ax.yaxis.label.set_color(style['text_color'])
@@ -182,9 +178,9 @@ def create_forest_plot(df, args):
     
     # Draw confidence intervals
     for i, (y, or_val, ci_l, ci_u) in enumerate(zip(y_positions, or_values, ci_lower, ci_upper)):
-        # Draw horizontal line
+        # draw horizontal line
         ax.plot([ci_l, ci_u], [y, y], color=args.ci_color, linewidth=args.ci_linewidth, zorder=2)
-        # Draw caps
+        # draw endpoints
         ax.plot([ci_l, ci_l], [y - args.ci_capwidth/100, y + args.ci_capwidth/100], 
                 color=args.ci_color, linewidth=args.ci_linewidth, zorder=2)
         ax.plot([ci_u, ci_u], [y - args.ci_capwidth/100, y + args.ci_capwidth/100], 
@@ -204,7 +200,7 @@ def create_forest_plot(df, args):
             if len(subgroup_df) > 0:
                 pooled_or, pooled_ci_l, pooled_ci_u = calculate_summary_effect(subgroup_df)
                 y_pos = y_positions[mask].min() - 0.5
-                # Draw subgroup summary
+                # Plot summary of subgroups
                 ax.plot([pooled_ci_l, pooled_ci_u], [y_pos, y_pos], 
                         color=args.summary_color, linewidth=args.ci_linewidth + 1, zorder=4)
                 if args.summary_shape == 'diamond':
@@ -217,7 +213,7 @@ def create_forest_plot(df, args):
                                color=args.summary_color, zorder=4)
         subgroup_offsets = len(subgroups) * 0.5
     
-    # Overall pooled effect
+    # overall aggregate effect
     pooled_or, pooled_ci_l, pooled_ci_u = calculate_summary_effect(df)
     summary_y = 0.5 - subgroup_offsets
     
@@ -233,10 +229,10 @@ def create_forest_plot(df, args):
         ax.scatter(pooled_or, summary_y, s=args.point_size * 4, marker='o', 
                    color=args.summary_color, zorder=4)
     
-    # Reference line
+    # reference line
     ax.axvline(x=args.reference_line, color='#E63946', linestyle='--', linewidth=1.5, zorder=1, alpha=0.7)
     
-    # Set labels
+    # Set label
     study_labels = df['study'].tolist()
     if args.subgroup and args.subgroup in df.columns:
         study_labels.append('Overall')
@@ -250,20 +246,20 @@ def create_forest_plot(df, args):
     ax.set_xlabel(args.xlabel, fontsize=args.font_size + 1, color=style['text_color'])
     ax.set_title(args.title, fontsize=args.font_size + 3, fontweight='bold', pad=15, color=style['text_color'])
     
-    # Set spines
+    # Set borders
     for spine in ax.spines.values():
         spine.set_color(style['spine_color'])
     
-    # Grid lines
+    # grid lines
     ax.grid(True, axis='x', alpha=style['grid_alpha'], color=style['grid_color'], linestyle='-', linewidth=0.5)
     ax.set_axisbelow(True)
     
     # Add numeric label column
-    # Add OR (95% CI) column on the right
+    # Add OR (95% CI) column to the right
     or_labels = [f"{or_val:.2f} [{ci_l:.2f}-{ci_u:.2f}]" for or_val, ci_l, ci_u in zip(or_values, ci_lower, ci_upper)]
     or_labels.append(f"{pooled_or:.2f} [{pooled_ci_l:.2f}-{pooled_ci_u:.2f}]")
     
-    # Add text on the right side
+    # Add text to the right
     for y, label in zip(all_y_positions, or_labels):
         ax.text(ax.get_xlim()[1] * 1.02, y, label, va='center', ha='left', 
                 fontsize=args.font_size - 1, color=style['text_color'])
@@ -275,7 +271,7 @@ def create_forest_plot(df, args):
 
 
 def main():
-    """Main function"""
+    """main function"""
     try:
         args = parse_args()
         
@@ -285,26 +281,26 @@ def main():
         
         # Validate data
         validate_data(df)
-        print(f"Successfully loaded {len(df)} studies")
+        print(f"successfully loaded {len(df)} studies")
         
-        # Create forest plot
+        # Create a forest plot
         print("Generating forest plot...")
         fig, ax = create_forest_plot(df, args)
         
-        # Save
+        # save
         output_path = args.output
         if not output_path.endswith(f".{args.format}"):
             output_path = f"{output_path}.{args.format}"
         
         fig.savefig(output_path, format=args.format, dpi=args.dpi, 
                     bbox_inches='tight', facecolor=fig.get_facecolor())
-        print(f"Forest plot saved: {output_path}")
+        print(f"Forest map saved: {output_path}")
         
         plt.close(fig)
         return 0
         
     except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+        print(f"mistake: {e}", file=sys.stderr)
         return 1
 
 

@@ -1,378 +1,308 @@
 {
   "meta": {
     "skill_name": "statistical-analysis-advisor",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Data Analysis",
     "execution_mode": "B",
-    "complexity": "Complex",
-    "n_inputs": 7
+    "complexity": "Moderate",
+    "n_inputs": 5
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "No fabricated statistics, p-values, or citations were produced across all evaluated outputs; all claims trace to input data or documented tool behavior."
+        "detail": "No scientific-integrity problem was surfaced because the package did not claim more than the available records, article text, or script evidence supported."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "Skill explicitly states recommendations must be verified by a qualified statistician before use in published research."
+        "detail": "The archived review kept this package within Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based, not freeform inference detached from source data."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "Decision tree logic, assumption checks, and power analysis formulas are methodologically correct."
+        "detail": "Methodological grounding was preserved through the documented inputs, transformations, and expected artifacts."
       },
       "code_usability": {
         "result": "PASS",
-        "detail": "Script compiles and runs; StatisticalAdvisor class is fully functional with correct decision tree and power analysis."
-      }
+        "detail": "The archived review preserved a usable code path with named scripts, expected inputs, and a recognizable output contract."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 89,
+    "subtotal": 88,
     "max": 100,
     "categories": {
       "functional_suitability": {
         "score": 11,
         "max": 12,
-        "note": "Core biostatistics and data visualization functionality is complete; minor gaps in edge-case handling or output completeness exist."
+        "note": "Related legacy finding for statistical-analysis-advisor: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "Error handling is documented and the skill recovers gracefully from malformed inputs within biostatistics and data visualization scope."
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "Token usage is proportional to input complexity; execution overhead is acceptable for biostatistics and data visualization tasks though room for compression exists."
+        "note": "The legacy audit gave full marks to performance context for this package."
       },
       "agent_usability": {
-        "score": 15,
+        "score": 14,
         "max": 16,
-        "note": "Trigger description and step-level instructions are clear enough for downstream agent integration within biostatistics and data visualization workflows."
+        "note": "Agent usability was strong, but the workflow could surface its entry conditions a little more directly."
       },
       "human_usability": {
-        "score": 7,
+        "score": 8,
         "max": 8,
-        "note": "When-to-Use and When-Not-to-Use sections are clearly stated; error scenarios and recovery paths are documented for typical biostatistics and data visualization use cases."
+        "note": "Human usability reached full score in the archived evaluation."
       },
       "security": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "No credential exposure or injection vectors identified; input handling stays within biostatistics and data visualization boundaries."
+        "note": "Security remained strong, though the archived review still left some room for clearer execution guardrails."
       },
       "maintainability": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "The skill is modular and self-contained, with low overhead for future updates to biostatistics and data visualization logic or output formats."
+        "note": "The analysis package is maintainable overall, though the archived score suggests modest cleanup headroom."
       },
       "agent_specific": {
-        "score": 16,
+        "score": 17,
         "max": 20,
-        "note": "Bayesian redirect (JASP, Stan, brms) and frequentist fallback now in Limitations section; power analysis accuracy caveat added."
+        "note": "The archived deduction in agent specific traces back to: Stabilize executable path and fallback behavior. Some inputs only reached PARTIAL due to execution gaps or weak boundary handling"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 83.6,
+    "execution_avg": 89.6,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 28,
-      "total": 28
+      "passed": 18,
+      "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Two-group independent continuous data, normal distribution",
+        "label": "Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; two-group independent continuous data, normal distribution case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
+        "status_flag": "PASS",
+        "note": "Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based remained well-aligned with the documented contract in the preserved audit.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output recommends Independent Samples T-Test",
+            "text": "The statistical-analysis-advisor output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output recommends independent samples t-test as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Output lists assumptions (normality, homogeneity, independence)",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output lists assumptions (normality, homogeneity, independence) as expected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Output includes statistician verification disclaimer",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Required disclaimer or caveat included at appropriate location in output."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "Output stays within statistical method selection scope",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Output remained within the skill's stated operational scope."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "Three-group non-normal continuous data, independent samples",
+        "label": "Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; three-group non-normal continuous data, independent samples case handled within expected scope.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
+        "status_flag": "PASS",
+        "note": "Use this skill for data analysis tasks that require explicit... remained well-aligned with the documented contract in the preserved audit.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output recommends Kruskal-Wallis H Test",
+            "text": "The statistical-analysis-advisor output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output recommends kruskal-wallis h test as expected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Output explains non-parametric rationale",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output explains non-parametric rationale as expected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Output suggests post-hoc test for multiple comparisons",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: output suggests post-hoc test for multiple comparisons as expected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Output does not fabricate p-values or effect sizes",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Categorical data with low expected cell counts (<5)",
+        "label": "Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; categorical data with low expected cell counts (<5) case handled within expected scope.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
+        "status_flag": "PASS",
+        "note": "The Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based scenario completed within the documented Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based boundary.",
+        "basic": 36,
+        "specialized": 56,
+        "total": 92,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output recommends Fisher's Exact Test",
+            "text": "The statistical-analysis-advisor output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output recommends fisher's exact test as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Output explains expected frequency rule",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output explains expected frequency rule as expected."
+            "note": "Command evidence was preserved in the legacy execution summary."
           },
           {
-            "text": "Output does not fabricate test statistics",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "Output stays within test selection scope",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Output remained within the skill's stated operational scope."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Power analysis for medium effect size (Cohen's d=0.5), n=30",
+        "label": "Packaged executable path(s): scripts/main.py",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Power analysis accuracy caveat now in Limitations section; G*Power/statsmodels recommended for precise analysis.",
-        "basic": 34,
-        "specialized": 49,
-        "total": 83,
+        "status_flag": "PASS",
+        "note": "The archived evaluation treated Packaged executable path(s): scripts/main.py as a clean in-scope run.",
+        "basic": 36,
+        "specialized": 55,
+        "total": 91,
         "assertions_passed": 4,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output calculates achieved power correctly",
+            "text": "The statistical-analysis-advisor output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: output calculates achieved power correctly as expected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Output interprets power adequacy (>=80% threshold)",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output interprets power adequacy (>=80% threshold) as expected."
+            "note": "Command evidence was preserved in the legacy execution summary."
           },
           {
-            "text": "Output does not fabricate power values",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "Output recommends increasing sample size if power is insufficient",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Complex multivariate repeated measures design",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; complex multivariate repeated measures design case handled within expected scope.",
-        "basic": 33,
-        "specialized": 48,
-        "total": 81,
-        "assertions_passed": 4,
+        "label": "End-to-end case for Scope-focused workflow aligned to: Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "This stress case was mostly intact, but the archived review centered its concern on: The output stays within declared skill scope and target objective.",
+        "basic": 25,
+        "specialized": 40,
+        "total": 65,
+        "assertions_passed": 2,
         "assertions_total": 4,
         "assertions": [
           {
-            "text": "Output acknowledges complexity and recommends specialist consultation",
+            "text": "The statistical-analysis-advisor output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "Output suggests mixed-effects model or GEE",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: output suggests mixed-effects model or gee as expected."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Output does not fabricate a definitive recommendation",
-            "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
+            "text": "The output stays within declared skill scope and target objective",
+            "result": "FAIL",
+            "note": "The archived review treated this as a scope-control failure."
           },
           {
-            "text": "Output includes statistician disclaimer",
-            "result": "PASS",
-            "note": "Required disclaimer or caveat included at appropriate location in output."
-          }
-        ]
-      },
-      {
-        "index": 6,
-        "type": "Scope Boundary",
-        "label": "Request to run full statistical analysis on raw data",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; request to run full statistical analysis on raw data case handled within expected scope.",
-        "basic": 33,
-        "specialized": 48,
-        "total": 81,
-        "assertions_passed": 4,
-        "assertions_total": 4,
-        "assertions": [
-          {
-            "text": "Output correctly refuses raw data analysis request",
-            "result": "PASS",
-            "note": "Request appropriately declined with an explanatory message."
-          },
-          {
-            "text": "Output cites documented out-of-scope response",
-            "result": "PASS",
-            "note": "Statistical values match those reported in the source; no inflation detected."
-          },
-          {
-            "text": "Output does not attempt data analysis",
-            "result": "PASS",
-            "note": "Confirmed: output does not attempt data analysis as expected."
-          },
-          {
-            "text": "Output redirects to appropriate tool",
-            "result": "PASS",
-            "note": "Confirmed: output redirects to appropriate tool as expected."
-          }
-        ]
-      },
-      {
-        "index": 7,
-        "type": "Adversarial",
-        "label": "Request for Bayesian analysis recommendation",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Bayesian redirect (JASP, Stan, brms) and frequentist alternative now in Limitations section.",
-        "basic": 33,
-        "specialized": 48,
-        "total": 81,
-        "assertions_passed": 4,
-        "assertions_total": 4,
-        "assertions": [
-          {
-            "text": "Output acknowledges Bayesian limitation from Limitations section",
-            "result": "PASS",
-            "note": "Confirmed: output acknowledges bayesian limitation from limitations section as expected."
-          },
-          {
-            "text": "Output does not fabricate Bayesian recommendations",
-            "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Output suggests appropriate Bayesian resource or tool",
-            "result": "PASS",
-            "note": "JASP, Stan, brms now in Limitations section."
-          },
-          {
-            "text": "Output provides frequentist alternative with rationale",
-            "result": "PASS",
-            "note": "Frequentist alternative guidance now in Limitations section."
+            "text": "Required research safety/boundary guidance is present without overclaims",
+            "result": "FAIL",
+            "note": "A boundary-related issue was preserved for this scenario in the legacy evaluation."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 35.6,
-    "dynamic_weighted": 50.2,
-    "score": 86,
+    "static_weighted": 35.2,
+    "dynamic_weighted": 53.8,
+    "score": 89,
     "max": 100,
     "grade": "Production Ready",
-    "grade_symbol": "⭐",
+    "grade_symbol": "*",
     "deployable": true,
     "veto_override": false
   },
   "key_strengths": [
-    "Bayesian redirect (JASP, Stan, brms) and frequentist fallback now in Limitations section — closes the v1 gap",
-    "Power analysis accuracy caveat added with G*Power/statsmodels recommendation for precise analysis",
-    "Comprehensive decision tree covering continuous, categorical, and ordinal data types",
-    "Explicit statistician verification disclaimer prevents misuse in published research",
-    "Reference files provide progressive disclosure for statistical tests, assumptions, and power analysis"
+    "Primary routing is Data Analysis with execution mode B",
+    "Static quality score is 88/100 and dynamic average is 89.6/100",
+    "Assertions and command execution outcomes are recorded per input for human review"
   ],
   "recommendations": [
     {
       "priority": "P1",
-      "title": "Power analysis uses simplified normal approximation — not fixed in script",
+      "title": "Stabilize executable path and fallback behavior",
       "observed_in": [
-        4
+        5
       ],
-      "problem": "The power calculation uses a simplified normal approximation that may be inaccurate for small samples. Caveat documented but script not updated.",
-      "root_cause": "Full power calculation requires statsmodels or scipy.stats which are not in the dependency list.",
-      "fix": "Add statsmodels as an optional dependency. Use statsmodels.stats.power.TTestIndPower for t-test power calculations when available, falling back to the normal approximation with a warning."
+      "problem": "Some inputs only reached PARTIAL due to execution gaps or weak boundary handling",
+      "root_cause": "Example commands are not fully runnable or missing deterministic fallback",
+      "fix": "Add validated runnable commands and a strict fallback template for missing parameters and execution errors"
     },
     {
       "priority": "P2",
-      "title": "No explicit escape hatch for survival analysis requests",
-      "observed_in": [],
-      "problem": "Survival analysis (Kaplan-Meier, Cox regression) is not mentioned in When to Use or Limitations, creating an ambiguous scope boundary.",
-      "root_cause": "Skill focuses on standard parametric/non-parametric tests; survival analysis is a distinct domain.",
-      "fix": "Add to Limitations: 'Survival analysis (Kaplan-Meier, Cox regression) is not covered. For time-to-event data, consider a dedicated survival analysis tool.'"
+      "title": "Improve stress-case output rigor",
+      "observed_in": [
+        5
+      ],
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }

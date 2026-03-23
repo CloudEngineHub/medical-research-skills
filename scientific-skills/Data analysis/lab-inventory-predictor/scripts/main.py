@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
-"""
-Lab Inventory Predictor
-基于实验频率预测关键试剂的耗尽时间，并自动生成采购提醒。
+"""Lab Inventory Predictor
+Predict the exhaustion time of key reagents based on experimental frequency and automatically generate purchase reminders.
 
-ID: 107
-"""
+ID: 107"""
 
 import json
 import os
@@ -18,7 +16,7 @@ from dataclasses import dataclass, asdict, field
 
 @dataclass
 class UsageRecord:
-    """使用记录"""
+    """Usage records"""
     date: str
     amount: float
     experiment: str = ""
@@ -33,7 +31,7 @@ class UsageRecord:
 
 @dataclass
 class Reagent:
-    """试剂信息"""
+    """Reagent information"""
     name: str
     current_stock: float
     unit: str = "ml"
@@ -67,7 +65,7 @@ class Reagent:
 
 
 class InventoryPredictor:
-    """库存预测器主类"""
+    """Inventory Predictor Main Class"""
     
     DEFAULT_DATA_PATH = os.path.expanduser("~/.openclaw/workspace/data/lab-inventory.json")
     DEFAULT_LOOKBACK_DAYS = 30
@@ -77,7 +75,7 @@ class InventoryPredictor:
         self.data = self._load_data()
     
     def _load_data(self) -> Dict:
-        """加载数据文件"""
+        """Load data file"""
         if os.path.exists(self.data_path):
             with open(self.data_path, 'r', encoding='utf-8') as f:
                 return json.load(f)
@@ -91,20 +89,20 @@ class InventoryPredictor:
         }
     
     def _save_data(self):
-        """保存数据文件"""
+        """Save data file"""
         os.makedirs(os.path.dirname(self.data_path), exist_ok=True)
         with open(self.data_path, 'w', encoding='utf-8') as f:
             json.dump(self.data, f, ensure_ascii=False, indent=2)
     
     def _get_reagent(self, name: str) -> Optional[Reagent]:
-        """获取试剂信息"""
+        """Get reagent information"""
         for r in self.data['reagents']:
             if r['name'] == name:
                 return Reagent.from_dict(r)
         return None
     
     def _save_reagent(self, reagent: Reagent):
-        """保存试剂信息"""
+        """Save reagent information"""
         for i, r in enumerate(self.data['reagents']):
             if r['name'] == reagent.name:
                 self.data['reagents'][i] = reagent.to_dict()
@@ -116,9 +114,9 @@ class InventoryPredictor:
     def add_reagent(self, name: str, current_stock: float, unit: str = "ml",
                     safety_stock: float = 0.0, safety_days: int = 7, 
                     lead_time_days: int = 3) -> Dict:
-        """添加新试剂"""
+        """Add new reagent"""
         if self._get_reagent(name):
-            return {"success": False, "error": f"试剂 '{name}' 已存在，请使用 update-reagent"}
+            return {"success": False, "error": f"Reagents '{name}' Already exists，Please use update-reagent"}
         
         reagent = Reagent(
             name=name,
@@ -129,13 +127,13 @@ class InventoryPredictor:
             lead_time_days=lead_time_days
         )
         self._save_reagent(reagent)
-        return {"success": True, "message": f"试剂 '{name}' 添加成功"}
+        return {"success": True, "message": f"Reagents '{name}' Added successfully"}
     
     def update_reagent(self, name: str, **kwargs) -> Dict:
-        """更新试剂信息"""
+        """Update reagent information"""
         reagent = self._get_reagent(name)
         if not reagent:
-            return {"success": False, "error": f"试剂 '{name}' 不存在"}
+            return {"success": False, "error": f"Reagents '{name}' does not exist"}
         
         for key, value in kwargs.items():
             if hasattr(reagent, key) and value is not None:
@@ -143,18 +141,18 @@ class InventoryPredictor:
         
         reagent.last_updated = datetime.now().isoformat()
         self._save_reagent(reagent)
-        return {"success": True, "message": f"试剂 '{name}' 更新成功"}
+        return {"success": True, "message": f"Reagents '{name}' Update successful"}
     
     def record_usage(self, name: str, amount: float, experiment: str = "") -> Dict:
-        """记录试剂使用"""
+        """Record reagent usage"""
         reagent = self._get_reagent(name)
         if not reagent:
-            return {"success": False, "error": f"试剂 '{name}' 不存在"}
+            return {"success": False, "error": f"Reagents '{name}' does not exist"}
         
         if amount > reagent.current_stock:
-            return {"success": False, "error": f"使用量 ({amount}) 超过当前库存 ({reagent.current_stock})"}
+            return {"success": False, "error": f"Usage ({amount}) Exceed current stock ({reagent.current_stock})"}
         
-        # 添加使用记录
+        # Add usage record
         record = UsageRecord(
             date=datetime.now().strftime("%Y-%m-%d"),
             amount=amount,
@@ -164,40 +162,40 @@ class InventoryPredictor:
         reagent.current_stock -= amount
         reagent.last_updated = datetime.now().isoformat()
         
-        # 重新计算消耗速率和预测
+        # Recalculate consumption rates and forecasts
         self._calculate_consumption_rate(reagent)
         self._predict_depletion(reagent)
         
         self._save_reagent(reagent)
         return {
             "success": True, 
-            "message": f"已记录使用 {amount} {reagent.unit}",
+            "message": f"Recorded use {amount} {reagent.unit}",
             "current_stock": reagent.current_stock,
             "predicted_depletion": reagent.predicted_depletion_date
         }
     
     def restock(self, name: str, amount: float) -> Dict:
-        """补充库存"""
+        """restock"""
         reagent = self._get_reagent(name)
         if not reagent:
-            return {"success": False, "error": f"试剂 '{name}' 不存在"}
+            return {"success": False, "error": f"Reagents '{name}' does not exist"}
         
         reagent.current_stock += amount
         reagent.last_updated = datetime.now().isoformat()
         
-        # 重新预测
+        # re-forecast
         self._predict_depletion(reagent)
         
         self._save_reagent(reagent)
         return {
             "success": True,
-            "message": f"已补充 {amount} {reagent.unit}",
+            "message": f"Supplemented {amount} {reagent.unit}",
             "current_stock": reagent.current_stock,
             "predicted_depletion": reagent.predicted_depletion_date
         }
     
     def _calculate_consumption_rate(self, reagent: Reagent):
-        """计算每日消耗速率"""
+        """Calculate daily consumption rate"""
         lookback_days = self.data['settings'].get('prediction_lookback_days', 30)
         cutoff_date = datetime.now() - timedelta(days=lookback_days)
         
@@ -207,7 +205,7 @@ class InventoryPredictor:
         ]
         
         if len(recent_usage) < 2:
-            # 数据不足，使用所有历史记录
+            # Not enough data, use all history
             recent_usage = reagent.usage_history
         
         if len(recent_usage) < 2:
@@ -216,12 +214,12 @@ class InventoryPredictor:
         
         total_usage = sum(u.amount for u in recent_usage)
         date_range = (datetime.now() - datetime.fromisoformat(recent_usage[0].date)).days
-        date_range = max(date_range, 1)  # 至少1天
+        date_range = max(date_range, 1)  # at least 1 day
         
         reagent.daily_consumption_rate = total_usage / date_range
     
     def _predict_depletion(self, reagent: Reagent):
-        """预测耗尽日期"""
+        """Predicted exhaustion date"""
         if reagent.daily_consumption_rate <= 0:
             reagent.predicted_depletion_date = None
             return
@@ -231,10 +229,10 @@ class InventoryPredictor:
         reagent.predicted_depletion_date = depletion_date.strftime("%Y-%m-%d")
     
     def predict_depletion(self, name: str) -> Dict:
-        """获取指定试剂的耗尽预测"""
+        """Get depletion predictions for a specified reagent"""
         reagent = self._get_reagent(name)
         if not reagent:
-            return {"success": False, "error": f"试剂 '{name}' 不存在"}
+            return {"success": False, "error": f"Reagents '{name}' does not exist"}
         
         self._calculate_consumption_rate(reagent)
         self._predict_depletion(reagent)
@@ -245,7 +243,7 @@ class InventoryPredictor:
                 "success": True,
                 "reagent": name,
                 "current_stock": f"{reagent.current_stock} {reagent.unit}",
-                "daily_consumption_rate": f"{reagent.daily_consumption_rate:.2f} {reagent.unit}/天",
+                "daily_consumption_rate": f"{reagent.daily_consumption_rate:.2f} {reagent.unit}/sky",
                 "predicted_depletion_date": reagent.predicted_depletion_date,
                 "days_remaining": days_left
             }
@@ -254,11 +252,11 @@ class InventoryPredictor:
                 "success": True,
                 "reagent": name,
                 "current_stock": f"{reagent.current_stock} {reagent.unit}",
-                "message": "数据不足，无法预测耗尽时间"
+                "message": "Insufficient data to predict exhaustion time"
             }
     
     def get_alerts(self) -> Dict:
-        """获取采购提醒"""
+        """Get purchase reminders"""
         alerts = []
         now = datetime.now()
         
@@ -270,12 +268,12 @@ class InventoryPredictor:
             alert_level = None
             alert_reason = []
             
-            # 检查安全库存
+            # Check safety stock
             if reagent.current_stock <= reagent.safety_stock:
                 alert_level = "CRITICAL"
-                alert_reason.append(f"库存低于安全库存 ({reagent.safety_stock} {reagent.unit})")
+                alert_reason.append(f"Inventory below safety stock ({reagent.safety_stock} {reagent.unit})")
             
-            # 检查耗尽时间
+            # Check exhaustion time
             if reagent.predicted_depletion_date:
                 depletion_date = datetime.fromisoformat(reagent.predicted_depletion_date)
                 days_until = (depletion_date - now).days
@@ -283,15 +281,15 @@ class InventoryPredictor:
                 
                 if days_until <= 0:
                     alert_level = "CRITICAL"
-                    alert_reason.append("库存已耗尽")
+                    alert_reason.append("Stock has been exhausted")
                 elif days_until <= reagent.safety_days + reagent.lead_time_days:
                     alert_level = alert_level or "WARNING"
-                    alert_reason.append(f"预计 {days_until} 天后耗尽")
+                    alert_reason.append(f"expected {days_until} The queen of heaven is exhausted")
                 
                 if order_deadline <= 0:
-                    alert_reason.append(f"⚠️ 已超过采购截止日期 ({reagent.lead_time_days} 天提前期)")
+                    alert_reason.append(f"⚠️ Purchase deadline has passed ({reagent.lead_time_days} days lead time)")
                 elif order_deadline <= 3:
-                    alert_reason.append(f"建议 {order_deadline} 天内完成采购")
+                    alert_reason.append(f"suggestion {order_deadline} Complete purchase within days")
             
             if alert_level:
                 alerts.append({
@@ -302,7 +300,7 @@ class InventoryPredictor:
                     "predicted_depletion": reagent.predicted_depletion_date
                 })
         
-        # 按紧急程度排序
+        # Sort by urgency
         alerts.sort(key=lambda x: (0 if x['level'] == 'CRITICAL' else 1))
         
         return {
@@ -312,7 +310,7 @@ class InventoryPredictor:
         }
     
     def get_status(self) -> Dict:
-        """获取所有试剂状态"""
+        """Get all reagent status"""
         status_list = []
         
         for r_data in self.data['reagents']:
@@ -331,7 +329,7 @@ class InventoryPredictor:
             status_list.append({
                 "name": reagent.name,
                 "current_stock": f"{reagent.current_stock} {reagent.unit}",
-                "daily_consumption": f"{reagent.daily_consumption_rate:.2f} {reagent.unit}/天" if reagent.daily_consumption_rate > 0 else "N/A",
+                "daily_consumption": f"{reagent.daily_consumption_rate:.2f} {reagent.unit}/sky" if reagent.daily_consumption_rate > 0 else "N/A",
                 "predicted_depletion": reagent.predicted_depletion_date or "N/A",
                 "status": status
             })
@@ -343,7 +341,7 @@ class InventoryPredictor:
         }
     
     def generate_report(self) -> Dict:
-        """生成完整报告"""
+        """Generate full report"""
         status = self.get_status()
         alerts = self.get_alerts()
         
@@ -365,51 +363,51 @@ class InventoryPredictor:
         return report
     
     def remove_reagent(self, name: str) -> Dict:
-        """删除试剂"""
+        """Delete reagent"""
         for i, r in enumerate(self.data['reagents']):
             if r['name'] == name:
                 del self.data['reagents'][i]
                 self._save_data()
-                return {"success": True, "message": f"试剂 '{name}' 已删除"}
-        return {"success": False, "error": f"试剂 '{name}' 不存在"}
+                return {"success": True, "message": f"Reagents '{name}' Deleted"}
+        return {"success": False, "error": f"Reagents '{name}' does not exist"}
 
 
 def main():
-    """命令行入口"""
-    parser = argparse.ArgumentParser(description='Lab Inventory Predictor - 实验室库存预测工具')
-    parser.add_argument('--data-path', help='数据文件路径')
+    """Command line entry"""
+    parser = argparse.ArgumentParser(description='Lab Inventory Predictor - Laboratory inventory forecasting tool')
+    parser.add_argument('--data-path', help='Data file path')
     parser.add_argument('--action', required=True,
                         choices=['add-reagent', 'update-reagent', 'remove-reagent',
                                 'record-usage', 'restock', 'status', 'alerts', 
                                 'report', 'predict', 'list'],
-                        help='执行的操作')
+                        help='Action performed')
     
-    # 试剂相关参数
-    parser.add_argument('--name', help='试剂名称')
-    parser.add_argument('--current-stock', type=float, help='当前库存量')
-    parser.add_argument('--unit', default='ml', help='单位 (默认: ml)')
-    parser.add_argument('--safety-stock', type=float, help='安全库存量')
-    parser.add_argument('--safety-days', type=int, help='安全库存天数')
-    parser.add_argument('--lead-time-days', type=int, help='采购提前期(天)')
+    # Reagent related parameters
+    parser.add_argument('--name', help='Reagent name')
+    parser.add_argument('--current-stock', type=float, help='Current inventory')
+    parser.add_argument('--unit', default='ml', help='Unit (default: ml)')
+    parser.add_argument('--safety-stock', type=float, help='safety stock')
+    parser.add_argument('--safety-days', type=int, help='Safety stock days')
+    parser.add_argument('--lead-time-days', type=int, help='Procurement lead time (days)')
     
-    # 使用记录参数
-    parser.add_argument('--amount', type=float, help='使用量或补充量')
-    parser.add_argument('--experiment', default='', help='实验名称/编号')
+    # Using record parameters
+    parser.add_argument('--amount', type=float, help='Dosage or supplement')
+    parser.add_argument('--experiment', default='', help='Experiment name/number')
     
-    # 输出格式
-    parser.add_argument('--json', action='store_true', help='以JSON格式输出')
+    # Output format
+    parser.add_argument('--json', action='store_true', help='Output in JSON format')
     
     args = parser.parse_args()
     
-    # 初始化预测器
+    # Initialize predictor
     predictor = InventoryPredictor(args.data_path)
     
-    # 执行操作
+    # perform operations
     result = None
     
     if args.action == 'add-reagent':
         if not args.name or args.current_stock is None:
-            result = {"success": False, "error": "缺少必要参数: --name 和 --current-stock"}
+            result = {"success": False, "error": "Missing required parameters: --name and --current-stock"}
         else:
             result = predictor.add_reagent(
                 name=args.name,
@@ -422,7 +420,7 @@ def main():
     
     elif args.action == 'update-reagent':
         if not args.name:
-            result = {"success": False, "error": "缺少必要参数: --name"}
+            result = {"success": False, "error": "Missing required parameter: --name"}
         else:
             result = predictor.update_reagent(
                 name=args.name,
@@ -435,19 +433,19 @@ def main():
     
     elif args.action == 'remove-reagent':
         if not args.name:
-            result = {"success": False, "error": "缺少必要参数: --name"}
+            result = {"success": False, "error": "Missing required parameter: --name"}
         else:
             result = predictor.remove_reagent(args.name)
     
     elif args.action == 'record-usage':
         if not args.name or args.amount is None:
-            result = {"success": False, "error": "缺少必要参数: --name 和 --amount"}
+            result = {"success": False, "error": "Missing required parameters: --name and --amount"}
         else:
             result = predictor.record_usage(args.name, args.amount, args.experiment)
     
     elif args.action == 'restock':
         if not args.name or args.amount is None:
-            result = {"success": False, "error": "缺少必要参数: --name 和 --amount"}
+            result = {"success": False, "error": "Missing required parameters: --name and --amount"}
         else:
             result = predictor.restock(args.name, args.amount)
     
@@ -462,77 +460,77 @@ def main():
     
     elif args.action == 'predict':
         if not args.name:
-            result = {"success": False, "error": "缺少必要参数: --name"}
+            result = {"success": False, "error": "Missing required parameter: --name"}
         else:
             result = predictor.predict_depletion(args.name)
     
-    # 输出结果
+    # Output results
     if args.json:
         print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
         _print_formatted(result)
     
-    # 根据结果设置退出码
+    # Set exit code based on result
     sys.exit(0 if result.get('success', True) else 1)
 
 
 def _print_formatted(result: Dict):
-    """格式化输出结果"""
+    """Format output results"""
     if not result.get('success', True):
-        print(f"❌ 错误: {result.get('error', '未知错误')}")
+        print(f"❌ mistake: {result.get('error', 'unknown error')}")
         return
     
-    # 添加试剂
-    if 'message' in result and '添加' in result['message']:
+    # Add reagents
+    if 'message' in result and 'Add to' in result['message']:
         print(f"✅ {result['message']}")
         return
     
-    # 记录使用
-    if 'current_stock' in result and 'message' in result and '记录' in result['message']:
+    # Record usage
+    if 'current_stock' in result and 'message' in result and 'Record' in result['message']:
         print(f"✅ {result['message']}")
-        print(f"   当前库存: {result['current_stock']}")
+        print(f"   Current inventory: {result['current_stock']}")
         if 'predicted_depletion' in result:
-            print(f"   预计耗尽: {result['predicted_depletion']}")
+            print(f"   expected to run out: {result['predicted_depletion']}")
         return
     
-    # 补充库存
-    if 'message' in result and '补充' in result['message']:
+    # restock
+    if 'message' in result and 'Replenish' in result['message']:
         print(f"✅ {result['message']}")
-        print(f"   当前库存: {result['current_stock']}")
+        print(f"   Current inventory: {result['current_stock']}")
         return
     
-    # 预测结果
+    # Prediction results
     if 'reagent' in result and 'daily_consumption_rate' in result:
-        print(f"\n📊 试剂: {result['reagent']}")
-        print(f"   当前库存: {result['current_stock']}")
-        print(f"   日均消耗: {result['daily_consumption_rate']}")
+        print(f"\n📊 Reagents: {result['reagent']}")
+        print(f"   Current inventory: {result['current_stock']}")
+        print(f"   English: {result['daily_consumption_rate']}")
         if 'predicted_depletion_date' in result:
-            print(f"   预计耗尽: {result['predicted_depletion_date']} (还有 {result['days_remaining']} 天)")
+            print(f"   expected to run out: {result['predicted_depletion_date']} (English {result['days_remaining']} sky)")
         else:
             print(f"   {result.get('message', '')}")
         return
     
-    # 警报列表
+    # Alert list
     if 'alerts' in result and 'alert_count' in result:
-        print(f"\n🚨 采购提醒 (共 {result['alert_count']} 项)\n")
+        print(f"\n🚨 Purchase reminder (common {result['alert_count']} item)\n")
         if result['alert_count'] == 0:
-            print("   ✅ 所有试剂库存充足")
+            print("✅ All reagents are in sufficient stock")
             return
         
         for alert in result['alerts']:
             icon = "🔴" if alert['level'] == 'CRITICAL' else "🟡"
             print(f"{icon} [{alert['level']}] {alert['reagent']}")
-            print(f"   当前库存: {alert['current_stock']}")
-            print(f"   原因: {alert['reason']}")
+            print(f"   Current inventory: {alert['current_stock']}")
+            print(f"   reason: {alert['reason']}")
             if alert.get('predicted_depletion'):
-                print(f"   预计耗尽: {alert['predicted_depletion']}")
+                print(f"   expected to run out: {alert['predicted_depletion']}")
             print()
         return
     
-    # 状态列表
+    # status list
     if 'reagents' in result:
-        print(f"\n📋 库存状态 (共 {result['total_reagents']} 种试剂)\n")
-        print(f"{'试剂名称':<20} {'当前库存':<15} {'日均消耗':<15} {'预计耗尽':<12} {'状态':<10}")
+        print(f"\n📋 English (common {result['total_reagents']} kind of reagent)\n")
+        print(f"{'Reagent name':<20} {'Current inventory':<15} {'average daily consumption':<15} {'expected to run out':<12} {'state':<10}")
         print("-" * 80)
         
         for r in result['reagents']:
@@ -540,23 +538,23 @@ def _print_formatted(result: Dict):
             print(f"{r['name']:<20} {r['current_stock']:<15} {r['daily_consumption']:<15} {r['predicted_depletion']:<12} {status_icon} {r['status']}")
         return
     
-    # 报告
+    # Report
     if 'summary' in result:
-        print(f"\n📑 库存预测报告")
-        print(f"   生成时间: {result['generated_at']}")
-        print(f"\n📊 汇总")
-        print(f"   试剂总数: {result['summary']['total_reagents']}")
-        print(f"   紧急警报: {result['summary']['critical_alerts']}")
-        print(f"   警告警报: {result['summary']['warning_alerts']}")
+        print(f"\n📑 Inventory Forecast Report")
+        print(f"   Generation time: {result['generated_at']}")
+        print(f"\n📊 Summary")
+        print(f"   Total number of reagents: {result['summary']['total_reagents']}")
+        print(f"   emergency alert: {result['summary']['critical_alerts']}")
+        print(f"   warning alert: {result['summary']['warning_alerts']}")
         
         if result['alerts']:
-            print(f"\n🚨 需要关注的试剂:")
+            print(f"\n🚨 Reagents that need attention:")
             for alert in result['alerts']:
                 icon = "🔴" if alert['level'] == 'CRITICAL' else "🟡"
                 print(f"   {icon} {alert['reagent']}: {alert['reason']}")
         return
     
-    # 默认输出
+    # Default output
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 

@@ -1,7 +1,7 @@
 {
   "meta": {
     "skill_name": "survival-curve-risk-table",
-    "evaluated_on": "2026-03-19",
+    "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Data Analysis",
     "execution_mode": "B",
@@ -10,324 +10,299 @@
   },
   "veto_gates": {
     "skill_veto": {
-      "gate": "PASS",
       "stability": "PASS",
       "contract": "PASS",
       "determinism": "PASS",
-      "security": "PASS"
+      "security": "PASS",
+      "gate": "PASS"
     },
     "research_veto": {
       "applicable": true,
-      "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": "No fabricated statistics, p-values, or citations were produced across all evaluated outputs; all claims trace to input data or documented tool behavior."
+        "detail": "Scientific integrity held because extraction and analysis outputs stayed tied to provided text, metadata, or runtime evidence rather than invented study findings."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": "All outputs remained within biostatistics and data visualization scope; no unsupported clinical or diagnostic recommendations were made."
+        "detail": "The evaluated outputs stayed inside the Analyze data with survival-curve-risk-table using a reproducible workflow, explicit... and did not drift into unsupported interpretation beyond the available inputs."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": "No methodological fallacies detected; outputs apply standard approaches appropriate to biostatistics and data visualization tasks."
+        "detail": "The legacy review kept the package aligned with its named analysis library, data structure, or processing workflow."
       },
       "code_usability": {
         "result": "PASS",
-        "detail": "Generated code executed without syntax errors or unresolvable dependency failures across all tested inputs."
-      }
+        "detail": "Code usability passed because the package still exposed a reviewable execution surface for its documented workflow."
+      },
+      "gate": "PASS"
     }
   },
   "static_score": {
-    "subtotal": 87,
+    "subtotal": 86,
     "max": 100,
     "categories": {
       "functional_suitability": {
         "score": 11,
         "max": 12,
-        "note": "Pagination for >6 groups now documented with named output convention; single-arm labeled as 'All patients'"
+        "note": "Functional suitability was softened by the legacy issue 'Improve stress-case output rigor'. Stress and boundary scenarios show weaker consistency"
       },
       "reliability": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "Fallback template present; pagination branch adds robustness for stress cases; stress-case checklist updated"
+        "note": "The archived deduction in reliability traces back to: Improve stress-case output rigor. Stress and boundary scenarios show weaker consistency"
       },
       "performance_context": {
-        "score": 6,
+        "score": 7,
         "max": 8,
-        "note": "references/parameters.md offloads detail; SKILL.md is 150 lines — well-sized"
+        "note": "Performance-context scoring suggests the package could handle larger or denser runs a little more gracefully."
       },
       "agent_usability": {
-        "score": 15,
+        "score": 14,
         "max": 16,
-        "note": "Pagination workflow branch now documented; style override documentation mandated in Assumptions; all v1 gaps closed"
+        "note": "The packaged analysis path is understandable, though the archived score suggests slightly clearer routing would help."
       },
       "human_usability": {
         "score": 7,
         "max": 8,
-        "note": "Description naturally discoverable for clinical researchers; trigger language precise"
+        "note": "Related legacy finding for survival-curve-risk-table: Stabilize executable path and fallback behavior. Some inputs only reached PARTIAL due to execution gaps or weak boundary handling"
       },
       "security": {
-        "score": 9,
+        "score": 10,
         "max": 12,
-        "note": "Local file I/O only; no credential handling; CSV column name injection not addressed"
+        "note": "The packaged workflow stayed safe overall, with only a small remaining deduction around boundary signaling."
       },
       "maintainability": {
-        "score": 11,
+        "score": 10,
         "max": 12,
-        "note": "references/parameters.md offloads detail; clean script separation; all fixes applied cleanly"
+        "note": "Maintainability stayed solid, with only limited room to simplify scripts, dependencies, or packaging structure."
       },
       "agent_specific": {
         "score": 17,
         "max": 20,
-        "note": "Pagination branch closes the >6 groups gap; escape hatches strong; composability still limited by file-path coupling"
+        "note": "The archived deduction in agent specific traces back to: Stabilize executable path and fallback behavior. Some inputs only reached PARTIAL due to execution gaps or weak boundary handling"
       }
     }
   },
   "dynamic_score": {
-    "execution_avg": 85.6,
+    "execution_avg": 89,
     "max": 100,
     "assertion_pass_rate": {
-      "passed": 24,
-      "total": 25
+      "passed": 18,
+      "total": 20
     },
     "inputs": [
       {
         "index": 1,
         "type": "Canonical",
-        "label": "Two-arm KM risk table NEJM style",
+        "label": "Analyze data with survival-curve-risk-table using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; two-arm km risk table nejm style case handled within expected scope.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "Analyze data with survival-curve-risk-table using a reproducible... remained well-aligned with the documented contract in the preserved audit.",
+        "basic": 40,
+        "specialized": 60,
+        "total": 100,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Risk table time points align with KM curve X-axis",
+            "text": "The survival-curve-risk-table output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: risk table time points align with km curve as expected."
+            "note": "The legacy review accepted the deliverable shape for this scenario."
           },
           {
-            "text": "Number-at-risk counts reported per group per time point",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: number-at-risk counts reported per group per time point as expected."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "NEJM journal style applied correctly",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: nejm journal style applied correctly as expected."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           },
           {
-            "text": "No fabricated patient counts",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Output file path returned in structured response",
-            "result": "PASS",
-            "note": "Output format conforms to the expected structure without anomalies."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           }
         ]
       },
       {
         "index": 2,
         "type": "Variant A",
-        "label": "Three-arm trial Lancet style with custom time points",
+        "label": "Use this skill for data analysis tasks that require explicit assumptions, bounded scope, and a reproducible output format",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; three-arm trial lancet style with custom time points case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "Use this skill for data analysis tasks that require explicit... remained well-aligned with the documented contract in the preserved audit.",
+        "basic": 40,
+        "specialized": 57,
+        "total": 97,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Custom time points honored in risk table",
+            "text": "The survival-curve-risk-table output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: custom time points honored in risk table as expected."
+            "note": "The legacy audit marked the deliverable structure as passing."
           },
           {
-            "text": "Lancet style formatting applied",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Output format conforms to the expected structure without anomalies."
+            "note": "Legacy command notes backed the passing execution-path judgment."
           },
           {
-            "text": "Three groups displayed without overlap",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: three groups displayed without overlap as expected."
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "No fabricated at-risk numbers",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Assumptions section states journal style applied and notes override from NEJM default",
-            "result": "PASS",
-            "note": "Now mandated by Output Requirements item 3 and Stress-Case Checklist"
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 3,
         "type": "Edge",
-        "label": "Single-arm (no group column) risk table",
+        "label": "Analyze data with survival-curve-risk-table using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; single-arm (no group column) risk table case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The archived evaluation treated Analyze data with survival-curve-risk-table using a reproducible... as a clean in-scope run.",
+        "basic": 36,
+        "specialized": 56,
+        "total": 92,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Skill handles missing group column gracefully",
+            "text": "The survival-curve-risk-table output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: skill handles missing group column gracefully as expected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Single-arm risk table generated without error",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Confirmed: single-arm risk table generated without error as expected."
+            "note": "Command evidence was preserved in the legacy execution summary."
           },
           {
-            "text": "Output labeled as 'All patients' for ungrouped analysis",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Now documented in Key Parameters and Output Requirements"
+            "note": "Scope remained controlled in the legacy review for this scenario."
           },
           {
-            "text": "No fabricated group stratification",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Scope stays within risk table generation",
-            "result": "PASS",
-            "note": "Output remained within the skill's stated operational scope."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           }
         ]
       },
       {
         "index": 4,
         "type": "Variant B",
-        "label": "Combined KM curve + risk table PDF output",
+        "label": "Packaged executable path(s): scripts/main.py",
         "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; combined km curve + risk table pdf output case handled within expected scope.",
-        "basic": 35,
-        "specialized": 51,
-        "total": 86,
-        "assertions_passed": 5,
-        "assertions_total": 5,
+        "status_flag": "PASS",
+        "note": "The Packaged executable path(s): scripts/main.py scenario completed within the documented Analyze data with survival-curve-risk-table using a reproducible workflow, explicit... boundary.",
+        "basic": 36,
+        "specialized": 55,
+        "total": 91,
+        "assertions_passed": 4,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "--combine flag produces single combined figure",
+            "text": "The survival-curve-risk-table output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Confirmed: --combine flag produces single combined figure as expected."
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "PDF output format honored",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Output format conforms to the expected structure without anomalies."
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "KM curve and risk table vertically aligned",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "PASS",
-            "note": "Confirmed: km curve and risk table vertically aligned as expected."
+            "note": "The archived evaluation did not see this scenario drift outside the declared scope."
           },
           {
-            "text": "No fabricated survival statistics",
+            "text": "Required research safety/boundary guidance is present without overclaims",
             "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Output requirements section fully populated",
-            "result": "PASS",
-            "note": "Confirmed: output requirements section fully populated as expected."
+            "note": "The legacy audit kept this scenario within the documented skill boundary."
           }
         ]
       },
       {
         "index": 5,
         "type": "Stress",
-        "label": "Seven-group trial exceeding 6-group limit",
-        "status": "COMPLETED",
-        "status_flag": "✅",
-        "note": "Output completed successfully; seven-group trial exceeding 6-group limit case handled within expected scope.",
-        "basic": 34,
-        "specialized": 50,
-        "total": 84,
-        "assertions_passed": 4,
-        "assertions_total": 5,
+        "label": "End-to-end case for Scope-focused workflow aligned to: Analyze data with survival-curve-risk-table using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation",
+        "status": "PARTIAL",
+        "status_flag": "FAIL",
+        "note": "The main issue in this stress run was: The output stays within declared skill scope and target objective.",
+        "basic": 25,
+        "specialized": 40,
+        "total": 65,
+        "assertions_passed": 2,
+        "assertions_total": 4,
         "assertions": [
           {
-            "text": "Skill detects >6 groups and emits pagination warning",
+            "text": "The survival-curve-risk-table output structure covers required deliverable blocks",
             "result": "PASS",
-            "note": "Group count check now in Workflow section with explicit pagination branch"
+            "note": "The archived evaluation treated the output structure as aligned with the expected deliverable."
           },
           {
-            "text": "Paginated output files named risk_table_page1.png, risk_table_page2.png",
+            "text": "Script execution path is available (command exit code is 0)",
             "result": "PASS",
-            "note": "Naming convention now documented"
+            "note": "The archived execution trace supported this script-path assertion."
           },
           {
-            "text": "No fabricated group data",
-            "result": "PASS",
-            "note": "All output values verified against input data; no invented content found."
-          },
-          {
-            "text": "Risks and Limits section notes group count constraint",
-            "result": "PASS",
-            "note": "Confirmed: risks and limits section notes group count constraint as expected."
-          },
-          {
-            "text": "Fallback template invoked if pagination fails",
+            "text": "The output stays within declared skill scope and target objective",
             "result": "FAIL",
-            "note": "Fallback not explicitly wired to pagination failure path"
+            "note": "The legacy audit recorded a scope-boundary problem for this scenario."
+          },
+          {
+            "text": "Required research safety/boundary guidance is present without overclaims",
+            "result": "FAIL",
+            "note": "The legacy audit recorded a scope-boundary problem for this scenario."
           }
         ]
       }
     ]
   },
   "final": {
-    "static_weighted": 34.8,
-    "dynamic_weighted": 51.4,
-    "score": 86,
+    "static_weighted": 34.4,
+    "dynamic_weighted": 53.4,
+    "score": 88,
     "max": 100,
     "grade": "Production Ready",
-    "grade_symbol": "⭐",
+    "grade_symbol": "*",
     "deployable": true,
     "veto_override": false
   },
   "key_strengths": [
-    "Journal-specific style support (NEJM, Lancet, JCO) directly addresses publication submission requirements",
-    "Pagination workflow branch for >6 groups with named output convention closes the primary v1 gap",
-    "Single-arm 'All patients' label and mandatory style-override documentation in Assumptions improve output traceability",
-    "Combined figure mode (--combine) reduces post-processing steps for manuscript preparation",
-    "Fallback template includes lifelines install command, minimizing environment setup friction"
+    "Primary routing is Data Analysis with execution mode B",
+    "Static quality score is 86/100 and dynamic average is 89.0/100",
+    "Assertions and command execution outcomes are recorded per input for human review"
   ],
   "recommendations": [
     {
-      "priority": "P2",
-      "title": "Fallback not explicitly wired to pagination failure path",
+      "priority": "P1",
+      "title": "Stabilize executable path and fallback behavior",
       "observed_in": [
         5
       ],
-      "problem": "The pagination workflow branch does not explicitly state that the Fallback Template should be invoked if pagination fails, leaving a minor gap in error handling coverage.",
-      "root_cause": "Fallback Template is documented for script failures but not for pagination-specific failures.",
-      "fix": "Add to the Group count check paragraph: 'If pagination fails, invoke the Fallback Template with Blocked Steps noting the pagination error.'"
+      "problem": "Some inputs only reached PARTIAL due to execution gaps or weak boundary handling",
+      "root_cause": "Example commands are not fully runnable or missing deterministic fallback",
+      "fix": "Add validated runnable commands and a strict fallback template for missing parameters and execution errors"
     },
     {
       "priority": "P2",
-      "title": "CSV column name injection not addressed",
-      "observed_in": [],
-      "problem": "User-provided column names (--time-col, --event-col, --group-col) are passed to the script without sanitization, creating a minor injection surface.",
-      "root_cause": "Security section does not address column name validation.",
-      "fix": "Add to Error Handling: validate that column name parameters contain only alphanumeric characters, underscores, and hyphens before passing to the script."
+      "title": "Improve stress-case output rigor",
+      "observed_in": [
+        5
+      ],
+      "problem": "Stress and boundary scenarios show weaker consistency",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items"
     }
   ]
 }
