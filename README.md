@@ -14,7 +14,15 @@ Add Skills. Run Your Research.
 
 <br>
 
-*200+ medical research skills · Evidence Insights · Protocol Design · Data Analysis · Academic Writing*
+<p align="center">
+  <a href="https://www.aipoch.com/">
+    <img src="https://github.com/user-attachments/assets/1a6a7005-d9fc-49d5-8dba-3cb822d7e71d" alt="AIPOCH Demo GIF" width="800"/>
+  </a>
+</p>
+
+<br>
+
+*450+ medical research skills · Evidence Insights · Protocol Design · Data Analysis · Academic Writing*
 
 </div>
 
@@ -22,7 +30,7 @@ Add Skills. Run Your Research.
 
 ## 🤔 What it is?
 
-AIPOCH is a curated library of 200+ Medical Research Agent Skills, built to work with**​ OpenClaw** and other AI agent platforms, including​**​ OpenCode and Claude**​.
+AIPOCH is a curated library of 450+ Medical Research Agent Skills, built to work with**​ OpenClaw** and other AI agent platforms, including​**​ OpenCode and Claude**​.
 
 It supports the research workflow across four core areas: Evidence Insights, Protocol Design, Data Analysis, and Academic Writing.
 
@@ -48,8 +56,19 @@ The library is primarily organized into five categories: ​**Evidence Insights,
 |✍️ **Academic Writing**   |  e.g., SCI manuscript drafting, methods/results/discussion writing, meta-analysis narrative, cover letters, abstract generation.|
 | 🌍 **Other (General / Non-Research)**          | all general skills that do not fall into categories 1–4.                                                                                   |
 
-**📌 Total Skills in Library: 200+ and growing**
+**📌 Total Skills in Library: 454 and growing**
 
+## 🎬 AIPOCH Medical Research Skills — Demo
+
+<p align="center">
+  <a href="https://www.youtube.com/watch?v=Pq4E9mCO1t8" target="_blank">
+<img width="4480" height="2516" alt="medical research literature reader pro" src="https://github.com/user-attachments/assets/c3de83ec-43d8-4c37-8079-6354c138b0fa" />
+  </a>
+</p>
+
+<p align="center">
+A brief showcase of AIPOCH Medical Research Skills in action across research workflows.
+</p>
 
 ## 🚀 How to Start?
 
