@@ -15,27 +15,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 2
+          fetch-depth: 0
 
       - name: Check release and detect changes
         id: setup
         run: |
           mkdir -p dist
+          touch /tmp/deleted_skills.txt
 
           if gh release view latest >/dev/null 2>&1; then
-            echo "mode=incremental" >> $GITHUB_OUTPUT
+            # Get last successfully packaged commit
+            last_sha=$(git rev-parse refs/tags/last-packaged 2>/dev/null || echo "")
 
-            # Extract changed skill dirs (scientific-skills/Category/skill-name)
-            git diff --name-only HEAD~1 HEAD 2>/dev/null \
-              | grep "^scientific-skills/" \
-              | while IFS= read -r file; do echo "$(echo "$file" | cut -d'/' -f1-3)"; done \
-              | sort -u > /tmp/changed_skills.txt || true
+            if [ -n "$last_sha" ]; then
+              echo "mode=incremental" >> $GITHUB_OUTPUT
+              echo "Diffing from last-packaged ($last_sha) to HEAD..."
 
-            echo "Changed skill directories:"
-            cat /tmp/changed_skills.txt
+              git diff --name-only "$last_sha" HEAD \
+                | grep "^scientific-skills/" \
+                | while IFS= read -r file; do echo "$(echo "$file" | cut -d'/' -f1-3)"; done \
+                | sort -u > /tmp/changed_skills.txt || true
+
+              echo "Changed skill directories:"
+              cat /tmp/changed_skills.txt
+            else
+              echo "mode=all" >> $GITHUB_OUTPUT
+              echo "Release exists but no last-packaged tag — full repackage"
+            fi
           else
             echo "mode=all" >> $GITHUB_OUTPUT
-            echo "No existing release — will package all skills"
+            echo "No release found — full package"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -54,7 +63,6 @@ jobs:
       - name: Package changed skills only (incremental)
         if: steps.setup.outputs.mode == 'incremental'
         run: |
-          touch /tmp/deleted_skills.txt
           while IFS= read -r skill_dir; do
             [ -z "$skill_dir" ] && continue
             name=$(basename "$skill_dir")
@@ -110,11 +118,18 @@ jobs:
         run: |
           if [ -s /tmp/deleted_skills.txt ]; then
             while IFS= read -r name; do
-              echo "Removing from release: ${name}.zip"
+              echo "Removing: ${name}.zip"
               gh release delete-asset latest "${name}.zip" --yes 2>/dev/null || true
             done < /tmp/deleted_skills.txt
           else
             echo "No skills deleted"
           fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Mark last packaged commit
+        run: |
+          git tag -f last-packaged HEAD
+          git push origin refs/tags/last-packaged -f
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
