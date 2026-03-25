@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'scientific-skills/**'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -96,7 +97,7 @@ jobs:
             batch=("${files[@]:i:batch_size}")
             gh release upload latest "${batch[@]}" --clobber
             echo "Progress: $((i + ${#batch[@]})) / $total"
-            [ $((i + batch_size)) -lt $total ] && sleep 8
+            [ $((i + batch_size)) -lt $total ] && sleep 15
           done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
