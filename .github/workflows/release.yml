@@ -24,13 +24,15 @@ jobs:
           mkdir -p dist
           touch /tmp/deleted_skills.txt
 
+          # Check if latest release exists
           if gh release view latest >/dev/null 2>&1; then
-            # Get last successfully packaged commit
-            last_sha=$(git rev-parse refs/tags/last-packaged 2>/dev/null || echo "")
+            echo "Release 'latest' exists"
 
-            if [ -n "$last_sha" ]; then
-              echo "mode=incremental" >> $GITHUB_OUTPUT
-              echo "Diffing from last-packaged ($last_sha) to HEAD..."
+            # Check for last-packaged tag
+            if git rev-parse refs/tags/last-packaged >/dev/null 2>&1; then
+              last_sha=$(git rev-parse refs/tags/last-packaged)
+              echo "Found last-packaged tag at: $last_sha"
+              echo "mode=incremental" >> "$GITHUB_OUTPUT"
 
               git diff --name-only "$last_sha" HEAD \
                 | grep "^scientific-skills/" \
@@ -40,17 +42,20 @@ jobs:
               echo "Changed skill directories:"
               cat /tmp/changed_skills.txt
             else
-              echo "mode=all" >> $GITHUB_OUTPUT
-              echo "Release exists but no last-packaged tag — full repackage"
+              echo "No last-packaged tag — full repackage"
+              echo "mode=all" >> "$GITHUB_OUTPUT"
             fi
           else
-            echo "mode=all" >> $GITHUB_OUTPUT
-            echo "No release found — full package"
+            echo "No latest release — full repackage"
+            echo "mode=all" >> "$GITHUB_OUTPUT"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Package all skills (first time)
+      - name: Debug mode
+        run: echo "Mode is '${{ steps.setup.outputs.mode }}'"
+
+      - name: Package all skills (full)
         if: steps.setup.outputs.mode == 'all'
         run: |
           for category in "Academic Writing" "Data Analysis" "Evidence Insights" "Protocol Design" "Others"; do
@@ -90,8 +95,9 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload all zips in batches (first time)
+      - name: Upload all zips in batches (full)
         if: steps.setup.outputs.mode == 'all'
+        id: upload_all
         run: |
           files=(dist/*.zip)
           total=${#files[@]}
@@ -103,17 +109,21 @@ jobs:
             echo "Progress: $((i + ${#batch[@]})) / $total"
             [ $((i + batch_size)) -lt $total ] && sleep 15
           done
+          echo "uploaded=true" >> "$GITHUB_OUTPUT"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Upload changed zips (incremental)
         if: steps.setup.outputs.mode == 'incremental'
+        id: upload_incremental
         run: |
           if ls dist/*.zip 2>/dev/null | grep -q .; then
             gh release upload latest dist/*.zip --clobber
             echo "Uploaded $(ls dist/*.zip | wc -l) zip(s)"
+            echo "uploaded=true" >> "$GITHUB_OUTPUT"
           else
             echo "No zips to upload"
+            echo "uploaded=false" >> "$GITHUB_OUTPUT"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -133,6 +143,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Mark last packaged commit
+        if: steps.upload_all.outputs.uploaded == 'true' || steps.upload_incremental.outputs.uploaded == 'true'
         run: |
           git tag -f last-packaged HEAD
           git push origin refs/tags/last-packaged -f
