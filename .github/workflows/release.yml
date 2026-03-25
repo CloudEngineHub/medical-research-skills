@@ -22,14 +22,39 @@ jobs:
               zip -r "dist/${name}.zip" "$dir"
             done
           done
+          echo "Total zips: $(ls dist/*.zip | wc -l)"
 
-      - name: Publish to latest release
+      - name: Delete existing latest release
         run: |
           gh release delete latest --yes 2>/dev/null || true
           git push origin :refs/tags/latest 2>/dev/null || true
           sleep 15
-          gh release create latest dist/*.zip \
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create empty release
+        run: |
+          gh release create latest \
             --title "Skill Packages (auto-updated)" \
             --notes "Auto-generated on every push to main."
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload zips in batches
+        run: |
+          files=(dist/*.zip)
+          total=${#files[@]}
+          batch_size=20
+          echo "Uploading $total files in batches of $batch_size..."
+
+          for ((i=0; i<total; i+=batch_size)); do
+            batch=("${files[@]:i:batch_size}")
+            gh release upload latest "${batch[@]}" --clobber
+            uploaded=$((i + ${#batch[@]}))
+            echo "Progress: $uploaded / $total"
+            if [ $((i + batch_size)) -lt $total ]; then
+              sleep 8
+            fi
+          done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
