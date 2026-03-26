@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: write
-  workflows: write
 
 jobs:
   package:
@@ -155,7 +154,12 @@ jobs:
 
       - name: Mark last packaged commit
         run: |
-          git tag -f last-packaged HEAD
-          git push origin refs/tags/last-packaged -f
+          sha=$(git rev-parse HEAD)
+          if gh api "repos/$GITHUB_REPOSITORY/git/refs/tags/last-packaged" >/dev/null 2>&1; then
+            gh api "repos/$GITHUB_REPOSITORY/git/refs/tags/last-packaged" -X PATCH -f sha="$sha" -f force=true
+          else
+            gh api "repos/$GITHUB_REPOSITORY/git/refs" -X POST -f ref="refs/tags/last-packaged" -f sha="$sha"
+          fi
+          echo "last-packaged tag updated to $sha"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
