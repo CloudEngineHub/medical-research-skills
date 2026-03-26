@@ -4,6 +4,11 @@ test_data/
 test_output/
 examples/
 output/
+/test-results/
+/test-results-opencode/
+
+# 本地维护脚本（含机器路径，不纳入版本库）
+/analyze_skill_issues.py
 
 # 生成的报告和临时文件
 *.report.json
