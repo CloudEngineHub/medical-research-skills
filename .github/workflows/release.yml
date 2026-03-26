@@ -61,7 +61,12 @@ jobs:
           for category in "Academic Writing" "Data Analysis" "Evidence Insights" "Protocol Design" "Others"; do
             find "scientific-skills/$category" -mindepth 1 -maxdepth 1 -type d | while IFS= read -r dir; do
               name=$(basename "$dir")
-              zip -r "dist/${name}.zip" "$dir"
+              zip -r "dist/${name}.zip" "$dir" \
+                --exclude "*/node_modules/*" \
+                --exclude "*/.venv/*" \
+                --exclude "*/venv/*" \
+                --exclude "*/__pycache__/*" \
+                --exclude "*.pyc"
             done
           done
           echo "Total: $(ls dist/*.zip | wc -l) zips"
@@ -76,7 +81,12 @@ jobs:
             actual_dir=$(find scientific-skills -mindepth 2 -maxdepth 2 -type d -name "$name" 2>/dev/null | head -1)
             if [ -n "$actual_dir" ]; then
               echo "Zipping: $name (at $actual_dir)"
-              zip -r "dist/${name}.zip" "$actual_dir"
+              zip -r "dist/${name}.zip" "$actual_dir" \
+                --exclude "*/node_modules/*" \
+                --exclude "*/.venv/*" \
+                --exclude "*/venv/*" \
+                --exclude "*/__pycache__/*" \
+                --exclude "*.pyc"
             else
               echo "Deleted: $name"
               echo "$name" >> /tmp/deleted_skills.txt
@@ -97,44 +107,38 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Upload all zips in batches (full)
-        if: steps.setup.outputs.mode == 'all'
-        id: upload_all
+      - name: Upload zips in batches
+        id: upload
         run: |
+          if ! ls dist/*.zip 2>/dev/null | grep -q .; then
+            echo "No zips to upload"
+            echo "uploaded=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          upload_with_retry() {
+            local max_attempts=3
+            for attempt in $(seq 1 $max_attempts); do
+              if gh release upload latest "$@" --clobber; then
+                return 0
+              fi
+              echo "Attempt $attempt failed, retrying in 30s..."
+              sleep 30
+            done
+            echo "Failed after $max_attempts attempts"
+            return 1
+          }
           files=(dist/*.zip)
           total=${#files[@]}
           batch_size=20
           echo "Uploading $total files in batches of $batch_size..."
           for ((i=0; i<total; i+=batch_size)); do
             batch=("${files[@]:i:batch_size}")
-            gh release upload latest "${batch[@]}" --clobber
+            upload_with_retry "${batch[@]}"
             echo "Progress: $((i + ${#batch[@]})) / $total"
             [ $((i + batch_size)) -lt $total ] && sleep 15
           done
+          echo "Uploaded $total zip(s)"
           echo "uploaded=true" >> "$GITHUB_OUTPUT"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Upload changed zips (incremental)
-        if: steps.setup.outputs.mode == 'incremental'
-        id: upload_incremental
-        run: |
-          if ls dist/*.zip 2>/dev/null | grep -q .; then
-            files=(dist/*.zip)
-            total=${#files[@]}
-            batch_size=20
-            for ((i=0; i<total; i+=batch_size)); do
-              batch=("${files[@]:i:batch_size}")
-              gh release upload latest "${batch[@]}" --clobber
-              echo "Progress: $((i + ${#batch[@]})) / $total"
-              [ $((i + batch_size)) -lt $total ] && sleep 15
-            done
-            echo "Uploaded $total zip(s)"
-            echo "uploaded=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "No zips to upload"
-            echo "uploaded=false" >> "$GITHUB_OUTPUT"
-          fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
