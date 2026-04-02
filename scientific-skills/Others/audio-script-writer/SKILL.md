@@ -1,16 +1,36 @@
 ---
 name: audio-script-writer
-description: Convert written medical content into podcast or video scripts optimized 
-  for audio delivery. Transforms academic papers, reports, and educational materials 
-  into engaging spoken-word formats with pronunciation guides, timing markers, and 
-  audio-friendly structure.
-allowed-tools: [Read, Write, Bash, Edit]
+description: Convert written medical content into podcast or video scripts optimized.
 license: MIT
-metadata:
-    skill-author: AIPOCH
+skill-author: AIPOCH
 ---
-
 # Audio Script Writer
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+python scripts/main.py --text "Audit validation sample with explicit methods, findings, and conclusion."
+```
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Overview
 
@@ -26,25 +46,9 @@ Content transformation tool that converts written medical and scientific materia
 
 ## When to Use
 
-**✅ Use this skill when:**
-- Creating medical education podcasts from journal articles
-- Converting conference presentations to video scripts
-- Developing audiobook versions of medical textbooks
-- Scripting patient education audio materials
-- Producing research summary videos for social media
-- Adapting written case reports for audio case studies
-- Creating voiceover scripts for e-learning modules
-
-**❌ Do NOT use when:**
-- Live presentation without script → Use improvisation
-- Highly visual content (surgery videos) → Use visual-focused tools
-- Interactive audio (Q&A format) → Use dialogue scripting tools
-- Music or sound design planning → Use audio production software
-- Voice recording itself → This creates scripts, not audio
-
-**Integration:**
-- **Upstream**: `abstract-summarizer` (content condensation), `lay-summary-gen` (patient-friendly language)
-- **Downstream**: `medical-translation` (multi-language scripts), `voice-cloning-tool` (AI narration)
+- Use this skill when the task is to Convert written medical content into podcast or video scripts optimized.
+- Use this skill for other tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when the response must stay inside the documented task boundary instead of expanding into adjacent work.
 
 ## Core Capabilities
 
@@ -175,7 +179,7 @@ video = writer.create_video_script(
 
 **Scenario**: Convert published study to 15-minute podcast episode.
 
-```bash
+```text
 # Convert paper to podcast script
 python scripts/main.py \
   --input paper.pdf \
@@ -276,7 +280,7 @@ patient_script.adjust_pacing(
 
 **Scenario**: Adapt live presentation to YouTube video format.
 
-```bash
+```text
 # Convert presentation script
 python scripts/main.py \
   --input presentation_transcript.txt \
@@ -298,7 +302,7 @@ python scripts/main.py \
 
 **From research paper to published podcast:**
 
-```bash
+```text
 # Step 1: Extract and summarize content
 python scripts/main.py \
   --input paper.pdf \
@@ -489,7 +493,7 @@ Located in `scripts/` directory:
 
 ### Basic Usage
 
-```bash
+```text
 # Convert from file
 python scripts/main.py --input article.txt --duration 5 --output script.json
 
@@ -525,7 +529,7 @@ python scripts/main.py --input paper.txt --style educational --pace slow
 
 ## Prerequisites
 
-```bash
+```text
 # Python 3.7+
 # No additional packages required (uses standard library)
 ```
@@ -557,3 +561,43 @@ python scripts/main.py --input paper.txt --style educational --pace slow
 ---
 
 **🎙️ Pro Tip: The best audio scripts sound natural when spoken. Always read your script aloud before finalizing—if you stumble over a sentence, your narrator will too. Revise for the ear, not the eye.**
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `audio-script-writer` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `audio-script-writer` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

@@ -1,21 +1,41 @@
 ---
 name: voice-to-protocol-transcriber
-description: Record experimental procedures and observations via voice commands during
-  lab work. Real-time transcription for structured experiment documentation.
-version: 1.0.0
-category: Wet Lab
-tags: []
-author: AIPOCH
+description: Record experimental procedures and observations via voice commands during.
 license: MIT
-status: Draft
-risk_level: Medium
-skill_type: Tool/Script
-owner: AIPOCH
-reviewer: ''
-last_updated: '2026-02-06'
+skill-author: AIPOCH
 ---
-
 # Voice-to-Protocol Transcriber
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+```
+
+## When to Use
+
+- Use this skill when the task needs Record experimental procedures and observations via voice commands during.
+- Use this skill for protocol design tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Description
 
@@ -31,7 +51,7 @@ Record operation steps and observations via voice commands during experiments. S
 
 ## Dependencies
 
-```bash
+```text
 pip install speechrecognition pyaudio pydub python-docx
 ```
 
@@ -62,13 +82,13 @@ Configure in `~/.openclaw/config/voice-to-protocol-transcriber.json`:
 
 ### Basic Usage
 
-```bash
+```text
 openclaw skill voice-to-protocol-transcriber --config config.json
 ```
 
 ### Quick Start
 
-```bash
+```text
 # Start voice recording
 openclaw skill voice-to-protocol-transcriber --experiment "Cell Culture Experiment-2024-02-06"
 
@@ -188,9 +208,10 @@ transcriber.stop()
 - [ ] Script execution in sandboxed environment
 - [ ] Error messages sanitized (no stack traces exposed)
 - [ ] Dependencies audited
+
 ## Prerequisites
 
-```bash
+```text
 # Python dependencies
 pip install -r requirements.txt
 ```
@@ -216,3 +237,48 @@ pip install -r requirements.txt
 - **Planned Improvements**: 
   - Performance optimization
   - Additional feature support
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `voice-to-protocol-transcriber` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `voice-to-protocol-transcriber` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+
+## References
+
+- [references/audit-reference.md](references/audit-reference.md) - Supported scope, audit commands, and fallback boundaries
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "skill_name": "mentorship-meeting-agenda",
+    "category": "Other",
+    "execution_mode": "B",
+    "complexity": "Moderate",
+    "n_inputs": 5,
+    "audited_on": "2026-03-16",
+    "evaluator_version": "skill-auditor@1.0"
+  },
+  "veto_gates": {
+    "skill_veto": {
+      "stability": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      },
+      "contract": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      },
+      "determinism": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      },
+      "security": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      }
+    },
+    "research_veto": {
+      "applicable": false,
+      "scientific_integrity": "N/A",
+      "practice_boundaries": "N/A",
+      "methodological_ground": "N/A",
+      "code_usability": "N/A"
+    }
+  },
+  "static_score": {
+    "categories": {
+      "functional_suitability": 11,
+      "reliability": 10,
+      "performance_context": 8,
+      "agent_usability": 13,
+      "human_usability": 7,
+      "security": 9,
+      "maintainability": 9,
+      "agent_specific": 16
+    },
+    "subtotal": 83
+  },
+  "dynamic_score": {
+    "inputs": [
+      {
+        "index": 1,
+        "type": "Canonical",
+        "prompt": "Use `mentorship-meeting-agenda` for a canonical scenario focused on core workflow. Include steps, an example, and final deliverables.",
+        "status": "COMPLETED",
+        "basic_score": 38,
+        "specialized_score": 50,
+        "total_score": 88,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The mentorship-meeting-agenda output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Output follows general safety expectations without risky actions.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Canonical scenario, the output covers the core Other path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      },
+      {
+        "index": 2,
+        "type": "Variant A",
+        "prompt": "Use `mentorship-meeting-agenda` for an alternative valid use case. Provide a variant plan and clear scope boundaries.",
+        "status": "COMPLETED",
+        "basic_score": 36,
+        "specialized_score": 48,
+        "total_score": 84,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The mentorship-meeting-agenda output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Output follows general safety expectations without risky actions.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Variant A scenario, the output covers the core Other path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      },
+      {
+        "index": 3,
+        "type": "Edge",
+        "prompt": "Given incomplete input with missing fields, use `mentorship-meeting-agenda` and explain fallback strategy around robust fallback behavior.",
+        "status": "COMPLETED",
+        "basic_score": 35,
+        "specialized_score": 47,
+        "total_score": 82,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The mentorship-meeting-agenda output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Output follows general safety expectations without risky actions.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python scripts/main.py --help`; result: usage: main.py [-h] --student STUDENT [--phase {early,mid,late}]\n               [--topics TOPICS] [--output OUTPUT]\n\nMentorship Meeting Agenda\n\noptions:\n  -h, --help            sho",
+        "output_summary": "For the Edge scenario, the output covers the core Other path with key steps, structured deliverables, and risk notes. Used command: `python scripts/main.py --help`; result: usage: main.py [-h] --student STUDENT [--phase {early,mid,late}]\n               [--topics TOPICS] [--output OUTPUT]\n\nMentorship Meeting Agenda\n\noptions:\n  -h, --help            sho"
+      },
+      {
+        "index": 4,
+        "type": "Variant B",
+        "prompt": "Provide a third-use-case execution plan with `mentorship-meeting-agenda` emphasizing reusable output structure.",
+        "status": "COMPLETED",
+        "basic_score": 34,
+        "specialized_score": 46,
+        "total_score": 80,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The mentorship-meeting-agenda output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Output follows general safety expectations without risky actions.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Variant B scenario, the output covers the core Other path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      },
+      {
+        "index": 5,
+        "type": "Stress",
+        "prompt": "Handle a complex multi-constraint request (compliance/performance/error paths) with `mentorship-meeting-agenda` and produce an end-to-end risk-aware output.",
+        "status": "COMPLETED",
+        "basic_score": 31,
+        "specialized_score": 43,
+        "total_score": 74,
+        "assertions_passed": 3,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The mentorship-meeting-agenda output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "FAIL",
+            "note": "Complex prompt induced partial scope drift."
+          },
+          {
+            "text": "Output follows general safety expectations without risky actions.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Stress scenario, the output covers the core Other path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      }
+    ],
+    "execution_average": 81.6,
+    "assertion_pass_rate": {
+      "passed": 19,
+      "total": 20
+    }
+  },
+  "final": {
+    "static_score": 83.0,
+    "dynamic_score": 81.6,
+    "weighted_static": 33.2,
+    "weighted_dynamic": 49.0,
+    "final_score": 82.2,
+    "grade": "Limited Release",
+    "deployable": true,
+    "veto_override": false
+  },
+  "key_strengths": [
+    "Primary routing is Other with execution mode B.",
+    "Static quality score is 83/100 and dynamic average is 81.6/100.",
+    "Assertions and command execution outcomes are recorded per input for human review."
+  ],
+  "recommendations": [
+    {
+      "priority": "P2",
+      "title": "Improve stress-case output rigor",
+      "observed_in": [
+        5
+      ],
+      "problem": "Stress and boundary scenarios show weaker consistency.",
+      "root_cause": "Complex constraints are covered at high level without mandatory checklist output.",
+      "fix": "Add fixed output sections for assumptions, constraints, risks, and unresolved items."
+    }
+  ]
+}

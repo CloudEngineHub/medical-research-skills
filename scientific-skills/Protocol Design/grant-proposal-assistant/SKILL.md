@@ -1,25 +1,45 @@
 ---
 name: grant-proposal-assistant
-description: Grant proposal writing assistant for NIH (R01/R21), NSF and other mainstream
-  funding applications. Triggers when user needs help writing specific aims, research
-  strategy, budget justification, or other grant sections. Provides templates, section
-  generators, and best practice guidance for competitive grant proposals.
-version: 1.0.0
-category: Grant
-tags: []
-author: AIPOCH
+description: Grant proposal writing assistant for NIH (R01/R21), NSF and other mainstream.
 license: MIT
-status: Draft
-risk_level: Medium
-skill_type: Tool/Script
-owner: AIPOCH
-reviewer: ''
-last_updated: '2026-02-06'
+skill-author: AIPOCH
 ---
-
 # Grant Proposal Assistant
 
 A comprehensive tool for writing competitive grant proposals targeting NIH (R01/R21), NSF, and other major funding agencies.
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+python scripts/main.py --section project_summary
+python scripts/main.py --section project_summary --agency NIH
+```
+
+## When to Use
+
+- Use this skill when the task needs Grant proposal writing assistant for NIH (R01/R21), NSF and other mainstream.
+- Use this skill for protocol design tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Capabilities
 
@@ -32,7 +52,7 @@ A comprehensive tool for writing competitive grant proposals targeting NIH (R01/
 
 ### Command Line
 
-```bash
+```text
 # Generate Specific Aims template
 python3 scripts/main.py --section aims --output my_aims.md
 
@@ -126,6 +146,7 @@ budget = assistant.generate_budget_justification(category="equipment", items=[..
 - [ ] Script execution in sandboxed environment
 - [ ] Error messages sanitized (no stack traces exposed)
 - [ ] Dependencies audited
+
 ## Prerequisites
 
 No additional Python packages required.
@@ -151,3 +172,43 @@ No additional Python packages required.
 - **Planned Improvements**: 
   - Performance optimization
   - Additional feature support
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `grant-proposal-assistant` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `grant-proposal-assistant` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

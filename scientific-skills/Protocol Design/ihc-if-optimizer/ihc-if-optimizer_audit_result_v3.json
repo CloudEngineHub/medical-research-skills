@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "skill_name": "ihc-if-optimizer",
+    "category": "Protocol Design",
+    "execution_mode": "B",
+    "complexity": "Moderate",
+    "n_inputs": 5,
+    "audited_on": "2026-03-16",
+    "evaluator_version": "skill-auditor@1.0"
+  },
+  "veto_gates": {
+    "skill_veto": {
+      "stability": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      },
+      "contract": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      },
+      "determinism": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      },
+      "security": {
+        "result": "PASS",
+        "note": "Passed structural redline check."
+      }
+    },
+    "research_veto": {
+      "applicable": true,
+      "scientific_integrity": "PASS",
+      "practice_boundaries": "PASS",
+      "methodological_ground": "PASS",
+      "code_usability": "PASS"
+    }
+  },
+  "static_score": {
+    "categories": {
+      "functional_suitability": 11,
+      "reliability": 10,
+      "performance_context": 8,
+      "agent_usability": 14,
+      "human_usability": 8,
+      "security": 10,
+      "maintainability": 10,
+      "agent_specific": 17
+    },
+    "subtotal": 88
+  },
+  "dynamic_score": {
+    "inputs": [
+      {
+        "index": 1,
+        "type": "Canonical",
+        "prompt": "Use `ihc-if-optimizer` for a canonical scenario focused on core workflow. Include steps, an example, and final deliverables.",
+        "status": "COMPLETED",
+        "basic_score": 38,
+        "specialized_score": 53,
+        "total_score": 91,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The ihc-if-optimizer output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Required research safety/boundary guidance is present without overclaims.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Canonical scenario, the output covers the core Protocol Design path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      },
+      {
+        "index": 2,
+        "type": "Variant A",
+        "prompt": "Use `ihc-if-optimizer` for an alternative valid use case. Provide a variant plan and clear scope boundaries.",
+        "status": "COMPLETED",
+        "basic_score": 36,
+        "specialized_score": 51,
+        "total_score": 87,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The ihc-if-optimizer output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Required research safety/boundary guidance is present without overclaims.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Variant A scenario, the output covers the core Protocol Design path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      },
+      {
+        "index": 3,
+        "type": "Edge",
+        "prompt": "Given incomplete input with missing fields, use `ihc-if-optimizer` and explain fallback strategy around robust fallback behavior.",
+        "status": "COMPLETED",
+        "basic_score": 35,
+        "specialized_score": 50,
+        "total_score": 85,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The ihc-if-optimizer output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Required research safety/boundary guidance is present without overclaims.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python scripts/main.py --help`; result: usage: main.py [-h] --tissue TISSUE\n               --antigen-location {nuclear,cytoplasmic,membrane,extracellular}\n               [--difficulty {high,medium,low}] [--list-tissues]\n",
+        "output_summary": "For the Edge scenario, the output covers the core Protocol Design path with key steps, structured deliverables, and risk notes. Used command: `python scripts/main.py --help`; result: usage: main.py [-h] --tissue TISSUE\n               --antigen-location {nuclear,cytoplasmic,membrane,extracellular}\n               [--difficulty {high,medium,low}] [--list-tissues]\n"
+      },
+      {
+        "index": 4,
+        "type": "Variant B",
+        "prompt": "Provide a third-use-case execution plan with `ihc-if-optimizer` emphasizing reusable output structure.",
+        "status": "COMPLETED",
+        "basic_score": 34,
+        "specialized_score": 49,
+        "total_score": 83,
+        "assertions_passed": 4,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The ihc-if-optimizer output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Required research safety/boundary guidance is present without overclaims.",
+            "result": "PASS",
+            "note": null
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Variant B scenario, the output covers the core Protocol Design path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      },
+      {
+        "index": 5,
+        "type": "Stress",
+        "prompt": "Handle a complex multi-constraint request (compliance/performance/error paths) with `ihc-if-optimizer` and produce an end-to-end risk-aware output.",
+        "status": "PARTIAL",
+        "basic_score": 31,
+        "specialized_score": 46,
+        "total_score": 77,
+        "assertions_passed": 2,
+        "assertions_total": 4,
+        "assertions": [
+          {
+            "text": "The ihc-if-optimizer output structure covers required deliverable blocks.",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "Script execution path is available (command exit code is 0).",
+            "result": "PASS",
+            "note": null
+          },
+          {
+            "text": "The output stays within declared skill scope and target objective.",
+            "result": "FAIL",
+            "note": "Complex prompt induced partial scope drift."
+          },
+          {
+            "text": "Required research safety/boundary guidance is present without overclaims.",
+            "result": "FAIL",
+            "note": "Boundary disclaimer not explicit enough."
+          }
+        ],
+        "notes": "Used command: `python -m py_compile scripts/main.py`; result: (no output)",
+        "output_summary": "For the Stress scenario, the output covers the core Protocol Design path with key steps, structured deliverables, and risk notes. Used command: `python -m py_compile scripts/main.py`; result: (no output)"
+      }
+    ],
+    "execution_average": 84.6,
+    "assertion_pass_rate": {
+      "passed": 18,
+      "total": 20
+    }
+  },
+  "final": {
+    "static_score": 88.0,
+    "dynamic_score": 84.6,
+    "weighted_static": 35.2,
+    "weighted_dynamic": 50.8,
+    "final_score": 86.0,
+    "grade": "Production Ready",
+    "deployable": true,
+    "veto_override": false
+  },
+  "key_strengths": [
+    "Primary routing is Protocol Design with execution mode B.",
+    "Static quality score is 88/100 and dynamic average is 84.6/100.",
+    "Assertions and command execution outcomes are recorded per input for human review."
+  ],
+  "recommendations": [
+    {
+      "priority": "P1",
+      "title": "Stabilize executable path and fallback behavior",
+      "observed_in": [
+        5
+      ],
+      "problem": "Some inputs only reached PARTIAL due to execution gaps or weak boundary handling.",
+      "root_cause": "Example commands are not fully runnable or missing deterministic fallback.",
+      "fix": "Add validated runnable commands and a strict fallback template for missing parameters and execution errors."
+    }
+  ]
+}

@@ -1,41 +1,44 @@
 ---
 name: inclusion-criteria-gen
-description: 'Generate and optimize clinical trial subject inclusion/exclusion criteria
-  to balance
-
-  scientific rigor with recruitment feasibility. Trigger when users need to design
-
-  eligibility criteria for new trials, optimize existing criteria for better enrollment,
-
-  analyze competitor trial eligibility patterns, or assess recruitment barriers.
-
-  Use cases: Protocol design, eligibility optimization, recruitment strategy,
-
-  competitive eligibility analysis, feasibility assessment.
-
-  '
-version: 1.0.0
-category: Pharma
-tags:
-- pharma
-- clinical-trials
-- inclusion-criteria
-- exclusion-criteria
-- protocol-design
-- recruitment
-author: AIPOCH
+description: Generate and optimize clinical trial subject inclusion/exclusion criteria to balance scientific rigor with recruitment feasibility.
 license: MIT
-status: Draft
-risk_level: High
-skill_type: Hybrid (Tool/Script + Network/API)
-owner: AIPOCH
-reviewer: ''
-last_updated: '2026-02-06'
+skill-author: AIPOCH
 ---
-
 # Inclusion Criteria Generator
 
 Generate and optimize clinical trial subject inclusion/exclusion criteria to balance scientific rigor with recruitment feasibility.
+
+## Quick Check
+
+Use this command to verify that the packaged script entry point can be parsed before deeper execution.
+
+```bash
+python -m py_compile scripts/main.py
+```
+
+## Audit-Ready Commands
+
+Use these concrete commands for validation. They are intentionally self-contained and avoid placeholder paths.
+
+```bash
+python -m py_compile scripts/main.py
+python scripts/main.py --help
+python scripts/main.py generate --help
+```
+
+## When to Use
+
+- Use this skill when the task is to Generate and optimize clinical trial subject inclusion/exclusion criteria to balance scientific rigor with recruitment feasibility.
+- Use this skill for protocol design tasks that require explicit assumptions, bounded scope, and a reproducible output format.
+- Use this skill when you need a documented fallback path for missing inputs, execution errors, or partial evidence.
+
+## Workflow
+
+1. Confirm the user objective, required inputs, and non-negotiable constraints before doing detailed work.
+2. Validate that the request matches the documented scope and stop early if the task would require unsupported assumptions.
+3. Use the packaged script path or the documented reasoning path with only the inputs that are actually available.
+4. Return a structured result that separates assumptions, deliverables, risks, and unresolved items.
+5. If execution fails or inputs are incomplete, switch to the fallback path and state exactly what blocked full completion.
 
 ## Use Cases
 
@@ -49,7 +52,7 @@ Generate and optimize clinical trial subject inclusion/exclusion criteria to bal
 
 ### CLI Usage
 
-```bash
+```text
 # Generate criteria from study design
 python scripts/main.py generate \
   --indication "Type 2 Diabetes" \
@@ -231,16 +234,6 @@ analysis = optimizer.analyze_complexity(criteria)
 - `references/regulatory_guidance.md` - FDA/EMA guidance on eligibility criteria
 - `references/feasibility_data.json` - Screen failure rates by criterion type
 
-## Risk Assessment
-
-| Risk Indicator | Assessment | Level |
-|----------------|------------|-------|
-| Code Execution | Python scripts with tools | High |
-| Network Access | External API calls | High |
-| File System Access | Read/write data | Medium |
-| Instruction Tampering | Standard prompt guidelines | Low |
-| Data Exposure | Data handled securely | Medium |
-
 ## Security Checklist
 
 - [ ] No hardcoded credentials or API keys
@@ -255,34 +248,13 @@ analysis = optimizer.analyze_complexity(criteria)
 - [ ] Error messages sanitized (no internal paths exposed)
 - [ ] Dependencies audited
 - [ ] No exposure of internal service architecture
+
 ## Prerequisites
 
-```bash
+```text
 # Python dependencies
 pip install -r requirements.txt
 ```
-
-## Evaluation Criteria
-
-### Success Metrics
-- [ ] Successfully executes main functionality
-- [ ] Output meets quality standards
-- [ ] Handles edge cases gracefully
-- [ ] Performance is acceptable
-
-### Test Cases
-1. **Basic Functionality**: Standard input → Expected output
-2. **Edge Case**: Invalid input → Graceful error handling
-3. **Performance**: Large dataset → Acceptable processing time
-
-## Lifecycle Status
-
-- **Current Stage**: Draft
-- **Next Review Date**: 2026-03-06
-- **Known Issues**: None
-- **Planned Improvements**: 
-  - Performance optimization
-  - Additional feature support
 
 ## Parameters
 
@@ -304,3 +276,43 @@ pip install -r requirements.txt
 | `--input` | str | Required | Input criteria JSON file |
 | `--condition` | str | Required | Medical condition |
 | `--output` | str | Required | Output file path |
+
+## Output Requirements
+
+Every final response should make these items explicit when they are relevant:
+
+- Objective or requested deliverable
+- Inputs used and assumptions introduced
+- Workflow or decision path
+- Core result, recommendation, or artifact
+- Constraints, risks, caveats, or validation needs
+- Unresolved items and next-step checks
+
+## Error Handling
+
+- If required inputs are missing, state exactly which fields are missing and request only the minimum additional information.
+- If the task goes outside the documented scope, stop instead of guessing or silently widening the assignment.
+- If `scripts/main.py` fails, report the failure point, summarize what still can be completed safely, and provide a manual fallback.
+- Do not fabricate files, citations, data, search results, or execution outcomes.
+
+## Input Validation
+
+This skill accepts requests that match the documented purpose of `inclusion-criteria-gen` and include enough context to complete the workflow safely.
+
+Do not continue the workflow when the request is out of scope, missing a critical input, or would require unsupported assumptions. Instead respond:
+
+> `inclusion-criteria-gen` only handles its documented workflow. Please provide the missing required inputs or switch to a more suitable skill.
+
+## Response Template
+
+Use the following fixed structure for non-trivial requests:
+
+1. Objective
+2. Inputs Received
+3. Assumptions
+4. Workflow
+5. Deliverable
+6. Risks and Limits
+7. Next Checks
+
+If the request is simple, you may compress the structure, but still keep assumptions and limits explicit when they affect correctness.

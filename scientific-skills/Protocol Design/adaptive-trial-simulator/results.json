@@ -1,0 +1,328 @@
+{
+  "optimization_mode": true,
+  "optimal_design": {
+    "sample_size": 150,
+    "effect_size": 0.35,
+    "power": 0.88,
+    "type_i_error": 0.04,
+    "expected_sample_size": 300.0,
+    "score": 0.53
+  },
+  "parameter_sweep": [
+    {
+      "sample_size": 100,
+      "effect_size": 0.2,
+      "power": 0.28,
+      "type_i_error": 0.0,
+      "expected_sample_size": 200.0,
+      "score": -0.16999999999999998
+    },
+    {
+      "sample_size": 100,
+      "effect_size": 0.25,
+      "power": 0.36,
+      "type_i_error": 0.04,
+      "expected_sample_size": 200.0,
+      "score": 0.10999999999999999
+    },
+    {
+      "sample_size": 100,
+      "effect_size": 0.3,
+      "power": 0.56,
+      "type_i_error": 0.04,
+      "expected_sample_size": 200.0,
+      "score": 0.31
+    },
+    {
+      "sample_size": 100,
+      "effect_size": 0.35,
+      "power": 0.6,
+      "type_i_error": 0.0,
+      "expected_sample_size": 200.0,
+      "score": 0.14999999999999997
+    },
+    {
+      "sample_size": 100,
+      "effect_size": 0.4,
+      "power": 0.84,
+      "type_i_error": 0.0,
+      "expected_sample_size": 200.0,
+      "score": 0.38999999999999996
+    },
+    {
+      "sample_size": 150,
+      "effect_size": 0.2,
+      "power": 0.32,
+      "type_i_error": 0.04,
+      "expected_sample_size": 300.0,
+      "score": -0.02999999999999997
+    },
+    {
+      "sample_size": 150,
+      "effect_size": 0.25,
+      "power": 0.6,
+      "type_i_error": 0.04,
+      "expected_sample_size": 300.0,
+      "score": 0.24999999999999994
+    },
+    {
+      "sample_size": 150,
+      "effect_size": 0.3,
+      "power": 0.8,
+      "type_i_error": 0.08,
+      "expected_sample_size": 300.0,
+      "score": 0.35000000000000003
+    },
+    {
+      "sample_size": 150,
+      "effect_size": 0.35,
+      "power": 0.88,
+      "type_i_error": 0.04,
+      "expected_sample_size": 300.0,
+      "score": 0.53
+    },
+    {
+      "sample_size": 150,
+      "effect_size": 0.4,
+      "power": 0.92,
+      "type_i_error": 0.0,
+      "expected_sample_size": 300.0,
+      "score": 0.37000000000000005
+    },
+    {
+      "sample_size": 200,
+      "effect_size": 0.2,
+      "power": 0.52,
+      "type_i_error": 0.0,
+      "expected_sample_size": 400.0,
+      "score": -0.13
+    },
+    {
+      "sample_size": 200,
+      "effect_size": 0.25,
+      "power": 0.72,
+      "type_i_error": 0.12,
+      "expected_sample_size": 400.0,
+      "score": -0.030000000000000027
+    },
+    {
+      "sample_size": 200,
+      "effect_size": 0.3,
+      "power": 0.96,
+      "type_i_error": 0.04,
+      "expected_sample_size": 400.0,
+      "score": 0.5099999999999999
+    },
+    {
+      "sample_size": 200,
+      "effect_size": 0.35,
+      "power": 0.92,
+      "type_i_error": 0.04,
+      "expected_sample_size": 400.0,
+      "score": 0.47
+    },
+    {
+      "sample_size": 200,
+      "effect_size": 0.4,
+      "power": 0.96,
+      "type_i_error": 0.08,
+      "expected_sample_size": 400.0,
+      "score": 0.4099999999999999
+    },
+    {
+      "sample_size": 250,
+      "effect_size": 0.2,
+      "power": 0.6,
+      "type_i_error": 0.04,
+      "expected_sample_size": 500.0,
+      "score": 0.04999999999999993
+    },
+    {
+      "sample_size": 250,
+      "effect_size": 0.25,
+      "power": 0.68,
+      "type_i_error": 0.0,
+      "expected_sample_size": 500.0,
+      "score": -0.06999999999999995
+    },
+    {
+      "sample_size": 250,
+      "effect_size": 0.3,
+      "power": 0.96,
+      "type_i_error": 0.04,
+      "expected_sample_size": 500.0,
+      "score": 0.4099999999999999
+    },
+    {
+      "sample_size": 250,
+      "effect_size": 0.35,
+      "power": 1.0,
+      "type_i_error": 0.0,
+      "expected_sample_size": 500.0,
+      "score": 0.25
+    },
+    {
+      "sample_size": 250,
+      "effect_size": 0.4,
+      "power": 1.0,
+      "type_i_error": 0.04,
+      "expected_sample_size": 500.0,
+      "score": 0.44999999999999996
+    },
+    {
+      "sample_size": 300,
+      "effect_size": 0.2,
+      "power": 0.72,
+      "type_i_error": 0.0,
+      "expected_sample_size": 600.0,
+      "score": -0.13
+    },
+    {
+      "sample_size": 300,
+      "effect_size": 0.25,
+      "power": 0.8,
+      "type_i_error": 0.0,
+      "expected_sample_size": 600.0,
+      "score": -0.04999999999999993
+    },
+    {
+      "sample_size": 300,
+      "effect_size": 0.3,
+      "power": 0.92,
+      "type_i_error": 0.0,
+      "expected_sample_size": 600.0,
+      "score": 0.07000000000000006
+    },
+    {
+      "sample_size": 300,
+      "effect_size": 0.35,
+      "power": 1.0,
+      "type_i_error": 0.04,
+      "expected_sample_size": 600.0,
+      "score": 0.35
+    },
+    {
+      "sample_size": 300,
+      "effect_size": 0.4,
+      "power": 1.0,
+      "type_i_error": 0.0,
+      "expected_sample_size": 600.0,
+      "score": 0.15000000000000002
+    },
+    {
+      "sample_size": 350,
+      "effect_size": 0.2,
+      "power": 0.76,
+      "type_i_error": 0.08,
+      "expected_sample_size": 700.0,
+      "score": -0.08999999999999997
+    },
+    {
+      "sample_size": 350,
+      "effect_size": 0.25,
+      "power": 0.88,
+      "type_i_error": 0.0,
+      "expected_sample_size": 700.0,
+      "score": -0.06999999999999995
+    },
+    {
+      "sample_size": 350,
+      "effect_size": 0.3,
+      "power": 0.96,
+      "type_i_error": 0.04,
+      "expected_sample_size": 700.0,
+      "score": 0.20999999999999996
+    },
+    {
+      "sample_size": 350,
+      "effect_size": 0.35,
+      "power": 1.0,
+      "type_i_error": 0.0,
+      "expected_sample_size": 700.0,
+      "score": 0.050000000000000044
+    },
+    {
+      "sample_size": 350,
+      "effect_size": 0.4,
+      "power": 1.0,
+      "type_i_error": 0.0,
+      "expected_sample_size": 700.0,
+      "score": 0.050000000000000044
+    },
+    {
+      "sample_size": 400,
+      "effect_size": 0.2,
+      "power": 0.68,
+      "type_i_error": 0.0,
+      "expected_sample_size": 800.0,
+      "score": -0.37
+    },
+    {
+      "sample_size": 400,
+      "effect_size": 0.25,
+      "power": 0.92,
+      "type_i_error": 0.0,
+      "expected_sample_size": 800.0,
+      "score": -0.13
+    },
+    {
+      "sample_size": 400,
+      "effect_size": 0.3,
+      "power": 1.0,
+      "type_i_error": 0.04,
+      "expected_sample_size": 800.0,
+      "score": 0.1499999999999999
+    },
+    {
+      "sample_size": 400,
+      "effect_size": 0.35,
+      "power": 0.96,
+      "type_i_error": 0.0,
+      "expected_sample_size": 800.0,
+      "score": -0.09000000000000008
+    },
+    {
+      "sample_size": 400,
+      "effect_size": 0.4,
+      "power": 1.0,
+      "type_i_error": 0.04,
+      "expected_sample_size": 800.0,
+      "score": 0.1499999999999999
+    }
+  ],
+  "detailed_simulation": {
+    "design_config": {
+      "design_type": "adaptive_reestimate",
+      "sample_size_per_arm": 150,
+      "effect_size": 0.4,
+      "alpha": 0.05,
+      "target_power": 0.8,
+      "interim_looks": 1,
+      "spending_function": "obrien_fleming",
+      "reestimate_method": "promising_zone",
+      "n_simulations": 25
+    },
+    "simulation_results": {
+      "overall_success_rate": 0.92,
+      "type_i_error": 0.0,
+      "power": 0.92,
+      "expected_sample_size": 300.0,
+      "early_stop_rate": {
+        "efficacy": 0.16,
+        "futility": 0.0
+      }
+    },
+    "interim_analysis": {
+      "look_1": {
+        "stop_efficacy": 0.16,
+        "stop_futility": 0.0,
+        "continue": 0.84
+      }
+    },
+    "optimal_design": {
+      "recommended_n_per_arm": 150,
+      "expected_power": 0.92,
+      "max_sample_size": 300
+    }
+  }
+}
