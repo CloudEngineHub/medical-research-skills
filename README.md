@@ -7,7 +7,7 @@ Add Skills. Run Your Research.
 <br>
 
 [![License](https://img.shields.io/badge/License-MIT-ff6b6b?style=for-the-badge)](./LICENSE)
-![Skills Count](https://img.shields.io/badge/Skills-450%2B-4dabf7?style=for-the-badge)
+![Skills Count](https://img.shields.io/badge/Skills-420%2B-4dabf7?style=for-the-badge)
 ![Work%20with](https://img.shields.io/badge/Work%20with-OpenClaw%20%7C%20Opencode%20%7C%20Claude-9775fa?style=for-the-badge)
 [![Follow on X](https://img.shields.io/badge/Follow%20on%20X-%40aipoch__ai-212529?style=for-the-badge&logo=x&logoColor=white)](https://x.com/aipoch_ai)
 [![YouTube](https://img.shields.io/badge/YouTube-%40AIPOCH__AI-ff0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/@AIPOCH_AI)
@@ -22,7 +22,9 @@ Add Skills. Run Your Research.
 
 <br>
 
-*450+ medical research skills · Evidence Insights · Protocol Design · Data Analysis · Academic Writing*
+*420+ medical research skills · Evidence Insights · Protocol Design · Data Analysis · Academic Writing*
+
+⭐ If you find this repository useful, consider giving it a star! It helps more researchers discover Medical Research Agent Skills and supports the continued development of this library.
 
 </div>
 
@@ -30,15 +32,13 @@ Add Skills. Run Your Research.
 
 ## 🤔 What it is?
 
-AIPOCH is a curated library of 450+ Medical Research Agent Skills, built to work with**​ OpenClaw** and other AI agent platforms, including​**​ OpenCode and Claude**​.
+AIPOCH is a curated library of 420+ Medical Research Agent Skills, built to work with**​ OpenClaw** and other AI agent platforms, including​**​ OpenCode and Claude**​.
 
 It supports the research workflow across four core areas: Evidence Insights, Protocol Design, Data Analysis, and Academic Writing.
 
 Equip your AI agent with Medical Research Skills, and turn it into a capable medical research assistant.
 
-AIPOCH also introduces **Medical ​Skill Auditor (in development) ​**​— a structured evaluation framework designed to score and validate skills, bringing measurable quality standards to the ecosystem.  [View evaluation report example here. ](https://www.aipoch.com/agent-skills/medical-research-literature-reader-pro/eval-result)
-
-> ⭐ If you find this repository useful, consider giving it a star! It helps more researchers discover Medical Research Agent Skills and supports the continued development of this library.
+AIPOCH also introduces **Medical ​Skill Auditor​**​— a structured evaluation framework designed to assess the quality of Medical Research Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users. You can view [evaluation results for selected AIPOCH skills here](https://www.aipoch.com/agent-skills/medical-research-literature-reader-pro/eval-result).
 
 ---
 
@@ -56,7 +56,7 @@ The library is primarily organized into five categories: ​**Evidence Insights,
 |✍️ **Academic Writing**   |  e.g., SCI manuscript drafting, methods/results/discussion writing, meta-analysis narrative, cover letters, abstract generation.|
 | 🌍 **Other (General / Non-Research)**          | all general skills that do not fall into categories 1–4.                                                                                   |
 
-**📌 Total Skills in Library: 454 and growing**
+**📌 Total Skills in Library: 420 and growing**
 
 ## 🎬 AIPOCH Medical Research Skills — Demo
 
@@ -151,47 +151,76 @@ openclaw gateway restart
 
 ---
 
-## 🧠 AIPOCH Medical Skill Auditor (in development)
+## 🧠 AIPOCH Medical Skill Auditor
 
-### 🧩**What is Medical Skill Auditor?**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/soH-l1DTRtw?si=xFfe_z3kMg45IYyH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Skill Auditor is AIPOCH’s evaluation framework under active development for scoring Medical Research Agent Skills with ​**rigorous, multi‑dimensional quality metrics**​. It’s intended to go beyond static descriptions by measuring both **core capability** and ​**real execution performance**​—giving users and developers a clearer, data‑driven understanding of skill quality.
+### 🧩What is Medical Skill Auditor?
 
-### ⚙️**How does it work?**
+Skill Evaluator is a standardized tool designed to assess the quality of Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users.
 
-#### 🧰 **Core Capability**
+### ⚙️How does Medical Skill Auditor Work?
 
-Evaluates a skill’s design and contract against key dimensions such as **Functional Suitability​, reliability, performance & context, Agent Usability, human usability, Security, Agent-Specific and maintainability**​.
+#### 🚫Veto Gates
 
-#### 📊 **Medical Task**
-
-Assesses actual outputs of a skill with layered criteria, weighting general competence and category‑specific behaviors to reflect real‑world execution quality.
-
-#### 🚫**Veto​ Gates**
-
-To enforce strict quality control, Skill Auditor is designed with two layers of ​**veto mechanisms**​. Any failure in these checks may lead to immediate rejection of a skill.
+To enforce strict quality control, Skill Auditor is designed with two layers of veto mechanisms. Any failure in these checks may lead to immediate rejection of a skill.
 
 ##### **Skill ​Veto**
 
-- Operational Stability
-- Structural Consistency
-- Result Determinism
-- System Security
+* Operational Stability
+* Structural Consistency
+* Result Determinism
+* System Security
 
 ##### **Research ​Veto**
 
-- Scientific Integrity
-- Practice Boundaries
-- Methodological Ground
-- Code Usability
+* Scientific Integrity
+* Practice Boundaries
+* Methodological Ground
+* Code Usability
 
-### 👥**Who can use it?**
+#### 🧰 **Core Capability**
 
-You can already view [evaluation results for selected AIPOCH skills on the website](https://www.aipoch.com/agent-skills/medical-research-literature-reader-pro/eval-result). In the future, Skill Auditor will extend to evaluate third-party skills, enabling a unified and transparent scoring system across the ecosystem.
+Evaluates a skill’s design and contract against key dimensions such as **Functional Suitability, Reliability, Performance & Context, Agent Usability, Human Usability, Security, Agent-Specific and Maintainability.**
 
-### 💡**Why it matters?**
+#### 📊 Medical Task
 
-By systematically quantifying how well a skill performs in practice and in design, Skill Auditor will help **users identify high‑confidence skills** and ​**guide developers in improving their contributions**​—paving the way for a dependable and transparent ecosystem of medical research agent capabilities, with concrete evaluation results like those shown for example skills.
+Assesses actual outputs of a skill with layered criteria.
+
+For skill testing, the AI automatically generates inputs. The number of inputs in specific categories will increase or decrease depending on the complexity of the skill. The following 7 inputs represent the most comprehensive version.
+
+* Canonical
+* Variant A
+* Edge
+* Variant B
+* Stress
+* Scope Boundary
+* Adversarial
+
+**Skill Complexity Classification**
+
+| Label    | Code/Rank | Definition                                |
+| ---------- | ----------- | ------------------------------------------- |
+| Simple   | S         | Narrow task scope                         |
+| Moderate |M         | Moderate branching or multiple task types |
+| Complex  | C         | Broad or multi-step specialized skill     |
+
+**Simple (S):** 3 inputs
+
+**Moderate (M):** 5 inputs
+
+**Complex (C):** 7 inputs
+
+### Final Score
+
+The Skill Evaluator uses a two-stage scoring system: static evaluation (design quality, accounting for 40%) and dynamic evaluation (runtime performance, accounting for 60%). The final overall score is derived by combining both.
+
+* Static (40%)
+* Dynamic (60%)
+
+Final Score = Static Score × 40% + Dynamic Score × 60%
+
+You can view [evaluation results for selected AIPOCH skills here](https://www.aipoch.com/agent-skills/medical-research-literature-reader-pro/eval-result).
 
 ## Star History
 
