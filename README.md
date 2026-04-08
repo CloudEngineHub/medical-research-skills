@@ -153,7 +153,11 @@ openclaw gateway restart
 
 ## 🧠 AIPOCH Medical Skill Auditor
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/soH-l1DTRtw?si=xFfe_z3kMg45IYyH" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p align="center">
+  <a href="https://youtu.be/soH-l1DTRtw?si=71npBdTxOLBGT_IL">
+    <img src="https://github.com/user-attachments/assets/16d5801e-8a4b-4f2f-a102-42836ca69a69" width="700">
+  </a>
+</p>
 
 ### 🧩What is Medical Skill Auditor?
 
