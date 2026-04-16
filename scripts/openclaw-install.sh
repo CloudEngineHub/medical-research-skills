@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Install skills into OpenClaw from a GitHub repo
 # One-liner usage:
-#   bash <(curl -s https://github.com/aipoch/medical-research-skills/main/scripts/openclaw-install.sh)
+#   bash <(curl -s https://raw.githubusercontent.com/aipoch/medical-research-skills/main/scripts/openclaw-install.sh)
 
 set -euo pipefail
 
