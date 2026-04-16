@@ -93,15 +93,15 @@ This checks file existence, BAM indexing, and format correctness.
 
 For standard analyses, use the workflow generator to create customized scripts:
 
-# List available workflows
+## List available workflows
 python scripts/workflow_generator.py --list
 
-# Generate a ChIP-seq QC workflow
+## Generate a ChIP-seq QC workflow
 python scripts/workflow_generator.py chipseq_qc -o qc_workflow.sh \
     --input-bam Input.bam --chip-bams "ChIP1.bam ChIP2.bam" \
     --genome-size 2913022398
 
-# Grant execution permission and run
+## Grant execution permission and run
 chmod +x qc_workflow.sh
 ./qc_workflow.sh
 3. Most Common Operations
@@ -233,11 +233,11 @@ Visualization
 
 Create heatmap around TSS:
 
-# Compute matrix
+## Compute matrix
 computeMatrix reference-point -S signal.bw -R genes.bed \
     -b 3000 -a 3000 --referencePoint TSS -o matrix.gz
 
-# Generate heatmap
+## Generate heatmap
 plotHeatmap -m matrix.gz -o heatmap.png \
     --colorMap RdBu --kmeans 3
 

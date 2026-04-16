@@ -127,7 +127,7 @@ Include:
 
 Strict academic structure:
 
-```id="phintro1"
+```
 1. Concept
 
 [Content ≥800 words]

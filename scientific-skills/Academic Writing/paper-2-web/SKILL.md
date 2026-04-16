@@ -184,7 +184,7 @@ Creates print-ready academic posters with professional layouts and visual design
 2. **Configure API Keys** (create `.env` file):
    ```
    OPENAI_API_KEY=your_openai_api_key_here
-   # Optional: GOOGLE_API_KEY and GOOGLE_CSE_ID for logo search
+   Optional: GOOGLE_API_KEY and GOOGLE_CSE_ID for logo search
    ```
 
 3. **Install System Dependencies**:

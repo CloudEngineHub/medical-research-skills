@@ -110,7 +110,7 @@ python scripts/validate_skill.py --help
 
 ## The user will input a section of inclusion and exclusion criteria. Please:
 
-# Specific Requirements:
+## Specific Requirements:
 1. Remove JSON formatting.
 2. Output the inclusion and exclusion criteria completely; do not modify.
 3. Please output all content in **{{ language }}**.

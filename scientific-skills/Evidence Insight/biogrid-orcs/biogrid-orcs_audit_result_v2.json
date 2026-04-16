@@ -1,6 +1,6 @@
 {
   "meta": {
-    "skill_name": "\"biogrid-orcs\"",
+    "skill_name": "biogrid-orcs",
     "evaluated_on": "2026-03-22",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Evidence Insight",

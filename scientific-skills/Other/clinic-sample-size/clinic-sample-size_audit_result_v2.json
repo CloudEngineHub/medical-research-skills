@@ -1,6 +1,6 @@
 {
   "meta": {
-    "skill_name": "\"clinic-sample-size\"",
+    "skill_name": "clinic-sample-size",
     "evaluated_on": "2026-03-23",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Other",
