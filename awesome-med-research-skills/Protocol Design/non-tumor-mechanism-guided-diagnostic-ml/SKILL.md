@@ -3,7 +3,7 @@ name: non-tumor-mechanism-guided-diagnostic-ml
 description: Generates complete conventional non-oncology diagnostic machine-learning research designs from a user-provided disease context, optional mechanism theme, and validation direction. Use when a study centers on disease-vs-control transcriptome comparison, optional mechanism-gene restriction, feature shrinkage, diagnostic model construction, ROC / calibration / DCA evaluation, interpretation layers, and orthogonal validation. Covers five study patterns and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

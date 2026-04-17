@@ -3,7 +3,7 @@ name: usmle-case-generator
 description: Generate USMLE Step 1/2 style clinical cases with patient history, physical.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # USMLE Case Generator

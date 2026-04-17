@@ -3,7 +3,7 @@ name: methods-section-writer
 description: Turns your protocol and analysis workflow into publication-ready Methods text. Use when writing or revising the Methods section of a biomedical manuscript, ensuring it complies with reporting guidelines (CONSORT, STROBE, PRISMA, TRIPOD), matches what is in the Results section, and satisfies journal-specific word limits and declarations. Also triggers on "write my methods", "revise my methods section", "how to report my statistics", "what do I need to include in methods for [study type]", or "make my methods CONSORT-compliant".
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

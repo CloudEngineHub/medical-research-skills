@@ -3,7 +3,7 @@ name: result-reliability-checker
 description: Assesses whether study results are trustworthy by auditing design integrity, sample structure, statistical handling, bias control, validation chain, and claim discipline. It identifies where results are robust, fragile, overfit, under-validated, or overclaimed. Always separate reported findings from reliability judgment. Never fabricate references, PMIDs, DOIs, trial identifiers, study features, or validation claims.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

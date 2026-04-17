@@ -3,7 +3,7 @@ name: conventional-non-oncology-hub-gene
 description: Generates complete conventional non-oncology bioinformatics research designs from a user-provided disease context, process-related gene family or biological theme, and validation direction. Use when a study centers on multi-dataset bulk transcriptome integration, DEG analysis, process-gene intersection, enrichment analysis, GSEA, PPI hub-gene prioritization, TF/miRNA regulatory networks, ROC-based biomarker evaluation, and immune infiltration analysis. Covers five study patterns (process-DEG discovery, enrichment/GSEA interpretation, hub-gene prioritization, regulatory-network and immune interpretation, multi-layer public validation) and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

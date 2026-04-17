@@ -3,7 +3,7 @@ name: clinpgx-database
 description: Access ClinPGx pharmacogenomics data (successor to PharmGKB) when you need to query gene-drug interactions, CPIC guidelines, allele functions, and drug-label PGx content for precision medicine and genotype-guided dosing.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # ClinPGx Database

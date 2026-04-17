@@ -3,7 +3,7 @@ name: crossref-database
 description: Access CrossRef metadata for scholarly works; use when you need to resolve a DOI or search CrossRef to retrieve bibliographic details, citation/reference counts, or funder information for research and citation management.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

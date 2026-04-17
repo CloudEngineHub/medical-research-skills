@@ -3,7 +3,7 @@ name: biomedical-search-strategy-builder
 description: Builds professional search strategies for PubMed, Embase, Web of Science, and similar databases. Use when a user needs to construct a MeSH-based Boolean query, design a systematic review search, expand a concept with synonyms, apply study-type or date filters, or adapt a query across multiple databases. Also triggers when the user says "help me search for papers on X", "build a search strategy", "what are the MeSH terms for", or "I need a systematic review search string".
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

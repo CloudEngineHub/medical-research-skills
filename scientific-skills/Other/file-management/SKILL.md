@@ -3,7 +3,7 @@ name: file-management
 description: Organize, back up, compress, split, and merge files/folders using rule-driven plans; use when you need safe previews, conflict handling, and verification before executing file operations.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

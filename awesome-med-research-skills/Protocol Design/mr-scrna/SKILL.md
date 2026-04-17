@@ -3,7 +3,7 @@ name: mr-scrna
 description:  Generates complete Mendelian Randomization + single-cell transcriptomics (scRNA-seq)  research designs from a user-provided direction. Always use this skill whenever a user wants to design, plan, or build a study combining MR and single-cell data — even if phrased as "help me write a paper on X", "design a bioinformatics study for Y", or "I want to study Z using MR and scRNA". Covers five study patterns (mechanism gene-set, key-cell, candidate-gene reverse validation, exposure-disease-cell triangulation, translational biomarker) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path, and a strictly verified reference literature retrieval layer with real references only.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

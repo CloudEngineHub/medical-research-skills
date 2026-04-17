@@ -3,7 +3,7 @@ name: method-writing
 description: Write and revise the Methods section of research papers to ensure reproducibility; use when preparing an IMRAD manuscript or responding to journal/reporting-guideline requirements (e.g., CONSORT/STROBE/PRISMA).
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

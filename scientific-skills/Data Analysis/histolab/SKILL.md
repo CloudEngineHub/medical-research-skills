@@ -3,7 +3,7 @@ name: histolab
 description: Lightweight Whole Slide Image (WSI) tiling and preprocessing for digital pathology; use when you need fast tissue detection and tile extraction to prepare datasets or run quick tile-based analysis.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

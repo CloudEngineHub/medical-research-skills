@@ -3,7 +3,7 @@ name: journal-skills
 description: Recommends target journals for manuscript submission by analyzing the paper topic/abstract and the journal distribution of similar PubMed literature; use when users ask for journal recommendation/matching, submission strategy, PubMed search, or similar-literature statistics.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

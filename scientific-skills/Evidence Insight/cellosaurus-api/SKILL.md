@@ -3,7 +3,7 @@ name: cellosaurus-api
 description: "Access Cellosaurus database for cell line information and release data. Invoke when user asks to search cell lines, get cell line details by accession, or check database release info."
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

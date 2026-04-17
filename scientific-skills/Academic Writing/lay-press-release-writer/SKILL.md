@@ -3,7 +3,7 @@ name: lay-press-release-writer
 description: Transform academic papers into university press releases for general.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Lay Press Release Writer

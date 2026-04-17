@@ -3,7 +3,7 @@ name: meta-picos-generator
 description: Generates PI(E)COS structure (Population, Intervention, Comparator, Outcomes, Study Design) from Meta-analysis or study titles. Use when the user wants to extract these elements from a title.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

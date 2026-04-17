@@ -3,7 +3,7 @@ name: disease-mechanism-evidence-map
 description: Systematically maps mechanism evidence for a disease from molecules to pathways, cell types, tissues, biological consequences, and clinical phenotypes. Always use this skill when a user needs a layered mechanism evidence chain rather than a flat summary or immediate gap analysis. Formal literature citations must be real and verifiable.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

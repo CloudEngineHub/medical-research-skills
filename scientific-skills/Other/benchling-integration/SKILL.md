@@ -3,7 +3,7 @@ name: benchling-integration
 description: Integrate with the Benchling R&D platform when you need to programmatically manage registry entities, inventory, ELN entries, workflows, events, or data warehouse analytics via API/SDK.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Benchling Integration

@@ -3,7 +3,7 @@ name: biomarker-landscape-scanner
 description: Scans the biomarker landscape of a disease area by biomarker type, clinical/research use case, evidence layer, validation status, and maturity level. Use this skill when a user wants a field-level biomarker evidence map rather than a generic literature summary. Always separate exploratory biomarkers from externally validated or clinically embedded biomarkers, and never imply clinical maturity without explicit evidence support.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

@@ -3,7 +3,7 @@ name: single-compound-network-toxicology-disease-link-reference-grounded
 description: Generates complete single-compound network-toxicology research designs from one exposure, one disease or toxic phenotype, and a validation direction. Use when a study centers on one compound–one disease link and needs target collection, overlap construction, enrichment, PPI hub prioritization, docking, optional transcriptomic cross-check, and conservative mechanistic synthesis. Covers five study patterns and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

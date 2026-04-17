@@ -3,7 +3,7 @@ name: biopython-sequence-io
 description: Use Biopython to read/write/convert biological sequence files (FASTA/GenBank/FASTQ, etc.) and perform basic sequence operations; use when you need reliable sequence I/O, lightweight sequence manipulation, or scalable processing of large sequence datasets.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

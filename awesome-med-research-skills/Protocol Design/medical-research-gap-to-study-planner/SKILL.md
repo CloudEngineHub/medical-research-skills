@@ -3,7 +3,7 @@ name: medical-research-gap-to-study-planner
 description:  Converts an audited medical research gap into a complete, structured, gap-traceable study design. Always use this skill whenever a user already has one or more candidate research gaps and wants to transform them into an executable biomedical research plan rather than re-run broad topic ideation. Covers six gap-to-design patterns (evidence-completion, mechanism-resolution, cell-state/context-mapping, translation-bridge, causality-upgrade, population/stage-specific) and always outputs one recommended primary protocol, a gap-to-design dependency map, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path, and verified design-support literature rules. Never fabricate references. Preserve claim-evidence discipline and do not replace a topic-specific gap with a generic workflow.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

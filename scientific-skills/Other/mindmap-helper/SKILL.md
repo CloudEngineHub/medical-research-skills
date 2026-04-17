@@ -3,7 +3,7 @@ name: mindmap-helper
 description: Organize requirements into Markdown/JSON mind map structures; use when you need a hierarchical outline for mind map tools (e.g., XMind, ProcessOn, FreeMind) or for documentation planning.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

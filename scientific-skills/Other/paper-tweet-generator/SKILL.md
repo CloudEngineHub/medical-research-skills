@@ -3,7 +3,7 @@ name: paper-tweet-generator
 description: Generates a structured reading tweet from an academic paper (PDF, Word, or Text), highlighting specific product advantages. Use when the user wants to turn a document into a social media post or reading summary.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Paper Reading Tweet Generator

@@ -3,7 +3,7 @@ name: hgnc-api
 description: Access the HGNC (HUGO Gene Nomenclature Committee) database to search for and retrieve gene information including symbols, names, IDs, and other metadata.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # HGNC API Skill

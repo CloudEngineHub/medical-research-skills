@@ -3,7 +3,7 @@ name: target-journal-matcher
 description: Matches your study to appropriate journals based on topic, design, and evidence strength. Use when deciding where to submit a manuscript, comparing journal options by impact factor vs scope fit vs method tolerance, or finding a realistic submission target after a rejection. Also triggers on "where should I submit this paper", "which journal is best for my study", "find journals for my manuscript", "is this a good fit for [journal]", or "I need a journal with IF around X".
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

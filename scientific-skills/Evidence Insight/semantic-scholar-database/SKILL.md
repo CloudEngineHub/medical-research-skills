@@ -3,7 +3,7 @@ name: semantic-scholar-database
 description: Access the Semantic Scholar Graph API to search papers and retrieve paper/author/citation data when you need literature discovery or citation graph exploration.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

@@ -3,7 +3,7 @@ name: methods-reverse-engineer
 description: Reverse-engineers the methods section of a biomedical paper into a structured, reproducible workflow. Use this skill when a user wants to understand how a study was actually executed, extract data sources, inclusion/exclusion logic, preprocessing, analytical sequence, software/tools, validation path, and critical parameters, or build a replication checklist from a paper, abstract, DOI, PMID, title, screenshot, or partial methods text. Do not treat this as generic summarization. Focus on reconstructing the operational method pipeline, surfacing missing reproducibility details, and distinguishing explicitly reported steps from inferred or unresolved ones. Never fabricate references, methods details, identifiers, software versions, parameters, datasets, or validation steps.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

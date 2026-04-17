@@ -3,7 +3,7 @@ name: datamol
 description: A Pythonic wrapper around RDKit with simplified interfaces and sensible defaults. Preferred for standard drug discovery workflows including SMILES parsing, standardization, descriptors, fingerprints, clustering, 3D conformer generation, and parallel processing. Returns native rdkit.Chem.Mol objects. For advanced control or custom parameters, use rdkit directly.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

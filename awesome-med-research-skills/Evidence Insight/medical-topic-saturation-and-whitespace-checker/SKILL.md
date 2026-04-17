@@ -3,7 +3,7 @@ name: medical-topic-saturation-and-whitespace-checker
 description: Maps whether a biomedical research topic, subtopic, or study angle is truly saturated, superficially crowded, strategically occupied, or still open for differentiated entry. Use this skill when a user wants to know whether a hot medical research direction is already overworked, whether meaningful whitespace remains, whether major groups have already occupied the obvious claims, and whether the timing window is still open. Always distinguish popularity from true saturation, and distinguish cosmetic novelty from meaningful differentiating entry.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

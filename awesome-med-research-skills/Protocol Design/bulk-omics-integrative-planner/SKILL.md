@@ -3,7 +3,7 @@ name: bulk-omics-integrative-planner
 description: Designs complete integrated research plans for bulk transcriptomics, proteomics, metabolomics, and related omics from a user-provided biomedical direction. Always use this skill whenever a user wants to design, scope, or structure a bulk multi-omics or single-omics-plus-clinical study — including disease-focused, mechanism-focused, biomarker-focused, stratification-oriented, or translational projects. It should define the research question, choose the best-fit study pattern, recommend example datasets as reference candidates only, specify the core analysis modules and method choices, propose a validation ladder, and output four workload configurations (Lite / Standard / Advanced / Publication+). Never fabricate datasets, accession numbers, sample counts, metadata completeness, cohort availability, assay coverage, literature references, PMIDs, DOIs, or validation status. Always include the mandatory Dataset Disclaimer immediately before any workflow section that mentions datasets or public resources.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

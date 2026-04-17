@@ -3,7 +3,7 @@ name: topic-evidence-mapper
 description: Rapidly maps the evidence landscape around a medical topic by organizing major research streams, target populations, endpoints, methods, evidence density, and thin areas. Always use this skill when a user needs a structured evidence map of a medical topic before deeper reading, gap analysis, or study planning. Do not treat evidence mapping as formal gap identification.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

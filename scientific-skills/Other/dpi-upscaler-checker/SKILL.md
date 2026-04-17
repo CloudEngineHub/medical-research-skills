@@ -3,7 +3,7 @@ name: dpi-upscaler-checker
 description: Check if images meet 300 DPI printing standards, and intelligently restore blurry low-resolution images using AI super-resolution technology.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # DPI Upscaler & Checker

@@ -3,7 +3,7 @@ name: clinic-sample-size
 description: "Unified tool for calculating sample sizes for Diagnostic, Efficacy, Etiology, and Prognosis clinical studies. Supports various statistical methods (Sensitivity/Specificity, Log-rank, Chi-square, EPV, etc.)."
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

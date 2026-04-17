@@ -3,7 +3,7 @@ name: tumor-immune-infiltration-diagnostic-ml
 description:  Generates complete tumor immune-infiltration-guided bulk-transcriptome diagnostic biomarker and machine-learning research designs from a user-provided cancer type and study direction. Always use this skill whenever a user wants to design, plan, or build a tumor bioinformatics study centered on differential expression, immune infiltration estimation, immune-linked module discovery, consensus feature selection, diagnostic modeling, nomogram construction, clinical association, and optional prognostic extension or validation. Covers five study patterns (immune-cell-first diagnostic workflow, immune-module-to-biomarker workflow, consensus-ML biomarker workflow, diagnostic-plus-prognostic hybrid workflow, translational validation workflow) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path, reference literature pack, and self-critical risk review.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

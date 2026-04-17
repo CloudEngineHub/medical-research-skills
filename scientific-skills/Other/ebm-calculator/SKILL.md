@@ -3,7 +3,7 @@ name: ebm-calculator
 description: Evidence-Based Medicine diagnostic test calculator. Computes sensitivity, specificity, PPV, NPV, likelihood ratios, NNT, and pre/post-test probability from 2x2 contingency table inputs.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # EBM Calculator

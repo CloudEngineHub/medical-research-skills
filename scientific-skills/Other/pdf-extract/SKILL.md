@@ -3,7 +3,7 @@ name: pdf-extract
 description: Extract PDF selectable text and full-page or segmented page images (including tables) into Markdown with per-page headings and image links; use when you need both readable text and page visuals for PPT creation, review, or analysis.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

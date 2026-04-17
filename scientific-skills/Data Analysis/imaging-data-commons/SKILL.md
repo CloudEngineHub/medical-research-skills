@@ -3,7 +3,7 @@ name: imaging-data-commons
 description: Use idc-index to query and download public cancer imaging data from NCI Imaging Data Commons. Used to access large-scale radiology (CT, MR, PET) and pathology datasets for AI training or research. No authentication required. Supports metadata querying, in-browser visualization, and license checking.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Imaging Data Commons

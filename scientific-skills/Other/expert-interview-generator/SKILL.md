@@ -3,7 +3,7 @@ name: expert-interview-generator
 description: Generates a full expert interview article including introduction, Q&A body, and summary based on interview questions and expert background. Use when you have interview questions and an expert profile and need a polished article.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Expert Interview Article Generator

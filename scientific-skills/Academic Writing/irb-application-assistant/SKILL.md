@@ -3,7 +3,7 @@ name: irb-application-assistant
 description: Assists researchers with Institutional Review Board (IRB) application tasks, including drafting informed consent documents, reviewing research protocols for compliance, generating application forms, and preparing submission checklists. Use when the user mentions IRB, Institutional Review Board, research ethics, human subjects research, protocol review, informed consent, or needs help preparing or reviewing an IRB application or submission.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # IRB Application Assistant

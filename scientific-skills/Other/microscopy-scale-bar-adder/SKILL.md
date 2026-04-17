@@ -3,7 +3,7 @@ name: microscopy-scale-bar-adder
 description: Add accurate, publication-ready scale bars to microscopy images given pixel-to-unit calibration data.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Microscopy Scale Bar Adder

@@ -3,7 +3,7 @@ name: citation-network
 description: Build and visualize a citation network from a source/target CSV to identify key papers, communities, and emerging hotspots; use when you have citation pairs and need fast literature review or trend analysis.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

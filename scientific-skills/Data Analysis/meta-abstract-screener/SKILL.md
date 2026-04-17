@@ -3,7 +3,7 @@ name: meta-abstract-screener
 description: Screens research papers based on title/abstract and inclusion criteria, providing a structured Yes/No/Maybe decision. Use when you need to filter literature for meta-analysis or systematic reviews.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Abstract Screener

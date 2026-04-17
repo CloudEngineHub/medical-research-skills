@@ -3,7 +3,7 @@ name: academic-cv-generator
 description: Generate structured academic CVs from free-form Chinese/English text and export to Word (.docx). Use this skill when you are asked to organize, generate, or optimize an academic CV (e.g., publications/projects/awards) into a consistent, formatted document with uniform-colored section headers and optional bilingual output.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

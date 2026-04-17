@@ -3,7 +3,7 @@ name: bioinformatics-translational-opportunity-finder
 description: Identifies translationally meaningful paths for bioinformatics findings by mapping omics or computational discoveries to diagnosis, stratification, prognosis, treatment-response, monitoring, or target-nomination use cases, while auditing bridge evidence, assayability, and validation burden. Use this skill when a user wants to know whether a bioinformatics finding can be framed as a stronger translational topic without overclaiming clinical relevance. Always separate statistical signal from translational value, and never imply clinical utility, targetability, or validation depth without explicit evidence support.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

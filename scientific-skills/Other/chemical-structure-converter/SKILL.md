@@ -3,7 +3,7 @@ name: chemical-structure-converter
 description: Convert between IUPAC names, SMILES strings, molecular formulas, and common names for chemical compounds. Supports SMILES validation, batch processing, structure standardization, and cheminformatics database preparation for drug discovery workflows.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

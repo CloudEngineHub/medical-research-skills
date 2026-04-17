@@ -3,7 +3,7 @@ name: plotly
 description: Interactive visualization library for Python. Use it when you need hover tooltips, zoom/pan, selection, animations, or charts embeddable in web pages (e.g., dashboards, exploratory analysis, presentations).
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Plotly

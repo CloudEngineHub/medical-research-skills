@@ -3,7 +3,7 @@ name: geo-search-api
 description: Search for gene expression DataSets and Profiles in the NCBI GEO database. Use this skill when the user wants to find microarray, RNA-seq, or other genomic data by keywords, organism, author, or specific fields.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # GEO Search API

@@ -3,7 +3,7 @@ name: introduction-logic-builder
 description: Builds background-gap-objective logic for biomedical manuscript introductions with clear study positioning and disciplined narrative structure.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

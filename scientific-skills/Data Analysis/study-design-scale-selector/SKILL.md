@@ -3,7 +3,7 @@ name: study-design-scale-selector
 description: Determines the appropriate Risk of Bias assessment scale for a medical study based on its design (RCT, Cohort, etc.), using PubMed metadata lookup or text analysis. Use when the user wants to know which quality assessment tool to use for a specific paper (given PMID or abstract).
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Study Design Scale Selector

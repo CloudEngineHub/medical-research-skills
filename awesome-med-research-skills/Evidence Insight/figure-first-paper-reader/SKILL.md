@@ -3,7 +3,7 @@ name: figure-first-paper-reader
 description: Reads a paper figure by figure before re-integrating the full narrative, so the user can identify the core findings quickly and check whether each visual actually supports the authors' main claims. Always separate figure content, figure-linked claim, evidentiary strength, and unsupported interpretation. Never fabricate references, PMIDs, DOIs, figure content, panel labels, result values, or study details that were not actually provided.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

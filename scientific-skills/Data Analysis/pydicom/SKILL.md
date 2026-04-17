@@ -3,7 +3,7 @@ name: pydicom
 description: A Python library for working with DICOM (Digital Imaging and Communications in Medicine) files. Use this skill when you need to read, write, or modify DICOM format medical imaging data, extract pixel data from medical images (CT, MRI, X-ray, ultrasound), anonymize DICOM files, process DICOM metadata and tags, convert DICOM images to other formats, handle compressed DICOM data, or work with medical imaging datasets. Suitable for tasks involving medical image analysis, PACS systems, radiology workflows, and healthcare imaging applications.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Pydicom

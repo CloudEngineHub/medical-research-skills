@@ -3,7 +3,7 @@ name: reference-finder
 description: Automatically finds and ranks PubMed references for each sentence in scientific text; use when you need titles, DOIs, and brief recommendation reasons from the PubMed E-utilities API.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

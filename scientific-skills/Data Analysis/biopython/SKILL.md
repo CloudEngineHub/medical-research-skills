@@ -3,7 +3,7 @@ name: biopython
 description: A comprehensive toolbox for computational molecular biology; use it when you need programmatic sequence/structure parsing, batch bioinformatics pipelines, or automated NCBI/BLAST workflows.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

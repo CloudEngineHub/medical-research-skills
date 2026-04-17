@@ -3,7 +3,7 @@ name: treatment-response-predictor-planner
 description: Designs studies for predicting treatment response or resistance in biomedical and clinical research. Always use this skill when the user needs a treatment-response or resistance prediction study blueprint rather than a prognostic biomarker protocol, diagnostic test design, causal treatment-effect estimation, or a completed manuscript. Focus on responder definition, treatment context, baseline comparability, feature integration strategy, model development logic, validation architecture, and interpretation boundaries. Do not invent response rates, cohort size, assay readiness, regimen uniformity, literature support, or validation access.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

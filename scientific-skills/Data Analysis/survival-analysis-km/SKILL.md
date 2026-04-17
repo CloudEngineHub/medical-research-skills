@@ -3,7 +3,7 @@ name: survival-analysis-km
 description: Kaplan-Meier survival analysis tool for clinical and biological research. Generates publication-ready survival curves with statistical tests.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Survival Analysis (Kaplan-Meier)

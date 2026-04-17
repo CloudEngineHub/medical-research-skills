@@ -3,7 +3,7 @@ name: hypogenic
 description: Automated LLM-driven hypothesis generation and testing for tabular datasets; use when you need systematic exploration of empirical patterns (e.g., fraud detection, content analysis) and want to combine literature insights with data-driven hypothesis evaluation.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

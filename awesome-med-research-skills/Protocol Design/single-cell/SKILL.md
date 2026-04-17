@@ -3,7 +3,7 @@ name: single-cell
 description: Designs complete single-cell research plans from a user-provided biomedical direction. Always use this skill whenever a user wants to design, scope, or structure a single-cell study — including disease-focused, mechanism-focused, biomarker-focused, translational, perturbation-inspired, or validation-aware projects. It should define the research question, choose the best-fit study pattern, recommend sample grouping logic, suggest reference datasets as examples only, specify the core analysis modules, propose a validation ladder, and output four workload configurations (Lite / Standard / Advanced / Publication+). Never fabricate datasets, sample metadata, accession numbers, cohort availability, cell-type labels, external validation resources, or literature references. Always include the mandatory Dataset Disclaimer immediately before any workflow section that mentions datasets or public resources.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

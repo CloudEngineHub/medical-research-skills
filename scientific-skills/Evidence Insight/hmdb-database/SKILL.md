@@ -3,7 +3,7 @@ name: hmdb-database
 description: Access the Human Metabolome Database (HMDB) to search metabolites by name/structure/ID and extract chemical/biological/clinical fields when you need metabolomics research data or automated HMDB XML mining.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

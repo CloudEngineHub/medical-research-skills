@@ -3,7 +3,7 @@ name: latex-manuscript-format-converter
 description: Converts existing manuscript content into LaTeX format aligned with a target journal, conference, or template while preserving manuscript meaning and structural integrity.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

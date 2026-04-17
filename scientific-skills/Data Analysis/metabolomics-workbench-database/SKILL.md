@@ -3,7 +3,7 @@ name: metabolomics-workbench-database
 description: Access NIH Metabolomics Workbench (4,200+ studies) via REST API. Query metabolites, RefMet nomenclature, MS/NMR data, m/z search, study metadata for metabolomics and biomarker discovery.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Metabolomics Workbench Database

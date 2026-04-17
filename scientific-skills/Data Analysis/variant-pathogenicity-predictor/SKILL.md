@@ -3,7 +3,7 @@ name: variant-pathogenicity-predictor
 description: Integrate REVEL, CADD, PolyPhen scores to predict variant pathogenicity.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Variant Pathogenicity Predictor

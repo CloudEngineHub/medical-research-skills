@@ -3,7 +3,7 @@ name: bmi-bsa-calculator
 description: Calculate Body Mass Index (BMI) and Body Surface Area (BSA) for clinical assessment, obesity screening, and chemotherapy dosing. Supports multiple BSA formulas (DuBois, Mosteller, Haycock), WHO weight classification, pediatric calculations, and metric/imperial input.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

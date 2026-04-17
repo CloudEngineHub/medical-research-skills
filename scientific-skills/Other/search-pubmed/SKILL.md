@@ -3,7 +3,7 @@ name: search-pubmed
 description: An intelligent tool for precision medical literature search using PubMed's E-utilities API.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # search pubmed

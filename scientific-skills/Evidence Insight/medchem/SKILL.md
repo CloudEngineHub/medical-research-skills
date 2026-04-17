@@ -3,7 +3,7 @@ name: medchem
 description: Medicinal chemistry screening filters for compound prioritization; use when you need to apply drug-likeness rules, PAINS/structural alerts, and complexity metrics to triage or optimize libraries.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

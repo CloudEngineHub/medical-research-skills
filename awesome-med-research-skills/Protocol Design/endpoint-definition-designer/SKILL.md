@@ -3,7 +3,7 @@ name: endpoint-definition-designer
 description: Designs primary, secondary, and exploratory endpoints for biomedical and clinical research protocols. Always use this skill when a user needs to translate study aims into operational endpoint definitions with event rules, assessment timing, composite logic, interpretability, and protocol-stage auditability. Focus on endpoint precision, feasibility, clinical meaning, ambiguity reduction, and implementation readiness rather than generic study design advice.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

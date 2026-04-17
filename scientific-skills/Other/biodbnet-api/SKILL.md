@@ -3,7 +3,7 @@ name: biodbnet-api
 description: Access bioDBnet REST services for biological identifier conversion, pathway retrieval, and ortholog mapping. Use when you need to convert gene/protein IDs, find pathways, or retrieve biological annotations via bioDBnet.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # bioDBnet API Skill

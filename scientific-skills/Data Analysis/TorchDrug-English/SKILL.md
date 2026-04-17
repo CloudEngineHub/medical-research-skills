@@ -3,7 +3,7 @@ name: torchdrug-english
 description: PyTorch-native Graph Neural Network framework for molecules and proteins. Suitable for building custom GNN architectures for drug discovery, protein modeling, or knowledge graph reasoning. Best for custom model development, protein property prediction, and retrosynthesis. If you need pretrained models and diverse feature extractors, use deepchem; if you need benchmark datasets, use pytdc.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # TorchDrug

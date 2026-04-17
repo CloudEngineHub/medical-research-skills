@@ -3,7 +3,7 @@ name: meta-radial-plot
 description: "Generate radial plots (Radial Plot/Galbraith Plot) for heterogeneity analysis. Visually assess heterogeneity across studies by displaying the relationship between standardized effect sizes and precision. Input: Meta-analysis data in CSV format; Output: Radial plot PNG and data CSV."
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Radial Plot Generation (Radial Plot / Galbraith Plot)

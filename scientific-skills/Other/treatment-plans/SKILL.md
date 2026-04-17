@@ -3,7 +3,7 @@ name: treatment-plans
 description: Generate concise (typically 1–4 pages) patient-centered medical treatment plans in LaTeX/PDF when a clinician needs an actionable plan with SMART goals, evidence-based interventions, monitoring, and HIPAA-aware documentation.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

@@ -3,7 +3,7 @@ name: limitation-and-risk-writer
 description: Acknowledges limitations in sample, design, measurement, and validation in a professional way that improves credibility without undermining the whole paper. Use when writing the limitations paragraph of a Discussion section, preparing a grant risk assessment, responding to reviewers about study weaknesses, or framing scope boundaries for a paper. Also triggers on "write my limitations", "how should I address the limitation of", "reviewer said my sample is too small", or "help me word this limitation".
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

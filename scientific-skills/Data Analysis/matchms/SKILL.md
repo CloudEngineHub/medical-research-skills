@@ -3,7 +3,7 @@ name: matchms
 description: Process, clean, and compare mass spectrometry (MS/MS) spectra with Matchms; use when you need reproducible spectral filtering and similarity scoring for metabolomics workflows.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Matchms Skill

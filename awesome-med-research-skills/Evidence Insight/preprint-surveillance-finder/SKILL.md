@@ -3,7 +3,7 @@ name: preprint-surveillance-finder
 description: Tracks the latest preprints and emerging research topics related to your topic across bioRxiv, medRxiv, and arXiv. Use when a user wants to discover what is being published right now before it reaches journals, monitor competitor directions, spot new methodology trends, or get an early-warning scan of a research area. Triggers on phrases like "what's new in X", "latest preprints on Y", "emerging topics in Z", "monitor bioRxiv for", or "what are people working on in this field".
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

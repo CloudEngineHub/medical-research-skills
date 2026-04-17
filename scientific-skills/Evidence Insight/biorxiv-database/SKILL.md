@@ -3,7 +3,7 @@ name: biorxiv-database
 description: Search, retrieve metadata, and download PDFs for bioRxiv preprints; use when you need to discover biology preprints by keywords/authors/date ranges and programmatically fetch their details.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

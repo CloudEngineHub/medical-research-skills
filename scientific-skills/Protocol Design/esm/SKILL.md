@@ -3,7 +3,7 @@ name: esm
 description: Toolkit for protein language models (ESM3 for multimodal generative protein design; ESM C for efficient embeddings). Use when you need sequence/structure/function generation or prediction, inverse folding, protein embeddings, or scalable inference via local weights or the Forge API.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

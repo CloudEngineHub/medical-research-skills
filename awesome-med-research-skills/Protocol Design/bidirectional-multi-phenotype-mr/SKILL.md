@@ -3,7 +3,7 @@ name: bidirectional-multi-phenotype-mr
 description:  Generates complete bidirectional multi-phenotype Mendelian randomization research designs from a user-provided exposure family and outcome family. Always use this skill whenever a user wants to design, plan, or build a genome-wide causal-inference study based on publicly available GWAS summary statistics, especially when the article logic includes multiple exposures, multiple outcomes or subtypes, bidirectional MR, IV filtering, IVW as the main estimator, weighted median / MR-Egger / MR-PRESSO sensitivity analyses, leave-one-out testing, heterogeneity / pleiotropy checks, and multiple-testing control with FDR. Covers five study patterns (single-family bidirectional MR, multi-phenotype screening MR, subtype-resolved MR, phenome-style bidirectional causal map, mechanism-prioritized MR follow-up) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version...
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

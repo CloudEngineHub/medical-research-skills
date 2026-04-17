@@ -3,7 +3,7 @@ name: bioservices
 description: Unified Python access to 40+ bioinformatics web services; use when you need to query multiple databases (e.g., UniProt/KEGG/ChEMBL/Reactome) with one consistent API in a single workflow, especially for cross-database analysis and identifier mapping.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

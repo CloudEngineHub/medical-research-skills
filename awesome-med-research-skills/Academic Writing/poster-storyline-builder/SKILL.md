@@ -3,7 +3,7 @@ name: poster-storyline-builder
 description: Reorganizes a paper into a storyline suitable for scientific posters. Use when planning the section structure, title hierarchy, figure selection, and live-explanation flow for an academic conference poster. Also triggers on "help me design a poster layout", "what sections should my poster have", "how do I arrange my poster", "poster structure for [conference]", or "which figures should I use for my poster".
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

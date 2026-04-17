@@ -3,7 +3,7 @@ name: results-section-writer
 description: Writes the full Results section of a biomedical manuscript from a sufficiently clear result structure, figure inventory, or analysis summary while preserving evidence boundaries and result hierarchy.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

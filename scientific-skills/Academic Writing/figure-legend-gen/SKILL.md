@@ -3,7 +3,7 @@ name: figure-legend-gen
 description: Generate standardized figure legends for scientific charts and graphs.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Figure Legend Generator

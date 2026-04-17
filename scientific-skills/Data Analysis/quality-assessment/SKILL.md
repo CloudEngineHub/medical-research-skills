@@ -3,7 +3,7 @@ name: quality-assessment
 description: Automates critical appraisal and quality assessment for research papers by analyzing text against established methodological standards (such as risk of bias tools, quality checklists, or reporting guidelines) and synthesizing a structured evaluation report. Use when you need to assess the methodological quality, internal validity, or reporting completeness of any type of study—including RCTs, observational studies, systematic reviews, qualitative research, or diagnostic accuracy studies.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

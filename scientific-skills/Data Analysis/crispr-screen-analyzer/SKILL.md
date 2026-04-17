@@ -3,7 +3,7 @@ name: crispr-screen-analyzer
 description: Process CRISPR screening data to identify essential genes and hit candidates. Performs quality control, statistical analysis (RRA), and hit calling for pooled CRISPR screens including viability screens and drug resistance/sensitivity studies.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # CRISPR Screen Analyzer

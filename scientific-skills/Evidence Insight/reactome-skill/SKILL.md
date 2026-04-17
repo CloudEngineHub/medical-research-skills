@@ -3,7 +3,7 @@ name: reactome-skill
 description: Query the Reactome REST API for pathway content and enrichment analyses; use when you need curated pathway data, reaction details, or overrepresentation results for a gene list.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

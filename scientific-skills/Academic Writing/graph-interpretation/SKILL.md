@@ -3,7 +3,7 @@ name: graph-interpretation
 description: Use when interpreting scientific graphs and charts, explaining data visualizations for research presentations, writing figure captions for publications, or analyzing trends in clinical research data. Converts complex visual data into clear, accurate explanations for academic papers, clinical reports, and public presentations.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Scientific Graph Interpreter

@@ -3,7 +3,7 @@ name: rowan
 description: Cloud-based quantum chemistry platform providing a Python API. Preferred for computational chemistry workflows including pKa prediction, geometry optimization, conformational search, molecular property calculations, protein-ligand docking (AutoDock Vina), and AI protein cofolding (Chai-1, Boltz-1/2). Suitable for tasks involving quantum chemistry calculations, molecular property prediction, DFT or semi-empirical methods, neural network potentials (AIMNet2), protein-ligand binding prediction, or automated computational chemistry pipelines. Provides cloud computing resources without local installation.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Rowan: Cloud-Based Quantum Chemistry Platform

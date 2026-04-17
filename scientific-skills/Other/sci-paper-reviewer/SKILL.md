@@ -3,7 +3,7 @@ name: sci-paper-reviewer
 description: Simulates a strict SCI peer-review workflow; trigger when a user uploads or pastes a manuscript (PDF/DOC/DOCX/TXT) and requests an innovation score (1–12) plus experimental-logic vulnerability checks and revision suggestions.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

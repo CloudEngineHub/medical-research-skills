@@ -3,7 +3,7 @@ name: spatial-transcriptomics-mapper
 description: Map spatial transcriptomics data from 10x Genomics Visium/Xenium onto.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Spatial Transcriptomics Mapper (ID: 196)

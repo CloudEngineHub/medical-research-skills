@@ -3,7 +3,7 @@ name: gtars
 description: A high-performance Rust toolkit (with Python bindings and a CLI) for genomic interval analysis; use it when you need fast overlap queries, coverage track generation, genomic tokenization for ML, reference sequence verification, or fragment processing.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

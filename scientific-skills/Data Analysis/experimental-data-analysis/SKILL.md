@@ -3,7 +3,7 @@ name: experimental-data-analysis
 description: Statistical analysis and reporting for experimental datasets; use when you need to interpret experimental results, test significance (t-tests/ANOVA), or generate reproducible reports.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

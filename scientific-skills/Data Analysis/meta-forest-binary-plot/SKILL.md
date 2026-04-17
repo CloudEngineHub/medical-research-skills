@@ -3,7 +3,7 @@ name: meta-forest-binary-plot
 description: "Generate meta-analysis forest plots for binary classification data. Input is a CSV file containing study names, event counts and sample sizes for experimental and control groups. Output includes forest plot PNG and data table CSV."
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

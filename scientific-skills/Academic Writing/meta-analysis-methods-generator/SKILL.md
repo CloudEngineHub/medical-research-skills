@@ -3,7 +3,7 @@ name: meta-analysis-methods-generator
 description: Generates the Methods section for a meta-analysis paper, including search strategy, screening, quality assessment, data extraction, and statistical analysis.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Meta Analysis Methods Generator

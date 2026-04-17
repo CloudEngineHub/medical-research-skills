@@ -3,7 +3,7 @@ name: fulltext-fetcher
 description: Fetch and save the original HTML of scientific literature webpages when given a URL, DOI, or PubMed PMID (triggered when you need archival-grade page HTML for downstream parsing or review).
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

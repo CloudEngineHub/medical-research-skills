@@ -3,7 +3,7 @@ name: pubmed-topic-recommend
 description: Generate ~5 actionable research topic recommendations by querying PubMed E-utilities; use when a user provides a research direction/constraints and needs evidence-backed topic ideas quickly.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

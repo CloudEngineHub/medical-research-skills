@@ -3,7 +3,7 @@ name: clinic-research-design
 description: Generates a structured prompt framework for clinical study protocols. Supports Diagnostic, Efficacy, Etiology, and Prognosis studies. Calculates sample size and provides logic guides for LLMs.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use

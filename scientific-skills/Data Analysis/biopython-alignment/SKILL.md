@@ -3,7 +3,7 @@ name: biopython-alignment
 description: Sequence alignment and alignment file processing with Biopython (Bio.Align/Bio.AlignIO), triggered when you need global/local pairwise alignment, MSA read/write/format conversion, or alignment statistics/filtering.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

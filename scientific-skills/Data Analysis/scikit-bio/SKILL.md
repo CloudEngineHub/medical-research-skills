@@ -3,7 +3,7 @@ name: scikit-bio
 description: A Python bioinformatics toolkit for sequence, phylogeny, and microbiome/community-ecology analysis; use it when you need to compute diversity/ordination/statistics from biological data and standard formats (FASTA/FASTQ/Newick/BIOM).
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

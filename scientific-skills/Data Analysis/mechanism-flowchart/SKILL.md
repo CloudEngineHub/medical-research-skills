@@ -3,7 +3,7 @@ name: mechanism-flowchart
 description: Generates Mermaid flowchart code and visual diagrams for pathophysiological.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Mechanism Flowchart

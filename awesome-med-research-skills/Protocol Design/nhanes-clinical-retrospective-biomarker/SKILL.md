@@ -3,7 +3,7 @@ name: nhanes-clinical-retrospective-biomarker
 description:  Generates complete NHANES-style cross-sectional epidemiology + retrospective clinical validation research designs from a user-provided disease and biomarker direction. Always use this skill whenever a user wants to design, plan, or build a population-level biomarker association study using NHANES or similar survey datasets, especially when the article logic includes disease definition, biomarker formula derivation, multivariable logistic regression, restricted cubic spline analysis, subgroup stability testing, and a secondary hospital-based retrospective validation cohort. Covers five study patterns (cross-sectional association, dose-response / RCS, subgroup-stability, NHANES + retrospective validation, preliminary screening-performance) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path...
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 

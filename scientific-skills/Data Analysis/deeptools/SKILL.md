@@ -3,7 +3,7 @@ name: deeptools
 description: NGS analysis toolkit. Used for BAM to bigWig conversion, quality control (correlation, PCA, fingerprint plots), heatmaps/feature plots (TSS, peaks), suitable for ChIP-seq, RNA-seq, ATAC-seq visualization.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # deepTools: NGS Data Analysis Toolkit

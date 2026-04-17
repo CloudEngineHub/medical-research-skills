@@ -3,7 +3,7 @@ name: quapas-quality-assessment-for-prognosis-studies
 description: Evaluates bias in medical literature (prognosis studies) using QUAPAS criteria. Use when the user wants to assess the quality or risk of bias of a medical paper text.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # QUAPAS Bias Evaluator

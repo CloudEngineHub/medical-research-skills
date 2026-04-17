@@ -3,7 +3,7 @@ name: key-takeaways
 description: Extracts and summarizes key takeaways from documents, meeting notes, articles, and other text content. Use when the user asks for summaries, bullet points, main points, highlights, or a TL;DR of any document or body of text. Produces structured outputs such as numbered lists, executive summaries, and action items. Supports configurable output formats including JSON export for downstream use.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Key Takeaways

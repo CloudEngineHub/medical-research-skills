@@ -3,7 +3,7 @@ name: citation-chasing-mapping
 description: Use when identifying seminal papers in a research field, mapping research lineage and intellectual heritage, discovering related work through reference tracking, or finding potential collaborators through co-citation analysis. Maps citation networks to trace research evolution, identify influential papers, and discover hidden connections in scientific literature. Supports systematic reviews, bibliometric analysis, and research planning through comprehensive citation tracking.
 license: MIT
 author: AIPOCH
-source: https://github.com/aipoch/medical-research-skills
+source_url: https://github.com/aipoch/medical-research-skills
 ---
 > **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Scientific Citation Network and Knowledge Mapper
