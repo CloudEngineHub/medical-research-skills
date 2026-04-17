@@ -2,8 +2,10 @@
 name: symptom-checker-triage
 description: Suggest triage levels (Emergency, Urgent, Outpatient) based on red flag symptoms using a rule-based engine. For AI-assisted decision support only — not a substitute for professional medical diagnosis.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Symptom Checker Triage
 

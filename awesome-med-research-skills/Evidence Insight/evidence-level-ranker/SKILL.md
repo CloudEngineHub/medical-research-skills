@@ -11,6 +11,7 @@ tags:
   - citation prioritization
 version: 1.0.0
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Evidence Level Ranker | 证据等级排序器
 

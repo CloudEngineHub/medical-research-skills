@@ -2,8 +2,10 @@
 name: ppt
 description: Create and export PPTX decks using the local HTML/JS PPT framework in `D:\SKILL\project\ppt`. Use this when you need to generate slides from a topic/outline, edit slide content via `projects/*.js`, preview as HTML, or export a `.pptx` without relying on an existing template.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## Validation Shortcut
 

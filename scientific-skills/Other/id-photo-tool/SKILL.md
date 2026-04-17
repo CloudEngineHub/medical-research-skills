@@ -2,8 +2,10 @@
 name: id-photo-tool
 description: Replace an ID photo background color (blue/white/red) and/or add a configurable text watermark when you need compliant ID-photo variants from local JPG/PNG files.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 - You need to convert an ID photo background to a required solid color (blue/white/red) for official submissions.

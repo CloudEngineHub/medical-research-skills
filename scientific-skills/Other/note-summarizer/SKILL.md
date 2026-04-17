@@ -2,8 +2,10 @@
 name: note-summarizer
 description: Organize study notes into a structured knowledge-point outline and export to a .docx summary when you need a shareable, hierarchical document from Word/PPT/Text/Markdown inputs.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Note Summarizer
 
 ## When to Use

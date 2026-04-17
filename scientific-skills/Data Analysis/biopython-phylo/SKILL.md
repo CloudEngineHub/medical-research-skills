@@ -2,8 +2,10 @@
 name: biopython-phylo
 description: Use Bio.Phylo to read/write phylogenetic trees and perform visualization and statistics; use when tree parsing/conversion, pruning/rerooting, distance calculation, or plotting is required.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # biopython-phylo
 

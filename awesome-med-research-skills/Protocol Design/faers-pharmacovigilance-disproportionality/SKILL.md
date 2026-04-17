@@ -2,8 +2,10 @@
 name: faers-pharmacovigilance-disproportionality
 description:  Generates complete FAERS-style pharmacovigilance disproportionality research designs from a user-provided drug class, comparator strategy, adverse-event domain, and patient-group stratification. Always use this skill whenever a user wants to design, plan, or build a spontaneous-report safety signal study using FAERS or a similar pharmacovigilance database, especially when the article logic includes product selection, indication-group stratification, MedDRA-based adverse-event extraction, serious-case filtering, suspect-drug and concomitant-exclusion logic, reporting odds ratio analysis, comparator-drug benchmarking, cross-drug comparison, and cautious signal interpretation without causal overclaiming. Covers five study patterns (single-drug disproportionality workflow, multi-drug class comparison workflow, indication-stratified workflow, comparator-controlled signal screening workflow...
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # FAERS Pharmacovigilance Disproportionality Research Planner
 

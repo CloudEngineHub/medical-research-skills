@@ -2,8 +2,10 @@
 name: grant-gantt-chart-gen
 description: Use grant gantt chart gen for evidence insight workflows that need structured execution, explicit assumptions, and clear output boundaries.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Grant Gantt Chart Generator
 
 Create project timeline visualizations for grant proposals.

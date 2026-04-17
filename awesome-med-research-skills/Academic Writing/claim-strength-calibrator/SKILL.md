@@ -2,8 +2,10 @@
 name: claim-strength-calibrator
 description: Calibrates manuscript claim strength so wording matches the actual evidence level, study design, and validation status.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Claim Strength Calibrator
 

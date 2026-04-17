@@ -2,8 +2,10 @@
 name: probast-quality-assessment-for-prediction-model-studies
 description: Assess bias in medical prediction model studies using PROBAST tool. Use when user wants to evaluate the quality or risk of bias of a medical paper (text or PDF).
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # PROBAST Quality Assessment
 
 This skill evaluates the risk of bias in medical prediction model studies using the PROBAST (Prediction model Risk Of Bias ASsessment Tool) framework. It analyzes the full text of a paper across four domains: Participants, Predictors, Outcome, and Analysis.

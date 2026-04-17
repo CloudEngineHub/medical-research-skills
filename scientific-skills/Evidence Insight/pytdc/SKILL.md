@@ -2,8 +2,10 @@
 name: pytdc
 description: Therapeutics Data Commons (PyTDC) for AI-ready therapeutic ML datasets and benchmarks; use it when you need standardized dataset loading, meaningful splits (e.g., scaffold/cold-start), and consistent evaluation for ADME/Toxicity/DTI/DDI or molecular optimization.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

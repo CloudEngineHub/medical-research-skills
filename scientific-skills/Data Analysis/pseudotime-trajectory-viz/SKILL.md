@@ -2,8 +2,10 @@
 name: pseudotime-trajectory-viz
 description: Analyze data with `pseudotime-trajectory-viz` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Pseudotime Trajectory Visualization
 
 Visualize single-cell developmental trajectories showing cellular differentiation processes using pseudotime analysis.

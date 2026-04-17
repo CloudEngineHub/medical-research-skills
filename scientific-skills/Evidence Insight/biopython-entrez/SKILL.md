@@ -2,8 +2,10 @@
 name: biopython-entrez
 description: Use Bio.Entrez to access NCBI databases (e.g., PubMed/GenBank) for searching, fetching summaries, and downloading records when your workflow needs to call the NCBI E-utilities API over the network.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

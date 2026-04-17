@@ -2,8 +2,10 @@
 name: labarchive-integration
 description: Converts LabArchives notebook data, entry metadata, and authorized ELN exports into manuscript-ready academic writing outputs such as Methods sections, data-availability statements, reproducibility appendices, experiment timelines, and submission support notes. Optional bundled scripts can be used to collect or validate source notebook data before writing.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # LabArchives Integration
 

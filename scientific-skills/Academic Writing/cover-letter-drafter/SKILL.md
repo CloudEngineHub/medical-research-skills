@@ -2,8 +2,10 @@
 name: cover-letter-drafter
 description: Generates professional cover letters for journal submissions and job.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Cover Letter Drafter
 
 Creates tailored cover letters for academic and medical positions.

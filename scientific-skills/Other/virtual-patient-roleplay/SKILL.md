@@ -2,8 +2,10 @@
 name: virtual-patient-roleplay
 description: Simulate standardized patient encounters for medical training, supporting OSCE-style history-taking practice, communication skills rehearsal, and educational debriefing.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Virtual Patient Roleplay
 
 Structured standardized-patient simulation for medical training and clinical interview practice.

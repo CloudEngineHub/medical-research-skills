@@ -2,8 +2,10 @@
 name: venue-templates
 description: Venue-specific LaTeX templates, formatting requirements, and submission guidelines for journals, conferences, posters, and grants—use when a target venue imposes strict layout, page limits, anonymization, or agency compliance rules.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

@@ -2,8 +2,10 @@
 name: neuropixels-analysis
 description: End-to-end Neuropixels extracellular electrophysiology analysis (SpikeGLX/Open Ephys/NWB) including preprocessing, motion correction, Kilosort4 spike sorting, QC metrics, and Allen/IBL-style curation; use when processing Neuropixels recordings or when users mention Neuropixels, SpikeGLX, Open Ephys, Kilosort, quality metrics, drift/motion correction, or unit curation.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

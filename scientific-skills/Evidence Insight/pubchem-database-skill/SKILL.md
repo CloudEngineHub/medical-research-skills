@@ -2,8 +2,10 @@
 name: pubchem-database-skill
 description: Programmatic access to the PubChem database (via PUG-REST API and PubChemPy) for searching chemical compounds, retrieving physicochemical properties, performing structure similarity/substructure searches, and obtaining bioactivity data.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 
 ## When to Use

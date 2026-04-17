@@ -2,8 +2,10 @@
 name: translational-gap-analyzer
 description: Assess translational gaps between preclinical models and human diseases.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Translational Gap Analyzer
 
 **ID**: 209

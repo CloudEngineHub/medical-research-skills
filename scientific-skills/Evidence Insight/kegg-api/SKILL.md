@@ -2,8 +2,10 @@
 name: kegg-api
 description: Access the KEGG database API to retrieve biological data (genes, pathways, compounds, drugs). Invoke when the user asks to search, list, or get details from KEGG.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # KEGG API Skill
 
 This skill allows querying the KEGG (Kyoto Encyclopedia of Genes and Genomes) database via its REST API.

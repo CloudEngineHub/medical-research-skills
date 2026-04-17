@@ -2,8 +2,10 @@
 name: pathml
 description: A full-featured computational pathology toolkit for advanced WSI analysis, including multiplexed immunofluorescence (CODEX, Vectra), nuclei segmentation, tissue graph construction, and machine learning model training on pathology data. Supports over 160 slide formats. For simple tile extraction from H&E slides, histolab may be simpler.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # PathML
 
 ## When to Use

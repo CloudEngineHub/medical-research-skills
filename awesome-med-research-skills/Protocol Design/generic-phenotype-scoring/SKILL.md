@@ -2,8 +2,10 @@
 name: generic-phenotype-scoring
 description: Generates complete phenotype-scoring bioinformatics research designs for any disease context and any user-defined phenotype, pathway, process, signature, or molecular program. Use when a study centers on gene-set or feature-set definition, intersection with DEGs or candidate features, phenotype scoring, feature selection, diagnostic or stratification assessment, immune or cellular-resolution interpretation, network analysis, and optional orthogonal validation. Covers five study patterns (signature discovery, phenotype scoring, feature selection, immune/cellular interpretation, multi-layer validation) and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Generic Phenotype-Scoring Research Planner
 

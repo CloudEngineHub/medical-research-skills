@@ -2,8 +2,10 @@
 name: conference-tweet-generator
 description: Generates academic conference tweets and summaries by filtering abstracts, translating content, and creating engaging titles. Use when you need to process conference abstracts into social media content.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use
 
 - Use this skill when the request matches its documented task boundary.

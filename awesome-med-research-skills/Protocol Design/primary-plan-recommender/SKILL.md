@@ -2,8 +2,10 @@
 name: primary-plan-recommender
 description: Compares multiple study-route options for the same biomedical research question and recommends one primary plan, while explicitly explaining why alternative routes are secondary, premature, weaker, or dependency-heavy. Always use this skill when the user already has a reasonably defined question but is unsure which main study route should anchor the project. Focus on plan comparison, route selection, dependency awareness, and primary-plan justification rather than full protocol drafting.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Primary Plan Recommender
 

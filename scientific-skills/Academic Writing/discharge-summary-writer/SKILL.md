@@ -2,8 +2,10 @@
 name: discharge-summary-writer
 description: Generate hospital discharge summaries from admission data, hospital course.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Discharge Summary Writer
 
 Generate standardized, clinically accurate hospital discharge summaries by integrating all inpatient medical data.

@@ -2,8 +2,10 @@
 name: flowio
 description: Parse Flow Cytometry Standard (FCS) files v2.0–3.1 and extract events/metadata for preprocessing workflows (e.g., when you need NumPy arrays, channel info, or CSV/DataFrame export from cytometry files).
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

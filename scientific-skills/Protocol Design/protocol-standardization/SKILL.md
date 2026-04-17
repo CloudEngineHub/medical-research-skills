@@ -2,8 +2,10 @@
 name: protocol-standardization
 description: Standardize fragmented experimental steps into reproducible protocol documents when you need method organization, lab SOP drafting, or cross-operator reproducibility; missing parameters must be explicitly marked as "To be supplemented/Not provided".
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

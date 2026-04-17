@@ -2,8 +2,10 @@
 name: meta-results-funnel-plot-generator
 description: Generates a Meta-analysis results section description for funnel plots, including statistical tables (Egger's, Begg's, Trim & Fill) and figure legends. Supports English and Chinese outputs. Use when user provides a funnel plot image and statistics and wants a formatted report.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Meta-Analysis Funnel Plot Generator
 
 This skill generates a standardized meta-analysis result section based on a funnel plot image, statistical data, and a title. It orchestrates LLM generation for descriptions and tables, then uses a Python script to assemble the final report.

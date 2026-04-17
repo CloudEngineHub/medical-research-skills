@@ -2,8 +2,10 @@
 name: meeting-minutes-generator
 description: Generates structured meeting minutes from text transcripts. Use when the user provides text content and wants a structured summary with a signature.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Meeting Minutes Generator
 
 ## When to Use

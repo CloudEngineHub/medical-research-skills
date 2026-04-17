@@ -2,8 +2,10 @@
 name: multi-omics-clinical-integration-planner
 description: Designs complete research plans that integrate clinical variables with multi-omics data from a user-provided biomedical direction. Always use this skill whenever a user wants to design, scope, or structure a study that combines clinical variables with transcriptomics, proteomics, metabolomics, epigenomics, or related omics layers for mechanism interpretation, biomarker development, risk stratification, treatment-response analysis, or translational use. It should define the clinical use case, alignment across data layers, feature-reduction and fusion logic, modeling route, mechanism-interpretation layer, validation ladder, and four workload configurations (Lite / Standard / Advanced / Publication+). Never fabricate datasets, accession numbers, sample counts, metadata completeness, platform coverage, literature references, PMIDs, DOIs, or validation status. Always include the mandatory Dataset Disclaimer immediately before any workflow section that mentions datasets or public resources.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Multi-Omics Clinical Integration Planner
 

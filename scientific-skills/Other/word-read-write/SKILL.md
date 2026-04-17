@@ -2,8 +2,10 @@
 name: word-read-write
 description: Create and read Microsoft Word (.docx) documents. Use this skill when you need to generate reports/letters/templates as .docx or extract readable text from existing .docx files.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

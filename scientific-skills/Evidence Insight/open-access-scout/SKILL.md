@@ -2,8 +2,10 @@
 name: open-access-scout
 description: Use when finding open access journals, checking journal policies, or identifying predatory publishers. Helps researchers locate legitimate open access venues and avoid publication scams.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Open Access Journal Scout
 
 Find legitimate open access journals, verify publisher credibility, and avoid predatory publication traps.

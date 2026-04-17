@@ -2,8 +2,10 @@
 name: pyopenms-skill
 description: Comprehensive tool for computational mass spectrometry using PyOpenMS; use when you need to read/write MS formats (mzML/mzXML/MGF), run signal processing (smoothing/peak picking), detect isotope features, or perform peptide identification in proteomics/metabolomics workflows.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

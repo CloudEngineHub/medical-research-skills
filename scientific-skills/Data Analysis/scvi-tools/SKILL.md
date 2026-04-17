@@ -2,8 +2,10 @@
 name: scvi-tools
 description: Deep generative models for single-cell omics; use when you need probabilistic batch correction (scVI), transfer learning, uncertainty-aware differential expression, or multimodal integration (totalVI/MultiVI).
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

@@ -2,8 +2,10 @@
 name: grant-mock-reviewer
 description: Simulates NIH study section peer review for grant proposals. Triggers.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Grant Mock Reviewer
 
 A simulated NIH study section reviewer that provides structured, rigorous critique of grant proposals using the official NIH scoring criteria and methodology.

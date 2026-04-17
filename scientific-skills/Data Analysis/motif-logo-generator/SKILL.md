@@ -2,8 +2,10 @@
 name: motif-logo-generator
 description: Generate publication-quality sequence logos for DNA or protein motifs.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Motif Logo Generator
 
 Generate sequence logos for DNA or protein motifs to visualize conserved positions.

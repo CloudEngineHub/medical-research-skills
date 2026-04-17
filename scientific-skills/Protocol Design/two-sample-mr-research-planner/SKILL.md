@@ -2,8 +2,10 @@
 name: two-sample-mr-research-planner
 description: Generates complete two-sample Mendelian randomization (MR) research designs from a user-provided research direction. Use when users want to design, plan, or build a study using two-sample MR to test causal relationships. Triggers:"design a two-sample MR study", "build a publishable MR paper", "test whether this biomarker causally affects this disease", "generate Lite/Standard/Advanced MR plans", "screen multiple exposures with MR", "bidirectional MR design", "causal inference using GWAS summary statistics", or "I want to study X and Y using MR". Always outputs four workload configurations (Lite / Standard / Advanced / Publication+) with a recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, and publication upgrade path.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Two-Sample Mendelian Randomization Research Planner
 

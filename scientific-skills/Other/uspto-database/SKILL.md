@@ -2,8 +2,10 @@
 name: uspto-database
 description: Access USPTO data (Patent Search, PEDS, TSDR, assignments) when you need to query patents/trademarks and retrieve prosecution or status information programmatically.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

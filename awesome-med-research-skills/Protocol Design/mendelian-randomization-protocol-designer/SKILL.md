@@ -2,8 +2,10 @@
 name: mendelian-randomization-protocol-designer
 description: Generates complete Mendelian randomization study designs from a user-provided exposure and outcome direction. Always use this skill whenever a user wants to design, plan, or build a Mendelian randomization study — even if phrased as "help me write a paper on X", "design an MR study for Y", or "I want to test whether A causally affects B using GWAS". Covers core two-sample MR design, optional bidirectional follow-up, optional multivariable MR, IV selection logic, ancestry alignment, harmonization, IVW as the default primary estimator, weighted median / MR-Egger / MR-PRESSO / leave-one-out sensitivity analyses, Steiger directionality, heterogeneity / pleiotropy checks, and explicit claim-boundary control. Always outputs four workload configs (Lite / Standard / Advanced / Publication+) with a recommended primary plan, stepwise workflow, method rationale, validation ladder, figure plan, minimal executable version, and strictly verified literature guidance with no fabricated references.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Mendelian Randomization Protocol Designer
 

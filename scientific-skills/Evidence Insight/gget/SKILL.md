@@ -2,8 +2,10 @@
 name: gget
 description: Unified CLI/Python interface for querying genomic, proteomic, structure, and expression data across 20+ bioinformatics databases; use when you need fast, scriptable retrieval by gene/protein IDs or keywords.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

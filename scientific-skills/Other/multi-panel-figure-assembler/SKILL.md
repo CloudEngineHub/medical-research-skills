@@ -2,8 +2,10 @@
 name: multi-panel-figure-assembler
 description: Assemble 6 sub-figures (A–F) into a high-resolution composite figure with consistent labels, padding, and publication-ready DPI.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Multi-Panel Figure Assembler
 
 Assemble 6 sub-figures (A–F) into a high-resolution composite figure with consistent styling, labels, and publication-ready output.

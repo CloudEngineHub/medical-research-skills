@@ -2,8 +2,10 @@
 name: medical-research-algorithm-matcher
 description: Matches a user’s biomedical research direction, disease problem, study aim, data modality, and resource constraints to the most relevant recent algorithms and method papers. Always search real recent algorithm literature first, prioritize the last 12 months, expand to 1–3 years only when needed, and add canonical baselines only when necessary. Every formal algorithm recommendation must include the verified primary method paper, plus published downstream papers that actually cite/use the algorithm when such papers are found, with DOI when available. Never fabricate papers, algorithm names, authors, journals, years, DOI, PMID, links, or benchmark claims. If no directly verified algorithm paper is found, say so explicitly.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Medical Research Algorithm Matcher
 

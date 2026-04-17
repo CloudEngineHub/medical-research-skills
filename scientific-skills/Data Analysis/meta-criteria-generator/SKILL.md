@@ -2,8 +2,10 @@
 name: meta-criteria-generator
 description: Generates scientifically sound inclusion and exclusion criteria for Meta-Analysis based on a given title or keywords. Use when user wants to design eligibility criteria for a systematic review or meta-analysis.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 ## When to Use
 
 - Use this skill when the request matches its documented task boundary.

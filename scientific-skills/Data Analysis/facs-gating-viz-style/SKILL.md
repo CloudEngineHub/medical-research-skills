@@ -2,8 +2,10 @@
 name: facs-gating-viz-style
 description: Use facs gating viz style for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # FACS Gating Viz Style
 
 Beautify flow cytometry gating plots for publication.

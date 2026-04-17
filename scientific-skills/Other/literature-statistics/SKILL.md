@@ -2,8 +2,10 @@
 name: literature-statistics
 description: Generate statistics for publication-year and journal distributions from local references or PDFs; use when you need standardized Year/Journal tables and a summary without any network access.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 - You have a batch of references and need a **publication year distribution** table (counts and percentages).

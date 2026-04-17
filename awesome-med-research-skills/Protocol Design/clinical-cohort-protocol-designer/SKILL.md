@@ -2,8 +2,10 @@
 name: clinical-cohort-protocol-designer
 description: Designs retrospective or prospective clinical cohort study protocols for biomedical and clinical research. Always use this skill when the user needs a cohort-based study plan rather than a general study idea, evidence summary, or mechanistic experiment design. Focus on cohort appropriateness, enrollment logic, baseline time-zero definition, follow-up structure, endpoint definition, variable collection, confounding control, and a coherent primary statistical analysis line. Do not invent data availability, follow-up completeness, outcome ascertainment quality, sample size adequacy, or causal interpretability.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Clinical Cohort Protocol Designer
 

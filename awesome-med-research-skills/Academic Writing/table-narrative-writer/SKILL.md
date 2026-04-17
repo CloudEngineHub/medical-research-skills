@@ -2,8 +2,10 @@
 name: table-narrative-writer
 description: Converts biomedical table content into clear manuscript or presentation narrative by prioritizing meaningful patterns, contrasts, and interpretation boundaries rather than restating every number.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Table Narrative Writer
 

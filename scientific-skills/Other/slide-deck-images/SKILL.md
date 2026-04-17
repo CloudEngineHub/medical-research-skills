@@ -2,8 +2,10 @@
 name: slide-deck-images
 description: Generate professional slide-deck SVG images (not PPTX/PDF) when users ask to “create slides / slide deck / PPT” and need image outputs.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

@@ -2,8 +2,10 @@
 name: alphafold-db
 description: Access over 200M protein structures from AlphaFold DB; use when you need to retrieve predicted 3D structures (PDB/mmCIF), confidence metrics (pLDDT/PAE), or protein metadata by UniProt accession.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # AlphaFold Database Skill
 

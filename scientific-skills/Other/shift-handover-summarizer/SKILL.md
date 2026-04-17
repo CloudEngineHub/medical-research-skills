@@ -2,8 +2,10 @@
 name: shift-handover-summarizer
 description: Generate structured shift handover summaries from EHR records, highlighting critical events, vital sign changes, and pending tasks for incoming clinical staff.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Shift Handover Summarizer
 
 Generate structured shift handover summaries from EHR updates, highlighting critical events that occurred during the shift.

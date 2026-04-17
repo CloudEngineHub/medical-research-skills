@@ -2,8 +2,10 @@
 name: singlecell-portal
 description: Programmatically query public single-cell study metadata from the Broad Institute Single Cell Portal REST API when you need to search and filter datasets by organism, tissue, disease, or cell type without an API key.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

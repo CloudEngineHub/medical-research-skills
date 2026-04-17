@@ -2,8 +2,10 @@
 name: content-proofreading
 description: An academic proofreading skill for Chinese/English manuscripts, triggered when you need automated checks for spelling, grammar, terminology consistency, and formatting before submission.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

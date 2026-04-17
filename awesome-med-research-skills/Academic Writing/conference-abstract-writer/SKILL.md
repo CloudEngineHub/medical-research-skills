@@ -2,8 +2,10 @@
 name: conference-abstract-writer
 description: Condenses a full study into conference-submission abstract format. Use when adapting a manuscript abstract or study summary to meet a specific conference's word limit, structured format (Background/Methods/Results/Conclusion), character limits, or required section headings. Also triggers on "adapt my abstract for [conference]", "shorten my abstract to 250 words", "reformat for ASCO/ASGCT/SfN/AACR", "I need a conference abstract", or "cut my abstract to fit the word limit".
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Conference Abstract Adaptor
 

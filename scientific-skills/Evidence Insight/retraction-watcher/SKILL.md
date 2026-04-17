@@ -2,8 +2,10 @@
 name: retraction-watcher
 description: Automatically scan document reference lists and check against Retraction.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Retraction Watcher
 
 A specialized skill for identifying retracted, corrected, or questionable papers in academic reference lists before they compromise research integrity.

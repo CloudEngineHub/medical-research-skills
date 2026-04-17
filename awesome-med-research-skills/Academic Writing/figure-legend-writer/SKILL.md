@@ -2,8 +2,10 @@
 name: figure-legend-writer
 description: Writes complete, publication-grade figure legends that can stand on their own. Use when writing or revising figure legends for any scientific figure — bar charts, line graphs, scatter plots, box plots, heatmaps, survival curves, flow cytometry plots, western blots, microscopy images, or schematic diagrams. Also triggers on "write a figure legend for", "help me describe this figure", "my figure needs a legend", "write Figure 1 legend", or "what should a figure legend include".
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Figure Legend Generator
 

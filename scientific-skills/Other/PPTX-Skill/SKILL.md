@@ -2,8 +2,10 @@
 name: pptx-skill
 description: Create, edit, and extract content from PowerPoint (.pptx) files; use when you need to generate slides programmatically, update existing decks, or export slide previews.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

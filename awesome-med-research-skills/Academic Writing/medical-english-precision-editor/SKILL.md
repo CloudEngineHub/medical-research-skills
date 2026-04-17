@@ -2,8 +2,10 @@
 name: medical-english-precision-editor
 description: Improves medical English precision without changing the underlying facts, evidence boundaries, or intended scientific meaning.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Medical English Precision Editor
 

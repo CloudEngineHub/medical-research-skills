@@ -2,8 +2,10 @@
 name: geniml
 description: Machine learning toolkit for genomic interval (BED) data; use it when you need to tokenize BED collections and train embeddings for regions/cells/labels, build consensus peak universes, or run similarity search and downstream ML on chromatin accessibility datasets.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

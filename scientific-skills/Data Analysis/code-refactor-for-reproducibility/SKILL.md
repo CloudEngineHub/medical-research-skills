@@ -2,8 +2,10 @@
 name: code-refactor-for-reproducibility
 description: Use when refactoring research code for publication, adding documentation to existing analysis scripts, creating reproducible computational workflows, or preparing code for sharing with collaborators. Transforms research code into publication-ready, reproducible workflows. Adds documentation, implements error handling, creates environment specifications, and ensures computational reproducibility for scientific publications.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Research Code Reproducibility Refactoring Tool
 
 ## When to Use

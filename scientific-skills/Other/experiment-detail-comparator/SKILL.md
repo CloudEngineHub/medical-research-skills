@@ -2,8 +2,10 @@
 name: experiment-detail-comparator
 description: Compare experimental method details between two Zotero PDF papers, identify protocol differences (ratios, dosages, timing, conditions), search supporting literature to explain why they differ, and generate an HTML report. Use when you need a parameter-level comparison of two methods and evidence-backed reasons for discrepancies.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## Validation Shortcut
 

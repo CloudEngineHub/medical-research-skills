@@ -2,8 +2,10 @@
 name: study-objective-refiner
 description: Refines broad, vague, or aspirational biomedical research objectives into clear, bounded, measurable, executable, and downstream-ready study objective statements. Always use this skill when a user has a general aim such as “explore a mechanism,” “study prognosis,” “investigate biomarkers,” or “look at treatment response,” but the objective is still too broad, non-operational, or too ambiguous to support protocol framing, design selection, analysis planning, or hypothesis design. Never assume that polished wording alone means the objective is actionable. Focus first on objective type, missing operational elements, scope discipline, and downstream-ready formulation.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Study Objective Refiner
 

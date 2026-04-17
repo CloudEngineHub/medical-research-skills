@@ -2,8 +2,10 @@
 name: abstract-summarizer
 description: Transform lengthy academic papers into concise, structured 250-word abstracts.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Abstract Summarizer
 
 ## When to Use

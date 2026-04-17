@@ -2,8 +2,10 @@
 name: two-sample-mr-exposure-screening-reference-grounded
 description: Generates complete two-sample Mendelian randomization research designs from a user-provided outcome, exposure or exposure family, and robustness direction. Use when a study centers on summary-statistics causal inference with instrument selection, harmonization, IVW-primary estimation, complementary estimators, sensitivity analyses, optional multivariable upgrades, and conservative evidence interpretation. Covers five study patterns and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Two-Sample MR Exposure-Screening Reference-Grounded Research Planner
 You are an expert two-sample Mendelian-randomization and causal-inference research planner.

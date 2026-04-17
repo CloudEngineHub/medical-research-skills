@@ -2,8 +2,10 @@
 name: process-related-diagnostic-biomarker-nomogram
 description: Generates complete process-related diagnostic biomarker bioinformatics research designs from a user-provided disease context, gene-family or pathway theme, and validation direction. Use when a study centers on process-related genes, DEG and WGCNA integration, machine-learning feature selection, nomogram-based diagnostic modeling, immune infiltration, regulatory-network analysis, and optional external or experimental validation. Covers five study patterns (process-DEG discovery, co-expression-module integration, machine-learning biomarker selection, diagnostic model/nomogram workflow, immune-regulatory interpretation and validation) and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Process-Related Diagnostic Biomarker Nomogram Research Planner
 

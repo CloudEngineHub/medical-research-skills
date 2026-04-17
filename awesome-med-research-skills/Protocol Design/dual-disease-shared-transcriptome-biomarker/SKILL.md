@@ -2,8 +2,10 @@
 name: dual-disease-shared-transcriptome-biomarker
 description:  Generates complete dual-disease shared-transcriptome biomarker and hub-gene research designs from a user-provided disease pair and shared-biology direction. Always use this skill whenever a user wants to design, plan, or build a non-oncology two-disease transcriptome study centered on per-disease differential expression, shared-signal intersection or concordance, PPI-based hub-gene prioritization, diagnostic evaluation across both diseases, immune infiltration context, pathway interpretation, and optional orthogonal validation. Covers five study patterns (shared-DEG-first workflow, hub-gene-first shared-biomarker workflow, hybrid shared-biomarker compression workflow, immune-context shared-biomarker workflow, orthogonal validation workflow) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path...
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Dual-Disease Shared-Transcriptome Biomarker Research Planner
 

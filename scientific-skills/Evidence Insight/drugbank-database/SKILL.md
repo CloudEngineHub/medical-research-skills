@@ -2,8 +2,10 @@
 name: drugbank-database
 description: Programmatic access to DrugBank drug and target data; use when you need to download, parse, and analyze DrugBank XML for properties, interactions, pathways, and pharmacology.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

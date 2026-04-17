@@ -2,8 +2,10 @@
 name: prior-auth-letter-drafter
 description: Generate professional prior authorization request letters for insurance companies with proper clinical justification and formatting.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Prior Authorization Letter Drafter
 
 Generate professional prior authorization request letters for insurance companies with proper clinical justification and formatting.

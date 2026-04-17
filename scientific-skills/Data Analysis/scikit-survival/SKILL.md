@@ -2,8 +2,10 @@
 name: scikit-survival
 description: A comprehensive toolkit for survival analysis and time-to-event modeling in Python using scikit-survival; use it when you need to model censored time-to-event outcomes, fit Cox/RSF/GB models or Survival SVMs, evaluate with C-index/Brier score, or handle competing risks.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

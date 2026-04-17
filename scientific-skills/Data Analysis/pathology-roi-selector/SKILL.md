@@ -2,8 +2,10 @@
 name: pathology-roi-selector
 description: Use pathology roi selector for data analysis workflows that need structured execution, explicit assumptions, and clear output boundaries.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Pathology ROI Selector
 
 WSI region detection for AI training.

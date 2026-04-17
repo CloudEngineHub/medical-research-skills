@@ -2,8 +2,10 @@
 name: multi-database-literature-collector
 description: Collects candidate biomedical literature across multiple databases, adapts search logic by database, preserves source metadata, and organizes results into a structured, screening-ready candidate pool. Always use this skill when a user wants cross-database literature collection, search strategy construction, candidate paper aggregation, or first-pass evidence organization before deduplication, screening, layered reading, or review planning. Requires real and verifiable literature records only. Every formal literature item must include a real link and DOI when available; never fabricate citations, titles, authors, years, journals, abstracts, PMIDs, or DOIs. If a DOI is unavailable or cannot be verified, state that explicitly rather than inventing one.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Multi-Database Literature Collector
 

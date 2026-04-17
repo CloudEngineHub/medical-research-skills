@@ -2,8 +2,10 @@
 name: recommendation-letter-assistant
 description: Helps faculty and mentors draft standardized recommendation letters for.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Recommendation Letter Assistant
 
 Assists mentors and faculty in writing effective recommendation letters.

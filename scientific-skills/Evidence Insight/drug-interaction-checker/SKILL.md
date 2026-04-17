@@ -2,8 +2,10 @@
 name: drug-interaction-checker
 description: Check for interactions between multiple medications, including severity classification and mechanism explanations.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Drug Interaction Checker
 
 Check for interactions between multiple medications, including severity classification and mechanism explanations.

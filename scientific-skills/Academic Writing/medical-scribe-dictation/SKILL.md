@@ -2,8 +2,10 @@
 name: medical-scribe-dictation
 description: Convert physician verbal dictation into structured SOAP notes. Trigger.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Medical Scribe Dictation
 
 Convert unstructured physician dictation into professionally formatted SOAP (Subjective, Objective, Assessment, Plan) notes with medical terminology normalization and clinical quality assurance.

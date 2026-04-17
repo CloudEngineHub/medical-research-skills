@@ -2,8 +2,10 @@
 name: imagegenskill
 description: Generate renderable, scientific-style SVG graphics directly from natural-language requirements (no image models). Use when users ask for an image/picture/scientific diagram/visualization poster or explicitly request SVG output for web-embeddable vector graphics.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

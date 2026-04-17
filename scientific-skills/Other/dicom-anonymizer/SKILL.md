@@ -2,8 +2,10 @@
 name: dicom-anonymizer
 description: De-identify DICOM medical images by removing PHI tags for research sharing, with audit logging and study-linkage preservation support.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # DICOM Anonymizer
 
 Structured DICOM de-identification support for research preparation workflows.

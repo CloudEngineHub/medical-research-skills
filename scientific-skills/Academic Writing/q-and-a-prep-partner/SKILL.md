@@ -2,8 +2,10 @@
 name: q-and-a-prep-partner
 description: Predict challenging questions for presentations and prepare structured responses.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Q&A Prep Partner
 
 Predict challenging questions for presentations and prepare structured responses.

@@ -2,8 +2,10 @@
 name: academic-highlight-generator
 description: Generates submission-ready Elsevier/SCI Highlights from manuscript text or extracted PDF/DOCX/TXT content. Use when a user needs 3-5 concise, evidence-grounded highlight bullets for a research paper, review, meta-analysis, case report, or bioinformatics manuscript.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Academic Highlight Generator
 

@@ -2,8 +2,10 @@
 name: paper-to-claim-verifier
 description: Verifies whether a scientific or biomedical claim is actually supported by the cited original papers rather than by citation drift, overstatement, selective citation, or correlation-to-causation inflation. Use this skill whenever a user wants to check whether a repeated statement, slide claim, manuscript sentence, review assertion, or “people often say” scientific conclusion is truly supported by the underlying primary literature. Always separate the claim itself, the cited paper(s), what the paper actually showed, what it did not show, and whether later retellings drifted beyond the original evidence. Never fabricate references, findings, study features, or citation chains.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Paper-to-Claim Verifier
 

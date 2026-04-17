@@ -2,8 +2,10 @@
 name: brenda-database
 description: Programmatic access to the BRENDA enzyme database via the SOAP API; use when you need kinetic constants (Km, kcat, Vmax), reaction equations, enzyme properties (pH/temperature optima, stability), or enzyme discovery by EC/substrate/product.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

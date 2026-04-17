@@ -2,8 +2,10 @@
 name: literatureimages-interpretation
 description: Interpret figures in academic papers and their captions when the input is a PDF-to-Markdown document with page markers and image links, producing a structured Markdown report for extracting variables, trends, and conclusions.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 

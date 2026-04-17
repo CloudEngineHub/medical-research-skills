@@ -2,8 +2,10 @@
 name: cover-letter-generator
 description: Generates a journal-ready cover letter from manuscript metadata, highlights, and journal-fit notes. Use when preparing an academic submission package and you need editor-facing language that clearly states novelty, relevance, declarations, and corresponding-author details.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Cover Letter Generator
 

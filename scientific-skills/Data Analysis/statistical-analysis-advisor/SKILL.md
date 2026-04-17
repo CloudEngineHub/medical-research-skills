@@ -2,8 +2,10 @@
 name: statistical-analysis-advisor
 description: Recommends appropriate statistical methods (T-test vs ANOVA, etc.) based.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Statistical Analysis Advisor
 
 Intelligent statistical test recommendation engine that guides users through selecting the right statistical methods for their data.

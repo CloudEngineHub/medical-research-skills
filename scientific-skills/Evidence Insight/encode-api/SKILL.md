@@ -2,8 +2,10 @@
 name: encode-api
 description: Access the ENCODE Project REST API to search for and retrieve biological data (biosamples, experiments, etc.). Use this skill when the user needs to query ENCODE data, search by keywords, or retrieve specific objects by accession ID.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # ENCODE API Skill
 
 This skill allows you to interact with the ENCODE Project database via its REST API.

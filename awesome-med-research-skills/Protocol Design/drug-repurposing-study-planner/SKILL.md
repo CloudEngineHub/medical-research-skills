@@ -2,8 +2,10 @@
 name: drug-repurposing-study-planner
 description: Design evidence-discovery and validation workflows for drug repurposing studies by integrating disease mechanisms, drug-target logic, expression reversal, real-world evidence, and validation routes into a closed-loop study blueprint.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Drug Repurposing Study Planner
 

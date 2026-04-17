@@ -2,8 +2,10 @@
 name: research-hotspot-analysis
 description: Analyzes research hotspots and recommends literature based on a disease or topic. Use when the user wants to identify current research trends, hot topics, or get literature recommendations for a specific medical field or disease.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Research Hotspot Analysis
 
 ## When to Use

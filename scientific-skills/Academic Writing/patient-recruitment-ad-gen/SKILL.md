@@ -2,8 +2,10 @@
 name: patient-recruitment-ad-gen
 description: Generate ethical, compliant, and patient-friendly recruitment advertisements for clinical trials.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Patient Recruitment Ad Generator
 
 Generate ethical, compliant, and patient-friendly recruitment advertisements for clinical trials.

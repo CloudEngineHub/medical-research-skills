@@ -2,8 +2,10 @@
 name: market-access-value
 description: Use market access value for academic writing workflows that need structured execution, explicit assumptions, and clear output boundaries.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Market Access Value
 
 Payer value proposition development.

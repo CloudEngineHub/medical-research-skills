@@ -2,8 +2,10 @@
 name: aim-and-hypothesis-designer
 description: Designs primary aims, secondary aims, and testable hypotheses from broad biomedical research ideas. Use this skill when a user needs to convert a loose study idea into a tighter protocol-framing structure with clear aim hierarchy, hypothesis discipline, and separation between hypothesis-driven and exploratory components. Always keep aims answerable, non-overlapping, and aligned to the intended evidence type and study scope.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Aim and Hypothesis Designer
 

@@ -2,8 +2,10 @@
 name: basic-discovery-translational-opportunity-finder
 description: Finds translational opportunities that connect basic-research discoveries to clinically meaningful use cases such as diagnosis, stratification, prognosis, treatment response prediction, monitoring, or therapeutic development. Use this skill when a user wants to turn a mechanism finding, pathway signal, cellular phenotype, experimental observation, or omics discovery into a stronger translational research direction. Always separate mechanistic relevance from translational usability, and never present a basic finding as clinically actionable unless the evidence supports that level.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Basic Discovery Translational Opportunity Finder
 

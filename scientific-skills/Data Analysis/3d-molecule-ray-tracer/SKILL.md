@@ -2,8 +2,10 @@
 name: 3d-molecule-ray-tracer
 description: Generate photorealistic rendering scripts for PyMOL and UCSF ChimeraX.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # 3D Molecule Ray Tracer
 
 Advanced molecular visualization tool that generates professional-grade rendering scripts with cinematic effects for creating publication-quality and cover-worthy molecular images.

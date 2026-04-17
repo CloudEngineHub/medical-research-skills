@@ -2,8 +2,10 @@
 name: table-1-generator
 description: Automated generation of baseline characteristics tables (Table 1) for clinical research papers.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Table 1 Generator
 
 Automated generation of baseline characteristics tables (Table 1) for clinical research papers.

@@ -2,8 +2,10 @@
 name: pdf-processor
 description: Perform basic local PDF operations (merge, split, extract pages/text/tables, create) when users request offline PDF processing without external services.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## When to Use
 - You need to merge multiple PDFs into a single document offline.

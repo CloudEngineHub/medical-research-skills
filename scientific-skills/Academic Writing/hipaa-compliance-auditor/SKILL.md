@@ -2,8 +2,10 @@
 name: hipaa-compliance-auditor
 description: A clinical-grade PII/PHI detection and de-identification tool for healthcare text data.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # HIPAA Compliance Auditor
 
 A clinical-grade PII/PHI detection and de-identification tool for healthcare text data.

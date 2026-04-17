@@ -2,8 +2,10 @@
 name: forest-plot-styler
 description: Analyze data with `forest-plot-styler` using a reproducible workflow, explicit validation, and structured outputs for review-ready interpretation.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Forest Plot Styler
 
 ID: 157

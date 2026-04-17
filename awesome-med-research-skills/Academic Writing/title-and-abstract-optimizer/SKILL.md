@@ -2,8 +2,10 @@
 name: title-and-abstract-optimizer
 description: Optimizes manuscript titles and abstracts for information density, factual accuracy, and submission fit in biomedical research writing.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Title and Abstract Optimizer
 

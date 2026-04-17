@@ -2,8 +2,10 @@
 name: meta-baseline-generator
 description: Generates a meta-analysis baseline characteristics section (text + table) from raw data. Supports Chinese and English. Use when the user provides baseline data and wants a formatted results section.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # Meta-Analysis Baseline Generator
 
 This skill generates a standardized "Baseline Characteristics" section for meta-analysis papers, including a descriptive text summary and a formatted Markdown table.

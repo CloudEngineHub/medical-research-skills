@@ -2,8 +2,10 @@
 name: html-to-pdf
 description: Convert HTML files or URLs to high-fidelity PDFs using Puppeteer; auto-detects or forces RTL for Hebrew/Arabic when RTL content is present.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 ## Validation Shortcut
 

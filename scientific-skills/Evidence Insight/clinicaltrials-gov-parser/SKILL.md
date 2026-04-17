@@ -2,8 +2,10 @@
 name: clinicaltrials-gov-parser
 description: Monitor and summarize competitor clinical trial status changes from ClinicalTrials.gov.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 # ClinicalTrials.gov Parser
 
 Monitor and summarize competitor clinical trial status changes from ClinicalTrials.gov.

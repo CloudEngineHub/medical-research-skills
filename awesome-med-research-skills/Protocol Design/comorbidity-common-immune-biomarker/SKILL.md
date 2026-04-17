@@ -2,8 +2,10 @@
 name: comorbidity-common-immune-biomarker
 description: Generates complete comorbidity-oriented shared-biomarker bioinformatics research designs from a user-provided disease pair and validation direction. Use when a study links two clinically related diseases through shared DEGs, enrichment, PPI hub genes, machine-learning feature selection, public diagnostic validation, gene-regulatory networks, immune infiltration, and optional downstream follow-up. Covers five study patterns (shared-DEG discovery, hub-gene prioritization, machine-learning biomarker selection, immune/regulatory interpretation, multi-layer validation) and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Comorbidity Common-Immune Biomarker Research Planner
 

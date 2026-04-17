@@ -2,8 +2,10 @@
 name: introduction-section-writer
 description: Writes the full Introduction section of a biomedical manuscript based on an approved or sufficiently clear study logic, while preserving evidence boundaries and introduction discipline.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
+source: https://github.com/aipoch/medical-research-skills
 ---
+> **Github**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Introduction Section Writer
 
