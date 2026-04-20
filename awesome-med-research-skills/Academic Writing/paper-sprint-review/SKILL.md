@@ -2,8 +2,9 @@
 name: paper-sprint-review
 description: Scrum-inspired paper review, revision, and R&R workflow. Handles docx/tex/md/PDF in English or Chinese. Auto-detects manuscript stage, estimates sprint count, runs multi-lens review (Contribution/Rigor/Writing/Editor), generates prioritized revision backlog, exports MD/DOCX/PDF/HTML reports. Use when asked to review a paper, revise based on reviewer comments, handle R&R, respond to peer review, plan paper revision sprints, or when user types /ps or /papersprint.
 license: MIT
-skill-author: AIPOCH
+author: AIPOCH
 ---
+> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # PaperSprint v2.2
 
