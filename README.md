@@ -30,6 +30,10 @@ Add Skills. Run Your Research.
 
 ---
 
+> 💡**New:** We are launching **Awesome ​Med​ Research Skills** — a curated collection of medical research Agent Skills, featuring 102 high-quality skills. Each skill embeds **professional medical research logic**. [Explore here.](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills)
+
+
+
 ## 🤔 What it is?
 
 AIPOCH is a curated library of 500+ Medical Research Agent Skills designed to work with Claude Code, OpenClaw, Hermes Agent and other AI agents.
@@ -39,6 +43,28 @@ It supports the research workflow across four core areas: Evidence Insights, Pro
 Equip your AI agent with Medical Research Skills, and turn it into a capable medical research assistant.
 
 AIPOCH also introduces **Medical ​Skill Auditor​**​— a structured evaluation framework designed to assess the quality of Medical Research Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users. You can [view evaluation results for selected AIPOCH skills here](https://www.aipoch.com/leaderboard/items/discussion-section-architect).
+
+## What is awesome-med-research-skills?
+
+**Awesome ​Med Research Skills** is a curated collection of medical research Agent Skills, currently including **102 high-quality skills**.
+
+We aim to help researchers more effectively organize questions, connect evidence, and advance research. To achieve this, we encode professional medical research logic into these agent skills:
+
+* **Literature ​authenticity**​​**​ constraints**​: Implementing hard rules
+* ​**Research type identification**​: We first determine the study type, then execute different logical pathways
+* **Medical-specific prompt logic**
+
+### Key Features of Awesome Med Research Skills
+
+#### 🧩 Modular Skill Architecture for Team Scaling
+
+* Skills are **composable, replaceable, and extensible**, suitable for both individual use and team collaboration
+* Can be assembled from single-task execution to multi-step workflow pipelines
+
+#### 🧬 Built for Real Medical Research Scenarios
+
+* Covers real workflows: **topic selection, literature search, study design, writing, graphical abstracts**, and more
+* Not adapted from generic content templates — designed specifically for **medical research contexts**.
 
 ---
 
@@ -235,4 +261,3 @@ You can [view evaluation results for selected AIPOCH skills here](https://www.ai
    <img alt="Star History Chart" src="https://api.star-history.com/image?repos=aipoch/medical-research-skills&type=date&legend=top-left" />
  </picture>
 </a>
-
