@@ -32,8 +32,6 @@ Add Skills. Run Your Research.
 
 > 💡**New:** We are launching **Awesome ​Med​ Research Skills** — a curated collection of medical research Agent Skills, featuring 102 high-quality skills. Each skill embeds **professional medical research logic**. [Explore here.](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills)
 
-
-
 ## 🤔 What it is?
 
 AIPOCH is a curated library of 500+ Medical Research Agent Skills designed to work with Claude Code, OpenClaw, Hermes Agent and other AI agents.
@@ -42,7 +40,7 @@ It supports the research workflow across four core areas: Evidence Insights, Pro
 
 Equip your AI agent with Medical Research Skills, and turn it into a capable medical research assistant.
 
-AIPOCH also introduces **Medical ​Skill Auditor​**​— a structured evaluation framework designed to assess the quality of Medical Research Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users. You can [view evaluation results for selected AIPOCH skills here](https://www.aipoch.com/leaderboard/items/discussion-section-architect).
+AIPOCH also introduces **MedSkillAudit**— a structured evaluation framework designed to assess the quality of Medical Research Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users. [Try skill-auditor here.](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor)
 
 ## What is awesome-med-research-skills?
 
@@ -177,23 +175,21 @@ openclaw gateway restart
 
 ---
 
-## 🧠 AIPOCH Medical Skill Auditor
+## 🧠 MedSkillAudit
 
 <p align="center">
-  <a href="https://youtu.be/soH-l1DTRtw?si=71npBdTxOLBGT_IL">
-    <img src="https://github.com/user-attachments/assets/16d5801e-8a4b-4f2f-a102-42836ca69a69" width="700">
-  </a>
+  <img src="https://github.com/user-attachments/assets/583a861f-dc51-4078-ba11-0f64984d8815" width="800" />
 </p>
 
-### 🧩What is Medical Skill Auditor?
+### 🧩What is MedSkillAudit?
 
-Skill Evaluator is a standardized tool designed to assess the quality of Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users.
+MedSkillAudit is a standardized tool designed to assess the quality of Agent Skills. Its core function is to perform a comprehensive quality check on a Skill before it is officially deployed to users. Try [Skill-Auditor here](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor).
 
-### ⚙️How does Medical Skill Auditor Work?
+### ⚙️How does MedSkillAudit Work?
 
 #### 🚫Veto Gates
 
-To enforce strict quality control, Skill Auditor is designed with two layers of veto mechanisms. Any failure in these checks may lead to immediate rejection of a skill.
+To enforce strict quality control, MedSkillAudit is designed with two layers of veto mechanisms. Any failure in these checks may lead to immediate rejection of a skill.
 
 ##### **Skill ​Veto**
 
@@ -243,7 +239,7 @@ For skill testing, the AI automatically generates inputs. The number of inputs i
 
 ### Final Score
 
-The Skill Evaluator uses a two-stage scoring system: static evaluation (design quality, accounting for 40%) and dynamic evaluation (runtime performance, accounting for 60%). The final overall score is derived by combining both.
+The MedSkillAudit uses a two-stage scoring system: static evaluation (design quality, accounting for 40%) and dynamic evaluation (runtime performance, accounting for 60%). The final overall score is derived by combining both.
 
 * Static (40%)
 * Dynamic (60%)
@@ -261,3 +257,5 @@ You can [view evaluation results for selected AIPOCH skills here](https://www.ai
    <img alt="Star History Chart" src="https://api.star-history.com/image?repos=aipoch/medical-research-skills&type=date&legend=top-left" />
  </picture>
 </a>
+
+
