@@ -2,9 +2,8 @@
 name: basic-discovery-translational-opportunity-finder
 description: Finds translational opportunities that connect basic-research discoveries to clinically meaningful use cases such as diagnosis, stratification, prognosis, treatment response prediction, monitoring, or therapeutic development. Use this skill when a user wants to turn a mechanism finding, pathway signal, cellular phenotype, experimental observation, or omics discovery into a stronger translational research direction. Always separate mechanistic relevance from translational usability, and never present a basic finding as clinically actionable unless the evidence supports that level.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Basic Discovery Translational Opportunity Finder
 
@@ -111,6 +110,14 @@ Identify and restate:
 
 If the discovery is underspecified, narrow it before formal mapping. State assumptions explicitly.
 
+### Step 1.5 — Check-in After Discovery Definition (optional but recommended)
+
+After defining the discovery unit and scan objective in Step 1, surface the assumed scope before generating the full 9-section analysis:
+
+> "I will map translational opportunities for [discovery unit] in [disease context], focusing on [N] candidate paths including [examples]. Proceed, or would you like to refine the scope first?"
+
+This prevents producing a full 9-section analysis on a misunderstood framing. For underspecified inputs (mouse-only, very early signals), confirm scope is correct before committing to the full structure.
+
 ### Step 2 — Retrieve Discovery-to-Translation Literature
 Retrieve literature that connects the discovery unit to disease relevance and possible translational interfaces.
 
@@ -123,6 +130,10 @@ Prioritize:
 Do not claim translational readiness from mechanistic popularity alone.
 
 ### Step 3 — Build the Opportunity Inventory
+**Multi-mechanism inputs:** For inputs with 3 or more intersecting mechanisms, first identify whether those mechanisms share a common translational interface (e.g., all three converge on immune evasion → checkpoint target) or represent independent paths. Map shared interfaces before individual paths to prevent generic multi-path listing.
+
+**Limited Evidence Mode:** If bridge evidence is classified as 'mechanism-only signal' for ALL candidate paths (e.g., the discovery is mouse-only, no human ortholog data, no clinical endpoint evidence), collapse Sections D–F into a single combined evidence table and add a flag: "Full opportunity analysis deferred — all paths currently lack human-level bridge evidence. Recommended next step: establish human relevance before full translational mapping."
+
 List plausible translational paths such as:
 - diagnostic signal
 - stratification or subtype-defining signal
@@ -259,6 +270,10 @@ Give a decision-oriented recommendation that states:
 - why it is superior to the alternatives
 - what minimal next-step evidence package is needed
 - what to defer to a later phase
+
+**Composability note:** For therapeutic development paths, see `drug-target-evidence-landscape` for target-evidence mapping. For diagnostic or prognostic biomarker paths, see `biomarker-landscape-scanner` for field-level evidence auditing. For ranking bridge evidence quality, see `evidence-level-ranker`.
+
+**Retrieval fallback:** If live literature retrieval is unavailable, label all evidence claims in Section B as: "[Based on training knowledge — verify with current PubMed/Embase search before acting on this map]." Prompt the user to provide key anchor papers if high-precision evidence is needed.
 
 ### I. Self-Critical Risk Review
 State:

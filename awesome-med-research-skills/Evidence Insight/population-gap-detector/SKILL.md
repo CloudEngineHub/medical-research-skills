@@ -2,9 +2,8 @@
 name: population-gap-detector
 description: Detects overlooked, underrepresented, weakly resolved, or poorly validated populations and subgroups within a biomedical research area so users can identify more precise and meaningful study populations. Always use this skill when the real question is not just what is under-studied, but which populations, strata, or subgroups are missing, thinly represented, superficially analyzed, pooled without resolution, or insufficiently validated in the current evidence base. Focus on meaningful subgroup gaps rather than generic calls for diversity.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Population Gap Detector
 

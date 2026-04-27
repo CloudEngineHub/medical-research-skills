@@ -9,9 +9,8 @@ description: >
   trigger this skill for questions touching genetics, breeding, trait inheritance, or genomics history.
   Part of the AIPOCH Science Mentor Skill Hub.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Mendel
 

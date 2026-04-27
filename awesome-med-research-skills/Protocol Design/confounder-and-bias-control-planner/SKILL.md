@@ -2,9 +2,8 @@
 name: confounder-and-bias-control-planner
 description: Plans confounder control, variable adjustment logic, and bias mitigation strategies at the protocol stage for clinical, epidemiologic, translational, observational, and biomarker studies. Always use this skill when a user needs to identify major confounders, decide which variables should or should not be adjusted for, compare matching/stratification/weighting approaches, anticipate selection or measurement bias, or pressure-test a study design before execution. Focus on bias sensing, causal structure awareness, variable-role classification, and critical design review rather than generic statistical advice.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Confounder and Bias Control Planner
 

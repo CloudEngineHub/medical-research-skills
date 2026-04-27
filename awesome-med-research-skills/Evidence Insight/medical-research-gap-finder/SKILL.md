@@ -2,9 +2,8 @@
 name: medical-research-gap-finder
 description: Identifies real, evidence-audited, topic-specific research gaps in medical research by first retrieving and verifying literature from trusted sources, then mapping the current evidence landscape, rejecting pseudo-gaps, and converting only medium/high-confidence gaps into study-ready research opportunities. Always require real literature retrieval before formal gap claims. Never fabricate references, metadata, or findings.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Medical Research Gap Finder
 

@@ -2,9 +2,8 @@
 name: feasibility-aware-study-planner
 description: Designs a realistic, execution-aware biomedical study version under explicit constraints of samples, time, budget, data access, lab capacity, team skill, and validation resources. Always use this skill when the user has a real study idea, a candidate route, or a partially framed project but cannot assume ideal conditions. If critical feasibility inputs are missing, first clarify what resources are currently available, what resources may be obtainable, and what resources are realistically unavailable. Do not invent access, capabilities, collaborations, or validation resources. Focus first on feasibility-constrained study framing, route narrowing, dependency control, and minimum viable study design.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Feasibility-Aware Study Planner
 

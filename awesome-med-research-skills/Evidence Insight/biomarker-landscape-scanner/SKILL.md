@@ -2,9 +2,8 @@
 name: biomarker-landscape-scanner
 description: Scans the biomarker landscape of a disease area by biomarker type, clinical/research use case, evidence layer, validation status, and maturity level. Use this skill when a user wants a field-level biomarker evidence map rather than a generic literature summary. Always separate exploratory biomarkers from externally validated or clinically embedded biomarkers, and never imply clinical maturity without explicit evidence support.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Biomarker Landscape Scanner
 
@@ -124,6 +123,15 @@ Identify and restate:
 - whether the user wants a broad field scan or a focused subdomain scan
 
 If the topic is too broad, narrow it before formal mapping. State assumptions explicitly.
+
+### Step 1.5 — Scope Check Before Full Analysis
+
+After defining the biomarker question in Step 1, determine whether the input requires a full field scan or a targeted single-biomarker/subdomain analysis:
+
+- **Targeted Mode**: If the user asks about one specific biomarker or a focused subdomain, produce Sections A, C (partial), D, H, and I only. Skip full multi-section enumeration.
+- **Full Field Mode**: If the user asks for a broad landscape scan, proceed with all Sections A–J.
+
+For broad scans with 20+ candidate biomarkers, group into a maximum of 5–7 biomarker classes in Section C rather than listing individually. Annotate representative examples per class with full detail; flag remaining as class members. This prevents completeness theater.
 
 ### Step 2 — Retrieve Biomarker-Focused Literature Before Mapping
 Retrieve literature focused on the disease-biomarker intersection before formal mapping.
@@ -289,6 +297,10 @@ Recommend one best next-step direction and explain:
 - what evidence supports it,
 - what minimum next validation is required,
 - what the main failure risk is.
+
+**Composability note:** For Tier 4 biomarker candidates, see `basic-discovery-translational-opportunity-finder` for translational path mapping and `evidence-level-ranker` for bridge evidence quality ranking.
+
+**Retrieval fallback:** If live literature retrieval is unavailable, label Section B as: "[Based on training knowledge — evidence composition may have changed. Conduct a current PubMed/Embase search to verify density and maturity claims before acting on this map.]" For rapidly evolving fields (blood-based AD biomarkers, liquid biopsy), explicitly note: "Maturity tier assignments in this scan are provisional and may underestimate recent validation advances — verify with publications from the last 18 months."
 
 ### I. Self-Critical Risk Review
 Include:

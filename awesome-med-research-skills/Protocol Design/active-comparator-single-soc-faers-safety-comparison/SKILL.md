@@ -2,9 +2,8 @@
 name: active-comparator-single-soc-faers-safety-comparison
 description:  Generates complete FAERS pharmacovigilance study designs for multi-drug or class-level safety comparison inside one predefined SOC or AE family using active comparators, disproportionality analysis, subgroup characterization, and reviewer-facing evidence control.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Active-Comparator Single-SOC FAERS Safety Comparison Research Planner
 

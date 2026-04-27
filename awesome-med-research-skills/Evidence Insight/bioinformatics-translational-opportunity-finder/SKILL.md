@@ -2,9 +2,8 @@
 name: bioinformatics-translational-opportunity-finder
 description: Identifies translationally meaningful paths for bioinformatics findings by mapping omics or computational discoveries to diagnosis, stratification, prognosis, treatment-response, monitoring, or target-nomination use cases, while auditing bridge evidence, assayability, and validation burden. Use this skill when a user wants to know whether a bioinformatics finding can be framed as a stronger translational topic without overclaiming clinical relevance. Always separate statistical signal from translational value, and never imply clinical utility, targetability, or validation depth without explicit evidence support.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Bioinformatics Translational Opportunity Finder
 
@@ -125,6 +124,14 @@ Identify and restate:
 
 If the discovery description is too vague, narrow it before formal mapping. State assumptions explicitly.
 
+### Step 1.5 — Validation Check-in After Discovery Definition
+
+After defining the discovery unit and disease context in Step 1, surface the assumed framing before generating the full analysis:
+
+> "I will identify translational opportunities for [discovery type] in [disease context]. Candidate framings include [examples]. Is this framing correct, or would you like to narrow the scope first?"
+
+**Minimum clarification threshold:** If data modality, disease context, AND discovery type are all absent from the user's input, ask 2–3 focused questions before executing Steps 3 onward. Do not proceed to full analysis on a completely underspecified discovery.
+
 ### Step 2 — Retrieve Topic-Relevant Evidence Before Framing
 Retrieve literature focused on the disease-discovery intersection and the candidate translational use cases before assigning a translational position.
 
@@ -201,6 +208,8 @@ Use `references/assay-and-implementation-rules.md` and `references/translation-b
 
 ### Step 7 — Reframe the Finding Into the Strongest Defensible Topic
 Use `references/reframing-rules.md` to convert weak or inflated translational claims into stronger, narrower, publication-grade topic framings.
+
+**Disease-specific context in reframing:** Before reframing, check whether established biomarkers or translational precedents exist for the disease. If yes, position the reframing relative to the existing landscape rather than as standalone positioning. For example: a new GBM multi-omics model should be framed in relation to established MGMT, IDH, and EGFR biomarkers — not as an abstract "multi-omics model." This specificity is what makes the reframing defensible and differentiated.
 
 Examples of required behavior:
 - downgrade “clinical biomarker” to “externally unvalidated candidate” when needed,
@@ -294,6 +303,10 @@ This should include:
 - the narrowest useful follow-up,
 - whether the next step is computational, orthogonal, clinical, or experimental,
 - what success would need to demonstrate.
+
+**Composability note:** For ranking evidence quality of the bridge literature, see `evidence-level-ranker`. For biomarker maturity mapping, see `biomarker-landscape-scanner`.
+
+**Retrieval fallback:** If live retrieval is unavailable, label Section B as: "[Based on training knowledge — verify with current literature before acting on this framing]."
 
 ### I. Self-Critical Risk Review
 Explicitly state:

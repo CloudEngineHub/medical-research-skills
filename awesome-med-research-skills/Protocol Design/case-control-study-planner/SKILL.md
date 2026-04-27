@@ -2,9 +2,8 @@
 name: case-control-study-planner
 description: Design a structured case-control study framework with explicit source population logic, control selection rules, matching decisions, exposure measurement planning, and bias-control checkpoints.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Case-Control Study Planner
 

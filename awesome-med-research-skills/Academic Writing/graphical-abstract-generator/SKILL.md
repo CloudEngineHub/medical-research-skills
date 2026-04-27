@@ -2,9 +2,8 @@
 name: graphical-abstract-generator
 description: Converts a biomedical study storyline into a graphical abstract and, when direct image capability is available, generates the graphical abstract directly; otherwise it falls back to prompts, Mermaid flowcharts, or designer-facing briefs.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Graphical Abstract Generator
 

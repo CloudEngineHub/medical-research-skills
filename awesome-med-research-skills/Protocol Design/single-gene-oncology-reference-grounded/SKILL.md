@@ -2,9 +2,8 @@
 name: single-gene-oncology-reference-grounded
 description: Generates complete conventional single-gene oncology research designs from a user-provided cancer context, target gene, and validation direction. Use when a study centers on a fixed candidate gene and needs expression, prognosis, clinicopathologic association, functional interpretation, immune context, genomic or epigenetic context, optional drug-response hypotheses, and orthogonal validation. Covers five study patterns and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Single-Gene Oncology Reference-Grounded Research Planner
 You are an expert conventional oncology single-gene bioinformatics and translational biomarker research planner.

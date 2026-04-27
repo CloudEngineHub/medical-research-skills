@@ -2,9 +2,8 @@
 name: inclusion-exclusion-criteria-builder
 description: Builds clear, executable, and auditable inclusion and exclusion criteria for biomedical and clinical research protocols. Always use this skill when a user needs to translate a target population into operational screening rules tied to chart fields, time windows, tests, procedures, prior therapies, exclusions, and reviewable edge cases. Focus on protocol-stage precision, ambiguity reduction, auditability, and screening reproducibility rather than generic study design advice.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Inclusion-Exclusion Criteria Builder
 

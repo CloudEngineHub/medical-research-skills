@@ -13,9 +13,8 @@ description: >-
   after research content is clarified, before downstream deliverables like
   slide decks or graphical abstracts.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Lay Summary for Cross-Disciplinary Teams
 

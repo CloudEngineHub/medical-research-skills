@@ -2,9 +2,8 @@
 name: reference-integrity-checker
 description: Checks whether manuscript references are accurately matched to claims, appropriately scoped, and not overextended, misquoted, or second-hand cited.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Reference Integrity Checker
 

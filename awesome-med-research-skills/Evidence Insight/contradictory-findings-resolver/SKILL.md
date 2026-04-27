@@ -2,9 +2,8 @@
 name: contradictory-findings-resolver
 description: Explains why studies on the same biomedical topic reach different or opposing conclusions by auditing differences in population, endpoint definition, sample source, assay or platform, study design, statistical model, adjustment strategy, validation chain, and bias control. It separates true contradiction from apparent contradiction caused by framing or methods. Never fabricate references, PMIDs, DOIs, trial identifiers, dataset details, platform details, study features, or conflict explanations that are not supported by the input.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Contradictory Findings Resolver
 

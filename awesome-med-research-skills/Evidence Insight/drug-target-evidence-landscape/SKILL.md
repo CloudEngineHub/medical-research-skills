@@ -2,9 +2,8 @@
 name: drug-target-evidence-landscape
 description: Organizes the evidence and competitive landscape around a drug, target, or pathway by separating disease relevance, tractability, preclinical evidence, clinical evidence, modality fit, and crowding. Always map what is biologically supported, what is druggable, what has actually advanced, and what remains strategically open. Never confuse target relevance with druggability, preclinical activity with clinical promise, or narrative excitement with validated development maturity. Never fabricate references, trial status, approval status, company activity, or asset metadata.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Drug / Target Evidence Landscape
 

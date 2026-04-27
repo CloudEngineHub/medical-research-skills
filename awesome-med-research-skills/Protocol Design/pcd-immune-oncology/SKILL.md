@@ -2,9 +2,8 @@
 name: pcd-immune-oncology
 description: Generates complete programmed-cell-death (PCD) / regulated-cell-death (RCD) bulk-transcriptome oncology research designs from a user-provided disease and mechanism theme. Always use this skill whenever a user wants to design, plan, or structure a cancer bioinformatics study built around cell-death patterns, tumor microenvironment, prognostic modeling, immune landscape analysis, mutation profiling, and computational drug sensitivity. Covers five study patterns (mechanism-gene-set, subtype-discovery, prognostic-signature, immune-response stratification, translational drug-hypothesis) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path, and a strictly verified reference literature retrieval layer with real references only.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # PCD / RCD Immuno-Oncology Research Planner
 

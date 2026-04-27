@@ -2,9 +2,8 @@
 name: unmet-clinical-need-extractor
 description: Extracts concrete unmet clinical needs from guidelines, reviews, real-world studies, and clinical-practice evidence. Use this skill when a user wants to turn broad medical research value into specific clinical pain points such as weak early detection, poor risk stratification, treatment-response heterogeneity, monitoring gaps, diagnostic delay, undertreatment, overtreatment, or implementation failure. Always ground unmet-need claims in retrieved evidence and distinguish true care gaps from generic statements of importance.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Unmet Clinical Need Extractor
 

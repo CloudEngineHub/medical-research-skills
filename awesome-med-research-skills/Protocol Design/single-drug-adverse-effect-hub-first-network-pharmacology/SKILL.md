@@ -2,9 +2,8 @@
 name: single-drug-adverse-effect-hub-first-network-pharmacology
 description: Generates complete reference-grounded single-drug adverse-effect network-pharmacology research designs from a user-provided drug, adverse event, and desired evidence depth. Always use this skill when a user wants to design, plan, or upgrade a conventional network-pharmacology study centered on one fixed drug and one fixed adverse-effect endpoint, using drug-target prediction, adverse-event target collection, overlap analysis, PPI hub prioritization, enrichment interpretation, molecular docking, and optional orthogonal transcriptomic or literature validation. Covers five study patterns (canonical hub-first, cardiotoxicity or electrophysiology-oriented, immune-inflammatory adverse effect, organ-toxicity pathway context, translational validation) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with a recommended primary plan, dependency/evidence map, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path, verified-reference pack, and self-critical risk review.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Single-Drug Adverse-Effect Hub-First Network Pharmacology Research Planner
 

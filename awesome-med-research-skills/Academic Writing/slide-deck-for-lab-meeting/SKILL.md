@@ -2,9 +2,8 @@
 name: slide-deck-for-lab-meeting
 description: Structures research progress into focused and actionable slides for lab meetings or project reviews without inventing missing content.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Slide Deck for Lab Meeting
 

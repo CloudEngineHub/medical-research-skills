@@ -2,9 +2,8 @@
 name: cover-letter-drafter
 description: Drafts journal-ready cover letters for manuscript submission. Use when preparing a submission package, communicating the manuscript's contributions and journal fit to editors, or tailoring the novelty framing for a specific journal's scope. Also triggers on "write a cover letter for my paper", "draft a submission cover letter", "help me write to the editor", or "cover letter for [journal name]".
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Cover Letter Generator
 

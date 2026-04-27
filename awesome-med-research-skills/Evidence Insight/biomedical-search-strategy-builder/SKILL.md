@@ -2,9 +2,8 @@
 name: biomedical-search-strategy-builder
 description: Builds professional search strategies for PubMed, Embase, Web of Science, and similar databases. Use when a user needs to construct a MeSH-based Boolean query, design a systematic review search, expand a concept with synonyms, apply study-type or date filters, or adapt a query across multiple databases. Also triggers when the user says "help me search for papers on X", "build a search strategy", "what are the MeSH terms for", or "I need a systematic review search string".
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # PubMed Search Specialist
 
@@ -51,6 +50,10 @@ For each PICO element or major concept:
 3. Decide whether to use `[MeSH Terms]` (with explosion) or `[MeSH Terms:noexp]`
 4. Add subheadings if precision is needed (e.g., `"Diabetes Mellitus/drug therapy"[MeSH Terms]`)
 
+**⚠️ MeSH Fallback Warning (mandatory):** If a concept cannot be confidently mapped to a verified MeSH heading, do NOT silently use it as a literal. Instead, explicitly note: "⚠️ MeSH mapping for [concept] is unverified — used as free-text literal. Verify at https://meshb.nlm.nih.gov/ before finalizing for systematic review." List all unverified mappings at the end of the query output.
+
+**Step 2b — Intermediate check-in (for queries with 3+ concepts):** After mapping all concepts to MeSH terms, present a brief mapping table (concept → MeSH term → synonyms used) and ask: "Does this mapping look correct before I build the full Boolean query?" Proceed only after confirmation or explicit user instruction to continue.
+
 ### Step 3 — Build the Boolean Query
 
 Structure each concept group as:
@@ -80,6 +83,8 @@ When adapting to other databases:
 - **Web of Science**: Use `TS=` (Topic field covers title+abstract+keywords); no controlled vocabulary
 - **Cochrane CENTRAL**: Similar to PubMed but no MeSH explosion needed; use `MeSH descriptor` syntax
 - **Note**: Always state which database-specific adaptations were made
+
+**⚠️ Script limitation**: The validate subcommand only checks parenthesis `()` balance; it does NOT check square bracket `[]` balance. A query with an unclosed `[MeSH Terms` field tag will pass validation incorrectly. Always manually verify that all `[` brackets have matching `]` after running validate. Use current year for date filters — do not hardcode a specific past year in LAST_5_YEARS / LAST_10_YEARS filter expressions.
 
 ### Step 6 — Deliver the Strategy
 

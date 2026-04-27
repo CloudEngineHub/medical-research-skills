@@ -2,9 +2,8 @@
 name: discussion-composer
 description: Composes a Discussion around key findings, mechanisms, clinical relevance, and limitations. Use when writing or improving a Discussion section for any biomedical manuscript — including interpreting results, connecting to prior literature, addressing unexpected findings, framing limitations, and writing the conclusion. Also triggers on "write my discussion", "help me discuss my findings", "how do I compare to prior studies", "write the limitations paragraph", or "draft a discussion for my paper".
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Discussion Section Architect
 
@@ -122,7 +121,18 @@ Provide:
 - Never make clinical recommendations beyond what the evidence explicitly supports
 - If the user has not provided prior literature, use explicit citation placeholders
 
-## References
+## Citation Placeholder Density Rule
 
-→ Detailed guide and examples: [references/guide.md](references/guide.md)
-→ Example Discussion sections: [references/examples/](references/examples/)
+When the user provides no prior literature, use citation placeholders (`[CITE: ...]`) rather than invented citations. However:
+- **Maximum 4 placeholders per 400 words** of discussion draft
+- For additional comparison points beyond this limit, add a grouped note at the end of the literature comparison section: `[Additional citations needed: the following claims require 2–3 supporting studies — list the types of evidence needed]`
+- This prevents placeholder-heavy drafts that read as incomplete rather than as a usable starting point
+
+## Discussion Length Calibration
+
+Calibrate discussion length to manuscript type:
+- **Brief** (3–4 paragraphs, ~300–400 words): short communications, case reports, letters to the editor, pilot studies
+- **Standard** (5–6 paragraphs, ~500–700 words): original research articles in specialty journals
+- **Extended** (7+ paragraphs, ~800–1,000 words): high-impact journals, multi-finding studies, studies with substantial prior literature to engage
+
+If the user does not specify depth, infer from the evidence they provide — minimal input → brief; full results with multiple comparators → standard or extended.

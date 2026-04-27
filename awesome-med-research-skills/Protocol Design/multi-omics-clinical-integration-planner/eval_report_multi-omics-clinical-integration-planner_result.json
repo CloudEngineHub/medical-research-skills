@@ -1,12 +1,13 @@
 {
   "meta": {
     "skill_name": "multi-omics-clinical-integration-planner",
-    "evaluated_on": "2026-03-23",
+    "evaluated_on": "2026-04-22",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Protocol Design",
     "execution_mode": "A",
     "complexity": "Complex",
-    "n_inputs": 7
+    "n_inputs": 7,
+    "description": "Designs complete research plans that integrate clinical variables with multi-omics data from a user-provided biomedical direction. Always use this skill whenever a user wants to design, scope, or structure a study that combines clinical variables with transcriptomics, proteomics,"
   },
   "veto_gates": {
     "skill_veto": {
@@ -21,15 +22,15 @@
       "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": null
+        "detail": "No fabricated references, DOIs, PMIDs, statistical values, or clinical data detected."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": null
+        "detail": "No diagnostic conclusions or unapproved treatment recommendations produced."
       },
       "methodological_ground": {
         "result": "PASS",
-        "detail": null
+        "detail": "No methodological fallacies detected; ethical compliance requirements noted where applicable."
       },
       "code_usability": {
         "result": "N/A",
@@ -44,7 +45,7 @@
       "functional_suitability": {
         "score": 12,
         "max": 12,
-        "note": null
+        "note": "Full marks (12/12); no significant issues detected."
       },
       "reliability": {
         "score": 10,
@@ -54,27 +55,27 @@
       "performance_context": {
         "score": 7,
         "max": 8,
-        "note": null
+        "note": "Strong score (7/8); minor gaps noted."
       },
       "agent_usability": {
         "score": 15,
         "max": 16,
-        "note": null
+        "note": "Strong score (15/16); minor gaps noted."
       },
       "human_usability": {
         "score": 7,
         "max": 8,
-        "note": null
+        "note": "Strong score (7/8); minor gaps noted."
       },
       "security": {
         "score": 12,
         "max": 12,
-        "note": null
+        "note": "Full marks (12/12); no significant issues detected."
       },
       "maintainability": {
         "score": 11,
         "max": 12,
-        "note": null
+        "note": "Strong score (11/12); minor gaps noted."
       },
       "agent_specific": {
         "score": 19,
@@ -84,7 +85,7 @@
     }
   },
   "dynamic_score": {
-    "execution_avg": 88.4,
+    "execution_avg": 87.7,
     "max": 100,
     "assertion_pass_rate": {
       "passed": 35,
@@ -97,7 +98,7 @@
         "label": "Canonical input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 36,
         "specialized": 55,
         "total": 91,
@@ -107,27 +108,27 @@
           {
             "text": "Core assertion 1 for canonical input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for canonical input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for canonical input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for canonical input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for canonical input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -137,7 +138,7 @@
         "label": "Variant A input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 36,
         "specialized": 55,
         "total": 91,
@@ -147,27 +148,27 @@
           {
             "text": "Core assertion 1 for variant a input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for variant a input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for variant a input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for variant a input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for variant a input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -177,7 +178,7 @@
         "label": "Variant B input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 35,
         "specialized": 53,
         "total": 88,
@@ -187,27 +188,27 @@
           {
             "text": "Core assertion 1 for variant b input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for variant b input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for variant b input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for variant b input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for variant b input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -217,7 +218,7 @@
         "label": "Edge input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 34,
         "specialized": 52,
         "total": 86,
@@ -227,27 +228,27 @@
           {
             "text": "Core assertion 1 for edge input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for edge input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for edge input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for edge input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for edge input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -257,7 +258,7 @@
         "label": "Stress input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 34,
         "specialized": 52,
         "total": 86,
@@ -267,27 +268,27 @@
           {
             "text": "Core assertion 1 for stress input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for stress input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for stress input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for stress input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for stress input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -297,7 +298,7 @@
         "label": "Scope Boundary input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 34,
         "specialized": 52,
         "total": 86,
@@ -307,27 +308,27 @@
           {
             "text": "Core assertion 1 for scope boundary input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for scope boundary input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for scope boundary input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for scope boundary input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for scope boundary input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -337,7 +338,7 @@
         "label": "Adversarial input for multi-omics-clinical-integration-planner",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 34,
         "specialized": 52,
         "total": 86,
@@ -347,27 +348,27 @@
           {
             "text": "Core assertion 1 for adversarial input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 2 for adversarial input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 3 for adversarial input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 4 for adversarial input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Core assertion 5 for adversarial input",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       }
@@ -375,7 +376,7 @@
   },
   "final": {
     "static_weighted": 37.2,
-    "dynamic_weighted": 53.0,
+    "dynamic_weighted": 52.6,
     "score": 90,
     "max": 100,
     "grade": "Production Ready",

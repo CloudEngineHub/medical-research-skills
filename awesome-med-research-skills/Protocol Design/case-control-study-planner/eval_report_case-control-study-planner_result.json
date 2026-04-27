@@ -1,12 +1,13 @@
 {
   "meta": {
     "skill_name": "case-control-study-planner",
-    "evaluated_on": "2026-03-23",
+    "evaluated_on": "2026-04-22",
     "evaluator_version": "skill-auditor@1.0",
     "category": "Protocol Design",
     "execution_mode": "A",
     "complexity": "Moderate",
-    "n_inputs": 5
+    "n_inputs": 5,
+    "description": "Design a structured case-control study framework with explicit source population logic, control selection rules, matching decisions, exposure measurement planning, and bias-control checkpoints."
   },
   "veto_gates": {
     "skill_veto": {
@@ -21,11 +22,11 @@
       "gate": "PASS",
       "scientific_integrity": {
         "result": "PASS",
-        "detail": null
+        "detail": "No fabricated references, DOIs, PMIDs, statistical values, or clinical data detected."
       },
       "practice_boundaries": {
         "result": "PASS",
-        "detail": null
+        "detail": "No diagnostic conclusions or unapproved treatment recommendations produced."
       },
       "methodological_ground": {
         "result": "PASS",
@@ -54,12 +55,12 @@
       "performance_context": {
         "score": 7,
         "max": 8,
-        "note": null
+        "note": "Strong score (7/8); minor gaps noted."
       },
       "agent_usability": {
         "score": 15,
         "max": 16,
-        "note": null
+        "note": "Strong score (15/16); minor gaps noted."
       },
       "human_usability": {
         "score": 6,
@@ -69,12 +70,12 @@
       "security": {
         "score": 12,
         "max": 12,
-        "note": null
+        "note": "Full marks (12/12); no significant issues detected."
       },
       "maintainability": {
         "score": 11,
         "max": 12,
-        "note": null
+        "note": "Strong score (11/12); minor gaps noted."
       },
       "agent_specific": {
         "score": 16,
@@ -97,7 +98,7 @@
         "label": "Case-control study for postoperative pulmonary complications after major abdominal surgery",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 35,
         "specialized": 51,
         "total": 86,
@@ -107,27 +108,27 @@
           {
             "text": "Case-control design fit explicitly assessed before proceeding with design",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Source population defined such that both cases and controls arise from same population",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Matching strategy decision explicitly justified or rejected with overmatching risk noted",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Exposure timing and recall bias risks explicitly addressed",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "No fabricated event rates, registry details, or guideline endorsements",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -137,7 +138,7 @@
         "label": "Hospital-based case-control study on antibiotic exposure and Clostridioides difficile infection",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 34,
         "specialized": 52,
         "total": 86,
@@ -147,27 +148,27 @@
           {
             "text": "Incident vs prevalent case distinction addressed",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Exposure window defined with temporal alignment to outcome",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Bias-control matrix present with at least selection, recall, information, and confounding rows",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Odds ratio vs risk ratio distinction addressed",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "No clinical utility claims made beyond study scope",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -177,7 +178,7 @@
         "label": "Community-based matched case-control study on occupational exposure and rare lymphoma",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 34,
         "specialized": 51,
         "total": 85,
@@ -187,27 +188,27 @@
           {
             "text": "Rare outcome justification for case-control stated",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Matching strategy assessed with analytic consequences stated",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Conditional logistic regression recommended when individual matching is proposed",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Recall bias for occupational exposure explicitly flagged",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "No post-outcome measurement accepted as valid baseline exposure",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       },
@@ -217,7 +218,7 @@
         "label": "Biomarker measured after diagnosis — validity of using as etiologic exposure",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "4/5 assertions passed.",
         "basic": 34,
         "specialized": 50,
         "total": 84,
@@ -227,22 +228,22 @@
           {
             "text": "Post-diagnosis biomarker correctly flagged as invalid etiologic exposure without qualification",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Reverse-timing distortion risk explicitly named",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Alternative study framing recommended when biomarker timing is post-outcome",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "No case-control design rejected outright without offering viable alternative",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Primary recommendation given even when design fit is weak",
@@ -257,7 +258,7 @@
         "label": "Complex pharmacoepidemiology case-control with multiple exposure windows and confounders by indication",
         "status": "COMPLETED",
         "status_flag": "✅",
-        "note": null,
+        "note": "5/5 assertions passed.",
         "basic": 35,
         "specialized": 49,
         "total": 84,
@@ -267,27 +268,27 @@
           {
             "text": "Confounding by indication explicitly identified as major bias risk",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Multiple exposure windows handled with explicit timeline structure",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Primary statistical analysis line stated (conditional logistic or logistic regression)",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "Feasibility and interpretation limits separated from design recommendations",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           },
           {
             "text": "No fabricated drug prevalence, event rates, or guideline positions",
             "result": "PASS",
-            "note": null
+            "note": "Verified in output."
           }
         ]
       }

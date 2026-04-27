@@ -2,9 +2,8 @@
 name: mechanism-to-validation-planner
 description: Extends a mechanistic or association-level biomedical finding into a staged validation pathway that moves from descriptive evidence toward stronger functional support, mechanistic specificity, and clinical relevance. Use this skill when a user has a pathway, biomarker, cell-state, target, mechanism, or association finding and needs to decide what should be validated next, in what order, and which evidence layers are necessary versus optional. Do not default to maximal validation stacks. Build a structured validation ladder with a primary route, stronger upgrade route, and optional extensions.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Mechanism-to-Validation Planner
 

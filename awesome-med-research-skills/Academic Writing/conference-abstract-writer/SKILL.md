@@ -2,9 +2,8 @@
 name: conference-abstract-writer
 description: Condenses a full study into conference-submission abstract format. Use when adapting a manuscript abstract or study summary to meet a specific conference's word limit, structured format (Background/Methods/Results/Conclusion), character limits, or required section headings. Also triggers on "adapt my abstract for [conference]", "shorten my abstract to 250 words", "reformat for ASCO/ASGCT/SfN/AACR", "I need a conference abstract", or "cut my abstract to fit the word limit".
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Conference Abstract Adaptor
 
@@ -32,13 +31,15 @@ Out-of-scope:
 
 ## Supported Conference Formats
 
+> ⚠️ **Conference requirements change annually.** Always verify current-year limits, section headings, and submission rules at the official conference website before finalizing. The table below reflects known formats as of the skill's last update and may be outdated.
+
 | Conference | Limit | Format |
 |---|---|---|
 | **ASGCT** | 250 words | Structured: Background / Methods / Results / Conclusion |
 | **ASCO** | 260 words | Structured: Background / Methods / Results / Conclusions |
 | **AACR** | 300 words | Structured: Background / Methods / Results / Conclusions |
 | **ASM** | 300 words | Single-paragraph or structured (conference-dependent) |
-| **SfN** | 2,000 characters | Single paragraph (no headings) |
+| **SfN** | 2,000 characters (including spaces) | Single paragraph (no headings) |
 | **ESC / AHA / ACC** | 250–350 words | Structured (verify current year requirements) |
 | **Custom** | User-specified | User-specified |
 
@@ -82,7 +83,9 @@ When cutting to fit the word limit:
 After adapting, provide:
 1. The adapted abstract, fully formatted
 2. The word count (or character count) with a clear note: `Word count: X / [limit]`
+   - **For character-limited formats (e.g., SfN):** state the count as `[N] characters including spaces`. SfN and most character-limited conferences count spaces. Users should verify using a tool that counts spaces (e.g., Python `len()` or Word character count with spaces enabled).
 3. A one-line note on any content that was cut to fit the limit, so the user can decide whether to restore it
+4. **Word-limit conflict resolution:** If preserving the primary result, sample size N, and conclusion still exceeds the word limit after aggressive cutting, notify the user: "Preserving required elements (primary result, N, conclusion) results in [X] words vs. [limit]. Please indicate which secondary elements to deprioritize." Do not silently cut required elements.
 
 ### Step 5 — Final Check
 

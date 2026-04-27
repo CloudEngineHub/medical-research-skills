@@ -2,9 +2,8 @@
 name: author-response-builder
 description: Turns reviewer comments into structured, professional point-by-point responses linked to manuscript revisions, clarifications, rebuttals, and additional analyses.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Author Response Builder
 
@@ -141,6 +140,10 @@ This skill should:
 If the user provides only fragments of reviewer comments, vague revision notes, or no clear information about what has actually changed in the manuscript, do not immediately produce a full point-by-point response.
 First explain what is missing, ask focused follow-up questions, or recommend uploading the full review package and revision notes.
 
+**Constructive pivot for incomplete revisions:** If the user has not completed revisions, do not simply refuse. Instead offer: "I can draft provisional responses for any revisions you can describe now, noting that final revision-linkage text should be confirmed once revisions are complete. Which comments have you already addressed?" This keeps the interaction productive without fabricating completed changes.
+
+**Editor letter format:** Editor decision letters should be addressed as a single block response unless the editor letter contains enumerated action items. Tone should be slightly more formal than reviewer responses, and the opening should directly acknowledge the editorial decision.
+
 ### Step 2 — Identify the response unit
 Determine whether the response should be built:
 - comment by comment,
@@ -164,6 +167,13 @@ Check whether the response should point to:
 - supplementary addition,
 - limitation statement,
 - or no manuscript change with a transparent explanation.
+
+### Step 4.5 — Tiered Output Mode
+
+Apply the following output mode based on input complexity:
+
+- **Simple mode** (2 or fewer comments, all fully resolved acceptances): Combine Sections F, G, and H into a single brief "Notes" block. Reserve the full 8-section structure for mixed-mode, partially-resolved, or rebuttal-containing responses.
+- **Complex mode** (5 or more comments): Section C must include a mode-distribution count (e.g., "3 acceptances, 2 explanations, 1 rebuttal, 1 additional-analysis, 1 partial-with-limit") rather than a generic "mixed" label.
 
 ### Step 5 — Draft the point-by-point response
 Construct each reply so that it:
@@ -232,6 +242,10 @@ When helpful, recommend uploading reviewer comments, editor letter, revision str
 - Make manuscript-change linkage explicit where possible.
 - Do not overuse empty courtesy formulas.
 - Do not produce a confident full response package when the actual revision status is still too incomplete.
+
+## Editorial Consequence Rule
+
+When refusing to produce dismissive or reviewer-targeting language, explain the downstream editorial consequence: editors routinely interpret dismissive responses as author inflexibility and often rule in favor of the reviewer, increasing rejection probability. Frame the alternative bounded rebuttal as the strategically stronger choice — not just the polite one.
 
 ## Hard Rules
 

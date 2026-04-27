@@ -1,17 +1,9 @@
 ---
 name: evidence-level-ranker
-description: Ranks papers by evidence strength and methodological quality so literature can be compared and prioritized for citation without confusing design labels, validation depth, and actual reliability.
-category: Evidence Insight
-subcategory: Literature Appraisal / 文献评估
-tags:
-  - evidence ranking
-  - literature appraisal
-  - methodological quality
-  - evidence grading
-  - citation prioritization
-version: 1.0.0
+description: Ranks papers by evidence family, methodological quality tier, validation depth, and claim discipline; assigns anchor, context-setting, mechanistic support, or caution citation roles; prevents prestige-based or design-label-based ranking errors.
+license: MIT
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Evidence Level Ranker | 证据等级排序器
 
@@ -33,15 +25,24 @@ This skill is especially useful when the user needs to:
 
 Use reference modules as execution dependencies, not decoration.
 
-- `references/study-design-identification.md` must support study design labeling before ranking begins.
-- `references/result-reliability-principles.md` must support reliability judgment for design quality, bias, statistics, and validation.
-- `references/validation-chain-rules.md` must support judgment of internal validation, external validation, orthogonal confirmation, replication, and implementation relevance.
-- `references/claim-discipline-rules.md` must support separation of what a paper shows versus what it claims.
-- `references/literature-integrity-rules.md` must govern all citation handling, publication details, and evidence statements.
+- `references/evidence-family-taxonomy.md` → use when identifying study design family in **Step 2**.
+- `references/methodological-quality-audit-rules.md` → use when assessing execution quality in **Step 3**.
+- `references/validation-depth-rules.md` → use when judging internal vs. external vs. orthogonal validation in **Step 4**.
+- `references/claim-discipline-rules.md` → use when separating what a paper shows from what it claims in **Step 5**.
+- `references/citation-priority-rules.md` → use when assigning citation roles in **Step 6**.
+- `references/cross-design-ranking-framework.md` → use when comparing papers across different evidence families in **Steps 6–7**.
+- `references/literature-integrity-rules.md` → governs all citation handling and evidence statement accuracy in **Section J**.
+- `references/output-section-guidance.md` → enforces section-level output format for **Sections A–J**.
+- `references/workflow-step-template.md` → structures the workflow explanation.
 
 If the paper set includes mixed evidence families, this skill should explicitly use all relevant modules rather than collapsing all papers into one generic score.
 
 ## Input Validation
+
+This skill accepts: one paper, a set of papers, or a literature shortlist for evidence-strength ranking and citation-priority assignment.
+
+If the user's request does not involve ranking papers by evidence quality — for example, asking to write a literature review, retrieve papers, summarize clinical guidelines, or make treatment recommendations — do not proceed with the ranking pipeline. Instead respond:
+> "Evidence Level Ranker is designed to rank a provided set of papers by evidence family, methodological quality, validation depth, and claim discipline, and to assign citation roles. Your request ([restatement]) appears to be outside this scope. Please provide the set of papers you want ranked, or use a more appropriate tool."
 
 Before ranking, confirm what the user is actually asking to compare.
 
@@ -111,6 +112,8 @@ Review at least these dimensions when relevant:
 - statistical discipline, including multiplicity and model burden;
 - calibration, robustness, sensitivity analysis, and missing-data handling when relevant;
 - reproducibility and transparency of key methods.
+
+**Do not use statistical significance or reported effect size magnitude as evidence of good methods.** Assess sampling logic, bias control, and study design independently of reported p-values. A p < 0.05 result in a poorly executed study is not evidence of methodological strength.
 
 A higher-level design should not be ranked highly if execution is weak.
 

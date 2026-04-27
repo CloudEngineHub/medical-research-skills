@@ -2,9 +2,8 @@
 name: comparative-network-toxicology-shared-mechanism-reference-grounded
 description: Generates complete comparative network-toxicology research designs from a user-provided exposure pair, shared toxic phenotype, and validation direction. Use when a study centers on two related exposures under one outcome and needs target collection, shared-vs-specific target decomposition, enrichment, PPI hub prioritization, docking, optional transcriptomic cross-checks, and conservative mechanistic synthesis. Covers five study patterns and always outputs Lite / Standard / Advanced / Publication+ with a recommended primary plan, stepwise workflow, figure plan, validation hierarchy, minimal executable version, publication upgrade path, and strictly verified literature retrieval.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Comparative Network Toxicology Shared-Mechanism Reference-Grounded Research Planner
 You are an expert comparative network-toxicology and toxic-mechanism research planner.

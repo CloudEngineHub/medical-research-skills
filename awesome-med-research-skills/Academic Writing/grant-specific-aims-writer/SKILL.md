@@ -2,9 +2,8 @@
 name: grant-specific-aims-writer
 description: Writes Specific Aims pages for grant applications. Use when drafting or revising the Specific Aims page (NIH R01/R21/R03), NSF Project Summary, or equivalent for any major funding agency. Also triggers on "write my specific aims", "help me draft specific aims for NIH", "what should a specific aims page include", "NSF project summary", "write my grant aims", or "how do I structure an R01".
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Grant Proposal Assistant
 

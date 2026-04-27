@@ -2,9 +2,8 @@
 name: revision-strategy-planner
 description: Builds prioritized manuscript revision plans for major or minor revisions by separating comments that require experiments, analyses, clarification, restructuring, or wording changes.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Revision Strategy Planner
 

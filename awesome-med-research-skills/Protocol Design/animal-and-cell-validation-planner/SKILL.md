@@ -2,9 +2,8 @@
 name: animal-and-cell-validation-planner
 description: Designs cell-based and animal-based validation plans that translate computational, omics, biomarker, genetic, or clinical findings into experimentally testable validation routes. Always use this skill whenever a user wants to move from an in silico, statistical, or clinical association finding toward wet-lab validation using cell systems, organoid-like systems, xenograft or genetically relevant animal models. It should define the exact claim to test, separate mechanism-testing from association-support and translational-support goals, choose the best-fit model family, specify perturbation strategy, readouts, controls, sequencing of experiments, and four workload configurations (Lite / Standard / Advanced / Publication+) with one recommended primary plan. Never fabricate model availability, reagent availability, species relevance, assay feasibility, phenotype penetrance, expected effect sizes, validation success, or literature references.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Animal and Cell Validation Planner
 

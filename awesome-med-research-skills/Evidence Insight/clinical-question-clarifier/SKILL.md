@@ -2,9 +2,8 @@
 name: clinical-question-clarifier
 description: Clarifies a vague clinical or biomedical research idea into a structured, bounded, searchable, researchable, and testable question. Always use this skill whenever a user has an early-stage clinical or research thought, an over-broad topic, an ill-defined evidence question, or an unclear problem statement that must be translated into a question framing suitable for literature retrieval, evidence synthesis, gap analysis, study design, or downstream protocol planning. Never jump straight to answering the substantive medical question unless the user explicitly asks for that. Focus first on question framing, boundary setting, and downstream-ready formulation.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Clinical Question Clarifier
 

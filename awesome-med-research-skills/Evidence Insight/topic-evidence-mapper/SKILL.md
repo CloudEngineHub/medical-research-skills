@@ -1,10 +1,9 @@
 ---
 name: topic-evidence-mapper
-description: Rapidly maps the evidence landscape around a medical topic by organizing major research streams, target populations, endpoints, methods, evidence density, and thin areas. Always use this skill when a user needs a structured evidence map of a medical topic before deeper reading, gap analysis, or study planning. Do not treat evidence mapping as formal gap identification.
+description: Rapidly maps the evidence landscape around a medical topic by organizing major research streams, target populations, endpoints, methods, evidence density, and thin areas. Use this skill BEFORE medical-research-gap-finder — it provides the structured landscape that makes formal gap analysis more rigorous. Do not use for formal gap identification, study design, or protocol planning directly.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Topic Evidence Mapper
 
@@ -41,9 +40,10 @@ This skill should:
 6. Route the user toward the next most appropriate downstream skill.
 
 This skill should not:
-- behave like a full literature review writer,
-- behave like a formal gap-finder,
-- behave like a protocol generator,
+- produce prose narrative summaries of papers as a substitute for structured evidence mapping,
+- label thin areas as formal research gaps without a separate gap-analysis step,
+- recommend specific study designs or protocols,
+- attempt to replace a dedicated gap-analysis skill,
 - treat thin areas as automatically high-value opportunities.
 
 ## Primary Use Cases
@@ -120,9 +120,10 @@ If a relevant output section is produced without using the corresponding referen
 - direct patient-specific treatment advice
 - requests for final medical decisions
 - requests for a completed protocol instead of evidence mapping
+- requests for formal gap identification (route to medical-research-gap-finder instead)
 - non-biomedical mapping requests
 
-> "This skill is designed to build a structured evidence map around a biomedical topic. Your request ([restatement]) is outside that scope because it requires [patient-specific medical advice / a completed protocol / non-biomedical support]."
+> "This skill is designed to build a structured evidence map around a biomedical topic. Your request ([restatement]) is outside that scope because it requires [patient-specific medical advice / a completed protocol / formal gap analysis / non-biomedical support]. I can, however, first build the evidence map for this topic — which is the recommended precursor step before formal gap analysis. Would you like me to start with the evidence map?"
 
 ## Sample Triggers
 
@@ -137,6 +138,8 @@ If a relevant output section is produced without using the corresponding referen
 ### Step 1 — Clarify the Topic Scope
 Use `references/topic-scope-rules.md`.
 Determine whether the topic is too broad, too narrow, or reasonably scoped for evidence mapping. If needed, narrow by disease stage, population, intervention type, evidence type, or method layer.
+
+**Multi-topic inputs:** When the user requests mapping of 3 or more topics simultaneously, note explicitly: "Mapping multiple topics simultaneously produces lower per-topic depth than a dedicated single-topic session. I recommend starting with the highest-priority topic for a full map." Proceed with reduced depth per topic if the user confirms multi-topic mapping is preferred.
 
 ### Step 2 — Build the Evidence Mapping Frame
 Use `references/evidence-mapping-dimensions.md`.
@@ -160,6 +163,8 @@ Describe who is being studied, in what settings, with what endpoints, and with w
 ### Step 5 — Assess Density and Thin Areas
 Use `references/evidence-density-and-thin-area-rules.md`.
 Identify where the literature appears dense, moderate, sparse, or very sparse. Thin areas should be labeled as mapping observations, not formal gaps.
+
+**Mandatory training-knowledge label:** All evidence density, stream coverage, and thin-area claims must include: "[Based on training knowledge — verify with a current literature search before acting on density estimates]". This label must appear at the start of Sections G and H.
 
 ### Step 6 — Suggest Entry Points
 Use `references/entry-point-suggestion-rules.md`.

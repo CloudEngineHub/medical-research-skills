@@ -2,9 +2,8 @@
 name: cross-disease-shared-biomarker-network
 description: Generates complete cross-disease shared-biomarker bioinformatics research designs from a user-provided disease pair and validation direction. Always use this skill whenever a user wants to design, plan, or build a multi-dataset study linking two related diseases through shared DEGs, enrichment, PPI hub genes, public validation, regulatory-network analysis, immune infiltration, drug-gene interaction screening, and optional qRT-PCR or cell-line validation. Covers five study patterns (shared-DEG discovery, hub-gene prioritization, regulatory-network interpretation, immune/drug follow-up, bioinformatics-plus-validation) and always outputs four workload configs (Lite / Standard / Advanced / Publication+) with recommended primary plan, step-by-step workflow, figure plan, validation strategy, minimal executable version, publication upgrade path, and a strictly verified reference literature retrieval layer with real references only.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Cross-Disease Shared-Biomarker Network Research Planner
 

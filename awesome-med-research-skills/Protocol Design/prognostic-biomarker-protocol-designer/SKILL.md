@@ -2,9 +2,8 @@
 name: prognostic-biomarker-protocol-designer
 description: Designs discovery, modeling, and validation workflows for prognostic biomarkers in biomedical and clinical research. Always use this skill when the user needs a prognostic biomarker study blueprint rather than a diagnostic test protocol, predictive biomarker design, treatment recommendation, or a completed manuscript. Focus on endpoint family, follow-up horizon, time scale, candidate marker strategy, model-building logic, risk stratification framework, and internal/external validation requirements. Do not invent cohort size, event rate, assay readiness, literature support, or validation access.
 license: MIT
-author: aipoch
+skill-author: AIPOCH
 ---
-> **Source**: [https://github.com/aipoch/medical-research-skills](https://github.com/aipoch/medical-research-skills)
 
 # Prognostic Biomarker Protocol Designer
 
