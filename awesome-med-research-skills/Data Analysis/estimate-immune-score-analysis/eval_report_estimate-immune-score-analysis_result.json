@@ -1,0 +1,307 @@
+{
+    "meta": {
+        "skill_name": "estimate-immune-score-analysis",
+        "description": "Compute tumor purity, stromal, immune, and ESTIMATE scores from gene expression using the ESTIMATE algorithm. Inputs: expression matrix. Outputs: four-score table per sample, correlation plots, group comparison statistics.",
+        "evaluated_on": "2026-04-17",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated identifiers, study claims, p-values, or efficacy statements were introduced across the evaluated outputs."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Outputs stayed analytical, emitted no diagnosis or treatment advice, and respected the skill's non-clinical scope."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The workflow remained methodologically aligned with ESTIMATE score generation and correctly rejected invalid grouped or numeric inputs."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "The CLI executed successfully on valid inputs, failed cleanly on invalid inputs, and passed the bundled end-to-end test run."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 95,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "Coverage is comprehensive; the pre-improvement basic example label slightly blurred the optional grouped workflow."
+            },
+            "reliability": {
+                "score": 10,
+                "max": 12,
+                "note": "Failures are explicit and recoverable, but optional grouped-step errors still terminate the overall command after core scoring."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Progressive disclosure is used well and the CLI workflow is linear and efficient."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "The structure is easy for an agent to follow; grouped-failure semantics benefited from stronger surfacing in the main document."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Trigger language is natural and examples are strong, but the workflow remains necessarily strict about input file quality."
+            },
+            "security": {
+                "score": 12,
+                "max": 12,
+                "note": "No credential handling issues were found and filename plus argument validation is explicit."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Scripts, references, and tests are cleanly separated and easy to verify."
+            },
+            "agent_specific": {
+                "score": 20,
+                "max": 20,
+                "note": "Trigger boundaries, progressive disclosure, composability, idempotency, and stop conditions are all strong."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 91.8,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Basic bulk matrix scoring",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Canonical no-group run completed and produced the documented core outputs.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Core score table and heatmap are generated for a valid matrix-only run",
+                        "result": "PASS",
+                        "note": "Both documented files were created successfully."
+                    },
+                    {
+                        "text": "The score table exposes required sample-level ESTIMATE columns",
+                        "result": "PASS",
+                        "note": "Validation confirmed the presence of sample and ImmuneScore columns."
+                    },
+                    {
+                        "text": "Execution remains within the ESTIMATE scoring workflow",
+                        "result": "PASS",
+                        "note": "Only score generation and artifact export were performed."
+                    },
+                    {
+                        "text": "No diagnostic or treatment advice is produced",
+                        "result": "PASS",
+                        "note": "The output is purely analytical and file-oriented."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Grouped score comparison",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Grouped run completed with the expected boxplot, statistics table, and annotated heatmap outputs.",
+                "basic": 39,
+                "specialized": 58,
+                "total": 97,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Grouped plot and statistics outputs are generated when a valid group file is supplied",
+                        "result": "PASS",
+                        "note": "Both grouped artifacts were present in the output directory."
+                    },
+                    {
+                        "text": "The grouped statistics table follows the documented schema",
+                        "result": "PASS",
+                        "note": "The table contains category, p.value, and up_group."
+                    },
+                    {
+                        "text": "Group metadata propagates into downstream execution records",
+                        "result": "PASS",
+                        "note": "The run record captured matched_group_samples and group_levels."
+                    },
+                    {
+                        "text": "No unsupported biological interpretation is fabricated",
+                        "result": "PASS",
+                        "note": "The output is limited to generated files and neutral logs."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Mismatched group annotations",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "Expected grouped-step failure was surfaced clearly, and partial core outputs were preserved for inspection.",
+                "basic": 35,
+                "specialized": 50,
+                "total": 85,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The run fails with the documented SKILL_SAMPLE_MISMATCH error for non-overlapping sample IDs",
+                        "result": "PASS",
+                        "note": "The exact mismatch code and explanation were emitted."
+                    },
+                    {
+                        "text": "Partial core outputs remain available after grouped-step failure",
+                        "result": "PASS",
+                        "note": "Core tables, GCT files, heatmap, manifest, and run record were preserved."
+                    },
+                    {
+                        "text": "Group-specific outputs are not produced after a mismatch failure",
+                        "result": "PASS",
+                        "note": "No grouped boxplot or grouped statistics file was generated."
+                    },
+                    {
+                        "text": "The error message is specific and actionable",
+                        "result": "PASS",
+                        "note": "It clearly points to non-overlapping sample identifiers as the root cause."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Illumina custom filenames",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Variant configuration with a different platform, seed, and custom filenames completed successfully.",
+                "basic": 39,
+                "specialized": 57,
+                "total": 96,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Custom plot filenames are honored",
+                        "result": "PASS",
+                        "note": "Both custom_boxplot.pdf and custom_heatmap.pdf were created."
+                    },
+                    {
+                        "text": "Alternate platform and seed settings are recorded for reproducibility",
+                        "result": "PASS",
+                        "note": "The run record captured platform illumina and seed 123."
+                    },
+                    {
+                        "text": "Grouped outputs still succeed under the variant configuration",
+                        "result": "PASS",
+                        "note": "The grouped statistics table and both custom plot files were present."
+                    },
+                    {
+                        "text": "The run does not exceed the documented ESTIMATE feature set",
+                        "result": "PASS",
+                        "note": "No unrelated analysis behavior appeared in the output."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Invalid non-numeric values",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "Expected validation failure was triggered before the ESTIMATE step and no misleading outputs were emitted.",
+                "basic": 36,
+                "specialized": 51,
+                "total": 87,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Input validation rejects non-numeric expression values before downstream analysis",
+                        "result": "PASS",
+                        "note": "The run failed immediately with SKILL_INVALID_PARAMETER."
+                    },
+                    {
+                        "text": "No misleading score artifacts are emitted on invalid input",
+                        "result": "PASS",
+                        "note": "The manifest explicitly states that no output files were generated."
+                    },
+                    {
+                        "text": "Error reporting identifies the data-quality issue clearly",
+                        "result": "PASS",
+                        "note": "The message explicitly cites non-numeric and missing values."
+                    },
+                    {
+                        "text": "Execution remains within safe ESTIMATE workflow boundaries after validation failure",
+                        "result": "PASS",
+                        "note": "No downstream ESTIMATE scoring was attempted."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 38,
+        "dynamic_weighted": 55.1,
+        "score": 93,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "Documentation is tightly aligned with the implemented CLI and output contract.",
+        "Error handling is explicit, structured, and preserves partial artifacts for grouped-step failures.",
+        "The workflow is deterministic, modular, and backed by runnable end-to-end tests."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Clarify grouped failure semantics",
+            "observed_in": [
+                3
+            ],
+            "problem": "An optional group-file mismatch causes the overall command to exit with an error even though the core ESTIMATE outputs were already produced. This behavior is safe, but it was not surfaced prominently enough in the main document.",
+            "root_cause": "The partial-output behavior was described mainly in troubleshooting material instead of the primary workflow sections.",
+            "fix": "Add an explicit note in the main SKILL.md sections for optional group files, workflow export, and error handling that grouped-step failures preserve core outputs and write failure records."
+        },
+        {
+            "priority": "P2",
+            "title": "Separate basic and grouped examples",
+            "observed_in": [],
+            "problem": "The original Basic Usage example included an optional group file, which blurred the distinction between the core matrix-only workflow and the grouped comparison path.",
+            "root_cause": "The examples section did not cleanly separate the minimal path from the optional grouped extension.",
+            "fix": "Keep Basic Usage focused on the no-group case and provide a separate Grouped Comparison example for the optional boxplot and statistics branch."
+        }
+    ]
+}

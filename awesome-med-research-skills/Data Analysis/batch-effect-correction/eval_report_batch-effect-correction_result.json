@@ -1,0 +1,324 @@
+{
+    "meta": {
+        "skill_name": "batch-effect-correction",
+        "description": "Identify and remove technical batch effects from multi-cohort expression matrices using ComBat, limma removeBatchEffect, or SVA. Inputs: expression matrix, batch labels. Outputs: corrected matrix, PCA/UMAP before-after plots, QC report.",
+        "evaluated_on": "2026-04-20",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Scientific integrity check completed without reportable redline findings."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Practice boundaries check completed without reportable redline findings."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Methodological ground check completed without reportable redline findings."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Bundled tests plus five live Rscript runs confirmed runnable, deterministic code paths."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 95,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "Post-ComBat normalization is appropriate here but could be justified more explicitly in the top-level skill contract."
+            },
+            "reliability": {
+                "score": 12,
+                "max": 12,
+                "note": "Reliability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Performance and context was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "Trigger intent is clear, but the skill lacks an explicit 'When to Use' heading."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "The workflow is intentionally strict on malformed study designs and does not try to auto-repair them."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "No explicit privacy-handling note is provided for potentially sensitive sample metadata."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Maintainability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_specific": {
+                "score": 19,
+                "max": 20,
+                "note": "Out-of-scope boundaries are strong, but invalid-design failures could include more explicit human handoff wording."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 90,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Bundled baseline dataset",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 38,
+                "specialized": 54,
+                "total": 92,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Custom metadata columns",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Accepted renamed sample, group, and batch columns and produced the full artifact set.",
+                "basic": 37,
+                "specialized": 54,
+                "total": 91,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Missing batch column",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Stopped early with precise SKILL_MISSING_COLUMNS validation instead of failing deeper in ComBat.",
+                "basic": 37,
+                "specialized": 52,
+                "total": 89,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Valid cohort subset",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Warned about 71 ignored expression columns and still completed a valid subset analysis.",
+                "basic": 36,
+                "specialized": 52,
+                "total": 88,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Explicit no-timeout run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Handled full-option invocation and matched canonical output checksum exactly.",
+                "basic": 37,
+                "specialized": 53,
+                "total": 90,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 38,
+        "dynamic_weighted": 54,
+        "score": 92,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "Strong scope control: the skill clearly defines supported merged-bulk use cases and excludes nearby unsafe scenarios such as single-cell integration.",
+        "Documentation and implementation stay aligned across CLI arguments, outputs, error codes, troubleshooting, and tests.",
+        "Reliability is high: the workflow validates design assumptions early, emits actionable SKILL_* failures, and records session information for reproducibility.",
+        "The QC package is practical and complete, giving users before/after boxplots, PCA, and clustering outputs rather than only a corrected matrix."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Add an explicit When to Use section",
+            "observed_in": [],
+            "problem": "Trigger guidance exists in the description, but some evaluators and orchestrators look specifically for a 'When to Use' section header.",
+            "root_cause": "Top-level structure emphasizes file-loading guidance more than explicit trigger guidance.",
+            "fix": "Add a short '## When to Use' block near the top and keep '## When to Read External Files' as the progressive-disclosure section."
+        },
+        {
+            "priority": "P2",
+            "title": "Document privacy handling for sample metadata",
+            "observed_in": [
+                1,
+                2,
+                4,
+                5
+            ],
+            "problem": "The workflow writes matched sample identifiers to CSV and PDF outputs without reminding users to de-identify sensitive clinical metadata when appropriate.",
+            "root_cause": "The skill is optimized for technical batch correction and currently omits explicit data-handling boundary guidance.",
+            "fix": "Add a brief warning in SKILL.md and references/troubleshooting.md advising de-identification before processing patient-linked metadata."
+        },
+        {
+            "priority": "P2",
+            "title": "Emit a machine-readable run summary",
+            "observed_in": [
+                1,
+                2,
+                4,
+                5
+            ],
+            "problem": "Automation currently has to infer success from logs and file existence checks.",
+            "root_cause": "The output contract is entirely file-based and human-readable.",
+            "fix": "Write a small run_summary.json or similar manifest with parameters, warnings, output paths, and final status."
+        }
+    ]
+}

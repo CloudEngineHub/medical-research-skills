@@ -1,0 +1,317 @@
+{
+    "meta": {
+        "skill_name": "lasso-logistics-analysis",
+        "description": "Build LASSO logistic regression models for simultaneous feature selection and binary classification. Inputs: feature matrix, binary outcome labels. Outputs: selected feature list, model coefficients, lambda cross-validation plot, ROC performance curve.",
+        "evaluated_on": "2026-04-17",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Scientific integrity check completed without reportable redline findings."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Practice boundaries check completed without reportable redline findings."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Methodological ground check completed without reportable redline findings."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Code usability check completed without reportable redline findings."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 95,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "Functional suitability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "reliability": {
+                "score": 12,
+                "max": 12,
+                "note": "Reliability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Performance and context was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "No explicit When to Use heading; cold-start routing depends on frontmatter plus body inference."
+            },
+            "human_usability": {
+                "score": 8,
+                "max": 8,
+                "note": "Human usability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "The skill writes a sample-level feature_matrix.csv by default and does not explicitly note sensitive-data handling."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Maintainability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_specific": {
+                "score": 17,
+                "max": 20,
+                "note": "CLI and R execution are clear to humans but not declared in a parser-friendly routing section."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 90.2,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Packaged sample panel",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Matched the documented output snapshot and produced all expected files.",
+                "basic": 39,
+                "specialized": 57,
+                "total": 96,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Inline feature subset",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Handled the zero-selected-feature boundary cleanly without creating misleading artifacts.",
+                "basic": 36,
+                "specialized": 53,
+                "total": 89,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Invalid fold count",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "Rejected an unsupported nfolds value with a precise SKILL_INVALID_PARAMETER message and no side effects.",
+                "basic": 33,
+                "specialized": 44,
+                "total": 77,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Full matrix with custom titles",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Completed on the full packaged matrix and accepted custom plot-title arguments.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Mixed valid and missing features",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Completed successfully, emitted a warning, and recorded unresolved features in missing_features.txt.",
+                "basic": 39,
+                "specialized": 56,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 38,
+        "dynamic_weighted": 54.1,
+        "score": 92,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill is fully runnable end to end with a clear CLI, packaged sample data, and passing automated tests.",
+        "Error handling is disciplined: parameter validation, structured SKILL_* codes, timeout control, atomic file writes, and reproducibility controls are all present.",
+        "Progressive disclosure is well executed, keeping SKILL.md readable while placing detail in references and modular R scripts.",
+        "Dynamic behavior closely matches the documentation, including the canonical coefficient snapshot and graceful handling of missing features."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Add explicit routing section",
+            "observed_in": [],
+            "problem": "The skill does not expose a dedicated When to Use / When Not to Use section or an explicit execution-mode declaration. Automated routers can still infer intent, but less reliably than humans.",
+            "root_cause": "Routing signals are distributed across frontmatter, usage examples, and workflow prose instead of being centralized in one parser-friendly section.",
+            "fix": "Add short When to Use and When Not to Use sections near the top of SKILL.md. Also add a single-line execution-mode note such as 'Execution Mode: CLI via Rscript scripts/main.R'."
+        },
+        {
+            "priority": "P2",
+            "title": "Expand regression tests for edge paths",
+            "observed_in": [
+                3,
+                5
+            ],
+            "problem": "Manual audit confirmed that invalid nfolds and partial feature-panel mismatches behave correctly, but there are no dedicated regression tests for those exact CLI paths.",
+            "root_cause": "Current tests focus on core reproducibility and a small subset of validation behavior.",
+            "fix": "Add one test that asserts invalid nfolds fails with the documented SKILL_INVALID_PARAMETER message and one test that verifies missing_features.txt is written when some requested features are absent."
+        },
+        {
+            "priority": "P2",
+            "title": "Document sample-level data sensitivity",
+            "observed_in": [],
+            "problem": "The skill writes feature_matrix.csv with sample-level data by default but does not explicitly warn users about handling sensitive cohorts.",
+            "root_cause": "The current documentation emphasizes format and outputs more than downstream data-governance considerations.",
+            "fix": "Add a short note in SKILL.md and the CLI guide stating that feature_matrix.csv may contain sensitive sample-level data and should be stored or shared according to the project's data-governance rules."
+        }
+    ]
+}

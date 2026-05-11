@@ -1,0 +1,308 @@
+{
+    "meta": {
+        "skill_name": "sample-group-sankey-plot",
+        "description": "Visualize sample group composition and transitions between classification systems or clinical categories as Sankey diagrams. Inputs: sample metadata with group assignments. Outputs: Sankey flow diagram, group count and proportion summary table.",
+        "evaluated_on": "2026-04-16",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Passed checks. No fabricated scientific claims or numerical results were produced in any output."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Passed checks. The skill stayed within plotting and file-generation scope and made no medical recommendations."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Passed checks. The transformation from annotation table to alluvial lodes format was methodologically consistent across valid inputs."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Passed checks. All valid audit inputs executed successfully, and the invalid input failed with a clear structured error."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 92,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "Core use cases are covered well, but all-columns mode can still pull identifier-like columns into the plot unless the user overrides it manually."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Error handling is clear and deterministic, though validation failures still create empty output directories before aborting."
+            },
+            "performance_context": {
+                "score": 7,
+                "max": 8,
+                "note": "The skill is concise and script-driven, with only minor extra documentation load for simple runs."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "The workflow is easy for an agent to follow, with one minor friction point around understanding the side effects of auto-column mode."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "The skill is discoverable and forgiving overall, but novice users may not realize that omitted `--columns` includes every input column."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "Input validation is strong and no injection vector was found, with only minor path-retention exposure in session metadata."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "No issues flagged. The skill is cleanly modularized across scripts, references, and tests."
+            },
+            "agent_specific": {
+                "score": 18,
+                "max": 20,
+                "note": "Triggering, progressive disclosure, and idempotency are strong; escape hatches are present but could better call out auto-column caveats and overwrite behavior."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 91.2,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 19,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Three-stage CSV run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Executed perfectly and produced all documented artifacts.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Output writes the documented CSV and PDF artifacts",
+                        "result": "PASS",
+                        "note": "All expected files were created in table, plot, and data directories."
+                    },
+                    {
+                        "text": "Output preserves the requested stage order",
+                        "result": "PASS",
+                        "note": "The exported lodes table kept risk, Responder, and Subtype in the requested order."
+                    },
+                    {
+                        "text": "Output stays within the declared Sankey plotting scope",
+                        "result": "PASS",
+                        "note": "No extra undeclared files or behaviors were observed."
+                    },
+                    {
+                        "text": "Reproducibility metadata is recorded",
+                        "result": "PASS",
+                        "note": "session_info.txt captured runtime parameters and session information."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Auto-column minimal CSV",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Auto-column mode worked correctly on a minimal two-column table.",
+                "basic": 36,
+                "specialized": 55,
+                "total": 91,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Auto-column mode works on a minimal valid table",
+                        "result": "PASS",
+                        "note": "The run completed successfully with Stage1 and Stage2 inferred automatically."
+                    },
+                    {
+                        "text": "Output structure matches the documented contract",
+                        "result": "PASS",
+                        "note": "The expected table, plot, and data outputs were generated."
+                    },
+                    {
+                        "text": "No undocumented parameters are required for the core path",
+                        "result": "PASS",
+                        "note": "The skill succeeded with only input and output arguments."
+                    },
+                    {
+                        "text": "The run remains deterministic and scoped",
+                        "result": "PASS",
+                        "note": "The output set matched the documented behavior exactly."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Missing column validation",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The validation error was clear, but empty output directories were created before the run aborted.",
+                "basic": 33,
+                "specialized": 49,
+                "total": 82,
+                "assertions_passed": 3,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill returns an actionable validation error",
+                        "result": "PASS",
+                        "note": "The error named the exact missing column."
+                    },
+                    {
+                        "text": "No misleading plot or table files are emitted on validation failure",
+                        "result": "PASS",
+                        "note": "No result CSV or PDF artifacts were written before termination."
+                    },
+                    {
+                        "text": "Validation failure leaves no filesystem side effects",
+                        "result": "FAIL",
+                        "note": "Empty table, plot, and data directories were still created in the output directory."
+                    },
+                    {
+                        "text": "The process terminates without an opaque stack trace",
+                        "result": "PASS",
+                        "note": "The failure surfaced as a single structured skill error message."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Three-stage TSV run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "TSV input executed cleanly with the same artifact contract as CSV input.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "TSV input is accepted as documented",
+                        "result": "PASS",
+                        "note": "The run succeeded using tab-separated input data."
+                    },
+                    {
+                        "text": "The resulting artifacts match the CSV workflow",
+                        "result": "PASS",
+                        "note": "Output files were generated with the same structure as the canonical run."
+                    },
+                    {
+                        "text": "Stage ordering remains correct",
+                        "result": "PASS",
+                        "note": "The exported output preserved risk, Responder, and Subtype ordering."
+                    },
+                    {
+                        "text": "Logging remains clear and actionable",
+                        "result": "PASS",
+                        "note": "The run produced specific step-by-step progress messages."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Four-stage custom run with missing values",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Handled missing values, custom filename, and four-stage plotting without warnings.",
+                "basic": 38,
+                "specialized": 57,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Missing values are replaced with the requested label",
+                        "result": "PASS",
+                        "note": "The exported selected annotations file contains Unknown in the expected cells."
+                    },
+                    {
+                        "text": "Custom plot filename is honored",
+                        "result": "PASS",
+                        "note": "The PDF was written as audit_custom.pdf."
+                    },
+                    {
+                        "text": "Runtime parameters are preserved for reproducibility",
+                        "result": "PASS",
+                        "note": "session_info.txt recorded the custom arguments."
+                    },
+                    {
+                        "text": "The skill remains stable under a wider stage set",
+                        "result": "PASS",
+                        "note": "The four-stage run completed without malformed outputs or warnings."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 36.8,
+        "dynamic_weighted": 54.7,
+        "score": 92,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill has a clear CLI contract with strong documentation-to-implementation alignment.",
+        "Valid runs are deterministic for core tabular outputs and consistently emit reproducibility metadata.",
+        "Error reporting is structured and easy to act on, especially for missing files and missing columns.",
+        "The project is maintainable, with modular scripts, focused reference files, and working smoke and unit tests."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Defer output directory creation until validation passes",
+            "observed_in": [
+                3
+            ],
+            "problem": "A failed validation request still creates empty output subdirectories, which leaves partial filesystem state behind after an otherwise clean error.",
+            "root_cause": "The workflow creates output directories before validating selected columns and other input-dependent constraints.",
+            "fix": "Move `ensure_output_dirs()` to run after input loading and column validation, or clean up empty directories on early failure. This keeps failed runs side-effect free."
+        },
+        {
+            "priority": "P2",
+            "title": "Clarify all-columns mode for identifier fields",
+            "observed_in": [],
+            "problem": "When `--columns` is omitted, every input column becomes a stage, which can accidentally include sample identifier fields and produce noisy or misleading axes.",
+            "root_cause": "Auto-selection currently treats all columns as eligible stages and the documentation does not explicitly warn about identifier-like columns.",
+            "fix": "Document this caveat more prominently and consider adding an optional heuristic to skip identifier columns such as `SampleID` by default unless explicitly requested."
+        }
+    ]
+}

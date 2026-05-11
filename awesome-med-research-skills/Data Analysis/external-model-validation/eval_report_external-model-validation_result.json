@@ -1,0 +1,298 @@
+{
+    "meta": {
+        "skill_name": "external-model-validation",
+        "description": "Validate a prognostic gene signature or diagnostic model on an independent external cohort. Inputs: gene signature or trained model, external expression matrix, survival or outcome data. Outputs: AUC, C-index, KM validation curves.",
+        "evaluated_on": "2026-04-16",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated scientific claims or unsupported numeric outputs were observed across the audit inputs."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "The skill stayed in research-validation scope and includes an explicit research-use notice with no diagnostic output."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The workflow applies an appropriate fixed-signature external validation design and documents ethics responsibility."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "All valid runs executed successfully and intentional boundary and overwrite-protection failures were handled cleanly with actionable feedback."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 98,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "The skill covers the full promised workflow with accurate CLI, outputs, tests, helper utilities, and reference materials."
+            },
+            "reliability": {
+                "score": 12,
+                "max": 12,
+                "note": "Input validation, overwrite protection, controlled failure paths, provenance preservation, and reproducible outputs are all present."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Progressive disclosure is well layered and the workflow avoids unnecessary context loading."
+            },
+            "agent_usability": {
+                "score": 16,
+                "max": 16,
+                "note": "The structure is clear, examples are executable, and the retained-output helper reduces operational friction."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Trigger language is natural, though the task remains specialized to survival-model validation users."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "Input validation and research-only boundaries are explicit; full normalized local paths are intentionally logged for reproducibility."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Responsibilities are cleanly split across main.R, run_analysis.R, functions.R, io.R, plotting.R, and utils.R."
+            },
+            "agent_specific": {
+                "score": 20,
+                "max": 20,
+                "note": "Trigger precision, progressive disclosure, escape hatches, and retained-output refresh behavior are all strong."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 95.4,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default BRCA run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Executed perfectly and produced all expected result files.",
+                "basic": 39,
+                "specialized": 58,
+                "total": 97,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The run uses the documented CLI interface with expression, clinical, model, and output arguments.",
+                        "result": "PASS",
+                        "note": "The command matched SKILL.md and completed successfully."
+                    },
+                    {
+                        "text": "The run leaves a machine-verifiable audit trail.",
+                        "result": "PASS",
+                        "note": "analysis.log, run_parameters.tsv, and session_info.txt were all present."
+                    },
+                    {
+                        "text": "The workflow stays inside external validation scope and does not retrain the model.",
+                        "result": "PASS",
+                        "note": "Only validation scoring and plotting steps were executed."
+                    },
+                    {
+                        "text": "The output does not provide diagnosis or treatment advice.",
+                        "result": "PASS",
+                        "note": "Only research analysis artifacts were written."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Custom style run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Accepted valid visualization overrides while preserving the full output bundle.",
+                "basic": 38,
+                "specialized": 57,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The run accepts valid visualization overrides.",
+                        "result": "PASS",
+                        "note": "Custom colors, legend position, and KM break were parsed successfully."
+                    },
+                    {
+                        "text": "The output structure remains stable under non-default styling.",
+                        "result": "PASS",
+                        "note": "All standard result files were still produced."
+                    },
+                    {
+                        "text": "The workflow remains deterministic under the same seed.",
+                        "result": "PASS",
+                        "note": "The same underlying analysis path was used."
+                    },
+                    {
+                        "text": "The output remains within research-only scope.",
+                        "result": "PASS",
+                        "note": "Styling changes did not affect the skill boundary behavior."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Invalid ROC horizon",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Correctly rejected the invalid ROC request and preserved provenance files after failure.",
+                "basic": 38,
+                "specialized": 55,
+                "total": 93,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The boundary failure is detected before a misleading ROC plot is created.",
+                        "result": "PASS",
+                        "note": "No ROC PDF was produced for the invalid request."
+                    },
+                    {
+                        "text": "The error message is specific and actionable.",
+                        "result": "PASS",
+                        "note": "The message explicitly states that ROC times must be smaller than the maximum follow-up time."
+                    },
+                    {
+                        "text": "Failure still leaves a traceable audit trail.",
+                        "result": "PASS",
+                        "note": "analysis.log, run_parameters.tsv, and session_info.txt were present after failure."
+                    },
+                    {
+                        "text": "The skill does not fabricate fallback analytical output on invalid input.",
+                        "result": "PASS",
+                        "note": "Execution stopped cleanly instead of inventing a ROC result."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Retained output refresh",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented helper rebuilt tests/output successfully and preserved the full expected artifact set.",
+                "basic": 39,
+                "specialized": 57,
+                "total": 96,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The helper script is runnable as documented.",
+                        "result": "PASS",
+                        "note": "Rscript tests/refresh_example_output.R executed successfully."
+                    },
+                    {
+                        "text": "The helper refreshes the retained example output bundle.",
+                        "result": "PASS",
+                        "note": "tests/output contained the full standard artifact set after execution."
+                    },
+                    {
+                        "text": "The helper uses explicit overwrite behavior rather than silent replacement.",
+                        "result": "PASS",
+                        "note": "run_parameters.tsv recorded overwrite as TRUE."
+                    },
+                    {
+                        "text": "The helper stays within the skill's documented scope.",
+                        "result": "PASS",
+                        "note": "It simply wraps the main validation workflow using bundled test data."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Overwrite guard",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The first seeded run succeeded with overwrite enabled and the second rerun was blocked cleanly by overwrite protection.",
+                "basic": 38,
+                "specialized": 58,
+                "total": 96,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill prevents silent replacement of files in a non-empty output directory.",
+                        "result": "PASS",
+                        "note": "The second invocation was blocked before overwriting outputs."
+                    },
+                    {
+                        "text": "The overwrite error message is specific and actionable.",
+                        "result": "PASS",
+                        "note": "It explicitly instructs the operator to use --overwrite."
+                    },
+                    {
+                        "text": "The seeded overwrite run still records the overwrite decision for auditability.",
+                        "result": "PASS",
+                        "note": "run_parameters.tsv showed overwrite as TRUE."
+                    },
+                    {
+                        "text": "The protection mechanism remains within the skill's expected operational scope.",
+                        "result": "PASS",
+                        "note": "It adds safety without changing analytical behavior."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 39.2,
+        "dynamic_weighted": 57.2,
+        "score": 96,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "Clean modular architecture with explicit separation among CLI entry, orchestration, core logic, I/O, plotting, and utilities.",
+        "Progressive disclosure is accurate and comprehensive, covering execution, troubleshooting, method detail, plotting, test data use cases, and retained-output refresh behavior.",
+        "Real bundled test data, retained example outputs, and testthat coverage make the skill easy to verify and review.",
+        "Controlled failure paths preserve provenance files and now also prevent accidental overwriting of previous result bundles."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Add direct test for refresh helper",
+            "observed_in": [],
+            "problem": "tests/refresh_example_output.R is documented and was manually validated during audit, but there is no dedicated testthat case that asserts its wrapper behavior directly.",
+            "root_cause": "The helper was added after the original test suite and is only covered indirectly.",
+            "fix": "Add a small testthat case that runs the helper in a disposable copy or temporary target and verifies the regenerated output manifest."
+        }
+    ]
+}

@@ -1,0 +1,427 @@
+{
+    "meta": {
+        "skill_name": "elastic-net-feature-selection",
+        "description": "Select predictive biomarker features using elastic-net penalized regression (glmnet). Inputs: feature matrix, response variable. Outputs: selected feature list, regularization path, coefficient plot, cross-validated lambda and performance metrics.",
+        "evaluated_on": "2026-04-20",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Complex",
+        "n_inputs": 7
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated identifiers, study results, or numeric claims were observed across the seven executions."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "The skill stayed within computational feature-selection scope and did not provide diagnostic or treatment advice."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The workflow consistently enforced binary classification boundaries and used a method appropriate for the documented task."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "The R CLI executed successfully in valid scenarios, passed the bundled test suite, and rejected invalid inputs with structured errors."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 92,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "Functional suitability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Reliability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "performance_context": {
+                "score": 7,
+                "max": 8,
+                "note": "Performance and context was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "Agent usability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Strict CSV expectations reduce forgiveness for near-miss user inputs."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "Security was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Maintainability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_specific": {
+                "score": 18,
+                "max": 20,
+                "note": "Strong scope fences and reproducibility controls; execution mode could be surfaced earlier."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 88.7,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 34,
+            "total": 35
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Auto-alpha binary feature selection",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Selected alpha=0 and correctly wrote a header-only selected_features.csv for ridge output.",
+                "basic": 37,
+                "specialized": 53,
+                "total": 90,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Fixed-alpha baseline run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Run succeeded, but the header-only selected_features.csv requires log inspection to understand the zero-selection outcome.",
+                "basic": 34,
+                "specialized": 49,
+                "total": 83,
+                "assertions_passed": 4,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "FAIL",
+                        "note": "The audited evidence did not fully support this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Forced ridge with lambda.1se",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Dense ridge coefficients were not mislabeled as selected sparse features.",
+                "basic": 37,
+                "specialized": 52,
+                "total": 89,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Custom Tumor Normal labels",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Custom binary labels were preserved correctly through validation and feature-matrix export.",
+                "basic": 37,
+                "specialized": 53,
+                "total": 90,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Full-feature high-fold auto-alpha run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The workflow reduced nfolds safely, completed the 11-value alpha sweep, and retained informative warnings.",
+                "basic": 38,
+                "specialized": 54,
+                "total": 92,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 6,
+                "type": "Scope Boundary",
+                "label": "Multiclass group rejection",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The skill correctly stopped with SKILL_INVALID_DATA before entering an invalid multiclass analysis path.",
+                "basic": 36,
+                "specialized": 53,
+                "total": 89,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 7,
+                "type": "Adversarial",
+                "label": "Invalid alpha parameter",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Parameter validation rejected alpha=bad immediately and still preserved session information for debugging.",
+                "basic": 35,
+                "specialized": 53,
+                "total": 88,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 36.8,
+        "dynamic_weighted": 53.2,
+        "score": 90,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill contract is tightly aligned with the implementation, including arguments, outputs, and structured SKILL_* failures.",
+        "The R implementation is modular, reproducible, and test-backed, with seed control, timeout handling, warning capture, and session-info export.",
+        "Scope enforcement is strong: multiclass and invalid-parameter inputs fail early and clearly instead of silently degrading.",
+        "Ridge-mode behavior is documented and implemented correctly, preventing dense coefficients from being mislabeled as sparse selected features."
+    ],
+    "recommendations": [
+        {
+            "priority": "P1",
+            "title": "Add compact run summary artifact",
+            "observed_in": [
+                1,
+                2,
+                3,
+                4,
+                5
+            ],
+            "problem": "Several successful runs produced a header-only selected_features.csv. Users must inspect logs or coefficient tables to know whether this came from ridge selection or from no coefficient passing the threshold.",
+            "root_cause": "The workflow exports the raw analysis tables but not a compact metadata artifact that explains the run outcome.",
+            "fix": "Write a small run_summary.csv or run_summary.json containing selected alpha, lambda rule, effective nfolds, selected-feature count, and the zero-selection reason. Add this file to the documented outputs table."
+        },
+        {
+            "priority": "P2",
+            "title": "Document non-ridge zero-selection outcome",
+            "observed_in": [
+                2
+            ],
+            "problem": "A valid fixed-alpha run completed with no selected features at the chosen lambda, but the current documentation emphasizes the ridge case more than the general zero-selection case.",
+            "root_cause": "The docs describe empty selected_features.csv mainly as a ridge behavior, which leaves one successful non-ridge outcome under-explained.",
+            "fix": "Add one explicit example and one troubleshooting note showing a non-ridge run with zero selected features, and tell users to inspect model_coefficients.csv plus the warning message."
+        },
+        {
+            "priority": "P2",
+            "title": "Surface R CLI mode earlier",
+            "observed_in": [],
+            "problem": "The workflow is clearly an R CLI skill in practice, but that contract only becomes obvious after reading deeper usage sections.",
+            "root_cause": "Frontmatter and the high-level description focus on the analysis task, while execution-mode information appears later in the document.",
+            "fix": "Add a short early line such as 'Execution mode: R CLI (Rscript scripts/main.R)' while keeping the existing detailed usage examples unchanged."
+        }
+    ]
+}

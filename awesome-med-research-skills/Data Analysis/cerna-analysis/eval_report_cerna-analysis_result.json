@@ -1,0 +1,347 @@
+{
+    "meta": {
+        "skill_name": "cerna-analysis",
+        "description": "Construct competing endogenous RNA (ceRNA) networks integrating lncRNA–miRNA–mRNA interactions. Inputs: expression matrix, miRNA target databases. Outputs: network nodes/edges, co-expression correlation tables, network visualization.",
+        "evaluated_on": "2026-04-17",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Scientific integrity check completed without reportable redline findings."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Practice boundaries check completed without reportable redline findings."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Methodological ground check completed without reportable redline findings."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Code usability check completed without reportable redline findings."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 91,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "Functional suitability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Reliability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "performance_context": {
+                "score": 6,
+                "max": 8,
+                "note": "Runtime and resource expectations are documented primarily in cli-guide.md rather than the main SKILL.md page."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "Agent usability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Human usability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "Security was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "maintainability": {
+                "score": 11,
+                "max": 12,
+                "note": "Maintainability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_specific": {
+                "score": 18,
+                "max": 20,
+                "note": "Trigger boundaries, layered references, reproducibility, and stop conditions are all strong, with only minor provenance friction."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 91.6,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 25,
+            "total": 25
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default combined run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Wrote the expected four artifacts; edges 28 lines, nodes 26 lines.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Inline starBase median",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Inline genes worked correctly and produced a larger network with 1647 edge lines.",
+                "basic": 37,
+                "specialized": 55,
+                "total": 92,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Collapsed ceRNA layer",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "Expected rejection with SKILL_INVALID_DATA before any output directory was created.",
+                "basic": 36,
+                "specialized": 53,
+                "total": 89,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Pairwise overlap mode",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Pairwise intersection completed successfully; edges 661 lines and nodes 181 lines.",
+                "basic": 37,
+                "specialized": 54,
+                "total": 91,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Large starBase low",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Largest audited run completed successfully; edges 3146 lines and nodes 872 lines.",
+                "basic": 37,
+                "specialized": 55,
+                "total": 92,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 36.4,
+        "dynamic_weighted": 55,
+        "score": 91,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "Scope boundaries are precise and reduce accidental misuse on unsupported workflows such as differential expression or enrichment analysis.",
+        "The implementation is reproducible, with an exposed seed, hash-identical repeat runs, and session metadata saved as an artifact.",
+        "Error handling is specific and actionable, using stable SKILL_* messages across missing files, invalid parameters, collapsed networks, dependency issues, and timeouts.",
+        "The documented ceRNA construction logic matched live behavior across combined, single-database, and pairwise-overlap modes."
+    ],
+    "recommendations": [
+        {
+            "priority": "P1",
+            "title": "Persist machine-readable run summary",
+            "observed_in": [
+                1,
+                2,
+                4,
+                5
+            ],
+            "problem": "Important provenance such as dataset mode, retained pair counts, runtime, and parameter values is printed to stdout but not written as a stable summary artifact. If users do not capture logs, later auditing is weaker than it should be.",
+            "root_cause": "Operational metadata is emitted as transient console logs instead of a durable output file.",
+            "fix": "Write a run_summary.json or run_summary.txt next to the CSV, PDF, and session info. Include input mode, dataset selection, strictness, thresholds, retained pair counts, runtime, and seed."
+        },
+        {
+            "priority": "P2",
+            "title": "Surface runtime expectations in SKILL.md",
+            "observed_in": [
+                4,
+                5
+            ],
+            "problem": "The main skill page is strong, but concrete runtime and resource expectations are documented mostly in cli-guide.md. Users who read only SKILL.md may underestimate the cost of broader source modes.",
+            "root_cause": "Performance guidance is concentrated in a secondary reference instead of the primary operating instructions.",
+            "fix": "Add a short runtime note near Usage or Testing in SKILL.md. Point users to timeout_seconds and mention that pairwise-overlap and broad starBase runs can take noticeably longer."
+        },
+        {
+            "priority": "P2",
+            "title": "Make overwrite behavior explicit",
+            "observed_in": [],
+            "problem": "Rerunning the skill into an existing output directory will silently replace prior CSV and PDF artifacts. This does not break correctness, but it makes provenance management and accidental result loss easier than necessary.",
+            "root_cause": "Output directory creation is permissive and artifact writes do not guard against preexisting files.",
+            "fix": "Either fail when target artifacts already exist or add an explicit --overwrite flag and document the behavior clearly in SKILL.md and the CLI help."
+        }
+    ]
+}

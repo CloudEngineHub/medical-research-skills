@@ -1,0 +1,311 @@
+{
+    "meta": {
+        "skill_name": "tf-target-gene-regulatory-network",
+        "description": "Reconstruct transcription factor to target gene regulatory networks from expression data integrated with TF binding databases. Inputs: expression matrix, TF activity database (SCENIC/DoRothEA). Outputs: TF-target network, TF activity scores, hub TF list.",
+        "evaluated_on": "2026-04-15",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated biological claims or invented quantitative outputs were observed in any execution trace."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "The skill stayed within TF-network analysis boundaries and did not issue diagnostic or prescriptive medical advice."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Species handling, Dorothea loading, TF-target filtering, and visualization behavior remained methodologically aligned with the stated task."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "The CLI pipeline executed successfully for canonical human, file-input, mouse, documented custom-style, and localized-alias scenarios."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 90,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "Canonical, file-input, mouse, and custom-style workflows align with the advertised purpose."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Error handling is structured, with named failures and distinct exit behavior for empty results."
+            },
+            "performance_context": {
+                "score": 7,
+                "max": 8,
+                "note": "The skill executes efficiently and keeps references focused, with only minor startup log noise from package attachment messages."
+            },
+            "agent_usability": {
+                "score": 14,
+                "max": 16,
+                "note": "Entry point, inputs, outputs, and support files are clear, though the option surface remains broad."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Examples are executable and practical, but first-time users still face a relatively large CLI surface."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "No dangerous execution patterns were found, and visualization aliases are normalized before use."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "The implementation is modular, tested, and internally consistent across scripts, docs, and examples."
+            },
+            "agent_specific": {
+                "score": 17,
+                "max": 20,
+                "note": "Trigger precision and progressive disclosure are strong; automated doc-example regression checks would reduce future drift risk further."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 92,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Three-gene human run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Executed successfully and produced the full result bundle.",
+                "basic": 37,
+                "specialized": 57,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Output creates the advertised plot and table directories",
+                        "result": "PASS",
+                        "note": "All expected output subdirectories were created."
+                    },
+                    {
+                        "text": "Output records session information for reproducibility",
+                        "result": "PASS",
+                        "note": "session_info.txt was written successfully."
+                    },
+                    {
+                        "text": "Output reports a non-zero TF-target relationship count",
+                        "result": "PASS",
+                        "note": "The run reported 90 TF-target relationships."
+                    },
+                    {
+                        "text": "Execution stays within TF-network analysis scope",
+                        "result": "PASS",
+                        "note": "The command only performed the documented analysis workflow."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "File-based human gene list",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "File input worked cleanly and generated the expected outputs.",
+                "basic": 37,
+                "specialized": 57,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "File input is parsed successfully",
+                        "result": "PASS",
+                        "note": "The file-based run completed without parser errors."
+                    },
+                    {
+                        "text": "Plot generation succeeds for file input",
+                        "result": "PASS",
+                        "note": "plot/TF_Network_Plot.pdf was produced."
+                    },
+                    {
+                        "text": "Filtered table output is saved",
+                        "result": "PASS",
+                        "note": "TF_Target_Filtered_Core_human.xlsx was created."
+                    },
+                    {
+                        "text": "Execution does not invent unsupported behavior",
+                        "result": "PASS",
+                        "note": "The run stayed within the documented file-input workflow."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Unknown genes with no hits",
+                "status": "PARTIAL",
+                "status_flag": "❌",
+                "note": "Expected empty-result guard fired cleanly with a named failure and no misleading downstream artifacts.",
+                "basic": 34,
+                "specialized": 50,
+                "total": 84,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Unknown genes trigger a structured failure instead of silent success",
+                        "result": "PASS",
+                        "note": "The run exited with a named SKILL_EMPTY_RESULTS error."
+                    },
+                    {
+                        "text": "Error output explains likely causes",
+                        "result": "PASS",
+                        "note": "The log lists official symbols, species choice, and database coverage as causes."
+                    },
+                    {
+                        "text": "No false-success artifact is reported",
+                        "result": "PASS",
+                        "note": "The run did not claim success or produce a misleading completion message."
+                    },
+                    {
+                        "text": "Execution stops safely within scope",
+                        "result": "PASS",
+                        "note": "The pipeline stopped before visualization and did not overreach."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Three-gene mouse run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Mouse execution succeeded and produced species-specific outputs.",
+                "basic": 36,
+                "specialized": 57,
+                "total": 93,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Mouse species is accepted and mapped to the mouse database",
+                        "result": "PASS",
+                        "note": "The run loaded dorothea_mm.rds."
+                    },
+                    {
+                        "text": "Mouse-specific filtered table is written",
+                        "result": "PASS",
+                        "note": "TF_Target_Filtered_Core_mouse.xlsx was produced."
+                    },
+                    {
+                        "text": "Plot and reproducibility artifacts are created",
+                        "result": "PASS",
+                        "note": "The run wrote both the PDF and session_info.txt."
+                    },
+                    {
+                        "text": "Seeded execution remains within documented scope",
+                        "result": "PASS",
+                        "note": "The workflow matched the documented mouse analysis case."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Documented custom-style example",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented custom-style example executed successfully and produced the advertised outputs.",
+                "basic": 38,
+                "specialized": 57,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The documented custom-style command resolves to the current CLI entry point",
+                        "result": "PASS",
+                        "note": "scripts/main.R exists and executed successfully."
+                    },
+                    {
+                        "text": "The custom-style example produces the advertised plot output",
+                        "result": "PASS",
+                        "note": "plot/TF_Network_Plot.pdf was written."
+                    },
+                    {
+                        "text": "The custom-style example produces the advertised table outputs",
+                        "result": "PASS",
+                        "note": "The documented tables were created successfully."
+                    },
+                    {
+                        "text": "Execution accepts the documented visualization tokens",
+                        "result": "PASS",
+                        "note": "fr, curve, and diamond,triangle rendered without error."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 36,
+        "dynamic_weighted": 55.2,
+        "score": 91,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "Core CLI execution works for canonical human, file-input, mouse, and custom-style scenarios.",
+        "Error handling is explicit and safe, including a named empty-result failure path.",
+        "Reproducibility is supported through the seed parameter and saved session information artifacts.",
+        "Implementation quality is high, with modular scripts, bundled references, and a passing end-to-end test suite."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Add doc-example regression checks",
+            "observed_in": [],
+            "problem": "The skill now has executable examples, but those examples are still maintained manually and could drift again without automated coverage.",
+            "root_cause": "Documentation examples are not currently enforced by a dedicated regression check outside the general test script.",
+            "fix": "Add a lightweight verification step that executes the published example commands or at least validates their argument structure during routine testing."
+        },
+        {
+            "priority": "P2",
+            "title": "Reduce package startup noise",
+            "observed_in": [
+                1,
+                2,
+                4,
+                5
+            ],
+            "problem": "Successful runs include tidyverse attachment and conflict banners, which make the CLI output noisier than necessary for end users and agents.",
+            "root_cause": "Some package loads in sourced modules are not wrapped with startup-message suppression.",
+            "fix": "Suppress non-essential package startup messages in successful execution paths so logs emphasize analysis progress, warnings, and errors."
+        }
+    ]
+}

@@ -1,0 +1,318 @@
+{
+    "meta": {
+        "skill_name": "nomogram-construction",
+        "description": "Build clinical nomograms for individualized survival or risk prediction from Cox proportional hazards or logistic regression models. Inputs: survival or outcome data, predictor variables. Outputs: nomogram plot, C-index, calibration curve, prediction table.",
+        "evaluated_on": "2026-04-16",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Scientific integrity check completed without reportable redline findings."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Practice boundaries check completed without reportable redline findings."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Methodological ground check completed without reportable redline findings."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Code usability check completed without reportable redline findings."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 92,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "Build and plot modes, outputs, exclusions, and delivered artifacts align with verified behavior"
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Validation and SKILL_* reporting are strong; one progress log still appears before plot-path validation fails"
+            },
+            "performance_context": {
+                "score": 7,
+                "max": 8,
+                "note": "Progressive disclosure is solid; SKILL.md remains moderately long at just over 300 lines"
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "Clear CLI examples, testing commands, and troubleshooting paths"
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Trigger language is natural for survival-analysis users; some domain terms still presume Cox or nomogram familiarity"
+            },
+            "security": {
+                "score": 12,
+                "max": 12,
+                "note": "File-path inputs are validated; no secrets, eval patterns, or destructive behavior were observed"
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Script responsibilities are now cleanly separated and the common error-code names match the delivery standard"
+            },
+            "agent_specific": {
+                "score": 16,
+                "max": 20,
+                "note": "Strong trigger precision and composable build/plot contract; minor legacy-output friction remains"
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 90.4,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default build + plot",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 38,
+                "specialized": 55,
+                "total": 93,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Custom horizons + 4 predictors",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 37,
+                "specialized": 54,
+                "total": 91,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Invalid non-PDF plot target",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "Correctly rejected non-PDF plot target with a clear SKILL_INVALID_PARAMETER message",
+                "basic": 33,
+                "specialized": 49,
+                "total": 82,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Staging-focused predictor set",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 37,
+                "specialized": 55,
+                "total": 92,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Five-feature styled workflow",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 36.8,
+        "dynamic_weighted": 54.2,
+        "score": 91,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill follows a strong standardized R skill layout with separate main, validation, io, functions, and run_analysis layers.",
+        "Documentation, CLI help, smoke tests, and testthat coverage are aligned with the verified runtime behavior.",
+        "Common error-code names are now aligned with the delivery standard, improving consistency between the scripts and the troubleshooting guidance.",
+        "Output reproducibility is strong because the workflow captures a seed, session metadata, and deterministic file structure."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Validate plot target before progress log",
+            "observed_in": [
+                3
+            ],
+            "problem": "Plot mode emits a 'Rendering nomogram plot...' log line before validating that --plot_save ends with .pdf. This can make the failure point look slightly later than it really is.",
+            "root_cause": "The log call in run_analysis() occurs before save_nomogram_plot() performs the file-extension validation.",
+            "fix": "Move validate_pdf_output(plot_save, '--plot_save') to run before the plotting progress log, or validate the path in run_analysis() before logging the render step."
+        },
+        {
+            "priority": "P2",
+            "title": "Add one negative-path regression test",
+            "observed_in": [
+                3
+            ],
+            "problem": "The current automated tests cover the successful CLI workflow well, but they do not lock in one explicit validation failure mode such as an invalid plot extension or missing column.",
+            "root_cause": "Testing is currently optimized for smoke coverage rather than guardrail regression coverage.",
+            "fix": "Add a small testthat case that expects SKILL_INVALID_PARAMETER for a non-PDF --plot_save or SKILL_MISSING_COLUMNS for an invalid feature list."
+        },
+        {
+            "priority": "P2",
+            "title": "Retire legacy tests/output when safe",
+            "observed_in": [],
+            "problem": "The skill now clearly standardizes on tests/expected_output, but the retained tests/output directory still creates a small amount of maintenance and discoverability friction.",
+            "root_cause": "Historical artifacts were intentionally preserved during standardization to avoid deleting prior outputs.",
+            "fix": "When those historical files are no longer needed, remove tests/output entirely or further de-emphasize it in all test-facing docs so tests/expected_output remains the only canonical output location."
+        }
+    ]
+}

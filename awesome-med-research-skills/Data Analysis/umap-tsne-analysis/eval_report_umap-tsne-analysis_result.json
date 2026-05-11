@@ -1,0 +1,306 @@
+{
+    "meta": {
+        "skill_name": "umap-tsne-analysis",
+        "description": "Visualize high-dimensional expression data in 2D or 3D using UMAP and t-SNE dimensionality reduction. Inputs: expression matrix or pre-computed embedding, sample annotation labels. Outputs: 2D scatter plots colored by group, cluster label assignments.",
+        "evaluated_on": "2026-04-15",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Passed checks across all audited executions; no fabricated scientific claims, invented results, or unsupported numeric inferences were produced."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Passed checks; the skill stays within computational analysis scope and does not produce medical or prescriptive guidance."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "Passed checks; dimensionality reduction, grouping validation, and failure handling remained methodologically coherent across valid and invalid runs."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Passed checks; the R entrypoint and supporting scripts executed correctly on valid inputs, and invalid parameter inputs failed with typed, actionable errors."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 84,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "Core promised workflows are implemented accurately; the main remaining gap is that out-of-scope refusal guidance is still implicit rather than operationalized in its own section."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "The skill now normalizes sparse-group plotting degradation into controlled warnings, but it still relies on runtime logs rather than richer recovery guidance for all warning classes."
+            },
+            "performance_context": {
+                "score": 6,
+                "max": 8,
+                "note": "The skill uses references and scripts well, though SKILL.md still carries some operational detail that could move into references to reduce front-document length."
+            },
+            "agent_usability": {
+                "score": 13,
+                "max": 16,
+                "note": "The workflow is easy to follow and verification commands are explicit, but a cold-start agent still has to infer how to refuse unsupported requests."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Trigger phrasing is natural and examples are runnable; one dedicated out-of-scope handoff section would make the skill even more forgiving."
+            },
+            "security": {
+                "score": 10,
+                "max": 12,
+                "note": "No secrets or dangerous execution patterns were found, but the skill still documents reproducibility baselines rather than enforcing a fully locked environment manager."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Full score achieved. The codebase is modular, the dependency baseline is documented, and automated unit plus smoke coverage are now present."
+            },
+            "agent_specific": {
+                "score": 14,
+                "max": 20,
+                "note": "Trigger precision and idempotency are strong, but explicit escape hatches and composability guidance are still lighter than top-tier skills."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 86.6,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default both-method workflow",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Executed perfectly; both embeddings and all documented artifacts were produced with clean logs.",
+                "basic": 36,
+                "specialized": 54,
+                "total": 90,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Both t-SNE and UMAP coordinate tables are produced.",
+                        "result": "PASS",
+                        "note": "Both coordinate CSV files were written successfully."
+                    },
+                    {
+                        "text": "Both visualization PDFs are produced.",
+                        "result": "PASS",
+                        "note": "Both plot PDFs were saved successfully."
+                    },
+                    {
+                        "text": "Runtime metadata files are emitted.",
+                        "result": "PASS",
+                        "note": "session_info.txt and analysis_data.rda were both created."
+                    },
+                    {
+                        "text": "The run stays within the skill's stated scope.",
+                        "result": "PASS",
+                        "note": "This is the exact canonical workflow described in SKILL.md."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "UMAP with Saline grouping",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Executed cleanly; alternate grouping worked and only UMAP artifacts were emitted.",
+                "basic": 35,
+                "specialized": 53,
+                "total": 88,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill honors a non-default grouping column.",
+                        "result": "PASS",
+                        "note": "The log reports Group column: Saline with the expected counts."
+                    },
+                    {
+                        "text": "UMAP-only execution does not emit unnecessary t-SNE artifacts.",
+                        "result": "PASS",
+                        "note": "Only the documented UMAP outputs were produced."
+                    },
+                    {
+                        "text": "Runtime metadata files are still emitted in variant mode.",
+                        "result": "PASS",
+                        "note": "Both metadata files were written before completion."
+                    },
+                    {
+                        "text": "The request remains inside the documented scope.",
+                        "result": "PASS",
+                        "note": "Custom grouping is explicitly supported by the CLI interface."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Invalid perplexity rejection",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Expected validation failure was surfaced cleanly as a typed skill error with actionable wording.",
+                "basic": 34,
+                "specialized": 50,
+                "total": 84,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Invalid perplexity is rejected with a typed skill error.",
+                        "result": "PASS",
+                        "note": "The run failed with SKILL_INVALID_PARAMETER instead of a raw package exception."
+                    },
+                    {
+                        "text": "The error explains the real constraint.",
+                        "result": "PASS",
+                        "note": "The message states that perplexity is too large for the number of samples."
+                    },
+                    {
+                        "text": "No misleading success message is emitted after the failure.",
+                        "result": "PASS",
+                        "note": "The script stops at the error and does not log successful completion."
+                    },
+                    {
+                        "text": "Boundary handling remains within scope.",
+                        "result": "PASS",
+                        "note": "Rejecting invalid numeric settings is part of the documented contract."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "UMAP with Type grouping",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Functional result was correct and sparse-group degradation is now surfaced as a controlled warning instead of raw plotting noise.",
+                "basic": 34,
+                "specialized": 51,
+                "total": 85,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill honors a more granular grouping column.",
+                        "result": "PASS",
+                        "note": "The run switched to the Type column and handled six groups successfully."
+                    },
+                    {
+                        "text": "UMAP output artifacts are produced successfully.",
+                        "result": "PASS",
+                        "note": "Both the coordinates table and the PDF plot were generated."
+                    },
+                    {
+                        "text": "Sparse-group plotting degrades gracefully through controlled logging.",
+                        "result": "PASS",
+                        "note": "The output contains one standardized WARN line instead of raw ellipse or geom_path warnings."
+                    },
+                    {
+                        "text": "The request stays within stated functionality.",
+                        "result": "PASS",
+                        "note": "Custom grouping plus UMAP-only execution is explicitly supported."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Both methods with timeout and Type grouping",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The complex run completed on time and both plotting paths now degrade cleanly with standardized warnings.",
+                "basic": 35,
+                "specialized": 51,
+                "total": 86,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Both t-SNE and UMAP artifacts are produced under timeout control.",
+                        "result": "PASS",
+                        "note": "All expected table and plot outputs were written successfully."
+                    },
+                    {
+                        "text": "The skill honors the non-default Type grouping column.",
+                        "result": "PASS",
+                        "note": "The log reports the Type grouping with the expected six-group distribution."
+                    },
+                    {
+                        "text": "Timeout-enabled execution remains reproducible and completes successfully.",
+                        "result": "PASS",
+                        "note": "The run finished successfully with --timeout 30 and the configured seed."
+                    },
+                    {
+                        "text": "Successful runs convert sparse-group plotting degradation into controlled messaging.",
+                        "result": "PASS",
+                        "note": "The only degradation signal is the standardized WARN log, not raw plotting warnings."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 33.6,
+        "dynamic_weighted": 52,
+        "score": 86,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill has a clear CLI contract with accurate documentation, runnable examples, and verified output expectations.",
+        "Structural quality is strong: the R code is modular, seeded, validates sample alignment carefully, and now degrades plotting gracefully.",
+        "Dynamic execution is reliable across canonical, variant, edge, and stress scenarios, with all assertions passing in the rerun audit.",
+        "The project now includes both smoke coverage and focused unit tests for validation and sparse-group plotting behavior."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Add explicit out-of-scope handoff guidance",
+            "observed_in": [],
+            "problem": "The frontmatter description lists unsupported tasks, but the skill still lacks a dedicated operational section telling the agent exactly how to refuse or redirect those requests.",
+            "root_cause": "Scope boundaries are present in descriptive text but not reinforced as a direct execution rule block.",
+            "fix": "Add a short `When Not to Use` or `Out of Scope` section with one refusal pattern and one redirection suggestion for unsupported analyses such as differential expression or single-cell workflows."
+        },
+        {
+            "priority": "P2",
+            "title": "Consider a fully locked R environment",
+            "observed_in": [],
+            "problem": "The dependency baseline is documented clearly, but it is still advisory rather than enforced by a tool like `renv`.",
+            "root_cause": "The project uses a version manifest and installer output instead of a lockfile-driven environment manager.",
+            "fix": "If you need stronger long-term reproducibility across machines, add `renv.lock` and document a restore command alongside `dependencies.lock.tsv`."
+        }
+    ]
+}

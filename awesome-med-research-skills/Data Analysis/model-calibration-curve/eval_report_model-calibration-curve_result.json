@@ -1,0 +1,312 @@
+{
+    "meta": {
+        "skill_name": "model-calibration-curve",
+        "description": "Assess calibration of diagnostic or prognostic prediction models by plotting predicted versus observed event probabilities. Inputs: predicted probabilities, binary outcomes. Outputs: calibration curve plot, Hosmer-Lemeshow test statistics, Brier score.",
+        "evaluated_on": "2026-04-17",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated scientific claims, invented numeric outcomes, or unsupported conclusions were observed across the audit inputs."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "The skill stayed inside research-analysis scope and did not provide diagnosis or treatment advice."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The workflow uses an appropriate Cox-model plus bootstrap calibration design for time-to-event survival data."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Valid runs were executable and invalid inputs failed cleanly with actionable SKILL_* errors."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 95,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "The skill fully covers the promised Cox-model calibration workflow with aligned CLI options, outputs, references, and bundled test assets."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Validation, deterministic seeding, overwrite protection, and reproducibility logging are strong, though valid runs on the bundled cohort emit many repeated calibration warnings."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Progressive disclosure is clean and the documentation stays focused on the execution contract rather than implementation noise."
+            },
+            "agent_usability": {
+                "score": 16,
+                "max": 16,
+                "note": "Trigger boundaries, examples, argument tables, testing commands, and troubleshooting references make the skill easy to invoke correctly."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "The workflow is easy to follow, but the repeated runtime warnings on successful small-cohort runs add some operator friction."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "Inputs are validated, no unsafe execution primitives are present, and all file handling stays local and explicit."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Responsibilities are cleanly separated across CLI, utilities, orchestration, and analysis helpers, with concise scripts and test helpers."
+            },
+            "agent_specific": {
+                "score": 18,
+                "max": 20,
+                "note": "Trigger precision, progressive disclosure, clear boundaries, and idempotent reruns are all strong; the skill could still expose expected benign warning behavior more explicitly."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 93.2,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default bundled calibration run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Completed successfully and produced the documented data, table, plot, and metadata files despite repeated benign calibration warnings on the tiny bundled cohort.",
+                "basic": 38,
+                "specialized": 55,
+                "total": 93,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The documented main CLI path is runnable as described.",
+                        "result": "PASS",
+                        "note": "Rscript scripts/main.R completed successfully with the bundled test cohort."
+                    },
+                    {
+                        "text": "The run emits the documented data, table, plot, and metadata artifacts.",
+                        "result": "PASS",
+                        "note": "calibration_data.qs, calibration_statistics.xlsx, calibration_curve.pdf, and session_info.txt were present."
+                    },
+                    {
+                        "text": "The workflow records reproducibility metadata.",
+                        "result": "PASS",
+                        "note": "session_info.txt captured parameters, the fixed seed, and package/session details."
+                    },
+                    {
+                        "text": "The output stays within the stated calibration-analysis scope.",
+                        "result": "PASS",
+                        "note": "The run produced calibration artifacts only, without unrelated nomogram or ROC outputs."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Custom horizons + styled PDF",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Accepted valid horizon and plotting overrides, preserved the standard output bundle, and recorded the custom values in session_info.txt.",
+                "basic": 38,
+                "specialized": 55,
+                "total": 93,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill accepts valid horizon overrides and styling arguments.",
+                        "result": "PASS",
+                        "note": "The custom years, bootstrap count, and plot options all parsed successfully."
+                    },
+                    {
+                        "text": "The output bundle remains stable under supported customization.",
+                        "result": "PASS",
+                        "note": "The same standard data, table, plot, and metadata outputs were still created."
+                    },
+                    {
+                        "text": "Runtime metadata preserves the chosen overrides.",
+                        "result": "PASS",
+                        "note": "session_info.txt recorded the custom years, bootstrap count, geometry, colors, and title."
+                    },
+                    {
+                        "text": "The customized run remains inside the skill's stated purpose.",
+                        "result": "PASS",
+                        "note": "The workflow still performed survival-model calibration only."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Missing-column rejection",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Rejected the missing-feature request with a clear SKILL_MISSING_COLUMNS error; only empty output subdirectories were left behind.",
+                "basic": 36,
+                "specialized": 55,
+                "total": 91,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill rejects a missing requested feature before model fitting.",
+                        "result": "PASS",
+                        "note": "Execution stopped during model-data preparation."
+                    },
+                    {
+                        "text": "The failure message is specific and actionable.",
+                        "result": "PASS",
+                        "note": "The error names the missing column directly."
+                    },
+                    {
+                        "text": "The failure does not emit misleading analytical artifacts.",
+                        "result": "PASS",
+                        "note": "No .qs, .xlsx, .pdf, or session_info.txt files were produced for the invalid run."
+                    },
+                    {
+                        "text": "The boundary behavior matches the documented contract.",
+                        "result": "PASS",
+                        "note": "The rejection is consistent with the error table and troubleshooting guide."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Documented smoke-test helper",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented smoke-test helper executed successfully and rebuilt the bundled output directory with the expected artifact set.",
+                "basic": 39,
+                "specialized": 56,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The R smoke-test helper is runnable as documented.",
+                        "result": "PASS",
+                        "note": "Rscript tests/run_smoke_test.R executed successfully."
+                    },
+                    {
+                        "text": "The helper rebuilds the documented output bundle.",
+                        "result": "PASS",
+                        "note": "tests/output contained the expected data, plot, table, and session files after execution."
+                    },
+                    {
+                        "text": "The helper preserves reproducibility metadata.",
+                        "result": "PASS",
+                        "note": "tests/output/session_info.txt was regenerated and remained non-empty."
+                    },
+                    {
+                        "text": "The helper stays inside the skill's normal operational scope.",
+                        "result": "PASS",
+                        "note": "It simply wraps the main calibration workflow with bundled data."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Overwrite guard",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The first seeded run succeeded and the second rerun was blocked cleanly by overwrite protection with an actionable SKILL_INVALID_PARAMETER message.",
+                "basic": 38,
+                "specialized": 56,
+                "total": 94,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill prevents silent replacement of an existing result bundle.",
+                        "result": "PASS",
+                        "note": "The second invocation was blocked before any files were overwritten."
+                    },
+                    {
+                        "text": "The overwrite failure is specific and actionable.",
+                        "result": "PASS",
+                        "note": "The error message explicitly instructs the operator to use --overwrite."
+                    },
+                    {
+                        "text": "The initial successful run still produced a complete audit trail.",
+                        "result": "PASS",
+                        "note": "The first invocation created the expected artifact bundle and session_info.txt."
+                    },
+                    {
+                        "text": "The protection mechanism stays inside the skill's documented operating model.",
+                        "result": "PASS",
+                        "note": "It adds safety without changing the analysis workflow itself."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 38,
+        "dynamic_weighted": 55.9,
+        "score": 94,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill now matches the target data-analysis template closely, with aligned CLI, references, test data, and reproducibility logging.",
+        "The execution contract is strong: valid runs complete, boundary failures are controlled, and the main workflow plus smoke-test helper are both runnable.",
+        "The skill maintains clear scope boundaries around survival-model calibration and avoids leaking into adjacent tasks like ROC analysis or nomogram construction.",
+        "The modular R implementation is maintainable and auditable, with concise scripts and explicit parameter capture in session_info.txt."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Reduce repeated calibration warnings",
+            "observed_in": [
+                1,
+                2,
+                5
+            ],
+            "problem": "Successful runs on the bundled small cohort emit many repeated 'one interval had < 2 observations' warnings, which can make healthy executions look unstable.",
+            "root_cause": "The current grouping strategy passed to rms::calibrate() is aggressive for a small bundled dataset and all warnings are surfaced verbatim.",
+            "fix": "Either adapt the group size for small-sample runs or document/filter repeated benign warnings so users can distinguish expected bootstrap noise from true failures."
+        },
+        {
+            "priority": "P2",
+            "title": "Avoid empty output scaffolds on early failure",
+            "observed_in": [
+                3
+            ],
+            "problem": "The missing-column boundary case leaves empty data, table, and plot directories even though no analytical output is produced.",
+            "root_cause": "Output directories are created before required-column validation finishes.",
+            "fix": "Create the output scaffold after core input validation succeeds, or clean it up automatically when a fatal validation error occurs before analysis starts."
+        }
+    ]
+}

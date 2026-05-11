@@ -1,0 +1,300 @@
+{
+    "meta": {
+        "skill_name": "decision-curve-analysis",
+        "description": "Evaluate clinical net benefit of diagnostic or prognostic models across probability thresholds using DCA. Inputs: predicted probabilities, binary outcomes. Outputs: DCA curve plot, net benefit table, threshold comparison.",
+        "evaluated_on": "2026-04-17",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated scientific claims, invented numeric outputs, or unsupported conclusions were observed across the audit inputs."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "The skill stayed inside research-analysis scope and did not provide diagnosis or treatment advice."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The workflow uses an appropriate binary logistic DCA design for decision-curve and clinical-impact evaluation."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Valid runs were executable and invalid inputs failed cleanly with actionable SKILL_* errors."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 97,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "The skill covers the promised binary clinical DCA workflow with aligned CLI, outputs, references, and bundled test data."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Validation, deterministic execution, and reproducibility logging are strong, though overwrite protection currently triggers only after the model has already been fit."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Progressive disclosure is clear and the top-level contract stays concise for a moderate-complexity analysis skill."
+            },
+            "agent_usability": {
+                "score": 16,
+                "max": 16,
+                "note": "The trigger boundaries, runnable examples, error table, and bundled smoke test make the skill easy to invoke correctly."
+            },
+            "human_usability": {
+                "score": 8,
+                "max": 8,
+                "note": "The workflow is easy to follow and all observable runtime messaging now conforms to the skill's standardized logging style."
+            },
+            "security": {
+                "score": 12,
+                "max": 12,
+                "note": "Inputs are validated, no unsafe execution primitives are present, and all file handling remains local and explicit."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Responsibilities are cleanly separated across CLI, orchestration, analysis helpers, and utilities, with no direct file I/O left in functions.R."
+            },
+            "agent_specific": {
+                "score": 18,
+                "max": 20,
+                "note": "Trigger precision, progressive disclosure, boundary handling, and testability are all strong; the skill could still tighten failure-short-circuit behavior on occupied output directories."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 93.6,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 20,
+            "total": 20
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default bundled DCA run",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Completed successfully and produced the documented data, table, plot, and metadata files while keeping all observable runtime output inside the standardized logging format.",
+                "basic": 39,
+                "specialized": 56,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The documented main CLI path is runnable as described.",
+                        "result": "PASS",
+                        "note": "Rscript scripts/main.R completed successfully with the bundled dataset."
+                    },
+                    {
+                        "text": "The run emits the documented data, table, plot, and metadata artifacts.",
+                        "result": "PASS",
+                        "note": "dca_model.rds, dca_summary.txt, decision_curve.pdf, clinical_impact_curve.pdf, and session_info.txt were present."
+                    },
+                    {
+                        "text": "The workflow records reproducibility metadata.",
+                        "result": "PASS",
+                        "note": "session_info.txt captured parameters, the fixed seed, and session/package details."
+                    },
+                    {
+                        "text": "The output stays within the stated decision-curve-analysis scope.",
+                        "result": "PASS",
+                        "note": "The run produced DCA-specific artifacts only, without ROC, calibration, or survival outputs."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Cohort mode + custom styling",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Accepted valid cohort-mode, CI, standardization, threshold, and styling overrides while preserving the standard output bundle.",
+                "basic": 38,
+                "specialized": 57,
+                "total": 95,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill accepts valid cohort-mode and styling overrides.",
+                        "result": "PASS",
+                        "note": "The cohort design, threshold step, CI flag, standardization flag, colors, and title all parsed successfully."
+                    },
+                    {
+                        "text": "The output bundle remains stable under supported customization.",
+                        "result": "PASS",
+                        "note": "The same standard data, table, plot, and metadata outputs were still created."
+                    },
+                    {
+                        "text": "Runtime metadata preserves the chosen overrides.",
+                        "result": "PASS",
+                        "note": "session_info.txt recorded the custom design, threshold grid size, plot colors, and title."
+                    },
+                    {
+                        "text": "The customized run remains inside the skill's stated purpose.",
+                        "result": "PASS",
+                        "note": "The workflow still performed binary decision-curve analysis only."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Missing-column rejection",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Rejected the missing predictor request with a clear SKILL_MISSING_COLUMNS error before any audit output directory was created.",
+                "basic": 37,
+                "specialized": 55,
+                "total": 92,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill rejects a missing predictor column before model fitting.",
+                        "result": "PASS",
+                        "note": "Execution stopped during analysis-data preparation."
+                    },
+                    {
+                        "text": "The failure message is specific and actionable.",
+                        "result": "PASS",
+                        "note": "The error names the missing column directly."
+                    },
+                    {
+                        "text": "The failure does not emit misleading analytical artifacts.",
+                        "result": "PASS",
+                        "note": "No audit output directory or result files were created for the invalid run."
+                    },
+                    {
+                        "text": "The boundary behavior matches the documented contract.",
+                        "result": "PASS",
+                        "note": "The rejection is consistent with the troubleshooting guide and error table."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Documented smoke-test helper",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented smoke-test helper executed successfully and rebuilt the expected output directory with the full artifact set.",
+                "basic": 39,
+                "specialized": 57,
+                "total": 96,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The R smoke-test helper is runnable as documented.",
+                        "result": "PASS",
+                        "note": "Rscript tests/run_smoke_test.R executed successfully."
+                    },
+                    {
+                        "text": "The helper rebuilds the documented output bundle.",
+                        "result": "PASS",
+                        "note": "tests/output contained the expected data, plot, table, and session files after execution."
+                    },
+                    {
+                        "text": "The helper preserves reproducibility metadata.",
+                        "result": "PASS",
+                        "note": "tests/output/session_info.txt was regenerated and remained non-empty."
+                    },
+                    {
+                        "text": "The helper stays inside the skill's normal operational scope.",
+                        "result": "PASS",
+                        "note": "It simply wraps the main DCA workflow with bundled data."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Overwrite guard",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The first seeded run succeeded and the second rerun was blocked cleanly by overwrite protection, although the guard triggers after model fitting rather than before analysis begins.",
+                "basic": 35,
+                "specialized": 55,
+                "total": 90,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill prevents silent replacement of an existing result bundle.",
+                        "result": "PASS",
+                        "note": "The second invocation was blocked before any files in the existing bundle were replaced."
+                    },
+                    {
+                        "text": "The overwrite failure is specific and actionable.",
+                        "result": "PASS",
+                        "note": "The error message explicitly instructs the operator to use --overwrite."
+                    },
+                    {
+                        "text": "The initial successful run still produced a complete audit trail.",
+                        "result": "PASS",
+                        "note": "The first invocation created the expected artifact bundle and session_info.txt."
+                    },
+                    {
+                        "text": "The protection mechanism stays inside the skill's documented operating model.",
+                        "result": "PASS",
+                        "note": "It adds safety without changing the DCA workflow semantics."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 38.8,
+        "dynamic_weighted": 56.2,
+        "score": 95,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill now matches the target data-analysis structure closely, including a standards-aligned CLI, references, test data, and reproducibility logging.",
+        "The execution contract is strong: valid runs complete, missing-column failures are controlled, and the smoke-test helper is runnable.",
+        "The refactor removed direct file I/O from functions.R, which now better matches the required role split between orchestration and core analysis logic.",
+        "The workflow keeps clear scope boundaries around binary decision-curve analysis and avoids leaking into unrelated ROC, calibration, or survival tasks."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Short-circuit overwrite checks before fitting",
+            "observed_in": [
+                5
+            ],
+            "problem": "The rerun into an existing non-empty output directory still fits the DCA model before failing on overwrite protection, which wastes time and compute.",
+            "root_cause": "create_output_dirs() is called after model fitting in run_analysis().",
+            "fix": "Check or reserve the output directory before expensive analysis starts, or split the overwrite validation from the directory-creation step so occupied directories fail fast."
+        }
+    ]
+}

@@ -1,0 +1,347 @@
+{
+    "meta": {
+        "skill_name": "hierarchical-clustering-plot",
+        "description": "Cluster samples and genes by hierarchical clustering and visualize as annotated ComplexHeatmap or pheatmap. Inputs: expression matrix, sample annotation table. Outputs: clustered heatmap with dendrograms, cluster membership assignment table.",
+        "evaluated_on": "2026-04-16",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "B",
+        "complexity": "Moderate",
+        "n_inputs": 5
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "Observed outputs remained at artifact-generation level and did not fabricate scientific claims or statistics."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "The skill stayed within non-clinical clustering support and produced no diagnostic or prescriptive guidance."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The implementation matches the documented sample-level distance-plus-hclust workflow and states its normalization assumption."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "CLI runs and the bundled test suite executed successfully, and the validation-error path failed cleanly."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 95,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 11,
+                "max": 12,
+                "note": "The workflow covers the promised clustering use case, but interpretation support is intentionally lightweight."
+            },
+            "reliability": {
+                "score": 12,
+                "max": 12,
+                "note": "Reliability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "performance_context": {
+                "score": 8,
+                "max": 8,
+                "note": "Performance and context was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "The SKILL.md is clear but somewhat long and repetitive in the file-reading guidance."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "The workflow is intentionally strict about CSV schema and does not auto-repair minor format issues."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "The skill keeps data local, but it does not explicitly warn about handling sensitive sample metadata."
+            },
+            "maintainability": {
+                "score": 12,
+                "max": 12,
+                "note": "Maintainability was evaluated against the skill-auditor rubric; no blocking schema-level issue was recorded for this dimension."
+            },
+            "agent_specific": {
+                "score": 19,
+                "max": 20,
+                "note": "CLI composition is strong, but advanced parameterization is still narrow for some distance methods."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 92,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 25,
+            "total": 25
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Default batch-labeled sample clustering",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 39,
+                "specialized": 56,
+                "total": 95,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Sample IDs as dendrogram labels",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 39,
+                "specialized": 55,
+                "total": 94,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Missing label column validation",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "Expected validation failure; no output directory was created.",
+                "basic": 37,
+                "specialized": 46,
+                "total": 83,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Manhattan distance with average linkage",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 39,
+                "specialized": 56,
+                "total": 95,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Minkowski distance with Ward.D2 linkage",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Execution evidence was reviewed and recorded for this input.",
+                "basic": 38,
+                "specialized": 55,
+                "total": 93,
+                "assertions_passed": 5,
+                "assertions_total": 5,
+                "assertions": [
+                    {
+                        "text": "Required outputs were generated for the audited workflow.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Input handling and validation behaved as documented.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "No unsupported medical or scientific claim fabrication was detected.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Execution stayed within the stated Data Analysis skill scope.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    },
+                    {
+                        "text": "Result artifacts and scoring evidence were sufficient for audit review.",
+                        "result": "PASS",
+                        "note": "The audited evidence supported this assertion."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 38,
+        "dynamic_weighted": 55.2,
+        "score": 93,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "Strong progressive disclosure: the SKILL.md, references, scripts, and tests are aligned and easy to navigate.",
+        "Deterministic execution is well supported through seed control, timeout handling, session export, and temp-workspace cleanup.",
+        "Error handling is unusually strong for a small analysis utility, with typed SKILL_* errors and clean logging across success and failure paths.",
+        "The documented output contract matched observed artifacts across multiple parameter combinations and an intentional validation failure."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Add stronger analysis-readiness preflight checks",
+            "observed_in": [
+                1,
+                4,
+                5
+            ],
+            "problem": "The pipeline validates file integrity well, but it does not flag constant features, very small feature sets, or scale-sensitive matrices before clustering.",
+            "root_cause": "Validation currently focuses on structural correctness rather than analysis readiness or upstream normalization risks.",
+            "fix": "Add optional preflight checks for zero-variance rows, very small feature counts, and distance-method sensitivity. Emit lightweight warnings before clustering instead of silently assuming the input is analytically ready."
+        },
+        {
+            "priority": "P2",
+            "title": "Tighten integer parameter handling",
+            "observed_in": [],
+            "problem": "The CLI documents `seed` and `timeout_seconds` as integers, but runtime validation currently accepts any numeric scalar. The `minkowski` option is also exposed without documenting or surfacing its power parameter.",
+            "root_cause": "Parameter validation is shared through a generic numeric checker, and the wrapper mirrors base R defaults without exposing every underlying option.",
+            "fix": "Enforce integer-only validation for integer parameters and either document the default Minkowski power or expose it as an explicit CLI option. This will reduce ambiguity for reproducibility-sensitive users."
+        },
+        {
+            "priority": "P2",
+            "title": "Offer an optional lightweight QC summary",
+            "observed_in": [
+                1,
+                4,
+                5
+            ],
+            "problem": "The artifact generation is strong, but QC users still need to interpret outliers, label mixing, and obvious topology changes manually from raw files.",
+            "root_cause": "The workflow intentionally stops at plot and CSV generation and does not add a small interpretation layer.",
+            "fix": "Consider writing an optional short text summary that highlights simple, low-risk observations such as isolated leaves, large branch separations, or whether labels appear intermixed. Keep the summary descriptive rather than inferential."
+        }
+    ]
+}

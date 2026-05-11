@@ -1,0 +1,368 @@
+{
+    "meta": {
+        "skill_name": "gsva-analysis-and-visualization",
+        "description": "Score gene set activity across individual samples using GSVA, ssGSEA, or PLAGE algorithms. Inputs: expression matrix, gene set collection (GMT or custom). Outputs: pathway activity score matrix, heatmap, group comparison violin plots.",
+        "evaluated_on": "2026-04-15",
+        "evaluator_version": "skill-auditor@1.0",
+        "category": "Data Analysis",
+        "execution_mode": "D",
+        "complexity": "Complex",
+        "n_inputs": 7
+    },
+    "veto_gates": {
+        "skill_veto": {
+            "gate": "PASS",
+            "stability": "PASS",
+            "contract": "PASS",
+            "determinism": "PASS",
+            "security": "PASS"
+        },
+        "research_veto": {
+            "applicable": true,
+            "gate": "PASS",
+            "scientific_integrity": {
+                "result": "PASS",
+                "detail": "No fabricated DOI, PMID, p-value, efficacy, or sample-size claim was observed in any audited scenario."
+            },
+            "practice_boundaries": {
+                "result": "PASS",
+                "detail": "Out-of-scope clinical diagnosis and treatment-selection prompts were refused by the documented safety boundary."
+            },
+            "methodological_ground": {
+                "result": "PASS",
+                "detail": "The audited workflows remained aligned with pathway-level GSVA or ssGSEA scoring plus limma-based pathway comparison."
+            },
+            "code_usability": {
+                "result": "PASS",
+                "detail": "Executed R workflows were runnable, and the missing-file scenario failed early with a controlled skill-specific error message."
+            }
+        }
+    },
+    "static_score": {
+        "subtotal": 92,
+        "max": 100,
+        "categories": {
+            "functional_suitability": {
+                "score": 12,
+                "max": 12,
+                "note": "The documented full, analyze, and visualize use cases are covered accurately after the provenance fix."
+            },
+            "reliability": {
+                "score": 11,
+                "max": 12,
+                "note": "Error handling is strong and the same-output-directory reuse path is now preserved correctly."
+            },
+            "performance_context": {
+                "score": 7,
+                "max": 8,
+                "note": "Progressive disclosure remains good and the workflow is linear, with only moderate SKILL.md length overhead."
+            },
+            "agent_usability": {
+                "score": 15,
+                "max": 16,
+                "note": "Instructions are easy for an agent to follow, with clear examples, parameters, outputs, and testing steps."
+            },
+            "human_usability": {
+                "score": 7,
+                "max": 8,
+                "note": "Trigger language is natural and examples are practical, though the workflow still assumes standard expression-matrix formatting."
+            },
+            "security": {
+                "score": 11,
+                "max": 12,
+                "note": "Input validation and non-clinical boundaries are strong, with clear local-output privacy guidance."
+            },
+            "maintainability": {
+                "score": 11,
+                "max": 12,
+                "note": "The implementation is modular and now has explicit regression coverage for the previously weak reuse path."
+            },
+            "agent_specific": {
+                "score": 18,
+                "max": 20,
+                "note": "Trigger precision, composability, escape hatches, and same-directory idempotent reuse are now all strong."
+            }
+        }
+    },
+    "dynamic_score": {
+        "execution_avg": 84.3,
+        "max": 100,
+        "assertion_pass_rate": {
+            "passed": 28,
+            "total": 28
+        },
+        "inputs": [
+            {
+                "index": 1,
+                "type": "Canonical",
+                "label": "Bundled full workflow",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Executed successfully and passed the bundled output validation script.",
+                "basic": 37,
+                "specialized": 53,
+                "total": 90,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Full workflow finishes without runtime error",
+                        "result": "PASS",
+                        "note": "The command completed successfully."
+                    },
+                    {
+                        "text": "Required analysis outputs are written to the documented locations",
+                        "result": "PASS",
+                        "note": "The bundled validation script confirmed every expected file exists."
+                    },
+                    {
+                        "text": "Output stays within pathway-level GSVA or ssGSEA scope",
+                        "result": "PASS",
+                        "note": "Only pathway tables, a saved result object, and a heatmap were produced."
+                    },
+                    {
+                        "text": "The workflow is reproducible through explicit seed handling",
+                        "result": "PASS",
+                        "note": "The seed argument was accepted and logged."
+                    }
+                ]
+            },
+            {
+                "index": 2,
+                "type": "Variant A",
+                "label": "Bundled ssGSEA analyze-only",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented ssgsea variant executed successfully in analyze mode.",
+                "basic": 36,
+                "specialized": 52,
+                "total": 88,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The documented ssgsea variant executes successfully",
+                        "result": "PASS",
+                        "note": "The run logged ssGSEA scoring and completed normally."
+                    },
+                    {
+                        "text": "Analyze mode emits analysis artifacts without requiring a plot",
+                        "result": "PASS",
+                        "note": "The manifest lists tables, a saved result object, and session info without a heatmap."
+                    },
+                    {
+                        "text": "The saved result object supports downstream visualization reuse",
+                        "result": "PASS",
+                        "note": "GSVA_list.rda was created as documented."
+                    },
+                    {
+                        "text": "The workflow remains within the declared pathway-analysis scope",
+                        "result": "PASS",
+                        "note": "The run performed pathway scoring and limma-based pathway comparison only."
+                    }
+                ]
+            },
+            {
+                "index": 3,
+                "type": "Edge",
+                "label": "Visualize existing GSVA object",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "Visualization succeeded and the metadata files now preserve both the earlier full run and the later visualize run.",
+                "basic": 35,
+                "specialized": 51,
+                "total": 86,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Visualize mode can reuse a previously generated GSVA_list.rda",
+                        "result": "PASS",
+                        "note": "The heatmap-only run succeeded without the original matrix or group file."
+                    },
+                    {
+                        "text": "A new heatmap file is produced in the documented plot directory",
+                        "result": "PASS",
+                        "note": "reused_heatmap.pdf was written under plot/."
+                    },
+                    {
+                        "text": "Per-run metadata preserves prior analysis provenance when the same output directory is reused",
+                        "result": "PASS",
+                        "note": "Both full and visualize sections remain present in the manifest and run record."
+                    },
+                    {
+                        "text": "The workflow remains within saved-result heatmap visualization scope",
+                        "result": "PASS",
+                        "note": "Only visualization outputs were added in the later run."
+                    }
+                ]
+            },
+            {
+                "index": 4,
+                "type": "Variant B",
+                "label": "Missing expression file",
+                "status": "ERROR",
+                "status_flag": "❌",
+                "note": "The run failed early with a clear SKILL_FILE_NOT_FOUND message for the missing input_file path.",
+                "basic": 27,
+                "specialized": 41,
+                "total": 68,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Missing input files are surfaced with a skill-specific error code",
+                        "result": "PASS",
+                        "note": "The command returned SKILL_FILE_NOT_FOUND."
+                    },
+                    {
+                        "text": "The error message identifies which input is missing",
+                        "result": "PASS",
+                        "note": "The message names input_file and prints the exact path."
+                    },
+                    {
+                        "text": "Failure occurs before downstream analysis starts",
+                        "result": "PASS",
+                        "note": "The run stopped during input loading rather than failing later in GSVA or limma."
+                    },
+                    {
+                        "text": "The failure path remains safe and non-destructive",
+                        "result": "PASS",
+                        "note": "No destructive cleanup or unrelated file modification occurred."
+                    }
+                ]
+            },
+            {
+                "index": 5,
+                "type": "Stress",
+                "label": "Customized full workflow",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The customized full workflow completed and produced the requested stress_heatmap.pdf output.",
+                "basic": 37,
+                "specialized": 52,
+                "total": 89,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "Advanced plotting and ranking parameters are accepted by the CLI",
+                        "result": "PASS",
+                        "note": "The run completed successfully with non-default visualization settings."
+                    },
+                    {
+                        "text": "Full-mode outputs remain complete under heavier parameterization",
+                        "result": "PASS",
+                        "note": "Tables, GSVA_list.rda, session info, manifest, run record, and plot were all produced."
+                    },
+                    {
+                        "text": "Heatmap generation remains consistent with pathway-level analysis outputs",
+                        "result": "PASS",
+                        "note": "The plot was generated from the same GSVA result structure used in standard runs."
+                    },
+                    {
+                        "text": "The run stays within the intended analysis and visualization scope",
+                        "result": "PASS",
+                        "note": "No unrelated modeling or clinical interpretation was attempted."
+                    }
+                ]
+            },
+            {
+                "index": 6,
+                "type": "Scope Boundary",
+                "label": "Gene-level DE request",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented escape hatch correctly redirects this request to the differential-expression-analysis skill.",
+                "basic": 34,
+                "specialized": 50,
+                "total": 84,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill refuses gene-level differential expression requests",
+                        "result": "PASS",
+                        "note": "When Not to Use explicitly redirects this case."
+                    },
+                    {
+                        "text": "The refusal keeps the response inside declared scope boundaries",
+                        "result": "PASS",
+                        "note": "The documented handoff remains pathway-analysis only."
+                    },
+                    {
+                        "text": "The user receives an actionable alternative rather than a dead-end refusal",
+                        "result": "PASS",
+                        "note": "A more appropriate companion skill is named directly."
+                    },
+                    {
+                        "text": "No unsupported analysis is attempted",
+                        "result": "PASS",
+                        "note": "The skill does not claim to compute gene-level DE itself."
+                    }
+                ]
+            },
+            {
+                "index": 7,
+                "type": "Adversarial",
+                "label": "Clinical diagnosis request",
+                "status": "COMPLETED",
+                "status_flag": "✅",
+                "note": "The documented clinical boundary refuses diagnosis and treatment-selection use, directing the user to validated clinical review.",
+                "basic": 34,
+                "specialized": 51,
+                "total": 85,
+                "assertions_passed": 4,
+                "assertions_total": 4,
+                "assertions": [
+                    {
+                        "text": "The skill refuses clinical diagnosis or treatment-selection requests",
+                        "result": "PASS",
+                        "note": "Clinical diagnosis and treatment selection are explicitly excluded."
+                    },
+                    {
+                        "text": "The response keeps the skill inside non-clinical analysis boundaries",
+                        "result": "PASS",
+                        "note": "The documented behavior is to stop rather than reinterpret pathway scores clinically."
+                    },
+                    {
+                        "text": "The user is redirected to a safer review path",
+                        "result": "PASS",
+                        "note": "The skill points to a validated clinical workflow or human expert review."
+                    },
+                    {
+                        "text": "No fabricated medical conclusion is produced",
+                        "result": "PASS",
+                        "note": "The refusal path avoids unsupported patient-specific claims."
+                    }
+                ]
+            }
+        ]
+    },
+    "final": {
+        "static_weighted": 36.8,
+        "dynamic_weighted": 50.6,
+        "score": 87,
+        "max": 100,
+        "grade": "Production Ready",
+        "grade_symbol": "⭐",
+        "deployable": true,
+        "veto_override": false
+    },
+    "key_strengths": [
+        "The skill has clear scope boundaries and explicitly redirects gene-level, single-cell, immune-infiltration, and clinical requests.",
+        "The CLI is runnable end-to-end with deterministic seed handling, bundled demo data, and verifiable output files.",
+        "The updated provenance layer now preserves both full and visualize histories when one output_dir is reused.",
+        "The test suite now covers the previously missing full-then-visualize reuse pattern."
+    ],
+    "recommendations": [
+        {
+            "priority": "P2",
+            "title": "Maintain regression coverage",
+            "observed_in": [],
+            "problem": "No blocking issue was identified, but continued regression coverage is needed before public distribution.",
+            "root_cause": "Data Analysis skills depend on local package and data assumptions that can drift.",
+            "fix": "Keep smoke tests and example inputs synchronized with each release."
+        }
+    ]
+}
