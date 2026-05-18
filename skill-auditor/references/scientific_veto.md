@@ -1,6 +1,6 @@
 # Research Veto — Scientific Integrity Redlines
 
-> **HARD GATE. Applies to Skill categories 1–4 only (Evidence Insight, Protocol Design, Data Analysis, Evidence Insight). Category 5 (Other) is exempt.**
+> **HARD GATE. Applies to Skill categories 1–4 only (Evidence Insight, Protocol Design, Data Analysis, Academic Writing). Category 5 (Other) is exempt.**
 > Run after all N outputs are evaluated. Any single FAIL = immediate rejection.
 
 Review **all N outputs** collectively for the following four dimensions:

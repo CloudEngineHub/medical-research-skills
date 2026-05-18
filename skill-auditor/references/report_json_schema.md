@@ -420,7 +420,10 @@ Before emitting JSON, verify:
 - [ ] `static_score.categories` has exactly **8** keys with no cat-number prefixes: `functional_suitability`, `reliability`, `performance_context`, `agent_usability`, `human_usability`, `security`, `maintainability`, `agent_specific`
 - [ ] `dynamic_score.inputs` has exactly **N** objects (matching `meta.n_inputs`)
 - [ ] Each input has an `assertions` array with one object per assertion (`text`, `result`, `note`)
+- [ ] **Each input's `assertions` array contains 3–5 entries** *(cardinality constraint — count before emit)*
 - [ ] Each input's `assertions_passed` equals the count of `"PASS"` in its `assertions` array
+- [ ] Each input's `basic + specialized = total`
+- [ ] `static_score.subtotal` equals the sum of all 8 `static_score.categories.*.score` values
 - [ ] `dynamic_score.execution_avg` = mean of all input `total` values, rounded to 1 decimal
 - [ ] `final.static_weighted` = `static_score.subtotal × 0.4`, rounded to 1 decimal
 - [ ] `final.dynamic_weighted` = `dynamic_score.execution_avg × 0.6`, rounded to 1 decimal

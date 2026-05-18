@@ -1,4 +1,4 @@
-# Specialized Evaluation — Category 4: Evidence Insight
+# Specialized Evaluation — Category 4: Academic Writing
 
 This rubric contributes up to **60 points** to the per-output total score.
 

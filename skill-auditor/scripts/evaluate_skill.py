@@ -151,7 +151,12 @@ def extract_static_metadata(skill_path):
 
 def classify_skill(skill_path):
     """
-    Classify skill into Research Data / Evidence Insight / Other.
+    Classify skill into one of 5 canonical categories:
+      1. Evidence Insight
+      2. Protocol Design
+      3. Data Analysis
+      4. Academic Writing
+      5. Other (General / Non-Research)
     Also detect execution mode: A (Claude), B (CLI), C (API), D (Hybrid).
     """
     skill_md_path = os.path.join(skill_path, "SKILL.md")
@@ -161,21 +166,36 @@ def classify_skill(skill_path):
     with open(skill_md_path, "r") as f:
         content = f.read().lower()
 
-    # Category classification
-    research_data_keywords = ["experimental design", "data analysis", "statistical", "r script",
-                               "python analysis", "regression", "bioinformatics", "clinical trial"]
-    research_text_keywords = ["meta-analysis", "literature review", "academic writing",
-                               "cover letter", "systematic review", "methodology", "sci paper"]
+    # Category classification — keyword sets per canonical category
+    evidence_insight_keywords = ["search strategy", "literature search", "evidence level",
+                                  "critical appraisal", "evidence synthesis", "database selection",
+                                  "research gap", "systematic search"]
+    protocol_design_keywords = ["experimental design", "study design", "statistical power",
+                                 "sample size", "validation strategy", "causal inference",
+                                 "clinical trial", "study protocol"]
+    data_analysis_keywords = ["data analysis", "statistical", "r script", "python analysis",
+                               "regression", "bioinformatics", "data cleaning", "machine learning",
+                               "visualization", "pipeline"]
+    academic_writing_keywords = ["meta-analysis", "literature review", "academic writing",
+                                  "cover letter", "manuscript", "abstract generation",
+                                  "methods writing", "results writing", "discussion writing",
+                                  "sci paper"]
 
-    data_score = sum(1 for kw in research_data_keywords if kw in content)
-    text_score = sum(1 for kw in research_text_keywords if kw in content)
+    scores = {
+        "Evidence Insight": sum(1 for kw in evidence_insight_keywords if kw in content),
+        "Protocol Design": sum(1 for kw in protocol_design_keywords if kw in content),
+        "Data Analysis": sum(1 for kw in data_analysis_keywords if kw in content),
+        "Academic Writing": sum(1 for kw in academic_writing_keywords if kw in content),
+    }
 
-    if data_score == 0 and text_score == 0:
+    max_score = max(scores.values())
+    if max_score == 0:
         category = "Other"
-    elif data_score >= text_score:
-        category = "Protocol Design / Data Analysis"
     else:
-        category = "Evidence Insight"
+        # Tie-break by canonical category order (1 → 2 → 3 → 4)
+        category = next(c for c in ["Evidence Insight", "Protocol Design",
+                                     "Data Analysis", "Academic Writing"]
+                        if scores[c] == max_score)
 
     # Execution mode detection
     scripts_dir = os.path.join(skill_path, "scripts")
@@ -197,7 +217,7 @@ def classify_skill(skill_path):
     return {
         "category": category,
         "execution_mode": execution_mode,
-        "category_keyword_scores": {"research_data": data_score, "research_text": text_score}
+        "category_keyword_scores": scores,
     }
 
 
