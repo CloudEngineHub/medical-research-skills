@@ -26,7 +26,7 @@ A curated library of 550+ medical research agent skills created by [AIPOCH](http
 
 > 💡**New:** We are launching **Awesome ​Med​ Research Skills** — a curated collection of medical research Agent Skills, featuring 140+ high-quality skills. Each skill embeds **professional medical research logic**. [Explore here.](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills)
 
-> AIPOCH also introduces **MedSkillAudit** - a layered framework assessing skill release readiness before deployment. [Try skill-auditor here.](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor)
+> AIPOCH also introduces **MedSkillAudit** - a domain-specific audit framework for medical research agent skills [Try skill-auditor here.](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor)
 
 ⭐ If you find this repository useful, consider giving it a star! It helps more researchers discover Medical Research Agent Skills and supports the continued development of this library.
 
@@ -47,6 +47,13 @@ The library is primarily organized into five categories: ​**Evidence Insights,
 **📌 Total Skills in Library: 554 and growing**
 
 The examples below represent selected skills from each category.
+
+## Academic Writing
+
+* [arXiv Preflight](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/arxiv-preflight)
+* [Target Journal Matcher](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/target-journal-matcher)
+* [Reporting Guideline Compliance Checker](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/reporting-guideline-compliance-checker)
+* [Medical English Precision Editor](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/medical-english-precision-editor)
 
 ## Evidence Insights
 
@@ -154,12 +161,6 @@ The examples below represent selected skills from each category.
 * [ROC Diagnostic Performance Analysis](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Data%20Analysis/roc-diagnostic-performance)
 * [Nomogram Construction](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Data%20Analysis/nomogram-construction)
 
-## Academic Writing
-
-* [Target Journal Matcher](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/target-journal-matcher)
-* [Reporting Guideline Compliance Checker](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/reporting-guideline-compliance-checker)
-* [Medical English Precision Editor](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/medical-english-precision-editor)
-* [arXiv Preflight](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills/Academic%20Writing/arxiv-preflight)
 
 ## 🚀 How to Start?
 
@@ -282,7 +283,7 @@ We aim to help researchers more effectively organize questions, connect evidence
   <img src="https://github.com/user-attachments/assets/583a861f-dc51-4078-ba11-0f64984d8815" width="800" />
 </p>
 
-MedSkillAudit is a layered framework assessing skill release readiness before deployment. Try [Skill-Auditor here](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor).
+MedSkillAudit is a domain-specific audit framework for medical research agent skills. Try [Skill-Auditor here](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor).
 
 ### How does MedSkillAudit Work?
 
@@ -356,3 +357,4 @@ You can [view evaluation results for selected AIPOCH skills here](https://www.ai
    <img alt="Star History Chart" src="https://api.star-history.com/image?repos=aipoch/medical-research-skills&type=date&legend=top-left" />
  </picture>
 </a>
+
