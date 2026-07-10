@@ -19,9 +19,10 @@ A curated library of 550+ medical research agent skills created by [AIPOCH](http
 
 ---
 
-> 💡**New:** We are launching **Awesome ​Med​ Research Skills** — a curated collection of medical research Agent Skills, featuring 140+ high-quality skills. Each skill embeds **professional medical research logic**. [Explore here.](https://github.com/aipoch/medical-research-skills/tree/main/awesome-med-research-skills)
+> 💡**New:** We are launching Open Science, an open-source, model-agnostic AI workbench designed to support scientific discovery workflows. [Learn more](https://github.com/aipoch/open-science)
 
 > **MedSkillAudit** - a domain-specific audit framework for medical research agent skills. [Try skill-auditor here.](https://github.com/aipoch/medical-research-skills/tree/main/skill-auditor)
+
 ## 🗂️ Skills Overview
 
 All skills in AIPOCH are ​**originally designed and developed in-house**​, built to reflect medical research workflows and standards. The library is primarily organized into five categories: ​**Evidence Insights, Protocol Design, ​Data Analysis,  Academic Writing**​, and Others.
