@@ -359,9 +359,9 @@ The examples below represent selected skills from each category.
 
 <a href="https://www.star-history.com/?repos=aipoch%2Fmedical-research-skills&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/image?repos=aipoch/medical-research-skills&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/image?repos=aipoch/medical-research-skills&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/image?repos=aipoch/medical-research-skills&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=aipoch/medical-research-skills&type=date&theme=dark&legend=top-left&sealed_token=KD3FdQQ_-RyhAT_jv034hc_lK-Vi0rDl4hcJbGBzdlRzh1WwOQAruUm0NjwY-UBJ0L100W6lkf1SOudZl64-8qB4KRCFHo9MFPm_q-58HrvXF4PMzxpF_jO6_aJwWeyu8GzqOABML6pXrPJnyL3IVlsTArYvdk9u94u9U5mMER0w8tsWQ33mVdNeywvT" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=aipoch/medical-research-skills&type=date&legend=top-left&sealed_token=KD3FdQQ_-RyhAT_jv034hc_lK-Vi0rDl4hcJbGBzdlRzh1WwOQAruUm0NjwY-UBJ0L100W6lkf1SOudZl64-8qB4KRCFHo9MFPm_q-58HrvXF4PMzxpF_jO6_aJwWeyu8GzqOABML6pXrPJnyL3IVlsTArYvdk9u94u9U5mMER0w8tsWQ33mVdNeywvT" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=aipoch/medical-research-skills&type=date&legend=top-left&sealed_token=KD3FdQQ_-RyhAT_jv034hc_lK-Vi0rDl4hcJbGBzdlRzh1WwOQAruUm0NjwY-UBJ0L100W6lkf1SOudZl64-8qB4KRCFHo9MFPm_q-58HrvXF4PMzxpF_jO6_aJwWeyu8GzqOABML6pXrPJnyL3IVlsTArYvdk9u94u9U5mMER0w8tsWQ33mVdNeywvT" />
  </picture>
 </a>
 
